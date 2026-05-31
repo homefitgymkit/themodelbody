@@ -9,11 +9,23 @@
 <link rel="stylesheet" href="colors_and_type.css">
 <link rel="stylesheet" href="site.css">
 <style>
+  html { scroll-behavior: smooth; }
   .guides-hero { text-align: center; }
   .guides-hero__inner { max-width: 760px; margin: 0 auto; padding: 76px 40px 40px; }
   .guides-hero .h1 { margin: 18px 0 20px; }
-  .guides-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; max-width: 880px; margin: 0 auto; }
+  .guides-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 36px; margin: 0 auto; }
   .guide .card__media { aspect-ratio: 1; background-size: cover; background-repeat: no-repeat; background-position: center; background-color: var(--blush-100); }
+  /* Deep-link anchors: offset for sticky header + highlight when targeted */
+  .guide { scroll-margin-top: 104px; }
+  .guide:target {
+    border-color: var(--cherry-600);
+    box-shadow: 0 0 0 3px var(--cherry-600), var(--shadow-lg);
+    animation: guidePulse 1.6s ease-out 2;
+  }
+  @keyframes guidePulse {
+    0%, 100% { box-shadow: 0 0 0 3px var(--cherry-600), var(--shadow-lg); }
+    50% { box-shadow: 0 0 0 7px color-mix(in srgb, var(--cherry-600) 28%, transparent), var(--shadow-lg); }
+  }
   .guide__meta { display: flex; gap: 8px; flex-wrap: wrap; }
   .tag {
     font-family: var(--font-label); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
@@ -64,33 +76,7 @@
     <div class="wrap">
       <div class="guides-grid">
 
-        <article class="card guide">
-          <div class="card__media" style="background-image:url('assets/guide-reset.png')"></div>
-          <div class="card__body">
-            <div class="guide__meta"><span class="tag">Workout plans</span><span class="tag">Meal plans</span></div>
-            <h3 class="card__title">Reset Routine</h3>
-            <p class="card__desc">Get back on track. A focused reset of training and clean eating to rebuild your routine, your energy and your momentum.</p>
-            <div class="card__foot">
-              <span class="price-tag">$35</span>
-              <a class="btn" href="https://kassyalicee.gumroad.com/l/kiteg" target="_blank" rel="noopener" data-integration="gumroad-reset">Buy →</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card guide">
-          <div class="card__media" style="background-image:url('assets/guide-lean.png')"></div>
-          <div class="card__body">
-            <div class="guide__meta"><span class="tag">Workout plans</span><span class="tag">Meal plans</span></div>
-            <h3 class="card__title">Lean Season Guides</h3>
-            <p class="card__desc">The complete lean, high-protein method: structured workouts, balanced meals and the mindset to build a toned, feminine physique all year.</p>
-            <div class="card__foot">
-              <span class="price-tag">$35</span>
-              <a class="btn" href="https://kassyalicee.gumroad.com/l/mcnhk" target="_blank" rel="noopener" data-integration="gumroad-lean">Buy →</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card guide">
+        <article class="card guide" id="sweets">
           <div class="card__media" style="background-image:url('assets/guide-sweets.png')"></div>
           <div class="card__body">
             <div class="guide__meta"><span class="tag">Recipes</span><span class="tag">Desserts</span></div>
@@ -103,7 +89,33 @@
           </div>
         </article>
 
-        <article class="card guide">
+        <article class="card guide" id="lean">
+          <div class="card__media" style="background-image:url('assets/guide-lean.png')"></div>
+          <div class="card__body">
+            <div class="guide__meta"><span class="tag">Workout plans</span><span class="tag">Meal plans</span></div>
+            <h3 class="card__title">Lean Season</h3>
+            <p class="card__desc">The complete lean, high-protein method: structured workouts, balanced meals and the mindset to build a toned, feminine physique all year.</p>
+            <div class="card__foot">
+              <span class="price-tag">$35</span>
+              <a class="btn" href="https://kassyalicee.gumroad.com/l/mcnhk" target="_blank" rel="noopener" data-integration="gumroad-lean">Buy →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card guide" id="reset">
+          <div class="card__media" style="background-image:url('assets/guide-reset.png')"></div>
+          <div class="card__body">
+            <div class="guide__meta"><span class="tag">Workout plans</span><span class="tag">Meal plans</span></div>
+            <h3 class="card__title">Reset Routine</h3>
+            <p class="card__desc">Get back on track. A focused reset of training and clean eating to rebuild your routine, your energy and your momentum.</p>
+            <div class="card__foot">
+              <span class="price-tag">$35</span>
+              <a class="btn" href="https://kassyalicee.gumroad.com/l/kiteg" target="_blank" rel="noopener" data-integration="gumroad-reset">Buy →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card guide" id="summer">
           <div class="card__media" style="background-image:url('assets/guide-summer.png')"></div>
           <div class="card__body">
             <div class="guide__meta"><span class="tag">Workout plans</span><span class="tag">Meal plans</span></div>
@@ -140,8 +152,8 @@
   <section class="section megacta" style="background:var(--bg-soft)" data-screen-label="Guides to Club">
     <div class="wrap">
       <div class="rule-cherry">🍒</div>
-      <h2 class="h2">Want fresh plans every month instead?</h2>
-      <p class="lede" style="max-width:520px;margin:0 auto 32px">The Model Body Club gives you new meal plans, recipes and workouts every month, plus the community, from $10.</p>
+      <h2 class="h2" style="margin-top:22px">Want fresh plans every month instead?</h2>
+      <p class="lede" style="max-width:520px;margin:28px auto 36px">The Model Body Club gives you new meal plans, recipes and workouts every month, plus the community, from $10.</p>
       <a class="btn btn--lg" href="club.html">Explore the Club →</a>
     </div>
   </section>
