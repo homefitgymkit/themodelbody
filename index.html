@@ -19,14 +19,14 @@
   .hero h1 { margin-bottom: 26px; }
   .hero__lede { max-width: 480px; margin-bottom: 34px; }
   .hero__cta { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
-  .hero__meta { margin-top: 34px; display: flex; gap: 28px; flex-wrap: wrap; }
-  .hero__meta div { display: flex; flex-direction: column; gap: 3px; }
-  .hero__meta strong { font-family: var(--font-display); font-size: 26px; line-height: 1; }
-  .hero__meta span { font-family: var(--font-label); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-muted); }
+  .hero__meta { margin-top: 38px; display: flex; gap: 48px; flex-wrap: wrap; }
+  .hero__meta div { display: flex; flex-direction: column; gap: 5px; }
+  .hero__meta strong { font-family: var(--font-display); font-size: 27px; line-height: 1; }
+  .hero__meta span { font-family: var(--font-label); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-muted); }
   .hero__art { position: relative; }
   .hero__photo {
     aspect-ratio: 4/5; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg);
-    background-image: url('assets/kassy-hero.jpeg'); background-size: cover; background-position: center 18%;
+    background-image: url('assets/hero-hat.jpeg'); background-size: cover; background-position: center 22%;
   }
   .hero__badge {
     position: absolute; left: -22px; bottom: 36px; background: var(--cherry-600); color: var(--cream-100);
@@ -55,7 +55,7 @@
 
   /* ---- About ---- */
   .about__inner { max-width: 1240px; margin: 0 auto; padding: 104px 40px; display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 72px; align-items: center; }
-  .about__photo { aspect-ratio: 4/5; border-radius: var(--radius-lg); background-image: url('assets/kassy-about.jpeg'); background-size: cover; background-position: center 12%; box-shadow: var(--shadow-md); }
+  .about__photo { aspect-ratio: 4/5; border-radius: var(--radius-lg); background-image: url('assets/home-kassy.jpeg'); background-size: cover; background-position: center 8%; box-shadow: var(--shadow-md); }
   .about__copy p { font-family: var(--font-body); font-size: 18px; line-height: 1.65; color: var(--ink-700); margin: 0 0 18px; text-wrap: pretty; }
   .about__copy em { font-style: italic; color: var(--fg-accent); font-family: var(--font-display); font-size: 1.06em; }
   .about__role { font-family: var(--font-label); font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-muted); margin: 8px 0 24px; }
@@ -96,22 +96,21 @@
   <section class="hero" data-screen-label="01 Home hero">
     <div class="hero__inner">
       <div class="hero__copy">
-        <span class="eyebrow">The Model Body Club <span class="cherry">🍒</span> by @KassyAlicee</span>
+        <span class="eyebrow">The Model Body Club <span class="cherry">🍒</span> by Kassy Alicee</span>
         <h1 class="h1">Train with <em>intention.</em><br>Eat without restriction.</h1>
         <p class="lede hero__lede">Smart strength training and clean, high-protein eating for a toned, feminine physique. Monthly plans, recipes and workouts, plus a community that keeps you showing up.</p>
         <div class="hero__cta">
-          <a class="btn btn--lg" href="club.html">Join the Club, from $10/mo</a>
+          <a class="btn btn--lg" href="club.html">Find out more</a>
           <a class="link-arrow" href="free-meal-plan.html">Get the free meal plan</a>
         </div>
         <div class="hero__meta">
           <div><strong>Monthly</strong><span>New plans &amp; recipes</span></div>
-          <div><strong>Gym + Home</strong><span>Workout guides</span></div>
-          <div><strong>Cancel</strong><span>Anytime</span></div>
+          <div><strong>Gym + home</strong><span>Workout guides</span></div>
+          <div><strong>Cancel anytime</strong><span>No commitment</span></div>
         </div>
       </div>
       <div class="hero__art">
         <div class="hero__photo" role="img" aria-label="Kassy Alicee"></div>
-        <div class="hero__badge"><b>🍒</b><span>The Model Body</span></div>
       </div>
     </div>
   </section>
@@ -127,13 +126,13 @@
         <div class="offer offer--feature">
           <span class="offer__flag">Most popular</span>
           <div class="card">
-            <div class="card__media" style="background-image:url('assets/kassy-club.jpeg')"></div>
+            <div class="card__media" style="aspect-ratio:1;background-image:url('assets/home-club.png')"></div>
             <div class="card__body">
               <span class="pill">The Club</span>
               <h3 class="card__title">The Model Body Club</h3>
               <p class="card__desc">A fresh monthly drop of meal plans, recipes and gym + home workouts, plus the community keeping you accountable.</p>
               <div class="card__foot">
-                <span class="price-tag">$10<small>/mo</small></span>
+                <span class="price-tag">from $10<small>/mo</small></span>
                 <a class="link-arrow" href="club.html">Join now</a>
               </div>
             </div>
@@ -141,7 +140,7 @@
         </div>
         <div class="offer">
           <div class="card">
-            <div class="card__media" style="background-image:url('assets/kassy-coaching.jpeg')"></div>
+            <div class="card__media" style="aspect-ratio:1;background-image:url('assets/home-coaching.png')"></div>
             <div class="card__body">
               <span class="pill">1:1 Coaching</span>
               <h3 class="card__title">Personalised Coaching</h3>
@@ -155,13 +154,13 @@
         </div>
         <div class="offer">
           <div class="card">
-            <div class="card__media" style="background-image:url('assets/meal-plate.jpg')"></div>
+            <div class="card__media" style="aspect-ratio:1;background-image:url('assets/home-guides.png')"></div>
             <div class="card__body">
               <span class="pill">Guides &amp; Plans</span>
-              <h3 class="card__title">Lean Season Guides</h3>
+              <h3 class="card__title">Guides</h3>
               <p class="card__desc">One-off downloadable guides: the complete method, gym and home workout plans, and the full Lean Season meal plan.</p>
               <div class="card__foot">
-                <span class="price-tag" style="font-size:28px">from $19</span>
+                <span class="price-tag" style="font-size:28px">from $15</span>
                 <a class="link-arrow" href="guides.html">Shop</a>
               </div>
             </div>
@@ -175,9 +174,9 @@
   <section class="freeband" data-screen-label="03 Free meal plan">
     <div class="freeband__inner">
       <div class="freeband__photos">
-        <div style="background-image:url('assets/meal-smoothie.jpg')"></div>
-        <div style="background-image:url('assets/meal-bowl.jpg')"></div>
-        <div style="background-image:url('assets/meal-plate.jpg')"></div>
+        <div style="background-image:url('assets/food-smoothie.png')"></div>
+        <div style="background-image:url('assets/food-bowl.png')"></div>
+        <div style="background-image:url('assets/food-oats.png')"></div>
       </div>
       <div>
         <span class="eyebrow">A free gift from Kassy <span class="cherry">🍒</span></span>

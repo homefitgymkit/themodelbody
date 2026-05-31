@@ -14,7 +14,7 @@
   .club-hero .h1 { color: var(--cream-100); margin-bottom: 24px; }
   .club-hero .lede { color: var(--cream-200); opacity: 0.9; max-width: 480px; margin-bottom: 32px; }
   .club-hero .eyebrow { color: var(--cherry-300); margin-bottom: 20px; display: inline-block; }
-  .club-hero__art { aspect-ratio: 4/5; border-radius: var(--radius-lg); background-image: url('assets/kassy-club-hero.jpeg'); background-size: cover; background-position: center 22%; box-shadow: var(--shadow-lg); }
+  .club-hero__art { aspect-ratio: 4/5; border-radius: var(--radius-lg); background-image: url('assets/club-striped.jpeg'); background-size: cover; background-position: center 18%; box-shadow: var(--shadow-lg); }
   .club-hero__cta { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
   .club-hero__price { display: flex; align-items: baseline; gap: 8px; }
   .club-hero__price b { font-family: var(--font-display); font-size: 40px; color: var(--cream-100); }
@@ -86,8 +86,8 @@
         <h1 class="h1">Pick your <em>plan.</em> Meals, workouts, or both.</h1>
         <p class="lede">Every month I drop a fresh meal plan and new high-protein recipes, plus gym + home workout guides. Take the meals track, the workouts track, or both. You choose at checkout.</p>
         <div class="club-hero__cta">
-          <!-- Gumroad overlay checkout — buys in-page, falls back to the product page if JS fails -->
-          <a class="btn btn--lg gumroad-button" href="https://kassyalicee.gumroad.com/l/modelbodyclub" data-gumroad-overlay-checkout="true" data-integration="gumroad-club">Join from $10/mo →</a>
+          <!-- Opens the Gumroad product page in a new tab so the buyer picks their plan -->
+          <a class="btn btn--lg" href="https://kassyalicee.gumroad.com/l/modelbodyclub" target="_blank" rel="noopener" data-integration="gumroad-club">Join →</a>
           <div class="club-hero__price"><b>from $10</b><span>/ month · cancel anytime</span></div>
         </div>
       </div>
@@ -144,8 +144,8 @@
           <div class="checkout__opt"><b>Workouts</b><span>$10<small>/mo</small></span></div>
           <div class="checkout__opt"><b>Both</b><span>$18<small>/mo</small></span></div>
         </div>
-        <!-- Gumroad overlay checkout — buys in-page, falls back to the product page if JS fails -->
-        <a class="btn btn--lg btn--block gumroad-button" href="https://kassyalicee.gumroad.com/l/modelbodyclub" data-gumroad-overlay-checkout="true" data-integration="gumroad-club">Continue to checkout →</a>
+        <!-- Opens the Gumroad product page in a new tab so the buyer picks their plan -->
+        <a class="btn btn--lg btn--block" href="https://kassyalicee.gumroad.com/l/modelbodyclub" target="_blank" rel="noopener" data-integration="gumroad-club">Continue to checkout →</a>
         <p class="form-note" style="text-align:center">Secure checkout via Gumroad. Choose meals, workouts or both, then cancel anytime.</p>
       </div>
     </div>
@@ -173,13 +173,12 @@
       <div class="rule-cherry">🍒</div>
       <h2 class="h2">Join the women training with intention.</h2>
       <p class="lede" style="max-width:500px;margin:0 auto 32px">From $10 a month. New plans, recipes and workouts, plus the community keeping you consistent.</p>
-      <a class="btn btn--lg gumroad-button" href="https://kassyalicee.gumroad.com/l/modelbodyclub" data-gumroad-overlay-checkout="true" data-integration="gumroad-club">Join the Club →</a>
+      <a class="btn btn--lg" href="https://kassyalicee.gumroad.com/l/modelbodyclub" target="_blank" rel="noopener" data-integration="gumroad-club">Join the Club →</a>
     </div>
   </section>
 </main>
 
 <div id="site-footer"></div>
 <script src="partials.js"></script>
-<script src="https://gumroad.com/js/gumroad.js"></script>
 </body>
 </html>
