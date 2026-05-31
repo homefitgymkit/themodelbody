@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Kassy Alicee · The Model Body Club</title>
+<meta name="description" content="Meet Kassy Alicee: model, trainer and founder of The Model Body. Her method, her story and where to find her. Train with intention, eat without restriction.">
+<link rel="icon" href="assets/logo-square.png">
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="site.css">
+<style>
+  .ab-hero__inner { max-width: 1240px; margin: 0 auto; padding: 80px 40px 90px; display: grid; grid-template-columns: 0.92fr 1.08fr; gap: 72px; align-items: center; }
+  .ab-hero .eyebrow { margin-bottom: 18px; display: inline-block; }
+  .ab-hero .h1 { margin-bottom: 22px; }
+  .ab-hero .lede { max-width: 480px; }
+  .ab-role { font-family: var(--font-label); font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-muted); margin: 0 0 24px; }
+  .ab-hero__art { aspect-ratio: 4/5; border-radius: var(--radius-lg); background-image: url('assets/kassy-hero.jpeg'); background-size: cover; background-position: center 16%; box-shadow: var(--shadow-lg); }
+
+  /* Story */
+  .ab-story { background: var(--bg-soft); }
+  .ab-story__inner { max-width: 1180px; margin: 0 auto; padding: 96px 40px; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 72px; align-items: center; }
+  .ab-story__copy p { font-family: var(--font-body); font-size: 18px; line-height: 1.68; color: var(--ink-700); margin: 0 0 18px; text-wrap: pretty; }
+  .ab-story__copy em { font-style: italic; font-family: var(--font-display); color: var(--fg-accent); font-size: 1.05em; }
+  .ab-story__photos { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .ab-story__photos div { border-radius: var(--radius-md); background-size: cover; background-position: center; box-shadow: var(--shadow-sm); aspect-ratio: 3/4; }
+  .ab-story__photos div:first-child { grid-column: span 2; aspect-ratio: 16/11; }
+
+  /* Method pillars */
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .pillar { padding: 34px; background: var(--paper); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+  .pillar b { font-family: var(--font-label); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cherry-600); }
+  .pillar h3 { font-family: var(--font-display); font-size: 24px; margin: 12px 0 8px; }
+  .pillar p { font-family: var(--font-body); font-size: 15px; line-height: 1.6; color: var(--ink-700); margin: 0; }
+
+  /* Socials */
+  .socials { background: var(--ink-900); color: var(--cream-100); }
+  .socials__inner { max-width: 1100px; margin: 0 auto; padding: 92px 40px; }
+  .socials__head { text-align: center; margin-bottom: 48px; }
+  .socials__head .h2 { color: var(--cream-100); }
+  .social-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .social {
+    display: flex; flex-direction: column; gap: 6px; text-decoration: none;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-lg); padding: 28px; transition: background .18s, border-color .18s, transform .18s;
+  }
+  .social:hover { background: rgba(255,255,255,0.08); border-color: var(--cherry-300); transform: translateY(-3px); }
+  .social b { font-family: var(--font-label); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cherry-300); }
+  .social span { font-family: var(--font-display); font-size: 22px; color: var(--cream-100); }
+  .social small { font-family: var(--font-body); font-size: 13px; color: var(--cream-200); opacity: 0.7; }
+
+  /* Contact */
+  .contact__inner { max-width: 720px; margin: 0 auto; }
+  .contact-card { background: var(--paper); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 44px; box-shadow: var(--shadow-sm); }
+  .contact-card .h2 { margin-bottom: 6px; }
+  .contact-sub { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--ink-700); margin: 0 0 26px; }
+  .contact-card label { display: block; font-family: var(--font-label); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-muted); margin: 0 0 8px; }
+  .contact-field { display: flex; flex-direction: column; gap: 18px; }
+  .contact-card input, .contact-card textarea {
+    width: 100%; padding: 15px 18px; background: var(--white); border: 1.5px solid var(--ink-900);
+    border-radius: var(--radius-md); font-family: var(--font-body); font-size: 15px; color: var(--ink-900); outline: none;
+  }
+  .contact-card textarea { resize: vertical; min-height: 130px; border-radius: var(--radius-md); }
+  .contact-card input:focus, .contact-card textarea:focus { border-color: var(--cherry-600); }
+  .contact-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .contact-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 22px; }
+  .contact-mail { font-family: var(--font-body); font-size: 14px; color: var(--fg-muted); }
+  .contact-mail a { color: var(--cherry-700); text-decoration: none; border-bottom: 1px solid var(--cherry-300); }
+
+  /* Reviews */
+  .reviews { background: var(--ink-900); color: var(--cream-100); }
+  .reviews__inner { max-width: 1240px; margin: 0 auto; padding: 100px 40px; }
+  .reviews__head { text-align: center; margin-bottom: 56px; }
+  .reviews__head .h2 { color: var(--cream-100); }
+  .review-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  .review { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); padding: 32px; display: flex; flex-direction: column; gap: 16px; }
+  .review__stars { color: var(--cherry-300); letter-spacing: 4px; font-size: 15px; }
+  .review__quote { font-family: var(--font-display); font-size: 20px; line-height: 1.4; color: var(--cream-100); margin: 0; }
+  .review__who { display: flex; align-items: center; gap: 8px; font-family: var(--font-label); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cherry-300); margin-top: auto; }
+  .review__check { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 999px; background: var(--cherry-600); color: #fff; font-size: 9px; }
+
+  /* FAQ */
+  .faq { max-width: 760px; margin: 0 auto; }
+  .faq details { border-bottom: 1px solid var(--border); padding: 24px 0; }
+  .faq summary { font-family: var(--font-display); font-size: 22px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: '+'; font-family: var(--font-body); font-size: 26px; color: var(--cherry-600); transition: transform .2s; }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq p { font-family: var(--font-body); font-size: 16px; line-height: 1.65; color: var(--ink-700); margin: 14px 0 0; }
+
+  /* Disclaimer */
+  .disclaimer { max-width: 880px; margin: 56px auto 0; background: var(--paper); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 36px 40px; }
+  .disclaimer h4 { font-family: var(--font-label); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cherry-700); margin: 0 0 14px; }
+  .disclaimer p { font-family: var(--font-body); font-size: 13px; line-height: 1.7; color: var(--ink-500); margin: 0 0 12px; }
+  .disclaimer p:last-child { margin-bottom: 0; }
+
+  @media (max-width: 900px) {
+    .review-grid { grid-template-columns: 1fr; }
+    .ab-hero__inner { grid-template-columns: 1fr; gap: 40px; padding: 52px 22px; }
+    .ab-hero__art { max-width: 360px; }
+    .ab-story__inner { grid-template-columns: 1fr; gap: 40px; padding: 64px 22px; }
+    .pillars { grid-template-columns: 1fr; }
+    .social-grid { grid-template-columns: 1fr 1fr; }
+    .contact-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body data-page="about">
+<div id="site-header"></div>
+
+<main>
+  <!-- ============ HERO ============ -->
+  <section class="ab-hero" data-screen-label="About hero">
+    <div class="ab-hero__inner">
+      <div>
+        <span class="eyebrow">Meet Kassy <span class="cherry">🍒</span></span>
+        <h1 class="h1">Hey, I'm <em>Kassy Alicee.</em></h1>
+        <p class="ab-role">Model · Trainer · Founder of The Model Body</p>
+        <p class="lede">I help women build a toned, feminine physique through smart strength training and clean, high-protein eating, without the burnout, the restriction or the guilt. This is The Model Body Method.</p>
+      </div>
+      <div class="ab-hero__art" role="img" aria-label="Kassy Alicee"></div>
+    </div>
+  </section>
+
+  <!-- ============ STORY ============ -->
+  <section class="ab-story" data-screen-label="About story">
+    <div class="ab-story__inner">
+      <div class="ab-story__copy">
+        <span class="eyebrow">My story</span>
+        <h2 class="h2" style="margin:14px 0 22px">Built from real life, not a fad.</h2>
+        <p>After years of overtraining, chasing trends and feeling exhausted by diets that never lasted, I built something different. <em>The Model Body Method</em> is smart strength training that creates a lean, feminine shape without spiking cortisol or burning you out.</p>
+        <p>It was never about restriction. It's about training with intention, fuelling your body properly, and building routines that lift your energy, posture and confidence for good. The kind of plan you can actually keep.</p>
+        <p>Now I share it all: monthly plans inside the Club, one-off guides, 1:1 coaching and the free gifts that started it. Wherever you are, there's a way to train with me.</p>
+      </div>
+      <div class="ab-story__photos">
+        <div style="background-image:url('assets/kassy-club.jpeg')"></div>
+        <div style="background-image:url('assets/reset-1.jpeg');background-position:center 20%"></div>
+        <div style="background-image:url('assets/kassy-about.jpeg');background-position:center 12%"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ METHOD PILLARS ============ -->
+  <section class="section" data-screen-label="About method">
+    <div class="wrap center" style="margin-bottom:48px">
+      <span class="eyebrow eyebrow--muted">What I stand for</span>
+      <h2 class="h2" style="margin-top:14px">Three things every plan follows</h2>
+    </div>
+    <div class="wrap">
+      <div class="pillars">
+        <div class="pillar"><b>01</b><h3>Train with intention</h3><p>Structured strength work that builds shape and strength, never random sessions that leave you drained.</p></div>
+        <div class="pillar"><b>02</b><h3>Eat without restriction</h3><p>High-protein food that actually tastes good, including dessert. Fuel, not punishment.</p></div>
+        <div class="pillar"><b>03</b><h3>Stay consistent</h3><p>Routines that fit a real, busy life so you keep showing up long after motivation fades.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REVIEWS ============ -->
+  <section class="reviews" data-screen-label="About reviews">
+    <div class="reviews__inner">
+      <div class="reviews__head">
+        <span class="eyebrow" style="color:var(--cherry-300)">What readers say</span>
+        <h2 class="h2" style="margin-top:14px">Loved by women training with intention <span class="cherry">🍒</span></h2>
+      </div>
+      <div class="review-grid">
+        <div class="review">
+          <div class="review__stars">★★★★★</div>
+          <p class="review__quote">"An outstanding fitness guide that genuinely delivers results. The workouts are easy to follow, well structured and suitable for every ability level. It doesn't just tell you what to do, it explains why each movement matters, which helped me train more effectively."</p>
+          <span class="review__who"><span class="review__check">✓</span> Verified buyer</span>
+        </div>
+        <div class="review">
+          <div class="review__stars">★★★★★</div>
+          <p class="review__quote">"Truly an exceptional book. Full of perfectly achievable steps and helpful tips, ideal for anyone wishing to take steps to becoming a healthy and glorious individual. Thank you Kassy for bringing your regime and dedication into my life."</p>
+          <span class="review__who"><span class="review__check">✓</span> Verified buyer</span>
+        </div>
+        <div class="review">
+          <div class="review__stars">★★★★★</div>
+          <p class="review__quote">"Read for the advice from a lady that takes excellent care of herself. Great helpful plans to organise your workout sessions, plus some tasty hearty recipes to make. Thanks Kassy."</p>
+          <span class="review__who"><span class="review__check">✓</span> Verified buyer</span>
+        </div>
+        <div class="review">
+          <div class="review__stars">★★★★★</div>
+          <p class="review__quote">"Highly recommend whatever your level of training. Thanks Kassy x"</p>
+          <span class="review__who"><span class="review__check">✓</span> Verified buyer</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DISCLAIMER ============ -->
+  <section class="section" data-screen-label="About disclaimer">
+    <div class="wrap">
+      <div class="disclaimer" data-screen-label="Disclaimer" style="margin-top:0">
+        <h4>Health, nutrition &amp; fitness disclaimer</h4>
+        <p>These guides and plans are provided for general informational and educational purposes only and are not intended as medical, nutritional or fitness advice, nor a substitute for professional guidance from a qualified healthcare provider, registered dietitian or certified fitness professional. Always consult your GP or a qualified professional before changing your diet or starting a new exercise programme, particularly if you have any pre-existing health conditions.</p>
+        <p>Participation in any nutrition or exercise programme involves inherent risks. If you experience pain, dizziness, shortness of breath or discomfort, stop immediately and seek medical advice. You are responsible for checking all ingredients for allergens, adapting meals to your dietary needs, and performing every exercise with proper form within your limits.</p>
+        <p>Individual results may vary and are not guaranteed. These plans are intended for generally healthy individuals and may not be suitable for those who are pregnant, breastfeeding, postpartum, recovering from injury or managing medical conditions without professional approval. By purchasing, you confirm you have read and agree to the full terms, disclaimer and refund policy.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOCIALS ============ -->
+  <section class="socials" data-screen-label="About socials">
+    <div class="socials__inner">
+      <div class="socials__head">
+        <span class="eyebrow" style="color:var(--cherry-300)">Come say hi</span>
+        <h2 class="h2" style="margin-top:14px">Find me everywhere <span class="cherry">🍒</span></h2>
+      </div>
+      <div class="social-grid">
+        <a class="social" href="https://instagram.com/kassyalicee" target="_blank" rel="noopener">
+          <b>Instagram</b><span>@KassyAlicee</span><small>Daily training &amp; food</small>
+        </a>
+        <a class="social" href="https://tiktok.com/@kassyalicee" target="_blank" rel="noopener">
+          <b>TikTok</b><span>@KassyAlicee</span><small>Workouts &amp; recipes</small>
+        </a>
+        <a class="social" href="https://pinterest.com/kassyalicee" target="_blank" rel="noopener">
+          <b>Pinterest</b><span>@KassyAlicee</span><small>Inspo &amp; meal ideas</small>
+        </a>
+        <a class="social" href="https://www.youtube.com/@Kassyalice" target="_blank" rel="noopener">
+          <b>YouTube</b><span>@Kassyalice</span><small>Workouts &amp; vlogs</small>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section" style="background:var(--bg-soft)" data-screen-label="About contact">
+    <div class="contact__inner">
+      <div class="contact-card">
+        <span class="eyebrow eyebrow--muted">Inquiries</span>
+        <h2 class="h2" style="margin-top:12px">Get in touch</h2>
+        <p class="contact-sub">Questions about a plan, coaching, or working together? Drop me a message and I'll get back to you.</p>
+
+        <form id="contact-form" novalidate>
+          <div class="contact-field">
+            <div class="contact-row">
+              <div>
+                <label for="cf-name">Your name</label>
+                <input id="cf-name" name="name" type="text" placeholder="Kassy" required>
+              </div>
+              <div>
+                <label for="cf-email">Your email</label>
+                <input id="cf-email" name="email" type="email" placeholder="you@email.com" autocomplete="email" required>
+              </div>
+            </div>
+            <div>
+              <label for="cf-msg">Message</label>
+              <textarea id="cf-msg" name="message" placeholder="Tell me a little about what you need..." required></textarea>
+            </div>
+          </div>
+          <div class="contact-foot">
+            <span class="contact-mail">Or email directly: <a href="mailto:themodelbodyclub@gmail.com">themodelbodyclub@gmail.com</a></span>
+            <button class="btn btn--lg" type="submit">Send message →</button>
+          </div>
+        </form>
+
+        <div class="form-success" style="margin-top:24px">
+          <span class="form-success__cherry">🍒</span>
+          <div>
+            <div class="form-success__title">Opening your email...</div>
+            <div class="form-success__sub">Your message is ready in your email app. Hit send and it'll come straight to me 🍒</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+<div id="site-footer"></div>
+<script src="partials.js"></script>
+<script>
+/* Inquiries box → opens the visitor's email client pre-filled to
+   themodelbodyclub@gmail.com (no backend needed; works anywhere). */
+(function () {
+  var form = document.getElementById('contact-form');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = form.name.value.trim();
+    var email = form.email.value.trim();
+    var msg = form.message.value.trim();
+    if (!name || !/.+@.+\..+/.test(email) || !msg) {
+      (!name ? form.name : !/.+@.+\..+/.test(email) ? form.email : form.message).focus();
+      return;
+    }
+    var subject = 'Website inquiry from ' + name;
+    var body = msg + '\n\n— ' + name + ' (' + email + ')';
+    var href = 'mailto:themodelbodyclub@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    window.location.href = href;
+    var ok = form.parentElement.querySelector('.form-success');
+    if (ok) ok.classList.add('show');
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1:1 Personalised Coaching · The Model Body Club · @KassyAlicee</title>
+<meta name="description" content="Fully personalised training and nutrition with weekly check-ins directly with Kassy. $150/mo. Limited spots, apply now.">
+<link rel="icon" href="assets/logo-square.png">
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="site.css">
+<style>
+  .coach-hero__inner { max-width: 1240px; margin: 0 auto; padding: 80px 40px 90px; display: grid; grid-template-columns: 1fr 0.85fr; gap: 72px; align-items: center; }
+  .coach-hero .eyebrow { margin-bottom: 20px; display: inline-block; }
+  .coach-hero .h1 { margin-bottom: 24px; }
+  .coach-hero .lede { max-width: 480px; margin-bottom: 30px; }
+  .coach-hero__cta { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .coach-hero__art { aspect-ratio: 4/5; border-radius: var(--radius-lg); background-image: url('assets/coaching-hero.png'); background-size: cover; background-position: center 30%; box-shadow: var(--shadow-lg); }
+  .coach-price { display: flex; align-items: baseline; gap: 8px; }
+  .coach-price b { font-family: var(--font-display); font-size: 40px; }
+  .coach-price span { font-family: var(--font-body); font-size: 15px; color: var(--fg-muted); }
+
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .step { padding: 32px; background: var(--paper); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+  .step b { font-family: var(--font-label); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cherry-600); }
+  .step h3 { font-family: var(--font-display); font-size: 24px; margin: 12px 0 8px; }
+  .step p { font-family: var(--font-body); font-size: 15px; line-height: 1.6; color: var(--ink-700); margin: 0; }
+
+  .coach-split { background: var(--ink-900); color: var(--cream-100); }
+  .coach-split__inner { max-width: 1100px; margin: 0 auto; padding: 88px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .coach-split .h2 { color: var(--cream-100); }
+  .coach-split .feat-list li { color: var(--cream-200); }
+  .coach-split .feat-list strong { color: var(--cream-100); }
+
+  .apply { max-width: 720px; margin: 0 auto; text-align: center; }
+  .apply-note { font-family: var(--font-body); font-size: 14px; color: var(--fg-muted); margin-top: 16px; }
+  .reserve-note { font-family: var(--font-body); font-size: 14px; color: var(--fg-muted); margin-top: 18px; }
+  .reserve-note a { color: var(--cherry-700); text-decoration: none; border-bottom: 1px solid var(--cherry-300); }
+
+  /* FAQ */
+  .faq { max-width: 760px; margin: 0 auto; }
+  .faq details { border-bottom: 1px solid var(--border); padding: 24px 0; }
+  .faq summary { font-family: var(--font-display); font-size: 22px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: '+'; font-family: var(--font-body); font-size: 26px; color: var(--cherry-600); transition: transform .2s; }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq p { font-family: var(--font-body); font-size: 16px; line-height: 1.65; color: var(--ink-700); margin: 14px 0 0; }
+
+  @media (max-width: 900px) {
+    .coach-hero__inner { grid-template-columns: 1fr; gap: 40px; padding: 52px 22px; }
+    .coach-hero__art { max-width: 360px; }
+    .steps { grid-template-columns: 1fr; }
+    .coach-split__inner { grid-template-columns: 1fr; gap: 36px; padding: 64px 22px; }
+  }
+</style>
+</head>
+<body data-page="coaching">
+<div id="site-header"></div>
+
+<main>
+  <!-- ============ HERO ============ -->
+  <section class="coach-hero" data-screen-label="Coaching hero">
+    <div class="coach-hero__inner">
+      <div>
+        <span class="eyebrow">1:1 Personalised Coaching <span class="cherry">🍒</span></span>
+        <h1 class="h1">Coaching built <em>around you.</em></h1>
+        <p class="lede">Fully personalised training and nutrition, designed for your body, your goals and your schedule, with weekly check-ins directly with me. This is the closest thing to training together.</p>
+        <div class="coach-hero__cta">
+          <!-- APPLY: live Google Form sign-up -->
+          <a class="btn btn--lg" href="https://docs.google.com/forms/d/e/1FAIpQLSdxpT44ttSjlgzFdLGaUyC4BmRB-IxeLnltbbEL4RjK1DwyRw/viewform" target="_blank" rel="noopener" data-integration="coaching-google-form">Apply for coaching →</a>
+          <div class="coach-price"><b>$150</b><span>/ month</span></div>
+        </div>
+      </div>
+      <div class="coach-hero__art" role="img" aria-label="Kassy coaching"></div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT'S INCLUDED ============ -->
+  <section class="coach-split" data-screen-label="Coaching includes">
+    <div class="coach-split__inner">
+      <div>
+        <span class="eyebrow" style="color:var(--cherry-300)">What's included</span>
+        <h2 class="h2" style="margin:14px 0 22px">Everything tailored to you <span class="cherry">🍒</span></h2>
+        <p class="lede" style="color:var(--cream-200);opacity:0.85">No generic templates. Every part of your plan is built and adjusted around your progress.</p>
+      </div>
+      <ul class="feat-list">
+        <li><strong>Personalised training plan</strong> built for your goals, equipment and experience.</li>
+        <li><strong>Custom nutrition</strong> with protein and calorie targets that fit your life, not a crash diet.</li>
+        <li><strong>Weekly check-ins</strong> with Kassy to review progress and adjust as you go.</li>
+        <li><strong>Direct messaging access</strong> for form checks, questions and accountability.</li>
+        <li><strong>Ongoing adjustments</strong> so your plan evolves as your body and routine change.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="section" data-screen-label="Coaching how it works">
+    <div class="wrap center" style="margin-bottom:52px">
+      <span class="eyebrow eyebrow--muted">How it works</span>
+      <h2 class="h2" style="margin-top:14px">From application to results</h2>
+    </div>
+    <div class="wrap">
+      <div class="steps">
+        <div class="step"><b>Step 01</b><h3>Apply</h3><p>Fill in a short application so I understand your goals, history and lifestyle. It takes about five minutes.</p></div>
+        <div class="step"><b>Step 02</b><h3>Onboarding</h3><p>If we're a fit, you'll get your personalised training and nutrition plan and we set up your check-in rhythm.</p></div>
+        <div class="step"><b>Step 03</b><h3>Coach together</h3><p>Weekly check-ins and direct support keep you accountable while we adjust your plan around real progress.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ APPLY CTA ============ -->
+  <section class="section freeband" style="background:var(--bg-soft)" data-screen-label="Coaching apply">
+    <div class="wrap apply">
+      <span class="pill">Limited spots</span>
+      <h2 class="h2" style="margin:18px 0 16px">Ready to start? Apply for coaching.</h2>
+      <p class="lede" style="margin:0 auto 32px;max-width:520px">Coaching is $150 per month with limited spots so everyone gets real attention. Once you apply, we'll have a quick discussion to make sure I'm the right coach for you before anything else.</p>
+      <!-- APPLY: live Google Form sign-up -->
+      <a class="btn btn--lg" href="https://docs.google.com/forms/d/e/1FAIpQLSdxpT44ttSjlgzFdLGaUyC4BmRB-IxeLnltbbEL4RjK1DwyRw/viewform" target="_blank" rel="noopener" data-integration="coaching-google-form">Apply for coaching →</a>
+      <p class="reserve-note">Or <a class="gumroad-button" href="https://kassyalicee.gumroad.com/l/cgvxdj" data-gumroad-overlay-checkout="true" data-gumroad-single-product="true" data-integration="gumroad-coaching">reserve your spot →</a></p>
+      <p class="apply-note">Prefer the self-guided route? <a class="link-arrow" style="display:inline-flex" href="club.html">Join the Club from $10/mo</a></p>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section" data-screen-label="Coaching FAQ">
+    <div class="wrap center" style="margin-bottom:44px">
+      <span class="eyebrow eyebrow--muted">Good to know</span>
+      <h2 class="h2" style="margin-top:14px">Questions, answered</h2>
+    </div>
+    <div class="wrap faq">
+      <details open><summary>Do I need a gym?</summary><p>No. Every workout comes with a full home alternative using minimal or no equipment, so you can train wherever you are.</p></details>
+      <details><summary>Is this beginner friendly?</summary><p>Yes. Plans are structured so you can start where you are and progress at your own pace, with clear guidance on form and intensity.</p></details>
+      <details><summary>Can I cancel anytime?</summary><p>Absolutely. The membership is rolling and you can cancel any time from your account, no questions asked.</p></details>
+      <details><summary>What's the maximum number of people you coach?</summary><p>I cap coaching at 20 people at any one time. This keeps it genuinely personal so everyone gets real attention and quick replies.</p></details>
+      <details><summary>How do we communicate?</summary><p>After you apply, depending on the plan, I'll outline exactly how we work and communicate before you spend any money.</p></details>
+      <details><summary>Do I get access to the monthly meal plans?</summary><p>Yes. Coaching includes access to the monthly meal plans alongside your fully personalised plan.</p></details>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="partials.js"></script>
+<script src="https://gumroad.com/js/gumroad.js"></script>
+</body>
+</html>
