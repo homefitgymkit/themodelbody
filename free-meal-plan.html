@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Meal Plan &amp; Dessert Guide · The Model Body Club</title>
+<meta name="description" content="Two free gifts from Kassy: her Lean & Balanced daily meal plan and her Slim Girl Sweets dessert guide. Straight to your inbox.">
+<link rel="icon" href="assets/logo-square.png">
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="site.css">
+<style>
+  /* ---- Tab switcher ---- */
+  .gift-tabs { display: flex; justify-content: center; gap: 8px; padding: 40px 22px 0; }
+  .gift-tabs__inner { display: inline-flex; gap: 6px; background: var(--cream-200); border-radius: 999px; padding: 6px; }
+  .gift-tab {
+    appearance: none; border: none; cursor: pointer; background: transparent;
+    font-family: var(--font-label); font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--fg-muted); padding: 12px 24px; border-radius: 999px; transition: background .18s, color .18s; white-space: nowrap;
+  }
+  .gift-tab[aria-selected="true"] { background: var(--cherry-600); color: var(--cream-100); box-shadow: var(--shadow-sm); }
+
+  .gift-panel { display: none; }
+  .gift-panel.is-active { display: block; }
+
+  .free-hero__inner { max-width: 1240px; margin: 0 auto; padding: 48px 40px 88px; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 72px; align-items: center; }
+  .free-hero .eyebrow { margin-bottom: 20px; display: inline-block; }
+  .free-hero .h1 { margin-bottom: 24px; }
+  .free-hero .lede { max-width: 480px; margin-bottom: 30px; }
+  .free-form { max-width: 540px; }
+  .free-form .field-row { margin-bottom: 0; }
+  .free-art { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .free-art div { border-radius: var(--radius-md); background-size: cover; background-position: center; box-shadow: var(--shadow-sm); aspect-ratio: 1; }
+  .free-art div:first-child { grid-column: span 2; aspect-ratio: 16/10; }
+
+  .inside { background: var(--bg-soft); }
+  .inside__inner { max-width: 1040px; margin: 0 auto; padding: 88px 40px; }
+  .inside-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 40px; }
+  .inside-item { background: var(--paper); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 26px; }
+  .inside-item span { font-family: var(--font-label); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cherry-700); }
+  .inside-item h3 { font-family: var(--font-display); font-size: 21px; margin: 8px 0 6px; }
+  .inside-item p { font-family: var(--font-body); font-size: 15px; line-height: 1.55; color: var(--ink-700); margin: 0; }
+
+  @media (max-width: 900px) {
+    .free-hero__inner { grid-template-columns: 1fr; gap: 40px; padding: 36px 22px 56px; }
+    .inside-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body data-page="free">
+<div id="site-header"></div>
+
+<main>
+  <!-- ============ TAB SWITCHER ============ -->
+  <div class="gift-tabs" data-screen-label="Free gift tabs">
+    <div class="gift-tabs__inner" role="tablist" aria-label="Choose your free gift">
+      <button class="gift-tab" role="tab" id="tab-dessert" aria-controls="panel-dessert" aria-selected="true">Free Dessert Guide</button>
+      <button class="gift-tab" role="tab" id="tab-meal" aria-controls="panel-meal" aria-selected="false">Free Meal Plan</button>
+    </div>
+  </div>
+
+  <!-- ============ PANEL: MEAL PLAN ============ -->
+  <section class="gift-panel" id="panel-meal" role="tabpanel" aria-labelledby="tab-meal" data-screen-label="Free meal plan">
+    <div class="free-hero">
+      <div class="free-hero__inner">
+        <div>
+          <span class="eyebrow">A free gift from Kassy <span class="cherry">🍒</span></span>
+          <h1 class="h1">Get your <em>free</em> Lean &amp; Balanced daily meal plan.</h1>
+          <p class="lede">The exact meals I eat to stay lean, energised and strong all year round. Simple, high-protein, no restriction. Straight to your inbox.</p>
+
+          <div class="free-form">
+            <form class="brevo-form" data-brevo="mealplan" novalidate>
+              <div class="field-row">
+                <input class="field" type="email" name="EMAIL" placeholder="your@email.com" autocomplete="email" required>
+                <button class="btn" type="submit">Send me the plan →</button>
+              </div>
+            </form>
+            <div class="form-success">
+              <span class="form-success__cherry">🍒</span>
+              <div>
+                <div class="form-success__title">Sent. Check your inbox.</div>
+                <div class="form-success__sub">Can't find it? Check your promotions or junk folder 🍒</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="free-art">
+          <div style="background-image:url('assets/meal-bowl.jpg')"></div>
+          <div style="background-image:url('assets/meal-smoothie.jpg')"></div>
+          <div style="background-image:url('assets/meal-plate.jpg')"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="inside">
+      <div class="inside__inner">
+        <div class="center">
+          <span class="eyebrow">What's inside the plan</span>
+          <h2 class="h2" style="margin-top:14px">A full day of lean, high-protein eating <span class="cherry">🍒</span></h2>
+        </div>
+        <div class="inside-grid">
+          <div class="inside-item"><span>Pre-gym</span><h3>Orange protein smoothie</h3><p>Light, energising and easy to digest before training. The one I start most days with.</p></div>
+          <div class="inside-item"><span>Breakfast</span><h3>Chocolate orange protein oats</h3><p>23g of protein, tastes like dessert, keeps you full through the morning.</p></div>
+          <div class="inside-item"><span>Main</span><h3>Salmon kimchi rice bowl</h3><p>35g of protein, gut-friendly and genuinely satisfying. A go-to lunch or dinner.</p></div>
+          <div class="inside-item"><span>Snack</span><h3>Apple cinnamon protein dip</h3><p>A 5 minute sweet fix that actually fits your goals. No restriction needed.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PANEL: DESSERT GUIDE ============ -->
+  <section class="gift-panel is-active" id="panel-dessert" role="tabpanel" aria-labelledby="tab-dessert" data-screen-label="Free dessert guide">
+    <div class="free-hero">
+      <div class="free-hero__inner">
+        <div>
+          <span class="eyebrow">A free gift from Kassy <span class="cherry">🍒</span></span>
+          <h1 class="h1">Get my <em>free</em> Slim Girl Sweets dessert guide.</h1>
+          <p class="lede">Two of my favourite high-protein treats that actually taste like dessert. Sweet, simple and built to fit your goals, no restriction. Sent straight to your inbox.</p>
+
+          <div class="free-form">
+            <form class="brevo-form" data-brevo="dessert" novalidate>
+              <div class="field-row">
+                <input class="field" type="email" name="EMAIL" placeholder="your@email.com" autocomplete="email" required>
+                <button class="btn" type="submit">Send me the treats →</button>
+              </div>
+            </form>
+            <div class="form-success">
+              <span class="form-success__cherry">🍒</span>
+              <div>
+                <div class="form-success__title">Sent. Check your inbox.</div>
+                <div class="form-success__sub">Can't find it? Check your promotions or junk folder 🍒</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="free-art">
+          <div style="background-image:url('assets/dessert-bars.png')"></div>
+          <div style="background-image:url('assets/ss-meal.jpg')"></div>
+          <div style="background-image:url('assets/meal-smoothie.jpg')"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="inside">
+      <div class="inside__inner">
+        <div class="center">
+          <span class="eyebrow">What's inside the guide</span>
+          <h2 class="h2" style="margin-top:14px">Two free Slim Girl Sweets treats <span class="cherry">🍒</span></h2>
+        </div>
+        <div class="inside-grid">
+          <div class="inside-item"><span>Treat 01 + 02</span><h3>Two full recipes</h3><p>Two of Kassy's go-to sweet recipes, written out step by step so they're easy to make at home.</p></div>
+          <div class="inside-item"><span>High protein</span><h3>Sweet that fits your goals</h3><p>Desserts built around protein so a treat works with your plan instead of against it.</p></div>
+          <div class="inside-item"><span>Low effort</span><h3>Simple, everyday ingredients</h3><p>No complicated shopping lists. Quick to throw together with things you already have.</p></div>
+          <div class="inside-item"><span>No restriction</span><h3>Genuinely satisfying</h3><p>Proof you never have to give up dessert to feel your best. Sweet, with zero guilt.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ UPSELL TO CLUB ============ -->
+  <section class="section megacta" data-screen-label="Free to Club">
+    <div class="wrap">
+      <div class="rule-cherry">🍒</div>
+      <h2 class="h2">Loved your free gift? There's a fresh drop every month.</h2>
+      <p class="lede" style="max-width:520px;margin:24px auto 32px">The Model Body Club gives you a new meal plan, recipes and workouts every month, from $10.</p>
+      <a class="btn btn--lg" href="club.html">See the Club →</a>
+    </div>
+  </section>
+</main>
+
+<!-- Hidden target so Brevo submissions never navigate the page away -->
+<iframe name="brevo_sink" style="display:none" title="brevo"></iframe>
+
+<div id="site-footer"></div>
+<script src="partials.js"></script>
+<script>
+/* =========================================================================
+   FREE GIFTS — tab switcher + Brevo email capture
+   ========================================================================= */
+(function () {
+
+  /* ---- 1. TABS ---- */
+  var tabs = document.querySelectorAll('.gift-tab');
+  function selectTab(tab) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute('aria-selected', String(on));
+      document.getElementById(t.getAttribute('aria-controls')).classList.toggle('is-active', on);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  tabs.forEach(function (t) { t.addEventListener('click', function () { selectTab(t); }); });
+  // Deep link: free-meal-plan.html#dessert opens the dessert tab
+  if (location.hash === '#dessert') selectTab(document.getElementById('tab-dessert'));
+
+  /* ---- 2. BREVO WIRING ----------------------------------------------------
+     Each gift goes to its own Brevo list. Paste the matching Brevo form's
+     submit URL below. Get it from Brevo → Contacts → Forms → (your form) →
+     "Share" → the action URL of the generated form, e.g.
+        https://sibforms.com/serve/MUIFA...      (no-iframe / AJAX form)
+     The email field is named EMAIL (Brevo's default contact attribute).
+       • mealplan  → your existing meal-plan list (same as the live page)
+       • dessert   → the "Lead magnet subs 2" list
+     Until a URL is filled in, the form shows the success state in demo mode.
+  ------------------------------------------------------------------------- */
+  var BREVO = {
+    // meal-plan list (same Brevo form the live page uses)
+    mealplan: { action: 'https://b2eea771.sibforms.com/serve/MUIFAEo-bB-sdODnVEIwmWqsaliHe4AkDBPgBRC18TGfmsNoVyYroS4KMI_ivhAdywXNGiz_dSMett4Z0CR1tO9rb8bZSMeNJZHNkQkmekprEBOo40If8_zkFlzNcTwWfjYaA1aVZn0JG0EnffC8simNyFam-yWGVcbTGrCELUwZezSAa7QG6kD3f3J-yA8OpEvcfQ5yqLx2d1ZvHg==' },
+    // "Lead magnet subs 2" list (dessert guide)
+    dessert:  { action: 'https://b2eea771.sibforms.com/serve/MUIFAB2jPzH5odDXkYNMVUXS6mG310E3QGhYGI8znQeqWU6sEfbSV2gJJFYBOkmX99HhEhNSyobeBoKDz1EHb6UJ8mnp6F4Ktz2meAXhFQZ7cHw2tVM_0v1eYnMZ7hcQMH_XjuxFwwqBW5GOpvN5fX2VCZQ1AIIQXnm-wAbfnHiSPBI0ySsNc3XwuhOSngUefhMkjBMt3D39GG05GA==' }
+  };
+
+  document.querySelectorAll('.brevo-form').forEach(function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var key = form.getAttribute('data-brevo');
+      var cfg = BREVO[key] || {};
+      var email = (form.querySelector('input[name="EMAIL"]') || {}).value || '';
+      if (!email || !/.+@.+\..+/.test(email)) { form.querySelector('input').focus(); return; }
+
+      if (cfg.action) {
+        // Real submit to Brevo via hidden iframe so we never leave the page.
+        var probe = document.createElement('form');
+        probe.action = cfg.action;
+        probe.method = 'POST';
+        probe.target = 'brevo_sink';
+        probe.style.display = 'none';
+        // EMAIL + Brevo's honeypot + locale, matching their generated form.
+        [['EMAIL', email], ['email_address_check', ''], ['locale', 'en']].forEach(function (pair) {
+          var inp = document.createElement('input');
+          inp.type = 'hidden'; inp.name = pair[0]; inp.value = pair[1];
+          probe.appendChild(inp);
+        });
+        document.body.appendChild(probe);
+        probe.submit();
+        setTimeout(function () { probe.remove(); }, 1500);
+      }
+      // Inline success (also covers demo mode until URLs are wired).
+      var ok = form.parentElement.querySelector('.form-success');
+      if (ok) { ok.classList.add('show'); form.style.display = 'none'; }
+    });
+  });
+})();
+</script>
+</body>
+</html>

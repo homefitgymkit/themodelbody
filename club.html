@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Model Body Club · Join from $10/mo · @KassyAlicee</title>
+<meta name="description" content="Monthly meal plans and recipes, or gym + home workouts, from $10/mo. Get both for $18. Join The Model Body Club.">
+<link rel="icon" href="assets/logo-square.png">
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="site.css">
+<style>
+  .club-hero { background: var(--ink-900); color: var(--cream-100); }
+  .club-hero__inner { max-width: 1240px; margin: 0 auto; padding: 88px 40px 96px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 72px; align-items: center; }
+  .club-hero .h1 { color: var(--cream-100); margin-bottom: 24px; }
+  .club-hero .lede { color: var(--cream-200); opacity: 0.9; max-width: 480px; margin-bottom: 32px; }
+  .club-hero .eyebrow { color: var(--cherry-300); margin-bottom: 20px; display: inline-block; }
+  .club-hero__art { aspect-ratio: 4/5; border-radius: var(--radius-lg); background-image: url('assets/kassy-club-hero.jpeg'); background-size: cover; background-position: center 22%; box-shadow: var(--shadow-lg); }
+  .club-hero__cta { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .club-hero__price { display: flex; align-items: baseline; gap: 8px; }
+  .club-hero__price b { font-family: var(--font-display); font-size: 40px; color: var(--cream-100); }
+  .club-hero__price span { font-family: var(--font-body); font-size: 15px; color: var(--cherry-300); }
+
+  .tracks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 920px; margin: 0 auto; }
+  .track {
+    position: relative; background: var(--paper); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 36px; display: flex; flex-direction: column; gap: 18px;
+  }
+  .track__top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .track__price { font-family: var(--font-display); font-size: 38px; line-height: 1; }
+  .track__price small { font-family: var(--font-body); font-size: 15px; color: var(--fg-muted); }
+  .track h3 { font-family: var(--font-display); font-size: 28px; margin: 0; }
+  .track ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+  .track li { position: relative; padding-left: 28px; font-family: var(--font-body); font-size: 15px; line-height: 1.5; color: var(--ink-700); }
+  .track li::before { content: ''; position: absolute; left: 0; top: 7px; width: 9px; height: 9px; border-radius: 999px; background: var(--cherry-600); }
+  .both-note {
+    max-width: 920px; margin: 24px auto 0; background: var(--ink-900); color: var(--cream-100);
+    border-radius: var(--radius-lg); padding: 28px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+  }
+  .both-note h4 { font-family: var(--font-display); font-size: 26px; margin: 0 0 4px; color: var(--cream-100); }
+  .both-note p { font-family: var(--font-body); font-size: 14px; color: var(--cream-200); opacity: 0.85; margin: 0; }
+  .both-note__price { font-family: var(--font-display); font-size: 40px; color: var(--cherry-300); line-height: 1; white-space: nowrap; }
+  .both-note__price small { font-family: var(--font-body); font-size: 14px; opacity: 0.8; }
+
+  .checkout {
+    max-width: 540px; margin: 0 auto; background: var(--cherry-50); border: 1.5px solid var(--cherry-300);
+    border-radius: var(--radius-xl); padding: 44px; text-align: center; box-shadow: var(--shadow-md);
+  }
+  .checkout__opts { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 22px 0; }
+  .checkout__opt {
+    background: var(--paper); border: 1px solid var(--border); border-radius: var(--radius-md);
+    padding: 14px 18px; min-width: 120px;
+  }
+  .checkout__opt b { display: block; font-family: var(--font-label); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 6px; }
+  .checkout__opt span { font-family: var(--font-display); font-size: 26px; }
+  .checkout__opt span small { font-family: var(--font-body); font-size: 13px; color: var(--fg-muted); }
+
+  .faq { max-width: 760px; margin: 0 auto; }
+  .faq details { border-bottom: 1px solid var(--border); padding: 24px 0; }
+  .faq summary { font-family: var(--font-display); font-size: 22px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: '+'; font-family: var(--font-body); font-size: 26px; color: var(--cherry-600); transition: transform .2s; }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq p { font-family: var(--font-body); font-size: 16px; line-height: 1.65; color: var(--ink-700); margin: 14px 0 0; }
+
+  @media (max-width: 900px) {
+    .club-hero__inner { grid-template-columns: 1.1fr 0.9fr; gap: 18px; padding: 40px 20px; align-items: center; }
+    .club-hero .h1 { font-size: clamp(27px, 6.6vw, 44px); margin-bottom: 16px; }
+    .club-hero .lede { font-size: 15px; margin-bottom: 20px; }
+    .club-hero__cta { gap: 12px; }
+    .club-hero__cta .btn--lg { padding: 14px 18px; font-size: 11px; letter-spacing: 0.08em; }
+    .club-hero__price b { font-size: 28px; }
+    .club-hero__art { max-width: none; }
+    .tracks { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body data-page="club">
+<div id="site-header"></div>
+
+<main>
+  <!-- ============ HERO ============ -->
+  <section class="club-hero" data-screen-label="Club hero">
+    <div class="club-hero__inner">
+      <div>
+        <span class="eyebrow">The Model Body Club <span class="cherry">🍒</span></span>
+        <h1 class="h1">Pick your <em>plan.</em> Meals, workouts, or both.</h1>
+        <p class="lede">Every month I drop a fresh meal plan and new high-protein recipes, plus gym + home workout guides. Take the meals track, the workouts track, or both. You choose at checkout.</p>
+        <div class="club-hero__cta">
+          <!-- Gumroad overlay checkout — buys in-page, falls back to the product page if JS fails -->
+          <a class="btn btn--lg gumroad-button" href="https://kassyalicee.gumroad.com/l/modelbodyclub" data-gumroad-overlay-checkout="true" data-gumroad-single-product="true" data-integration="gumroad-club">Join from $10/mo →</a>
+          <div class="club-hero__price"><b>from $10</b><span>/ month · cancel anytime</span></div>
+        </div>
+      </div>
+      <div class="club-hero__art" role="img" aria-label="Kassy training"></div>
+    </div>
+  </section>
+
+  <!-- ============ TRACKS ============ -->
+  <section class="section" style="padding-bottom:44px" data-screen-label="Club tracks">
+    <div class="wrap center" style="margin-bottom:52px">
+      <span class="eyebrow">Two tracks, one membership</span>
+      <h2 class="h2" style="margin-top:14px">Choose what you need <span class="cherry">🍒</span></h2>
+    </div>
+    <div class="wrap">
+      <div class="tracks">
+        <div class="track">
+          <div class="track__top"><h3>Meals</h3><span class="track__price">$10<small>/mo</small></span></div>
+          <ul>
+            <li>A new monthly meal plan, lean, balanced and high-protein</li>
+            <li>Fresh recipes built around real food, no restriction</li>
+            <li>Calorie and protein targets plus an easy shopping list</li>
+            <li>Food swaps so the plan flexes around your week</li>
+          </ul>
+        </div>
+        <div class="track">
+          <div class="track__top"><h3>Workouts</h3><span class="track__price">$10<small>/mo</small></span></div>
+          <ul>
+            <li>Monthly gym workout guide, structured for real progress</li>
+            <li>Full home alternative using minimal or no equipment</li>
+            <li>Sets, reps, progressions and form cues laid out for you</li>
+            <li>Built to create a toned, feminine physique, no burnout</li>
+          </ul>
+        </div>
+      </div>
+      <div class="both-note">
+        <div>
+          <h4>Want both? <span class="cherry">🍒</span></h4>
+          <p>Meals and workouts together, the full Model Body Club.</p>
+        </div>
+        <div class="both-note__price">$18<small>/mo</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHECKOUT ============ -->
+  <section class="section freeband" style="background:var(--bg-soft);padding-top:52px" data-screen-label="Club checkout">
+    <div class="wrap">
+      <div class="checkout">
+        <span class="pill">One checkout</span>
+        <h2 class="h2" style="margin:16px 0 4px">Join from $10/mo</h2>
+        <p class="form-note" style="font-size:14px">Pick your plan on the next screen.</p>
+        <div class="checkout__opts">
+          <div class="checkout__opt"><b>Meals</b><span>$10<small>/mo</small></span></div>
+          <div class="checkout__opt"><b>Workouts</b><span>$10<small>/mo</small></span></div>
+          <div class="checkout__opt"><b>Both</b><span>$18<small>/mo</small></span></div>
+        </div>
+        <!-- Gumroad overlay checkout — buys in-page, falls back to the product page if JS fails -->
+        <a class="btn btn--lg btn--block gumroad-button" href="https://kassyalicee.gumroad.com/l/modelbodyclub" data-gumroad-overlay-checkout="true" data-gumroad-single-product="true" data-integration="gumroad-club">Continue to checkout →</a>
+        <p class="form-note" style="text-align:center">Secure checkout via Gumroad. Choose meals, workouts or both, then cancel anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section" data-screen-label="Club FAQ">
+    <div class="wrap center" style="margin-bottom:44px">
+      <span class="eyebrow eyebrow--muted">Good to know</span>
+      <h2 class="h2" style="margin-top:14px">Questions, answered</h2>
+    </div>
+    <div class="wrap faq">
+      <details open><summary>Do I need a gym?</summary><p>No. Every workout comes with a full home alternative using minimal or no equipment, so you can train wherever you are.</p></details>
+      <details><summary>Is this beginner friendly?</summary><p>Yes. Plans are structured so you can start where you are and progress at your own pace, with clear guidance on form and intensity.</p></details>
+      <details><summary>Can I cancel anytime?</summary><p>Absolutely. The membership is rolling and you can cancel any time from your account, no questions asked.</p></details>
+      <details><summary>How is this different from the one-off guides?</summary><p>The guides are downloadable one-time purchases. The Club is an ongoing membership with fresh meals and workouts every month.</p></details>
+      <details><summary>How do I get my guide after buying?</summary><p>Checkout happens right here on the page through Gumroad, so you never leave the site. As soon as your payment goes through, your PDF is ready to download instantly and a copy is sent to your email.</p></details>
+      <details><summary>How do I get future months?</summary><p>By email. Each new month's plans, recipes and workouts are sent straight to your inbox, so fresh content lands automatically with nothing extra to do.</p></details>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="section megacta" data-screen-label="Club CTA">
+    <div class="wrap">
+      <div class="rule-cherry">🍒</div>
+      <h2 class="h2">Join the women training with intention.</h2>
+      <p class="lede" style="max-width:500px;margin:0 auto 32px">From $10 a month. New plans, recipes and workouts, plus the community keeping you consistent.</p>
+      <a class="btn btn--lg gumroad-button" href="https://kassyalicee.gumroad.com/l/modelbodyclub" data-gumroad-overlay-checkout="true" data-gumroad-single-product="true" data-integration="gumroad-club">Join the Club →</a>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="partials.js"></script>
+<script src="https://gumroad.com/js/gumroad.js"></script>
+</body>
+</html>
