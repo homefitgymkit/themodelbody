@@ -2,14 +2,50 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Golden Hour Training">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#F8F3EB">
 <title>Golden Hour Training Plan</title>
-<meta http-equiv="refresh" content="0; url=./training-plan.html">
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
 <link rel="manifest" href="./manifest.webmanifest">
+<style>
+  html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #cfc6b6; overflow: hidden; }
+  .viewer { position: fixed; inset: 0; width: 100vw; height: 100dvh; border: 0; background: #cfc6b6; }
+  .fallback { position: fixed; inset: 0; display: grid; place-items: center; font-family: -apple-system, BlinkMacSystemFont, sans-serif; color: #1A1410; text-align: center; padding: 24px; background: #F8F3EB; }
+  .fallback a { color: #B5132A; }
+</style>
 </head>
-<body style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#F8F3EB;color:#1A1410;display:grid;place-items:center;min-height:100vh;margin:0;text-align:center;padding:24px;">
-  <div><div style="font-size:48px;">🍒</div><p>Opening Golden Hour Training Plan...</p><p><a href="./training-plan.html" style="color:#B5132A;">Tap here if it does not open</a></p></div>
+<body>
+<iframe class="viewer" id="planFrame" title="Golden Hour Training Plan" src="./training-plan.html"></iframe>
+<noscript><div class="fallback"><div><div style="font-size:48px;">🍒</div><p>Open the Golden Hour Training Plan</p><p><a href="./training-plan.html">Tap here</a></p></div></div></noscript>
+<script>
+(function () {
+  var frame = document.getElementById('planFrame');
+  function centreFrame() {
+    try {
+      var win = frame.contentWindow;
+      var doc = frame.contentDocument || win.document;
+      if (!win || !doc || !doc.documentElement) return;
+      var maxWidth = Math.max(
+        doc.documentElement.scrollWidth || 0,
+        doc.body ? doc.body.scrollWidth : 0,
+        1080
+      );
+      var x = Math.max(0, Math.round((maxWidth - frame.clientWidth) / 2));
+      win.scrollTo(x, 0);
+    } catch (e) {}
+  }
+  frame.addEventListener('load', function () {
+    setTimeout(centreFrame, 250);
+    setTimeout(centreFrame, 900);
+    setTimeout(centreFrame, 1800);
+  });
+  window.addEventListener('orientationchange', function () { setTimeout(centreFrame, 500); });
+  window.addEventListener('resize', function () { setTimeout(centreFrame, 300); });
+})();
+</script>
 </body>
 </html>
