@@ -1,0 +1,21 @@
+{
+  "name": "Golden Hour Meals & Workouts",
+  "short_name": "Meals & Work",
+  "start_url": "/members/july-golden-hour-3300/meals-workouts.html",
+  "scope": "/members/july-golden-hour-3300/",
+  "display": "standalone",
+  "background_color": "#F8F3EB",
+  "theme_color": "#F8F3EB",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
