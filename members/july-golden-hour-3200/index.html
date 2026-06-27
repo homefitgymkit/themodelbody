@@ -12,39 +12,46 @@
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
 <link rel="manifest" href="./manifest.webmanifest">
 <style>
-  html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #cfc6b6; overflow: hidden; }
-  .viewer { position: fixed; inset: 0; width: 100vw; height: 100dvh; border: 0; background: #cfc6b6; }
+  html, body { margin: 0; padding: 0; width: 100%; min-height: 100%; background: #cfc6b6; overflow-x: hidden; }
+  body { display: block; }
+  #shell { position: relative; width: 100vw; min-height: 100dvh; overflow: hidden; background: #cfc6b6; }
+  .viewer { position: absolute; top: 0; left: 50%; width: 1080px; height: 24000px; border: 0; background: #cfc6b6; transform-origin: top center; }
   .fallback { position: fixed; inset: 0; display: grid; place-items: center; font-family: -apple-system, BlinkMacSystemFont, sans-serif; color: #1A1410; text-align: center; padding: 24px; background: #F8F3EB; }
   .fallback a { color: #B5132A; }
 </style>
 </head>
 <body>
-<iframe class="viewer" id="planFrame" title="Golden Hour Training Plan" src="./training-plan.html"></iframe>
+<div id="shell"><iframe class="viewer" id="planFrame" title="Golden Hour Training Plan" src="./training-plan.html"></iframe></div>
 <noscript><div class="fallback"><div><div style="font-size:48px;">🍒</div><p>Open the Golden Hour Training Plan</p><p><a href="./training-plan.html">Tap here</a></p></div></div></noscript>
 <script>
 (function () {
+  var BASE_WIDTH = 1080;
   var frame = document.getElementById('planFrame');
-  function centreFrame() {
+  var shell = document.getElementById('shell');
+  function fitFrame() {
+    var scale = window.innerWidth / BASE_WIDTH;
+    frame.style.transform = 'translateX(-50%) scale(' + scale + ')';
     try {
-      var win = frame.contentWindow;
-      var doc = frame.contentDocument || win.document;
-      if (!win || !doc || !doc.documentElement) return;
-      var maxWidth = Math.max(
-        doc.documentElement.scrollWidth || 0,
-        doc.body ? doc.body.scrollWidth : 0,
-        1080
+      var doc = frame.contentDocument || frame.contentWindow.document;
+      var h = Math.max(
+        doc.documentElement.scrollHeight || 0,
+        doc.body ? doc.body.scrollHeight : 0,
+        1350
       );
-      var x = Math.max(0, Math.round((maxWidth - frame.clientWidth) / 2));
-      win.scrollTo(x, 0);
-    } catch (e) {}
+      frame.style.height = h + 'px';
+      shell.style.height = Math.ceil(h * scale) + 'px';
+    } catch (e) {
+      shell.style.height = Math.ceil(24000 * scale) + 'px';
+    }
   }
   frame.addEventListener('load', function () {
-    setTimeout(centreFrame, 250);
-    setTimeout(centreFrame, 900);
-    setTimeout(centreFrame, 1800);
+    setTimeout(fitFrame, 150);
+    setTimeout(fitFrame, 700);
+    setTimeout(fitFrame, 1600);
   });
-  window.addEventListener('orientationchange', function () { setTimeout(centreFrame, 500); });
-  window.addEventListener('resize', function () { setTimeout(centreFrame, 300); });
+  window.addEventListener('resize', function () { setTimeout(fitFrame, 150); });
+  window.addEventListener('orientationchange', function () { setTimeout(fitFrame, 500); });
+  fitFrame();
 })();
 </script>
 </body>
