@@ -10,94 +10,22 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="theme-color" content="#F8F3EB">
 <title>Golden Hour Training Plan</title>
-<link rel="apple-touch-icon" href="./apple-touch-icon.png?v=4">
-<link rel="manifest" href="./manifest.webmanifest?v=4">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png?v=5">
 <style>
-  html, body { margin: 0; padding: 0; width: 100%; min-height: 100%; background: #cfc6b6; overflow-x: hidden; }
-  body { display: block; overscroll-behavior-x: none; -webkit-text-size-adjust: 100%; }
-  #shell { position: relative; width: 100vw; min-height: 100dvh; overflow: hidden; background: #cfc6b6; }
-  .viewer { position: absolute; top: 0; left: 50%; width: 1080px; height: 24000px; border: 0; background: #cfc6b6; transform-origin: top center; will-change: transform; }
-  .fallback { position: fixed; inset: 0; display: grid; place-items: center; font-family: -apple-system, BlinkMacSystemFont, sans-serif; color: #1A1410; text-align: center; padding: 24px; background: #F8F3EB; }
-  .fallback a { color: #B5132A; }
+html,body{margin:0;padding:0;width:100%;min-height:100%;background:#cfc6b6;overflow-x:hidden;-webkit-text-size-adjust:100%;}
+#shell{position:relative;width:100vw;min-height:100dvh;overflow:hidden;background:#cfc6b6;}
+#planFrame{position:absolute;top:0;left:50%;width:1080px;height:24000px;border:0;background:#cfc6b6;transform-origin:top center;}
 </style>
 </head>
 <body>
-<div id="shell"><iframe class="viewer" id="planFrame" title="Golden Hour Training Plan" src="./training-plan.html"></iframe></div>
-<noscript><div class="fallback"><div><div style="font-size:48px;">🍒</div><p>Open the Golden Hour Training Plan</p><p><a href="./training-plan.html">Tap here</a></p></div></div></noscript>
+<div id="shell"><iframe id="planFrame" title="Golden Hour Training Plan" src="./training-plan.html"></iframe></div>
 <script>
-(function () {
-  var BASE_WIDTH = 1080;
-  var FALLBACK_HEIGHT = 24000;
-  var frame = document.getElementById('planFrame');
-  var shell = document.getElementById('shell');
-
-  function viewportWidth() {
-    var htmlWidth = document.documentElement ? document.documentElement.clientWidth || 0 : 0;
-    var visualWidth = window.visualViewport ? window.visualViewport.width || 0 : 0;
-    var winWidth = window.innerWidth || 0;
-    var widths = [winWidth, htmlWidth, visualWidth].filter(function (w) { return w && isFinite(w); });
-    return Math.max(320, Math.min.apply(null, widths));
-  }
-
-  function fitFrame() {
-    var vw = viewportWidth();
-    var scale = vw / BASE_WIDTH;
-    frame.style.width = BASE_WIDTH + 'px';
-    frame.style.left = '50%';
-    frame.style.transformOrigin = 'top center';
-    frame.style.transform = 'translate3d(-50%, 0, 0) scale(' + scale + ')';
-
-    try {
-      var doc = frame.contentDocument || frame.contentWindow.document;
-      var h = Math.max(
-        doc.documentElement.scrollHeight || 0,
-        doc.documentElement.offsetHeight || 0,
-        doc.body ? doc.body.scrollHeight || 0 : 0,
-        doc.body ? doc.body.offsetHeight || 0 : 0,
-        1350
-      );
-      frame.style.height = h + 'px';
-      shell.style.height = Math.ceil(h * scale) + 'px';
-    } catch (e) {
-      shell.style.height = Math.ceil(FALLBACK_HEIGHT * scale) + 'px';
-    }
-
-    document.documentElement.scrollLeft = 0;
-    document.body.scrollLeft = 0;
-    shell.scrollLeft = 0;
-  }
-
-  function refitRepeatedly() {
-    fitFrame();
-    [100, 300, 700, 1200, 2200, 3500].forEach(function (ms) {
-      setTimeout(fitFrame, ms);
-    });
-  }
-
-  frame.addEventListener('load', refitRepeatedly);
-  window.addEventListener('load', refitRepeatedly);
-  window.addEventListener('pageshow', refitRepeatedly);
-  window.addEventListener('resize', function () { setTimeout(refitRepeatedly, 100); });
-  window.addEventListener('orientationchange', function () { setTimeout(refitRepeatedly, 500); });
-  document.addEventListener('visibilitychange', function () {
-    if (!document.hidden) refitRepeatedly();
-  });
-  document.addEventListener('touchstart', function () {
-    setTimeout(fitFrame, 50);
-  }, { passive: true });
-
-  if (window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches) {
-    document.documentElement.classList.add('standalone');
-    setTimeout(refitRepeatedly, 50);
-    setTimeout(refitRepeatedly, 1500);
-  }
-
-  if (window.visualViewport) {
-    visualViewport.addEventListener('resize', function () { setTimeout(refitRepeatedly, 100); });
-    visualViewport.addEventListener('scroll', function () { setTimeout(fitFrame, 100); });
-  }
-
-  refitRepeatedly();
+(function(){
+var base=1080, fallback=24000, frame=document.getElementById('planFrame'), shell=document.getElementById('shell');
+function vw(){var a=[window.innerWidth,document.documentElement.clientWidth,window.visualViewport?window.visualViewport.width:0].filter(Boolean);return Math.max(320,Math.min.apply(null,a));}
+function fit(){var scale=vw()/base;frame.style.transform='translate3d(-50%,0,0) scale('+scale+')';try{var d=frame.contentDocument||frame.contentWindow.document;var h=Math.max(d.documentElement.scrollHeight,d.body?d.body.scrollHeight:0,1350);frame.style.height=h+'px';shell.style.height=Math.ceil(h*scale)+'px';}catch(e){shell.style.height=Math.ceil(fallback*scale)+'px';}document.documentElement.scrollLeft=0;document.body.scrollLeft=0;shell.scrollLeft=0;}
+function many(){fit();[100,300,700,1200,2200,3500].forEach(function(t){setTimeout(fit,t);});}
+frame.onload=many;window.onload=many;window.onpageshow=many;window.onresize=function(){setTimeout(many,100)};window.onorientationchange=function(){setTimeout(many,500)};document.addEventListener('visibilitychange',function(){if(!document.hidden)many();});document.addEventListener('touchstart',function(){setTimeout(fit,50)},{passive:true});if(window.visualViewport){visualViewport.addEventListener('resize',many);visualViewport.addEventListener('scroll',fit);}many();
 })();
 </script>
 </body>
