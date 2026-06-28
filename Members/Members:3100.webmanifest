@@ -1,0 +1,13 @@
+{
+  "name": "Golden Hour Meal Plan",
+  "short_name": "GH Meals",
+  "start_url": "/members/july-golden-hour-3100/",
+  "scope": "/members/july-golden-hour-3100/",
+  "display": "standalone",
+  "background_color": "#F8F3EB",
+  "theme_color": "#F8F3EB",
+  "icons": [
+    { "src": "./meals-icon.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "./meals-icon.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
