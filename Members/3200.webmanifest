@@ -1,0 +1,29 @@
+{
+  "name": "Golden Hour Training",
+  "short_name": "Training",
+  "id": "/Members/3200.html",
+  "start_url": "/Members/3200.html?app=1",
+  "scope": "/Members/",
+  "display": "standalone",
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
+  "background_color": "#F8F3EB",
+  "theme_color": "#F8F3EB",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/Members/training-icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/Members/training-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

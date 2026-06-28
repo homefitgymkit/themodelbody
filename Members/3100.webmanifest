@@ -1,0 +1,29 @@
+{
+  "name": "Golden Hour Meals",
+  "short_name": "Meals",
+  "id": "/Members/3100.html",
+  "start_url": "/Members/3100.html?app=1",
+  "scope": "/Members/",
+  "display": "standalone",
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
+  "background_color": "#F8F3EB",
+  "theme_color": "#F8F3EB",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/Members/meals-icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/Members/meals-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
