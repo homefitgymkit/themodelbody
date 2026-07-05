@@ -50,9 +50,12 @@ input::placeholder{color:#B9AB9E}
 /* planner day cards */
 .day{margin:12px 0}
 .dayTop{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}
-.slot{display:grid;grid-template-columns:86px 1fr auto;gap:8px;align-items:center;margin:9px 0}
-.slot .sl{font-size:10px;font-weight:900;text-transform:uppercase;color:var(--muted);letter-spacing:.1em}
-.slotMeta{grid-column:2/4;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding:0 2px 2px}
+.slot{display:grid;grid-template-columns:70px minmax(0,1fr) auto auto minmax(96px,auto);gap:6px;align-items:center;margin:9px 0}
+.slot .sl{font-size:10px;font-weight:900;text-transform:uppercase;color:var(--muted);letter-spacing:.08em;overflow:hidden;white-space:nowrap}
+.slot select{padding:9px 8px;font-size:13px;min-width:0}
+.slot .mac{font-size:11px;color:var(--muted);text-align:right;white-space:nowrap}
+.slot .mac b{color:var(--ink)}
+.slot .mac .tag{padding:2px 6px;font-size:8px}
 .bar{height:6px;border-radius:99px;background:#EFE7DA;overflow:hidden;margin:10px 0 4px}
 .bar i{display:block;height:100%;background:var(--red);border-radius:99px;transition:width .3s}
 .bar i.over{background:var(--gold)}
@@ -114,7 +117,8 @@ ol.method li{margin-bottom:6px}
 .nav.active{background:var(--blush);border-color:var(--blushline);color:var(--red)}
 .hidden{display:none}
 .stepLbl{display:inline-block;font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--red);border-radius:999px;padding:4px 10px;margin-bottom:8px}
-@media(max-width:720px){.two,.three,.controls,.detail,.four{grid-template-columns:1fr 1fr}.slot{grid-template-columns:1fr}.slotMeta{grid-column:1}.page{padding:13px}.macroStrip .v{font-size:19px}.nav{font-size:8px}}
+@media(max-width:720px){.two,.three,.controls,.detail,.four{grid-template-columns:1fr 1fr}.page{padding:13px}.macroStrip .v{font-size:19px}.nav{font-size:8px}
+.slot{grid-template-columns:58px minmax(0,1fr) auto auto minmax(70px,auto)}.slot .sl{font-size:8px}.slot select{padding:8px 6px;font-size:12px}.slot .btn.mini{padding:7px 8px;font-size:9px}.slot .mac{font-size:9px}}
 </style></head><body>
 <div class="app">
 <header class="top"><div class="brand">The Model Body <b>Club</b></div><div class="theme">Golden Hour</div></header>
@@ -205,12 +209,20 @@ ol.method li{margin-bottom:6px}
 </main>
 
 <main class="page" id="meals">
-  <section class="card"><div class="label">Meal bank</div><h2 class="h2">28 Golden Hour recipes</h2><p class="muted small">Every recipe from this month's plan. Open any meal to scale portions, see the method and use relevant swaps.</p></section>
+  <section class="card"><div class="label">Meal bank</div><h2 class="h2">28 Golden Hour recipes</h2><p class="muted small">Every recipe from this month's plan. Open any meal to scale portions, see the method and use relevant swaps.</p>
+  <div class="two" style="margin-top:12px">
+    <label class="field"><span>Meal type</span><select id="mealTypeFilter" onchange="renderMeals()"><option value="all">All meals</option><option value="breakfast">Breakfasts</option><option value="lunch">Lunches</option><option value="dinner">Dinners</option><option value="snack">Snacks</option></select></label>
+    <label class="field"><span>Season</span><select id="mealSeasonFilter" onchange="renderMeals()"><option value="golden">July · Golden Hour</option></select></label>
+  </div></section>
   <div id="mealList"></div>
 </main>
 
 <main class="page" id="train">
-  <section class="card"><div class="label">Workout bank</div><h2 class="h2">8 Golden Hour workouts</h2><p class="muted small">Four gym and four home sessions. Each one has three finish points, your session time in the planner sets which is highlighted for you.</p></section>
+  <section class="card"><div class="label">Workout bank</div><h2 class="h2">8 Golden Hour workouts</h2><p class="muted small">Four gym and four home sessions. Each one has three finish points, your session time in the planner sets which is highlighted for you.</p>
+  <div class="two" style="margin-top:12px">
+    <label class="field"><span>Workout type</span><select id="trainModeFilter" onchange="renderTrain()"><option value="all">All workouts</option><option value="Gym">Gym</option><option value="Home">Home</option></select></label>
+    <label class="field"><span>Season</span><select id="trainSeasonFilter" onchange="renderTrain()"><option value="golden">July · Golden Hour</option></select></label>
+  </div></section>
   <div id="workoutList"></div>
 </main>
 
@@ -272,7 +284,8 @@ const SWAPS={
  'tuna':[['chickpeas',30,-14],['white beans',20,-14],['prawns',-10,-3]],
  'steak':[['tempeh',-60,-14],['black beans',-90,-24],['chicken breast',-60,2],['prawns',-110,-10]],
  'turkey mince':[['lentils',-40,-20],['chicken mince',0,0],['lean beef mince',40,-2]],
- 'eggs':[['silken tofu scramble',-40,-6]],
+ 'eggs':[['scrambled tofu',-40,-6],['flax eggs',-60,-10]],
+ 'egg whites':[['silken tofu',-20,-8]],
  'rye':[['gluten-free bread',10,-1],['sourdough',15,-1]],
  'protein pasta':[['gluten-free pasta',10,-12],['cooked rice',-20,-14]],
  'oats':[['gluten-free oats',0,0]],
@@ -280,12 +293,17 @@ const SWAPS={
  'chocolate protein':[['vegan chocolate protein',5,-2]],
  'soy milk':[['almond milk',-40,-6],['oat milk',10,-4]],
  'coconut yogurt':[['soy protein yogurt',-30,10]],
- 'DF yogurt':[['coconut yogurt',30,-8],['soy protein yogurt',-10,8]]
+ 'DF Greek-style yogurt':[['coconut yogurt',10,-2],['soy protein yogurt',-5,3]],
+ 'DF yogurt':[['coconut yogurt',30,-8],['soy protein yogurt',-10,8]],
+ 'DF feta':[['olives',-20,-3],['avocado',10,-3]],
+ 'butter':[['olive oil spread',0,0],['coconut oil',10,0]],
+ 'greek yogurt':[['DF Greek-style yogurt',0,0],['coconut yogurt',30,-8]],
+ 'almond butter':[['peanut butter',0,1],['sunflower seed butter',0,0]]
 };
 /* Preferred replacements per diet, in order. Recipes rotate through the list so
    vegan weeks are not wall-to-wall tofu. */
 const DIET_PREFS={
- vegan:{'chicken':['chickpeas','tempeh','tofu'],'salmon':['butter beans','marinated tofu'],'tuna':['chickpeas','white beans'],'steak':['tempeh','black beans'],'turkey mince':['lentils'],'eggs':['silken tofu scramble'],'vanilla protein':['vegan vanilla protein'],'chocolate protein':['vegan chocolate protein']},
+ vegan:{'chicken':['chickpeas','tempeh','tofu'],'salmon':['butter beans','marinated tofu'],'tuna':['chickpeas','white beans'],'steak':['tempeh','black beans'],'turkey mince':['lentils'],'eggs':['scrambled tofu'],'egg whites':['silken tofu'],'vanilla protein':['vegan vanilla protein'],'chocolate protein':['vegan chocolate protein']},
  veg:{'chicken':['chickpeas','tempeh','tofu'],'salmon':['marinated tofu','butter beans'],'tuna':['chickpeas'],'steak':['tempeh'],'turkey mince':['lentils']},
  pesc:{'chicken':['white fish','prawns'],'steak':['prawns'],'turkey mince':['white fish']},
  gf:{'rye':['gluten-free bread'],'protein pasta':['gluten-free pasta'],'oats':['gluten-free oats']},
@@ -297,7 +315,8 @@ const DIET_OVERRIDES={
  'dinner-03':{vegan:{'chicken':'tofu'},veg:{'chicken':'tofu'}},
  'dinner-06':{vegan:{'chicken':'tofu'},veg:{'chicken':'tofu'}},
  'dinner-07':{vegan:{'chicken':'chickpeas'},veg:{'chicken':'chickpeas'}},
- 'lunch-05':{vegan:{'chicken':'tofu'},veg:{'chicken':'tofu'}}
+ 'lunch-05':{vegan:{'chicken':'tofu'},veg:{'chicken':'tofu'}},
+ 'breakfast-07':{vegan:{'eggs':'flax eggs'}}
 };
 /* plain text tidy-ups per diet */
 const DIET_TEXT={
@@ -338,8 +357,9 @@ function applySwap(m,key,repl){
   let x=clone(m),re=new RegExp(key.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
   if(!x.ing.some(i=>re.test(i)))return x;
   const tidy=t=>t
-    .replace(/\b(tofu|marinated tofu|silken tofu scramble|tempeh|prawns|white fish|chickpeas|butter beans|black beans|white beans|lentils)\s+(breast|thigh|fillet|mince)\b/gi,'$1')
+    .replace(/\b(tofu|marinated tofu|scrambled tofu|silken tofu|tempeh|prawns|white fish|chickpeas|butter beans|black beans|white beans|lentils)\s+(breast|thigh|fillet|mince)\b/gi,'$1')
     .replace(/\b(shredded roast|roast|shredded)\s+(tofu|marinated tofu|tempeh|prawns|white fish|chickpeas|butter beans|black beans|white beans|lentils)\b/gi,'$2')
+    .replace(/\b(boiled|poached|whole)\s+(scrambled tofu|silken tofu|flax eggs)\b/gi,'$2')
     .replace(/\b(cooked)\s+(chickpeas|butter beans|black beans|white beans)\b/gi,'$2');
   x.ing=x.ing.map(i=>tidy(i.replace(re,repl)));
   x.steps=x.steps.map(s=>tidy(s.replace(re,repl)));
@@ -569,17 +589,16 @@ function renderPlan(){
     return `<div class="day"><div class="dayTop"><div><div class="label">${days[i]}</div><h2 class="h3">${t.cal} / ${S.goals.cal} kcal · ${t.pro}g protein</h2></div>
     <div class="row"><span class="tag ${diff>60?'gold':'green'}">${diff>=0?'+':''}${diff} kcal</span><button class="btn soft mini" onclick="balanceDay(${w},'${k}')">Balance to target</button></div></div>
     <div class="bar"><i style="width:${pct}%" class="${diff>60?'over':''}"></i></div>
-    <div class="slot"><label class="sl">Workout</label><select onchange="S.plan.weeks[${w}]['${k}'].workout=this.value;save();render()"><option value="">Rest day</option>${WORKOUTS.map(x=>`<option value="${x.id}" ${x.id===d.workout?'selected':''}>${x.mode} · ${x.title}</option>`).join('')}</select>${d.workout?`<button class="btn ghost mini" onclick="openWorkout('${d.workout}')">Open</button>`:'<span></span>'}</div>
+    <div class="slot"><label class="sl">Workout</label><select onchange="S.plan.weeks[${w}]['${k}'].workout=this.value;save();render()"><option value="">Rest day</option>${WORKOUTS.map(x=>`<option value="${x.id}" ${x.id===d.workout?'selected':''}>${x.mode} · ${x.title}</option>`).join('')}</select>${d.workout?`<button class="btn ghost mini" onclick="openWorkout('${d.workout}')">Open</button>`:'<span></span>'}<span></span><span class="mac">${d.workout?esc(workoutById(d.workout)?.stats.duration||''):''}</span></div>
     ${TYPES.map(s=>{
       let md=slotData(d,s),m=slotRecipe(d,s),p=d.p?.[s]||1,skipped=d.missed?.[s];
       let btn=m?`<button class="btn ghost mini" onclick="openMeal('${d[s]}',${p},null,'${w}|${k}|${s}')">Adjust</button>`:(d[s]==='custom'&&!skipped?`<button class="btn ghost mini" onclick="openCustom(${w},'${k}','${s}')">Edit</button>`:'<span></span>');
       return `<div class="slot"><label class="sl">${s}</label><select onchange="changeMeal(${w},'${k}','${s}',this.value)">
       <option value="custom" ${d[s]==='custom'?'selected':''}>Custom / my own</option><option value="none" ${d[s]==='none'?'selected':''}>None</option>
       ${byType(s).map(mm=>`<option value="${mm.id}" ${mm.id===d[s]?'selected':''}>${esc(applyDiet(mm).name)}</option>`).join('')}</select>${btn}
-      <div class="slotMeta"><span class="small ${skipped?'muted':''}" style="${skipped?'text-decoration:line-through':''}"><b>${md.cal}</b> kcal · <b>${md.pro}g</b> protein${p!==1?` · <span class="tag blush">${Math.round(p*100)}% portion</span>`:''}${d.sw?.[s]?` · <span class="tag gold">${d.sw[s][1]}</span>`:''}</span>
-      <button class="btn ghost mini" onclick="markMissed(${w},'${k}','${s}')">${skipped?'Unskip':'Skip'}</button></div></div>`;
-    }).join('')}
-    <div class="habitGrid">${habits.map(h=>`<button class="habit ${S.habits['w'+w+k+h]?'active':''}" onclick="S.habits['w${w}${k}${h}']=!S.habits['w${w}${k}${h}'];save();render()">${h}</button>`).join('')}</div></div>`;
+      <button class="btn ${skipped?'soft':'ghost'} mini" onclick="markMissed(${w},'${k}','${s}')">${skipped?'Unskip':'Skip'}</button>
+      <span class="mac" style="${skipped?'text-decoration:line-through':''}"><b>${md.cal}</b> kcal · <b>${md.pro}g</b>${p!==1?` <span class="tag blush">${Math.round(p*100)}%</span>`:''}${d.sw?.[s]?` <span class="tag gold">${esc(d.sw[s][1])}</span>`:''}</span></div>`;
+    }).join('')}</div>`;
   }).join('');
 }
 
@@ -651,11 +670,15 @@ function closeModal(){modal.classList.remove('active');render()}
 
 /* ============ MEAL + TRAIN BANKS ============ */
 function renderMeals(){
-  mealList.innerHTML=TYPES.map(t=>`<div class="shopHead"><div class="label">${TYPENAME[t]}s</div></div>`+byType(t).map(m=>{let x=applyDiet(m);
+  let f=$('mealTypeFilter')?.value||'all';
+  let types=f==='all'?TYPES:[f];
+  mealList.innerHTML=types.map(t=>`<div class="shopHead"><div class="label">${TYPENAME[t]}s</div></div>`+byType(t).map(m=>{let x=applyDiet(m);
     return `<div class="item"><div><div class="it">${esc(x.name)}</div><div class="meta small">${x.cal} kcal · ${x.pro}g protein · ${esc(x.prep)} prep${+x.serves>1?` · serves ${x.serves}`:''}</div></div><button class="btn ghost mini" onclick="openMeal('${m.id}')">Open</button></div>`}).join('')).join('');
 }
 function renderTrain(){
-  workoutList.innerHTML=['Gym','Home'].map(md=>`<div class="shopHead"><div class="label">${md} sessions</div></div>`+WORKOUTS.filter(w=>w.mode===md).map(w=>`<div class="item"><div><div class="it">${esc(w.title)}</div><div class="meta small">${esc(w.focus)} · ${esc(w.stats.duration||'')}</div></div><button class="btn ghost mini" onclick="openWorkout('${w.id}')">Open</button></div>`).join('')).join('');
+  let f=$('trainModeFilter')?.value||'all';
+  let modes=f==='all'?['Gym','Home']:[f];
+  workoutList.innerHTML=modes.map(md=>`<div class="shopHead"><div class="label">${md} sessions</div></div>`+WORKOUTS.filter(w=>w.mode===md).map(w=>`<div class="item"><div><div class="it">${esc(w.title)}</div><div class="meta small">${esc(w.focus)} · ${esc(w.stats.duration||'')}</div></div><button class="btn ghost mini" onclick="openWorkout('${w.id}')">Open</button></div>`).join('')).join('');
 }
 
 /* ============ SHOPPING LIST ============ */
@@ -704,16 +727,27 @@ function renderShop(){
   S.shopExtra.forEach((x,xi)=>{agg['extra:'+x.toLowerCase()]={name:x,unit:'',qty:0,any:true,extra:xi}});
   let entries=Object.entries(agg);
   if(!entries.length){shopList.innerHTML='<div class="card" style="margin-top:12px"><p class="muted" style="margin:0">Nothing to shop for this week yet.</p></div>';return}
-  entries.sort((a,b)=>{
-    let ta=S.shopTicks['w'+w+'|'+a[0]]?1:0,tb=S.shopTicks['w'+w+'|'+b[0]]?1:0;
-    return ta-tb||a[1].name.localeCompare(b[1].name);
-  });
-  shopList.innerHTML=`<p class="muted small" style="margin:12px 4px 4px">Week ${w} · cooking for ${S.people} ${S.people===1?'person':'people'} · ${entries.length} items</p><div class="shopGrid">`+entries.map(([key,v])=>{
-    let amt=v.qty?(v.unit==='g'||v.unit==='ml'?Math.round(v.qty)+v.unit:fmtQty(v.qty)+(v.unit?' '+v.unit:'')):'as needed';
-    let disp=v.name.charAt(0).toUpperCase()+v.name.slice(1);
-    let tk='w'+w+'|'+key,done=S.shopTicks[tk];
-    return `<label class="shopRow ${done?'done':''}"><input type="checkbox" ${done?'checked':''} onchange="S.shopTicks['${tk.replace(/'/g,"\\'")}']=this.checked;save();renderShop()"><span class="sn">${esc(disp)}</span><span class="sg">${amt}${v.extra!==undefined?` <button class="btn ghost mini" onclick="S.shopExtra.splice(${v.extra},1);save();renderShop()">×</button>`:''}</span></label>`;
-  }).join('')+'</div>';
+  const CATS=[
+   ['Protein',/\b(chicken|salmon|tuna|steak|turkey|prawns|white fish|tofu|tempeh|egg|chickpeas|butter beans|black beans|white beans|lentils|edamame|mince)\b/i],
+   ['Fruit + veg',/\b(spinach|kale|cucumber|carrot|pepper|tomato|onion|garlic clove|lemon|lime|mango|banana|berr|strawberr|blueberr|cherr|watermelon|pineapple|avocado|courgette|mushroom|lettuce|iceberg|cabbage|leaves|little gem|green beans|peas|sweet potato|potato|pickle|salad|greens|grapes|dates|kimchi|sauerkraut)\b/i],
+   ['Carbs + grains',/\b(rice|pasta|spaghetti|oats|rye|bread|sourdough|rice cakes?|corn cakes?|wrap|granola)\b/i],
+   ['Chilled + dairy-free',/\b(yogurt|(?<!coconut )milk|feta|protein shake|(?<!almond |peanut |seed )butter(?! beans))\b/i],
+   ['Herbs + seasoning',/\b(coriander|parsley|mint|basil|chilli|salt|black pepper|cumin|paprika|garlic powder|onion powder|oregano|cinnamon|ginger|seasoning|almond essence|matcha|pepper \(for)/i],
+   ['Pantry + sauces',/./]
+  ];
+  const catOf=v=>{if(v.extra!==undefined)return'Extras';let n=v.name;for(const[c,re]of CATS)if(re.test(n))return c;return'Pantry + sauces'};
+  let groups={};entries.forEach(e=>{let c=catOf(e[1]);(groups[c]=groups[c]||[]).push(e)});
+  const ORDER=['Protein','Fruit + veg','Carbs + grains','Chilled + dairy-free','Pantry + sauces','Herbs + seasoning','Extras'];
+  shopList.innerHTML=`<p class="muted small" style="margin:12px 4px 0">Week ${w} · cooking for ${S.people} ${S.people===1?'person':'people'} · ${entries.length} items</p>`+ORDER.filter(c=>groups[c]).map(c=>{
+    let es=groups[c];
+    es.sort((a,b)=>{let ta=S.shopTicks['w'+w+'|'+a[0]]?1:0,tb=S.shopTicks['w'+w+'|'+b[0]]?1:0;return ta-tb||a[1].name.localeCompare(b[1].name)});
+    return `<div class="shopHead"><div class="label">${c}</div></div><div class="shopGrid">`+es.map(([key,v])=>{
+      let amt=v.qty?(v.unit==='g'||v.unit==='ml'?Math.round(v.qty)+v.unit:fmtQty(v.qty)+(v.unit?' '+v.unit:'')):'as needed';
+      let disp=v.name.charAt(0).toUpperCase()+v.name.slice(1);
+      let tk='w'+w+'|'+key,done=S.shopTicks[tk];
+      return `<label class="shopRow ${done?'done':''}"><input type="checkbox" ${done?'checked':''} onchange="S.shopTicks['${tk.replace(/'/g,"\\'")}']=this.checked;save();renderShop()"><span class="sn">${esc(disp)}</span><span class="sg">${amt}${v.extra!==undefined?` <button class="btn ghost mini" onclick="S.shopExtra.splice(${v.extra},1);save();renderShop()">×</button>`:''}</span></label>`;
+    }).join('')+'</div>';
+  }).join('');
 }
 
 /* ============ GUIDE ============ */
