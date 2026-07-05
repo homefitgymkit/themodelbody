@@ -24,6 +24,7 @@ h1{font-family:Georgia,serif;font-size:clamp(44px,11vw,78px);font-weight:400;lin
 .grid{display:grid;gap:12px}
 .two{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .controls,.three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.four{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .btn{border:0;border-radius:999px;background:var(--red);color:#fff;font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:13px 18px}
 .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
 .btn.soft{background:var(--blush);color:var(--red);border:1px solid var(--blushline)}
@@ -41,6 +42,11 @@ input::placeholder{color:#B9AB9E}
 .tag.gold{background:var(--goldbg);border-color:#EBD9A9;color:var(--gold)}
 .divider{height:1px;background:var(--line);margin:16px 0;border:0}
 .steps-note{background:var(--blush);border:1px solid var(--blushline);border-radius:16px;padding:12px 15px;color:var(--red);font-size:13px;line-height:1.5}
+.tick{width:20px;height:20px;accent-color:var(--red);flex:none}
+/* today tick cards */
+.todayHead{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;margin:2px 0 10px}
+.todayHead h2{text-align:center}
+.arrow{border:1px solid var(--line);background:#fff;border-radius:999px;width:38px;height:38px;font-size:16px;color:var(--red);display:grid;place-items:center;padding:0}
 /* planner day cards */
 .day{margin:12px 0}
 .dayTop{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}
@@ -78,31 +84,37 @@ ol.method li{margin-bottom:6px}
 .box span{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
 /* workout modal */
 .wkSec{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:10px 0}
-.wkSecHead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px}
-.wkSecName{font-family:Georgia,serif;font-size:19px}
-.wkRow{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:9px 0;border-top:1px dashed var(--line)}
+.wkSecHead{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.wkSecName{font-family:Georgia,serif;font-size:20px}
+.wkNote{font-size:12px;color:var(--muted);margin:3px 0 6px}
+.wkRow{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:10px 0;border-top:1px dashed var(--line)}
 .wkRow:first-of-type{border-top:0}
 .wkRep{font-size:12px;font-weight:800;color:var(--red);white-space:nowrap}
-.wkLog{display:flex;gap:6px;margin-top:5px}
-.wkLog input{width:74px;padding:7px 9px;border-radius:10px;font-size:13px}
-.tierStop{display:flex;justify-content:space-between;align-items:center;gap:10px;border-radius:14px;padding:11px 14px;margin:10px 0;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;border:1px dashed var(--line);color:var(--muted);background:#fff}
+.wkLog{display:flex;gap:6px;margin-top:6px}
+.wkLog input{width:72px;padding:7px 9px;border-radius:10px;font-size:13px}
+.tierStop{display:flex;justify-content:space-between;align-items:center;gap:10px;border-radius:14px;padding:12px 15px;margin:10px 0;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;border:1px dashed var(--line);color:var(--muted);background:#fff}
 .tierStop.mine{background:var(--blush);border:1px solid var(--blushline);color:var(--red)}
 .tierStop .ts{font-size:10px;font-weight:700;text-transform:none;letter-spacing:0;color:inherit;opacity:.85}
 /* shopping */
-.shopRow{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:11px 14px;margin:7px 0}
-.shopRow input[type=checkbox]{width:19px;height:19px;accent-color:var(--red)}
+.shopGrid{display:grid;grid-template-columns:1fr 1fr;gap:0 10px;align-items:start}
+.shopRow{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 13px;margin:6px 0}
+.shopRow input[type=checkbox]{width:18px;height:18px;accent-color:var(--red)}
+.shopRow.done{opacity:.55}
 .shopRow.done .sn{text-decoration:line-through;color:var(--muted)}
-.shopRow .sg{font-size:13px;font-weight:800;color:var(--red);white-space:nowrap}
+.shopRow .sn{font-size:14px;font-weight:600}
+.shopRow .sg{font-size:12px;font-weight:800;color:var(--red);white-space:nowrap}
 .shopHead{margin:16px 0 4px}
+/* logs */
+.logRow{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:13px 16px;margin:8px 0}
+.logTicks{display:flex;gap:6px;flex-wrap:wrap;margin-top:5px}
 /* bottom nav */
-.bottom{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(980px,100%);display:grid;grid-template-columns:repeat(6,1fr);gap:4px;padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:#FFFDF8F5;border-top:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);z-index:30}
-.nav{border:1px solid transparent;background:transparent;border-radius:14px;padding:9px 2px 8px;color:var(--muted);font-size:9px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:4px}
+.bottom{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(980px,100%);display:grid;grid-template-columns:repeat(7,1fr);gap:3px;padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:#FFFDF8F5;border-top:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);z-index:30}
+.nav{border:1px solid transparent;background:transparent;border-radius:14px;padding:9px 2px 8px;color:var(--muted);font-size:9px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:4px}
 .nav svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .nav.active{background:var(--blush);border-color:var(--blushline);color:var(--red)}
 .hidden{display:none}
 .stepLbl{display:inline-block;font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--red);border-radius:999px;padding:4px 10px;margin-bottom:8px}
-@media(max-width:720px){.two,.three,.controls,.detail{grid-template-columns:1fr 1fr}.controls{grid-template-columns:1fr 1fr}.slot{grid-template-columns:1fr}.slotMeta{grid-column:1}.page{padding:13px}.macroStrip .v{font-size:19px}}
-@media(max-width:420px){.two,.controls{grid-template-columns:1fr 1fr}.habitGrid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:720px){.two,.three,.controls,.detail,.four{grid-template-columns:1fr 1fr}.slot{grid-template-columns:1fr}.slotMeta{grid-column:1}.page{padding:13px}.macroStrip .v{font-size:19px}.nav{font-size:8px}}
 </style></head><body>
 <div class="app">
 <header class="top"><div class="brand">The Model Body <b>Club</b></div><div class="theme">Golden Hour</div></header>
@@ -118,7 +130,6 @@ ol.method li{margin-bottom:6px}
     </div>
   </section>
   <section class="card" style="margin-top:14px">
-    <div class="dayTop"><div><div class="label">Today</div><h2 class="h2" id="todayTitle">Your day</h2></div><div id="todayDate" class="tag gold"></div></div>
     <div id="todayBox"></div>
   </section>
   <section class="card" style="margin-top:12px" id="homeTargets"></section>
@@ -134,20 +145,24 @@ ol.method li{margin-bottom:6px}
     <div class="controls">
       <label class="field"><span>Height (cm)</span><input id="height" type="number" inputmode="decimal" placeholder="168"></label>
       <label class="field"><span>Weight (kg)</span><input id="weight" type="number" inputmode="decimal" placeholder="63"></label>
-      <label class="field"><span>Goal</span><select id="goal"><option value="tone">Lean / toned</option><option value="loss">Fat loss</option><option value="glute">Glute growth</option></select></label>
+      <label class="field"><span>Goal</span><select id="goal"><option value="tone">Lean / toned · maintain + define</option><option value="loss">Fat loss · gentle cut</option><option value="glute">Glute growth · build</option></select></label>
     </div>
     <div class="controls" style="margin-top:10px">
-      <label class="field"><span>Daily step goal</span><input id="stepsGoal" type="number" inputmode="numeric" placeholder="10000"></label>
       <label class="field"><span>Training days / week</span><select id="trainDays"></select></label>
+      <label class="field"><span>Gym session time</span><select id="gymTime"><option value="essential">Quick · 30–40 min</option><option value="full" selected>Standard · 40–50 min</option><option value="build">Full · 50–60+ min</option></select></label>
+      <label class="field"><span>Home session time</span><select id="homeTime"><option value="essential">Quick · 25–35 min</option><option value="full" selected>Standard · 35–45 min</option><option value="build">Full · 45–55 min</option></select></label>
+    </div>
+    <div class="controls" style="margin-top:10px">
       <label class="field"><span>Start date</span><input id="startDate" type="date" onchange="S.start=this.value;save();render()"></label>
     </div>
-    <div class="row" style="margin-top:12px"><button class="btn soft" onclick="suggestTargets()">Suggest calories + protein</button></div>
-    <div id="setupSummary"></div>
+    <p class="muted small" style="margin:10px 2px 0">Your session time sets the finish point marked inside every workout, so the plan fits your real day. Your goal shapes calories and workout focus, more in the Guide tab.</p>
+    <div class="row" style="margin-top:12px"><button class="btn soft" onclick="suggestTargets()">Suggest calories + protein</button><span class="muted small" id="suggestNote"></span></div>
     <hr class="divider">
     <span class="stepLbl">Step 2 · Your targets</span>
-    <div class="controls">
-      <label class="field"><span>Calorie target (kcal / day)</span><input id="calGoal" type="number" inputmode="numeric"></label>
-      <label class="field"><span>Protein target (g / day)</span><input id="proGoal" type="number" inputmode="numeric"></label>
+    <div class="four">
+      <label class="field"><span>Calories (kcal / day)</span><input id="calGoal" type="number" inputmode="numeric"></label>
+      <label class="field"><span>Protein (g / day)</span><input id="proGoal" type="number" inputmode="numeric"></label>
+      <label class="field"><span>Step goal (steps / day)</span><input id="stepsGoal" type="number" inputmode="numeric" placeholder="10000"></label>
       <label class="field"><span>Cooking for (people)</span><select id="people"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></label>
     </div>
     <p class="muted small" style="margin:10px 2px 0">A suggested starting point, not a rule. Snacks, coffees and life outside the plan are fine, the planner shows what each day leaves you to play with.</p>
@@ -158,11 +173,19 @@ ol.method li{margin-bottom:6px}
       <label class="field"><span>Snack recipes (days / week)</span><select id="snacks"></select></label>
       <label class="field"><span>Weeks to build</span><select id="weeks"><option value="1">1 week</option><option value="2">2 weeks</option><option value="3">3 weeks</option><option value="4">4 weeks</option></select></label>
     </div>
+    <div class="controls" style="margin-top:10px">
+      <label class="field"><span>Different breakfasts</span><select id="varB"></select></label>
+      <label class="field"><span>Different lunches</span><select id="varL"></select></label>
+      <label class="field"><span>Different dinners</span><select id="varD"></select></label>
+    </div>
+    <p class="muted small" style="margin:10px 2px 0">Fewer recipes means easier meal prep, pick 2 or 3 of each and cook them in one go for the week. You can still swap any day in the planner.</p>
     <hr class="divider">
     <span class="stepLbl">Step 4 · Your training</span>
     <div class="label" style="margin-top:6px">Days free to train</div>
     <div id="avail" class="grid three"></div>
-    <div class="controls" style="margin-top:12px">
+    <div class="label" style="margin-top:14px">Include / exclude specific workouts · optional</div>
+    <p class="muted small" style="margin:0 2px 10px">Leave this alone and the app rotates this month's workouts for you. Only use it if you want to force a favourite in, or keep one out.</p>
+    <div class="controls">
       <label class="field"><span>Workout style</span><select id="mode"><option value="gym">Gym workouts</option><option value="home">Home workouts</option></select></label>
       <label class="field"><span>Workout</span><select id="workoutDrop"></select></label>
       <label class="field"><span>&nbsp;</span><span class="row" style="gap:6px"><button class="btn ghost mini" onclick="addWorkout(true)">Include</button><button class="btn soft mini" onclick="addWorkout(false)">Exclude</button></span></label>
@@ -173,27 +196,28 @@ ol.method li{margin-bottom:6px}
   </section>
   <section id="built" class="card hidden" style="margin-top:12px">
     <div class="dayTop">
-      <div><div class="label">Planner built</div><h2 class="h2">Your weekly planner</h2><p class="muted small">Tap open beside any meal or workout. Swap, resize portions, add customs and mark missed as your week actually happens.</p></div>
+      <div><div class="label">Planner built</div><h2 class="h2">Your weekly planner</h2></div>
       <button class="btn ghost" onclick="showBuilder(true)">Edit setup</button>
     </div>
+    <div class="steps-note" style="margin-top:10px"><b>How to use your week.</b> Tap adjust on any meal to resize the portion (−10% / +10%), swap an ingredient or read the recipe. Skip means you are not having that meal today. Choose "Custom / my own" in any dropdown to log something outside the plan. Days do not need to land exactly on target, close is perfect, and balance will gently scale a day for you.</div>
   </section>
   <div id="planOut"></div>
 </main>
 
 <main class="page" id="meals">
-  <section class="card"><div class="label">Meal bank</div><h2 class="h2">28 Golden Hour recipes</h2><p class="muted small">Every recipe from this month's plan. Open any meal to scale portions, see the method and use ingredient swaps.</p></section>
+  <section class="card"><div class="label">Meal bank</div><h2 class="h2">28 Golden Hour recipes</h2><p class="muted small">Every recipe from this month's plan. Open any meal to scale portions, see the method and use relevant swaps.</p></section>
   <div id="mealList"></div>
 </main>
 
 <main class="page" id="train">
-  <section class="card"><div class="label">Workout bank</div><h2 class="h2">8 Golden Hour workouts</h2><p class="muted small">Four gym and four home sessions. Your goal sets your finish line inside each workout. Include or exclude workouts from the planner tab.</p></section>
+  <section class="card"><div class="label">Workout bank</div><h2 class="h2">8 Golden Hour workouts</h2><p class="muted small">Four gym and four home sessions. Each one has three finish points, your session time in the planner sets which is highlighted for you.</p></section>
   <div id="workoutList"></div>
 </main>
 
 <main class="page" id="shop">
   <section class="card">
     <div class="label">Kitchen stocker</div><h2 class="h2">Shopping list</h2>
-    <p class="muted small">Built from your planner, scaled to how many you cook for. Tick items off as you shop.</p>
+    <p class="muted small">Built from your planner, scaled to how many you cook for. Tick items as you shop, they drop to the bottom.</p>
     <div class="controls" style="margin-top:12px">
       <label class="field"><span>Shopping for</span><select id="shopWeek" onchange="renderShop()"></select></label>
       <label class="field"><span>Extra item</span><input id="extraShop" placeholder="e.g. oat milk"></label>
@@ -201,6 +225,11 @@ ol.method li{margin-bottom:6px}
     </div>
   </section>
   <div id="shopList"></div>
+</main>
+
+<main class="page" id="logs">
+  <section class="card"><div class="label">Logs</div><h2 class="h2">Your month so far</h2><p class="muted small">A short record of what you achieved each day. Ticks come from your Today page.</p></section>
+  <div id="logList"></div>
 </main>
 
 <main class="page" id="guide">
@@ -214,6 +243,7 @@ ol.method li{margin-bottom:6px}
   <button class="nav" data-go="meals"><svg viewBox="0 0 24 24"><path d="M5 3v7a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V3M7 3v18"/><path d="M17 3c-1.5 1.5-2 4-2 6 0 2 .8 3 2 3v9"/></svg>Meals</button>
   <button class="nav" data-go="train"><svg viewBox="0 0 24 24"><path d="M6.5 6.5v11M17.5 6.5v11M3 9.5v5M21 9.5v5M6.5 12h11"/></svg>Train</button>
   <button class="nav" data-go="shop"><svg viewBox="0 0 24 24"><path d="M6 6h15l-1.7 8.5a2 2 0 0 1-2 1.5H9a2 2 0 0 1-2-1.6L5 3H2"/><circle cx="9.5" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></svg>Shop</button>
+  <button class="nav" data-go="logs"><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13"/><path d="M3.5 6l1 1 2-2M3.5 12l1 1 2-2M3.5 18l1 1 2-2"/></svg>Logs</button>
   <button class="nav" data-go="guide"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 1 2-2h13"/></svg>Guide</button>
 </nav>
 </div>
@@ -229,15 +259,19 @@ const WORKOUTS=[{"id":"gym-1","mode":"Gym","title":"Glutes A","focus":"glute gro
 const TYPES=['breakfast','lunch','dinner','snack'];
 const TYPENAME={breakfast:'Breakfast',lunch:'Lunch',dinner:'Dinner',snack:'Snack'};
 const days=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],keys=['mon','tue','wed','thu','fri','sat','sun'],habits=['workout','protein','steps','water','meals','stretch'];
-const TIER={loss:['essential','Fat Loss'],tone:['full','Balanced Toning'],glute:['build','Glute Growth']};
+const POINT={essential:['Finish point 1','Quick session'],full:['Finish point 2','Standard session'],build:['Finish point 3','Full session']};
 
-/* swaps: keyword matched in ingredients -> [replacement, kcal delta, protein delta] */
+/* ============ SWAP LIBRARY ============
+   Each original ingredient keyword maps to swap options: [replacement, kcal delta, protein delta].
+   Diet menus below pick from these. To automate future months: add any new
+   protein/carb keyword here once, and every recipe that uses it gets the right
+   swaps and diet versions automatically. */
 const SWAPS={
- 'chicken':[['tofu',-25,-14],['prawns',-45,-4],['white fish',-30,-3],['turkey',0,0]],
- 'salmon':[['white fish',-90,-2],['prawns',-80,-3],['tofu',-60,-13]],
- 'tuna':[['chickpeas',30,-14],['prawns',-10,-3],['tofu',0,-16]],
- 'steak':[['chicken breast',-60,2],['tofu',-90,-22],['prawns',-110,-10]],
- 'turkey mince':[['chicken mince',0,0],['lean beef mince',40,-2],['lentils',-40,-20]],
+ 'chicken':[['chickpeas',30,-14],['tempeh',20,-6],['tofu',-25,-14],['white fish',-30,-3],['prawns',-45,-4],['turkey',0,0]],
+ 'salmon':[['butter beans',-100,-14],['marinated tofu',-50,-12],['white fish',-90,-2],['prawns',-80,-3]],
+ 'tuna':[['chickpeas',30,-14],['white beans',20,-14],['prawns',-10,-3]],
+ 'steak':[['tempeh',-60,-14],['black beans',-90,-24],['chicken breast',-60,2],['prawns',-110,-10]],
+ 'turkey mince':[['lentils',-40,-20],['chicken mince',0,0],['lean beef mince',40,-2]],
  'eggs':[['silken tofu scramble',-40,-6]],
  'rye':[['gluten-free bread',10,-1],['sourdough',15,-1]],
  'protein pasta':[['gluten-free pasta',10,-12],['cooked rice',-20,-14]],
@@ -248,11 +282,36 @@ const SWAPS={
  'coconut yogurt':[['soy protein yogurt',-30,10]],
  'DF yogurt':[['coconut yogurt',30,-8],['soy protein yogurt',-10,8]]
 };
+/* Preferred replacements per diet, in order. Recipes rotate through the list so
+   vegan weeks are not wall-to-wall tofu. */
+const DIET_PREFS={
+ vegan:{'chicken':['chickpeas','tempeh','tofu'],'salmon':['butter beans','marinated tofu'],'tuna':['chickpeas','white beans'],'steak':['tempeh','black beans'],'turkey mince':['lentils'],'eggs':['silken tofu scramble'],'vanilla protein':['vegan vanilla protein'],'chocolate protein':['vegan chocolate protein']},
+ veg:{'chicken':['chickpeas','tempeh','tofu'],'salmon':['marinated tofu','butter beans'],'tuna':['chickpeas'],'steak':['tempeh'],'turkey mince':['lentils']},
+ pesc:{'chicken':['white fish','prawns'],'steak':['prawns'],'turkey mince':['white fish']},
+ gf:{'rye':['gluten-free bread'],'protein pasta':['gluten-free pasta'],'oats':['gluten-free oats']},
+ df:{}
+};
+/* Hand-picked best swap where rotation is not the tastiest answer. */
+const DIET_OVERRIDES={
+ 'dinner-01':{vegan:{'chicken':'chickpeas'},veg:{'chicken':'chickpeas'}},
+ 'dinner-03':{vegan:{'chicken':'tofu'},veg:{'chicken':'tofu'}},
+ 'dinner-06':{vegan:{'chicken':'tofu'},veg:{'chicken':'tofu'}},
+ 'dinner-07':{vegan:{'chicken':'chickpeas'},veg:{'chicken':'chickpeas'}},
+ 'lunch-05':{vegan:{'chicken':'tofu'},veg:{'chicken':'tofu'}}
+};
+/* plain text tidy-ups per diet */
+const DIET_TEXT={
+ vegan:[[/chicken stock/gi,'vegetable stock'],[/\bhoney\b/gi,'maple']],
+ veg:[[/chicken stock/gi,'vegetable stock']],
+ gf:[[/low-sodium soy|light soy|\bsoy\b(?! milk| protein)/gi,'tamari']]
+};
 
 /* ============ STATE ============ */
 let S=JSON.parse(localStorage.mbGoldenV9||'{}');
 S.setup=S.setup||{height:168,weight:63,goal:'tone',steps:10000,trainDays:4};
+S.setup.gymTime=S.setup.gymTime||'full';S.setup.homeTime=S.setup.homeTime||'full';
 S.goals=S.goals||{cal:1800,pro:120};
+S.variety=S.variety||{b:4,l:4,d:4};
 S.people=S.people||1;S.start=S.start||'';S.dayView=S.dayView||0;S.diet=S.diet||'none';S.mode=S.mode||'gym';
 S.avail=S.avail||{mon:'gym',tue:'rest',wed:'home',thu:'gym',fri:'rest',sat:'either',sun:'rest'};
 S.include=S.include||{};S.exclude=S.exclude||{};S.habits=S.habits||{};S.ticks=S.ticks||{};S.logs=S.logs||{};
@@ -265,6 +324,7 @@ function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 /* dropdown fills */
 for(let i=0;i<=6;i++)trainDays.innerHTML+=`<option value="${i}" ${i===4?'selected':''}>${i} day${i===1?'':'s'}</option>`;
 for(let i=0;i<=7;i++)snacks.innerHTML+=`<option value="${i}" ${i===3?'selected':''}>${i} day${i===1?'':'s'}</option>`;
+[['varB',4],['varL',4],['varD',4]].forEach(([id,def])=>{for(let i=1;i<=7;i++)$(id).innerHTML+=`<option value="${i}" ${i===def?'selected':''}>${i} recipe${i===1?'':'s'}</option>`});
 
 /* ============ NAV ============ */
 function go(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));$(p).classList.add('active');document.querySelectorAll('.nav').forEach(x=>x.classList.toggle('active',x.dataset.go===p));scrollTo(0,0)}
@@ -277,7 +337,10 @@ function applySwap(m,key,repl){
   let sw=(SWAPS[key]||[]).find(s=>s[0]===repl);if(!sw)return m;
   let x=clone(m),re=new RegExp(key.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
   if(!x.ing.some(i=>re.test(i)))return x;
-  const tidy=t=>t.replace(/\b(tofu|prawns|white fish|chickpeas|lentils|silken tofu scramble)\s+(breast|thigh|fillet|mince)\b/gi,'$1').replace(/\b(shredded roast|roast)\s+(tofu|prawns|white fish|chickpeas)\b/gi,'$2');
+  const tidy=t=>t
+    .replace(/\b(tofu|marinated tofu|silken tofu scramble|tempeh|prawns|white fish|chickpeas|butter beans|black beans|white beans|lentils)\s+(breast|thigh|fillet|mince)\b/gi,'$1')
+    .replace(/\b(shredded roast|roast|shredded)\s+(tofu|marinated tofu|tempeh|prawns|white fish|chickpeas|butter beans|black beans|white beans|lentils)\b/gi,'$2')
+    .replace(/\b(cooked)\s+(chickpeas|butter beans|black beans|white beans)\b/gi,'$2');
   x.ing=x.ing.map(i=>tidy(i.replace(re,repl)));
   x.steps=x.steps.map(s=>tidy(s.replace(re,repl)));
   x.name=tidy(x.name.replace(re,repl.charAt(0).toUpperCase()+repl.slice(1)));
@@ -286,31 +349,16 @@ function applySwap(m,key,repl){
 }
 function applyDiet(m){
   let x=clone(m),d=S.diet;
-  const has=k=>x.ing.some(i=>i.toLowerCase().includes(k));
-  if(d==='vegan'){
-    ['chicken','salmon','tuna','steak'].forEach(k=>{if(has(k))x=applySwap(x,k,k==='tuna'?'chickpeas':'tofu')});
-    if(has('turkey mince'))x=applySwap(x,'turkey mince','lentils');
-    if(has('eggs'))x=applySwap(x,'eggs','silken tofu scramble');
-    x.ing=x.ing.map(i=>i.replace(/\bhoney\b/gi,'maple'));
-    if(has('vanilla protein'))x=applySwap(x,'vanilla protein','vegan vanilla protein');
-    if(has('chocolate protein'))x=applySwap(x,'chocolate protein','vegan chocolate protein');
-  }
-  if(d==='veg'){
-    ['chicken','salmon','tuna','steak'].forEach(k=>{if(has(k))x=applySwap(x,k,k==='tuna'?'chickpeas':'tofu')});
-    if(has('turkey mince'))x=applySwap(x,'turkey mince','lentils');
-  }
-  if(d==='pesc'){
-    if(has('chicken'))x=applySwap(x,'chicken','white fish');
-    if(has('steak'))x=applySwap(x,'steak','prawns');
-    if(has('turkey mince'))x=applySwap(x,'turkey mince','white fish');
-  }
-  if(d==='gf'){
-    if(has('rye'))x=applySwap(x,'rye','gluten-free bread');
-    if(has('protein pasta'))x=applySwap(x,'protein pasta','gluten-free pasta');
-    if(has('oats'))x=applySwap(x,'oats','gluten-free oats');
-    x.ing=x.ing.map(i=>i.replace(/low-sodium soy|light soy|\bsoy\b(?! milk| protein)/gi,'tamari'));
-  }
-  /* df: the Golden Hour plan is already dairy-free as written */
+  if(d==='none')return x;
+  const prefs=DIET_PREFS[d]||{},over=(DIET_OVERRIDES[m.id]||{})[d]||{};
+  const idx=parseInt(m.id.split('-')[1])||0;
+  const has=k=>x.ing.some(i=>i.toLowerCase().includes(k.toLowerCase()));
+  Object.keys(prefs).forEach(k=>{
+    if(!has(k))return;
+    let repl=over[k]||prefs[k][(idx-1)%prefs[k].length];
+    x=applySwap(x,k,repl);
+  });
+  (DIET_TEXT[d]||[]).forEach(([re,to])=>{x.ing=x.ing.map(i=>i.replace(re,to));x.steps=x.steps.map(s=>s.replace(re,to))});
   return x;
 }
 function recipe(id){let m=recipeRaw(id);return m?applyDiet(m):null}
@@ -350,22 +398,20 @@ function suggestTargets(){
   let cal=Math.round((base+stepAdd+trainAdd)/50)*50;
   if(g==='loss')cal-=250;if(g==='glute')cal+=200;
   let pro=Math.round(w*(g==='glute'?2.0:1.8));
-  S.setup={height:h,weight:w,goal:g,steps,trainDays:td};S.goals={cal,pro};
-  calGoal.value=cal;proGoal.value=pro;save();renderSummary();
-}
-function renderSummary(){
-  let g=goal.value,td=+trainDays.value,steps=+stepsGoal.value||10000;
-  let name={loss:'fat loss',tone:'a lean, toned look',glute:'glute growth'}[g];
-  setupSummary.innerHTML=`<div class="detail"><div class="box"><b>${S.goals.cal}</b><span>kcal / day</span></div><div class="box"><b>${S.goals.pro}g</b><span>protein / day</span></div><div class="box"><b>${(+steps).toLocaleString()}</b><span>steps / day</span></div></div><p class="muted small">A suggested starting point for ${name} with ${td} training day${td===1?'':'s'} a week. Edit either number before you build, you know your body best.</p>`;
+  S.setup={...S.setup,height:h,weight:w,goal:g,steps,trainDays:td};S.goals={cal,pro};
+  calGoal.value=cal;proGoal.value=pro;save();
+  let name={loss:'a gentle cut',tone:'a lean, toned look',glute:'glute growth'}[g];
+  $('suggestNote').textContent=`Suggested for ${name}, updated in step 2 below. Edit freely.`;
 }
 
 /* ============ BUILDER ============ */
 function renderBuilder(){
   height.value=S.setup.height;weight.value=S.setup.weight;goal.value=S.setup.goal;stepsGoal.value=S.setup.steps;trainDays.value=S.setup.trainDays;
+  gymTime.value=S.setup.gymTime;homeTime.value=S.setup.homeTime;
   calGoal.value=S.goals.cal;proGoal.value=S.goals.pro;people.value=S.people;startDate.value=S.start;diet.value=S.diet;mode.value=S.mode;
+  varB.value=S.variety.b;varL.value=S.variety.l;varD.value=S.variety.d;
   if(S.plan)weeks.value=Object.keys(S.plan.weeks).length;
   $('closeBuilderBtn').style.display=S.plan?'':'none';
-  renderSummary();
 }
 function renderAvail(){
   avail.innerHTML=days.map((d,i)=>`<label class="field"><span>${d}</span><select onchange="S.avail['${keys[i]}']=this.value;save()">
@@ -379,17 +425,19 @@ mode.onchange=()=>{S.mode=mode.value;save();renderDrop()};
 function addWorkout(inc){let id=workoutDrop.value;if(inc){S.include[id]=true;S.exclude[id]=false}else{S.exclude[id]=true;S.include[id]=false}save();renderChosen()}
 function renderChosen(){
   let inc=Object.keys(S.include).filter(k=>S.include[k]),exc=Object.keys(S.exclude).filter(k=>S.exclude[k]);
-  chosen.innerHTML=(inc.length||exc.length)?[...inc.map(id=>`<div class="item"><div><div class="it">${workoutById(id).mode} · ${workoutById(id).title}</div><p class="meta small">Included in your rotation</p></div><button class="btn ghost mini" onclick="S.include['${id}']=false;save();renderChosen()">Remove</button></div>`),...exc.map(id=>`<div class="item"><div><div class="it">${workoutById(id).mode} · ${workoutById(id).title}</div><p class="meta small">Excluded from your rotation</p></div><button class="btn ghost mini" onclick="S.exclude['${id}']=false;save();renderChosen()">Remove</button></div>`)].join(''):'<p class="muted small" style="margin-top:10px">Nothing chosen yet, the app will rotate this month\'s workouts to suit your goal and free days.</p>';
+  chosen.innerHTML=(inc.length||exc.length)?[...inc.map(id=>`<div class="item"><div><div class="it">${workoutById(id).mode} · ${workoutById(id).title}</div><p class="meta small">Included in your rotation</p></div><button class="btn ghost mini" onclick="S.include['${id}']=false;save();renderChosen()">Remove</button></div>`),...exc.map(id=>`<div class="item"><div><div class="it">${workoutById(id).mode} · ${workoutById(id).title}</div><p class="meta small">Excluded from your rotation</p></div><button class="btn ghost mini" onclick="S.exclude['${id}']=false;save();renderChosen()">Remove</button></div>`)].join(''):'';
 }
 function showBuilder(v){builder.classList.toggle('hidden',!v);built.classList.toggle('hidden',v||!S.plan)}
 function clearPlan(){if(!confirm('Clear your built plan? Your setup stays saved.'))return;S.plan=null;showBuilder(true);save();render()}
 
 function buildPlan(blank){
-  S.setup={height:+height.value||168,weight:+weight.value||63,goal:goal.value,steps:+stepsGoal.value||10000,trainDays:+trainDays.value};
+  S.setup={...S.setup,height:+height.value||168,weight:+weight.value||63,goal:goal.value,steps:+stepsGoal.value||10000,trainDays:+trainDays.value,gymTime:gymTime.value,homeTime:homeTime.value};
   S.goals={cal:+calGoal.value||S.goals.cal,pro:+proGoal.value||S.goals.pro};
+  S.variety={b:+varB.value||4,l:+varL.value||4,d:+varD.value||4};
   S.people=+people.value||1;S.start=startDate.value;S.diet=diet.value;S.mode=mode.value;
   let wc=+weeks.value,td=S.setup.trainDays,snackDays=+snacks.value;
   let included=Object.keys(S.include).filter(k=>S.include[k]).map(workoutById);
+  const banks={breakfast:byType('breakfast').slice(0,S.variety.b),lunch:byType('lunch').slice(0,S.variety.l),dinner:byType('dinner').slice(0,S.variety.d),snack:byType('snack')};
   S.plan={weeks:{},active:1};
   for(let w=1;w<=wc;w++){
     S.plan.weeks[w]={};
@@ -407,10 +455,10 @@ function buildPlan(blank){
       let idx=Math.floor(i/2)+(w-1)*2;
       S.plan.weeks[w][k]={
         workout:wk,
-        breakfast:pick(byType('breakfast'),i+(w-1)*3).id,
-        lunch:pick(byType('lunch'),idx).id,
-        dinner:pick(byType('dinner'),idx+1).id,
-        snack:i<snackDays?pick(byType('snack'),i+(w-1)*2).id:'none',
+        breakfast:pick(banks.breakfast,i+(w-1)*3).id,
+        lunch:pick(banks.lunch,idx).id,
+        dinner:pick(banks.dinner,idx+1).id,
+        snack:i<snackDays?pick(banks.snack,i+(w-1)*2).id:'none',
         custom:{},missed:{},p:{},sw:{}
       };
     });
@@ -421,6 +469,11 @@ function buildPlan(blank){
 /* ============ DAY / SLOT DATA ============ */
 function todayIndex(){if(!S.start)return S.dayView;let a=new Date(S.start+'T00:00:00'),b=new Date();b.setHours(0,0,0,0);return Math.max(0,Math.floor((b-a)/86400000))}
 function dayByIndex(idx){if(!S.plan)return null;let w=Math.floor(idx/7)+1,k=keys[idx%7];return S.plan.weeks[w]?.[k]}
+function ord(n){let s=['th','st','nd','rd'],v=n%100;return n+(s[(v-20)%10]||s[v]||s[0])}
+function dayLabel(idx){
+  if(S.start){let d=new Date(S.start+'T00:00:00');d.setDate(d.getDate()+idx);return d.toLocaleDateString('en-GB',{weekday:'long'})+' '+ord(d.getDate())+' '+d.toLocaleDateString('en-GB',{month:'long'})}
+  return days[idx%7];
+}
 function slotRecipe(d,s){
   if(d[s]==='custom'||d[s]==='none'||d.missed?.[s])return null;
   let m=recipe(d[s]);if(!m)return null;
@@ -428,7 +481,7 @@ function slotRecipe(d,s){
   return m;
 }
 function slotData(d,s){
-  if(d.missed?.[s])return{name:'Missed / not tracked',cal:0,pro:0};
+  if(d.missed?.[s])return{name:'Skipped today',cal:0,pro:0};
   if(d[s]==='none')return{name:'No snack planned',cal:0,pro:0};
   if(d[s]==='custom')return d.custom?.[s]?{...d.custom[s],custom:true}:{name:'Custom / add your own',cal:0,pro:0,custom:true};
   let m=slotRecipe(d,s);if(!m)return{name:'Custom',cal:0,pro:0};
@@ -447,34 +500,58 @@ function balanceDay(w,k){
 }
 
 /* ============ RENDER: HOME / TODAY ============ */
+function tickBox(key,title,sub,checked){
+  return `<div class="item" style="margin:8px 0"><div style="display:flex;gap:11px;align-items:center"><input type="checkbox" class="tick" ${checked?'checked':''} onchange="S.ticks['${key}']=this.checked;save();render()"><div><div class="it" style="${checked?'text-decoration:line-through;color:var(--muted)':''}">${title}</div><p class="meta small" style="margin:2px 0 0">${sub}</p></div></div></div>`;
+}
 function renderHome(){
   let idx=todayIndex(),d=dayByIndex(idx);
-  todayTitle.textContent=d?'Day '+(idx+1)+' · '+days[idx%7]:'Your day';
-  todayDate.textContent=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short'});
-  todayBox.innerHTML=d?renderToday(d,idx):'<p class="muted" style="margin-top:8px">No plan yet. Build your personal workout, step and meal plan in a couple of minutes.</p><button class="btn" style="margin-top:6px" data-go="plan">Go to the planner</button>';
-  homeTargets.innerHTML=`<div class="label">Your targets</div><div class="detail"><div class="box"><b>${S.goals.cal}</b><span>kcal / day</span></div><div class="box"><b>${S.goals.pro}g</b><span>protein / day</span></div><div class="box"><b>${S.setup.steps.toLocaleString()}</b><span>steps / day</span></div></div><p class="muted small">A suggested starting point, adjust to your body and routine in the planner.</p>`;
+  todayBox.innerHTML=d?renderToday(d,idx):`<div class="label">Today</div><h2 class="h2">Your day</h2><p class="muted" style="margin-top:8px">No plan yet. Build your personal workout, step and meal plan in a couple of minutes.</p><button class="btn" style="margin-top:6px" data-go="plan">Go to the planner</button>`;
+  homeTargets.innerHTML=`<div class="label">Your targets</div><div class="detail"><div class="box"><b>${S.goals.cal}</b><span>kcal / day</span></div><div class="box"><b>${S.goals.pro}g</b><span>protein / day</span></div><div class="box"><b>${S.setup.steps.toLocaleString()}</b><span>steps / day</span></div></div><p class="muted small" style="margin:6px 0 0">A suggested starting point, adjust to your body and routine in the planner.</p>`;
 }
 function renderToday(d,idx){
   let t=dayTotals(d),k='d'+idx,wk=workoutById(d.workout);
-  let free=S.goals.cal-t.cal;
+  let free=S.goals.cal-t.cal,proGap=Math.max(0,S.goals.pro-t.pro);
   let pct=Math.min(100,Math.round(t.cal/S.goals.cal*100));
+  let done=S.ticks[k+'done'];
+  let workoutBox=`<div class="item" style="margin:8px 0"><div style="display:flex;gap:11px;align-items:center"><input type="checkbox" class="tick" ${S.ticks[k+'workout']?'checked':''} onchange="S.ticks['${k}workout']=this.checked;save();render()"><div><div class="label" style="margin:0 0 3px">Workout</div><div class="it" style="${S.ticks[k+'workout']?'text-decoration:line-through;color:var(--muted)':''}">${wk?wk.mode+' · '+wk.title:'Rest day'}</div><p class="meta small" style="margin:2px 0 0">${wk?esc(wk.focus):'Recovery, steps and stretching still count.'}</p></div></div>${wk?`<button class="btn ghost mini" onclick="openWorkout('${wk.id}')">Open</button>`:''}</div>`;
+  let stepsBox=tickBox(k+'steps',S.setup.steps.toLocaleString()+' steps','Your daily step goal from the planner.',S.ticks[k+'steps']);
+  let proBox=proGap>0?tickBox(k+'protein','Top up '+proGap+'g protein','Your meals cover '+t.pro+'g of '+S.goals.pro+'g. A shake or high-protein yogurt closes the gap.',S.ticks[k+'protein']):tickBox(k+'protein','Protein covered','Your planned meals already hit your '+S.goals.pro+'g target.',S.ticks[k+'protein']);
   return `
-  <div class="row" style="margin:10px 0 4px"><span class="tag red">${t.cal} / ${S.goals.cal} kcal</span><span class="tag green">${t.pro} / ${S.goals.pro}g protein</span><span class="tag gold">${S.setup.steps.toLocaleString()} steps</span></div>
+  <div class="todayHead"><button class="arrow" onclick="S.dayView=Math.max(0,${idx}-1);S.start='';save();render()">‹</button><div><div class="label" style="text-align:center">Today${done?' · completed':''}</div><h2 class="h2" style="text-align:center">${dayLabel(idx)}</h2></div><button class="arrow" onclick="S.dayView=${idx}+1;S.start='';save();render()">›</button></div>
+  <div class="row" style="justify-content:center;margin:0 0 6px"><span class="tag red">${t.cal} / ${S.goals.cal} kcal</span><span class="tag green">${t.pro} / ${S.goals.pro}g protein</span></div>
   <div class="bar"><i style="width:${pct}%" class="${t.cal>S.goals.cal?'over':''}"></i></div>
-  <p class="muted small" style="margin:2px 0 10px">${free>=0?free+' kcal left for extras, snacks and drinks.':'Around '+Math.abs(free)+' kcal over target, tomorrow is a fresh start.'}</p>
-  <div class="item" style="margin:8px 0"><div><div class="label" style="margin:0 0 3px">Workout</div><div class="it">${wk?wk.mode+' · '+wk.title:'Rest day'}</div>${wk?`<p class="meta small">${wk.focus}</p>`:'<p class="meta small">Recovery, steps and stretching still count.</p>'}</div>${wk?`<button class="btn ghost mini" onclick="openWorkout('${wk.id}')">Open</button>`:''}</div>
-  ${TYPES.map(s=>{let m=slotData(d,s),tick=S.ticks[k+s];return `<div class="item" style="margin:8px 0"><div style="display:flex;gap:11px;align-items:center"><input type="checkbox" style="width:19px;height:19px;accent-color:var(--red)" ${tick?'checked':''} onchange="S.ticks['${k+s}']=this.checked;save()"><div><div class="label" style="margin:0 0 3px">${TYPENAME[s]}</div><div class="it" style="${tick?'text-decoration:line-through;color:var(--muted)':''}">${esc(m.name)}</div><p class="meta small">${m.cal} kcal · ${m.pro}g protein</p></div></div>${m.id?`<button class="btn ghost mini" onclick="openMeal('${m.id}',${m.p||1})">Open</button>`:''}</div>`}).join('')}
-  <div class="habitGrid">${habits.map(h=>`<button class="habit ${S.habits[k+h]?'active':''}" onclick="S.habits['${k+h}']=!S.habits['${k+h}'];save();render()">${h}</button>`).join('')}</div>
-  <div class="row" style="margin-top:12px"><button class="btn ghost mini" onclick="S.dayView=Math.max(0,${idx}-1);S.start='';save();render()">Previous day</button><button class="btn ghost mini" onclick="S.dayView=${idx}+1;S.start='';save();render()">Next day</button></div>`;
+  <p class="muted small" style="margin:2px 0 10px;text-align:center">${free>=0?free+' kcal left for extras, snacks and drinks.':'Around '+Math.abs(free)+' kcal over target, tomorrow is a fresh start.'}</p>
+  ${workoutBox}${stepsBox}${proBox}
+  ${TYPES.map(s=>{let m=slotData(d,s),tick=S.ticks[k+s];return `<div class="item" style="margin:8px 0"><div style="display:flex;gap:11px;align-items:center"><input type="checkbox" class="tick" ${tick?'checked':''} onchange="S.ticks['${k+s}']=this.checked;save();render()"><div><div class="label" style="margin:0 0 3px">${TYPENAME[s]}</div><div class="it" style="${tick?'text-decoration:line-through;color:var(--muted)':''}">${esc(m.name)}</div><p class="meta small" style="margin:2px 0 0">${m.cal} kcal · ${m.pro}g protein</p></div></div>${m.id?`<button class="btn ghost mini" onclick="openMeal('${m.id}',${m.p||1})">Open</button>`:''}</div>`}).join('')}
+  <button class="btn ${done?'soft':''}" style="width:100%;margin-top:12px" onclick="S.ticks['${k}done']=!S.ticks['${k}done'];save();render()">${done?'Completed · tap to undo':'Mark today as completed'}</button>`;
+}
+
+/* ============ RENDER: LOGS ============ */
+function renderLogs(){
+  if(!S.plan){logList.innerHTML='<div class="card" style="margin-top:12px"><p class="muted" style="margin:0">Build your plan and start ticking days off, your log grows here.</p></div>';return}
+  let total=Object.keys(S.plan.weeks).length*7,cur=todayIndex();
+  let rows='';
+  for(let i=0;i<total;i++){
+    let k='d'+i,d=dayByIndex(i);if(!d)continue;
+    let meals=TYPES.filter(s=>S.ticks[k+s]).length;
+    let mealsPlanned=TYPES.filter(s=>slotData(d,s).cal>0||d[s]==='custom').length||4;
+    let any=S.ticks[k+'done']||S.ticks[k+'workout']||S.ticks[k+'steps']||S.ticks[k+'protein']||meals>0;
+    let future=i>cur;
+    if(future&&!any)continue;
+    let chip=(on,txt)=>`<span class="tag ${on?'green':''}">${txt}${on?' ✓':''}</span>`;
+    rows+=`<div class="logRow"><div><div class="it">${dayLabel(i)}${i===cur?' · today':''}</div><div class="logTicks">${chip(S.ticks[k+'workout'],'Workout')}${chip(S.ticks[k+'steps'],'Steps')}${chip(S.ticks[k+'protein'],'Protein')}<span class="tag ${meals>=mealsPlanned?'green':''}">Meals ${meals}/${mealsPlanned}</span></div></div>${S.ticks[k+'done']?'<span class="tag red">Completed</span>':''}</div>`;
+  }
+  logList.innerHTML=rows||'<div class="card" style="margin-top:12px"><p class="muted" style="margin:0">Nothing logged yet. Tick things off on your Home page as you go.</p></div>';
 }
 
 /* ============ RENDER: PLANNER ============ */
-function changeMeal(w,k,s,v){let d=S.plan.weeks[w][k];d[s]=v;if(d.missed)delete d.missed[s];if(d.p)delete d.p[s];if(d.sw)delete d.sw[s];save();render()}
+function changeMeal(w,k,s,v){let d=S.plan.weeks[w][k];d[s]=v;if(d.missed)delete d.missed[s];if(d.p)delete d.p[s];if(d.sw)delete d.sw[s];save();render();if(v==='custom')openCustom(w,k,s)}
 function openCustom(w,k,s){
+  let ex=S.plan.weeks[w][k].custom?.[s]||{};
   modalBody.innerHTML=`<div class="label">Custom ${s}</div><h2 class="h2">Add your own</h2><p class="muted small">For meals out, extras or anything outside the plan. An estimate is completely fine.</p>
-  <label class="field" style="margin-top:10px"><span>Name</span><input id="cn" placeholder="e.g. Matcha latte"></label>
-  <div class="two" style="margin-top:10px"><label class="field"><span>Calories (kcal)</span><input id="cc" type="number" inputmode="numeric"></label><label class="field"><span>Protein (g)</span><input id="cp" type="number" inputmode="numeric"></label></div>
-  <button class="btn" style="margin-top:14px" onclick="let d=S.plan.weeks[${w}]['${k}'];d.custom['${s}']={name:cn.value||'Custom ${s}',cal:+cc.value||0,pro:+cp.value||0};d['${s}']='custom';delete d.missed['${s}'];save();closeModal();render()">Save custom ${s}</button>`;
+  <label class="field" style="margin-top:10px"><span>Name</span><input id="cn" placeholder="e.g. Matcha latte" value="${esc(ex.name||'')}"></label>
+  <div class="two" style="margin-top:10px"><label class="field"><span>Calories (kcal)</span><input id="cc" type="number" inputmode="numeric" value="${ex.cal||''}"></label><label class="field"><span>Protein (g)</span><input id="cp" type="number" inputmode="numeric" value="${ex.pro||''}"></label></div>
+  <button class="btn" style="margin-top:14px" onclick="let d=S.plan.weeks[${w}]['${k}'];d.custom['${s}']={name:cn.value||'Custom ${s}',cal:+cc.value||0,pro:+cp.value||0};d['${s}']='custom';delete d.missed['${s}'];save();closeModal()">Save</button>`;
   modal.classList.add('active');
 }
 function markMissed(w,k,s){let d=S.plan.weeks[w][k];d.missed[s]=!d.missed[s];save();render()}
@@ -487,20 +564,20 @@ function renderPlan(){
   let tabs='';for(let n=1;n<=wn;n++)tabs+=`<button class="btn ${n===S.plan.active?'':'ghost'} mini" onclick="S.plan.active=${n};save();render()">Week ${n}</button>`;
   let w=S.plan.active||1,wk=S.plan.weeks[w];
   planOut.innerHTML=`<div class="row" style="margin:14px 2px">${tabs}</div>`+keys.map((k,i)=>{
-    let d=wk[k],t=dayTotals(d),diff=t.cal-S.goals.cal,wko=workoutById(d.workout);
+    let d=wk[k],t=dayTotals(d),diff=t.cal-S.goals.cal;
     let pct=Math.min(100,Math.round(t.cal/S.goals.cal*100));
     return `<div class="day"><div class="dayTop"><div><div class="label">${days[i]}</div><h2 class="h3">${t.cal} / ${S.goals.cal} kcal · ${t.pro}g protein</h2></div>
     <div class="row"><span class="tag ${diff>60?'gold':'green'}">${diff>=0?'+':''}${diff} kcal</span><button class="btn soft mini" onclick="balanceDay(${w},'${k}')">Balance to target</button></div></div>
     <div class="bar"><i style="width:${pct}%" class="${diff>60?'over':''}"></i></div>
     <div class="slot"><label class="sl">Workout</label><select onchange="S.plan.weeks[${w}]['${k}'].workout=this.value;save();render()"><option value="">Rest day</option>${WORKOUTS.map(x=>`<option value="${x.id}" ${x.id===d.workout?'selected':''}>${x.mode} · ${x.title}</option>`).join('')}</select>${d.workout?`<button class="btn ghost mini" onclick="openWorkout('${d.workout}')">Open</button>`:'<span></span>'}</div>
     ${TYPES.map(s=>{
-      let md=slotData(d,s),m=slotRecipe(d,s),p=d.p?.[s]||1;
-      let openBtn=m?`<button class="btn ghost mini" onclick="openMeal('${d[s]}',${p},null,'${w}|${k}|${s}')">Open</button>`:(d[s]==='custom'&&!d.missed?.[s]?`<button class="btn ghost mini" onclick="openCustom(${w},'${k}','${s}')">Edit</button>`:'<span></span>');
+      let md=slotData(d,s),m=slotRecipe(d,s),p=d.p?.[s]||1,skipped=d.missed?.[s];
+      let btn=m?`<button class="btn ghost mini" onclick="openMeal('${d[s]}',${p},null,'${w}|${k}|${s}')">Adjust</button>`:(d[s]==='custom'&&!skipped?`<button class="btn ghost mini" onclick="openCustom(${w},'${k}','${s}')">Edit</button>`:'<span></span>');
       return `<div class="slot"><label class="sl">${s}</label><select onchange="changeMeal(${w},'${k}','${s}',this.value)">
       <option value="custom" ${d[s]==='custom'?'selected':''}>Custom / my own</option><option value="none" ${d[s]==='none'?'selected':''}>None</option>
-      ${byType(s==='snack'?'snack':s).map(mm=>`<option value="${mm.id}" ${mm.id===d[s]?'selected':''}>${esc(applyDiet(mm).name)}</option>`).join('')}</select>${openBtn}
-      <div class="slotMeta"><span class="small ${d.missed?.[s]?'muted':''}" style="${d.missed?.[s]?'text-decoration:line-through':''}"><b>${md.cal}</b> kcal · <b>${md.pro}g</b> protein${p!==1?` · <span class="tag blush">${Math.round(p*100)}% portion</span>`:''}${d.sw?.[s]?` · <span class="tag gold">${d.sw[s][1]}</span>`:''}</span>
-      <span class="row" style="gap:6px"><button class="btn soft mini" onclick="openCustom(${w},'${k}','${s}')">Custom</button><button class="btn ghost mini" onclick="markMissed(${w},'${k}','${s}')">${d.missed?.[s]?'Unmiss':'Missed'}</button></span></div></div>`;
+      ${byType(s).map(mm=>`<option value="${mm.id}" ${mm.id===d[s]?'selected':''}>${esc(applyDiet(mm).name)}</option>`).join('')}</select>${btn}
+      <div class="slotMeta"><span class="small ${skipped?'muted':''}" style="${skipped?'text-decoration:line-through':''}"><b>${md.cal}</b> kcal · <b>${md.pro}g</b> protein${p!==1?` · <span class="tag blush">${Math.round(p*100)}% portion</span>`:''}${d.sw?.[s]?` · <span class="tag gold">${d.sw[s][1]}</span>`:''}</span>
+      <button class="btn ghost mini" onclick="markMissed(${w},'${k}','${s}')">${skipped?'Unskip':'Skip'}</button></div></div>`;
     }).join('')}
     <div class="habitGrid">${habits.map(h=>`<button class="habit ${S.habits['w'+w+k+h]?'active':''}" onclick="S.habits['w${w}${k}${h}']=!S.habits['w${w}${k}${h}'];save();render()">${h}</button>`).join('')}</div></div>`;
   }).join('');
@@ -519,7 +596,6 @@ function openMeal(id,p=1,manual=null,ctx=null){
   let sw=relevantSwaps(m);
   let f=p*S.people/(+m.serves||1);
   let ctxArg=ctx?`'${ctx}'`:'null';
-  let manArg=x=>x?`['${x[0]}','${x[1]}']`:'null';
   modalBody.innerHTML=`
   <div class="photo"><div class="mealType">${TYPENAME[m.type]} ${m.swapped?'· swapped':''}</div><h2 class="h2" style="font-size:34px;margin:6px 0 0">${esc(m.name)}</h2><div class="tagline">${esc(m.tagline)}</div></div>
   <div class="row">${m.tags.map(t=>`<span class="tag blush">${esc(t)}</span>`).join('')}</div>
@@ -536,27 +612,39 @@ function openMeal(id,p=1,manual=null,ctx=null){
 }
 
 /* ============ WORKOUT MODAL ============ */
+function normRep(r){
+  return r.replace(/^×\s*(\d+)\s*sets$/i,'$1 sets')
+   .replace(/^(\d+)\s*(?:sets|rounds)\s*·\s*/i,'$1 × ')
+   .replace(/^×\s*(\d+)/,'1 × $1')
+   .replace(/^(\d+)\s*[x]\s*/i,'$1 × ')
+   .replace(/\s*\/\s*(leg|side|arm)/gi,' / $1');
+}
+function secNote(sec){
+  let meta=/^\d+\s+(moves|exercises)$/i.test(sec.meta.trim())?'':sec.meta;
+  let rest=sec.rest||({'Activation':'Minimal rest, flow between moves','Main Workout':'Rest 60s between working sets','Core':'Rest 30–45s between sets','Finisher':'Rest 60s between rounds'})[sec.name]||'';
+  if(meta&&/rest|no rest/i.test(meta))return meta;
+  return [meta,rest].filter(Boolean).join(' · ');
+}
 function openWorkout(id){
   let w=workoutById(id);if(!w)return;
-  let[myKind,myName]=TIER[S.setup.goal]||TIER.tone;
-  let stopHTML=st=>{if(!st)return'';let mine=st.kind===myKind;
-    return `<div class="tierStop ${mine?'mine':''}"><span>${esc(st.label)}${mine?' · your finish line':''}</span><span class="ts">${Object.entries(st.stats).map(([k,v])=>k+' '+v).join(' · ')}</span></div>`};
-  let secHTML=(sec,si)=>`<div class="wkSec"><div class="wkSecHead"><div class="wkSecName">${esc(sec.name)}</div><span class="tag">${esc(sec.meta)}</span></div>${sec.rest?`<p class="muted small" style="margin:2px 0 6px">${esc(sec.rest)}</p>`:''}
+  let myKind=S.setup[w.mode.toLowerCase()==='gym'?'gymTime':'homeTime']||'full';
+  let stopHTML=(st,n)=>{if(!st)return'';let mine=st.kind===myKind;
+    return `<div class="tierStop ${mine?'mine':''}"><span>Finish point ${n}${mine?' · your finish point':''}</span><span class="ts">${st.stats.Time?'about '+st.stats.Time.toLowerCase():''}${st.stats.Intensity?' · '+st.stats.Intensity.toLowerCase()+' intensity':''}</span></div>`};
+  let secHTML=(sec,si)=>{if(!sec)return'';return `<div class="wkSec"><div class="wkSecHead"><div class="wkSecName">${esc(sec.name)}</div></div><div class="wkNote">${esc(secNote(sec))}</div>
     ${sec.ex.map((e,ei)=>{let lk=id+'|'+si+'|'+ei,lg=S.logs[lk]||{};
-      return `<div class="wkRow"><div><div style="font-weight:700">${esc(e[0])}</div>${sec.name==='Main Workout'?`<div class="wkLog"><input placeholder="kg" value="${lg.kg||''}" onchange="S.logs['${lk}']=S.logs['${lk}']||{};S.logs['${lk}'].kg=this.value;save()"><input placeholder="reps" value="${lg.reps||''}" onchange="S.logs['${lk}']=S.logs['${lk}']||{};S.logs['${lk}'].reps=this.value;save()"></div>`:''}</div><span class="wkRep">${esc(e[1])}</span></div>`}).join('')}</div>`;
+      return `<div class="wkRow"><div><div style="font-weight:700">${esc(e[0])}</div><div class="wkLog"><input placeholder="kg" value="${lg.kg||''}" onchange="S.logs['${lk}']=S.logs['${lk}']||{};S.logs['${lk}'].kg=this.value;save()"><input placeholder="reps" value="${lg.reps||''}" onchange="S.logs['${lk}']=S.logs['${lk}']||{};S.logs['${lk}'].reps=this.value;save()"></div></div><span class="wkRep">${esc(normRep(e[1]))}</span></div>`}).join('')}</div>`};
   modalBody.innerHTML=`
   <div class="photo"><div class="mealType">${esc(w.mode)} workout</div><h2 class="h2" style="font-size:34px;margin:6px 0 0">${esc(w.title)}</h2><div class="tagline">${esc(w.focus)}</div></div>
   <p class="muted" style="margin:0 2px 12px">${esc(w.line)}</p>
-  <div class="detail" style="grid-template-columns:repeat(4,1fr)">${Object.entries(w.stats).map(([k,v])=>`<div class="box"><b style="font-size:16px">${esc(v)}</b><span>${esc(k)}</span></div>`).join('')}</div>
-  <div class="row" style="margin-bottom:8px">${w.equip.map(t=>`<span class="tag blush">${esc(t)}</span>`).join('')}<span class="tag gold">Your tier · ${myName}</span></div>
+  <div class="row" style="margin-bottom:8px">${w.equip.map(t=>`<span class="tag blush">${esc(t)}</span>`).join('')}<span class="tag gold">${esc(w.stats.duration||'')}</span><span class="tag green">Your finish point · ${POINT[myKind][0]}</span></div>
   ${secHTML(w.secs[0],0)}
   ${secHTML(w.secs[1],1)}
-  ${stopHTML(w.stops[0])}
+  ${stopHTML(w.stops[0],1)}
   ${secHTML(w.secs[2],2)}
-  ${stopHTML(w.stops[1])}
+  ${stopHTML(w.stops[1],2)}
   ${secHTML(w.secs[3],3)}
-  ${stopHTML(w.stops[2])}
-  <div class="steps-note" style="margin-top:12px"><b>Progress gently.</b> Add a rep, slow the tempo or add a little load each week. Stop at your tier's finish line, or keep going on days you feel strong.</div>`;
+  ${stopHTML(w.stops[2],3)}
+  <div class="steps-note" style="margin-top:12px"><b>Progress gently.</b> Add a rep, slow the tempo or add a little load each week. Stop at your finish point, or keep going on days you have more time and energy.</div>`;
   modal.classList.add('active');
 }
 function closeModal(){modal.classList.remove('active');render()}
@@ -572,6 +660,11 @@ function renderTrain(){
 
 /* ============ SHOPPING LIST ============ */
 const PREP=/,\s*(diced|sliced|julienned|shredded|crushed|melted|toasted|cubed|chopped)\b/gi;
+const HANDFUL_G={spinach:30,kale:30,'green beans':50,'cherry tomatoes':75,'mixed leaves':40,coriander:10,parsley:10,mint:5,berries:60};
+const DESCRIP=/\b(shredded|roast|cooked|boiled|poached|frozen|fresh|firm|plain|lean|light|dry|baby|large|small)\b/gi;
+function cleanName(n){
+  return n.replace(DESCRIP,'').replace(/\bin spring water\b/gi,'').replace(/\s{2,}/g,' ').replace(/^[\s,]+|[\s,]+$/g,'');
+}
 function parseIngLine(str){
   let out=[];
   let cm=str.match(/^([a-z ]+):\s*(.*)$/i);
@@ -579,13 +672,18 @@ function parseIngLine(str){
   let s=str.replace(/\(optional\)/gi,'').replace(PREP,'').replace(/\boptional\b/gi,'').trim();
   let jm=s.match(/^(?:juice|zest)\s+(.+)$/i);
   if(jm)s=jm[1]+' (for juice)';
+  let hm=s.match(/^(large\s+)?handfuls?\s+(?:of\s+)?(.+)$/i);
+  if(hm){
+    let nm=cleanName(hm[2]),base=30;
+    Object.keys(HANDFUL_G).forEach(k=>{if(nm.toLowerCase().includes(k))base=HANDFUL_G[k]});
+    out.push({name:nm,unit:'g',qty:Math.round(base*(hm[1]?1.5:1))});return out;
+  }
   let m=s.match(/^(\d+(?:\.\d+)?|[½⅓¼¾⅔])(?:\s*[–-]\s*(\d+(?:\.\d+)?))?\s*(g|kg|ml|tbsp|tsp|scoops?|slices?|cups?|tins?|cans?)?\s+(.+)$/i);
-  if(!m){out.push({name:s,unit:'',qty:0});return out}
+  if(!m){out.push({name:cleanName(s),unit:'',qty:0});return out}
   let q=FR[m[1]]!==undefined?FR[m[1]]:parseFloat(m[1]);
   if(m[2])q=parseFloat(m[2]);
   let unit=(m[3]||'').toLowerCase().replace(/s$/,'');if(unit==='kg'){q*=1000;unit='g'}
-  if(unit==='scoop')unit='scoop';
-  out.push({name:m[4].trim(),unit,qty:q});return out;
+  out.push({name:cleanName(m[4]),unit,qty:q});return out;
 }
 function addShopExtra(){if(extraShop.value.trim()){S.shopExtra.push(extraShop.value.trim());extraShop.value='';save();renderShop()}}
 function renderShop(){
@@ -595,30 +693,61 @@ function renderShop(){
     let m=slotRecipe(d,s);if(!m)return;
     let f=(d.p?.[s]||1)*S.people/(+m.serves||1);
     m.ing.forEach(line=>parseIngLine(line).forEach(it=>{
+      if(!it.name)return;
       let key=it.name.toLowerCase();
       if(!agg[key])agg[key]={name:it.name,unit:it.unit,qty:0,any:false};
-      if(it.qty&&agg[key].unit===it.unit)agg[key].qty+=it.qty*f;else if(it.qty){agg[key].qty+=it.qty*f;agg[key].unit=agg[key].unit||it.unit}
+      if(it.qty&&(agg[key].unit===it.unit||!agg[key].unit)){agg[key].qty+=it.qty*f;agg[key].unit=agg[key].unit||it.unit}
+      else if(it.qty)agg[key].qty+=it.qty*f;
       else agg[key].any=true;
     }));
   }));
-  S.shopExtra.forEach((x,xi)=>{agg['extra:'+x]={name:x,unit:'',qty:0,any:true,extra:xi}});
+  S.shopExtra.forEach((x,xi)=>{agg['extra:'+x.toLowerCase()]={name:x,unit:'',qty:0,any:true,extra:xi}});
   let entries=Object.entries(agg);
   if(!entries.length){shopList.innerHTML='<div class="card" style="margin-top:12px"><p class="muted" style="margin:0">Nothing to shop for this week yet.</p></div>';return}
-  shopList.innerHTML=`<p class="muted small" style="margin:12px 4px 4px">Week ${w} · cooking for ${S.people} ${S.people===1?'person':'people'} · ${entries.length} items</p>`+entries.map(([key,v])=>{
+  entries.sort((a,b)=>{
+    let ta=S.shopTicks['w'+w+'|'+a[0]]?1:0,tb=S.shopTicks['w'+w+'|'+b[0]]?1:0;
+    return ta-tb||a[1].name.localeCompare(b[1].name);
+  });
+  shopList.innerHTML=`<p class="muted small" style="margin:12px 4px 4px">Week ${w} · cooking for ${S.people} ${S.people===1?'person':'people'} · ${entries.length} items</p><div class="shopGrid">`+entries.map(([key,v])=>{
     let amt=v.qty?(v.unit==='g'||v.unit==='ml'?Math.round(v.qty)+v.unit:fmtQty(v.qty)+(v.unit?' '+v.unit:'')):'as needed';
+    let disp=v.name.charAt(0).toUpperCase()+v.name.slice(1);
     let tk='w'+w+'|'+key,done=S.shopTicks[tk];
-    return `<label class="shopRow ${done?'done':''}"><input type="checkbox" ${done?'checked':''} onchange="S.shopTicks['${tk.replace(/'/g,"\\'")}']=this.checked;save();renderShop()"><span class="sn">${esc(v.name)}</span><span class="sg">${amt}${v.extra!==undefined?` <button class="btn ghost mini" onclick="S.shopExtra.splice(${v.extra},1);save();renderShop()">×</button>`:''}</span></label>`;
-  }).join('');
+    return `<label class="shopRow ${done?'done':''}"><input type="checkbox" ${done?'checked':''} onchange="S.shopTicks['${tk.replace(/'/g,"\\'")}']=this.checked;save();renderShop()"><span class="sn">${esc(disp)}</span><span class="sg">${amt}${v.extra!==undefined?` <button class="btn ghost mini" onclick="S.shopExtra.splice(${v.extra},1);save();renderShop()">×</button>`:''}</span></label>`;
+  }).join('')+'</div>';
 }
 
 /* ============ GUIDE ============ */
 const GUIDE={
- 'Getting started':['Set your height, weight, step goal and training days in the Plan tab, then tap suggest. The app offers a starting point for calories and protein that you can edit before building.','Pick your weeks, snack days and dietary requirement, then build. Your planner, Today view and shopping list all update together.'],
- 'Calories + protein':['Your targets are a suggested starting point, not a rule. Adjust to your body, your hunger and your routine.','Each day shows what your planned meals add up to and what that leaves for extras, snacks and drinks. Use the balance button on any day to gently scale portions towards your target.'],
- 'Swaps + dietary needs':['Open any recipe to see swaps that actually fit that meal. A swap updates the title, ingredients, method and approximate macros.','Choose vegetarian, vegan, pescetarian or gluten-free in the planner and every meal, and your shopping list, adapts. The Golden Hour plan is already dairy-free as written.'],
- 'Training tiers':['Every workout has three finish lines. Fat Loss ends after the main workout, Balanced Toning adds core, Glute Growth adds the finisher.','Your goal sets your finish line automatically, it is highlighted inside each workout. Stop there, or keep going on days you feel strong.'],
- 'Steps + rest days':['Your step goal matters as much as your sessions. Walks, errands and everyday movement all count.','Zero training days is a valid setup. The app will plan meals and steps and leave every day as rest.'],
- 'A gentle note':['This is general fitness and nutrition guidance, not medical advice. Results vary and are never guaranteed.','If you are pregnant, injured or managing a health condition, check in with a professional first. Be kind to yourself, consistency beats perfection.']
+ 'Build your plan in 2 minutes':[
+  'Step 1 is about you: height, weight, your goal, how many days you can train and how long your sessions can be. Tap suggest and the app fills in a starting point for calories and protein.',
+  'Step 2 is your targets: calories, protein, daily steps and how many people you cook for. Edit anything, the suggestion is a starting point, not a rule.',
+  'Step 3 is your meals: dietary requirement, snack days, how many weeks to build and how many different breakfasts, lunches and dinners you want. Fewer recipes means easier meal prep.',
+  'Step 4 is your training: mark which days you are free and whether each is a gym or home day. Then tap build.'],
+ 'Choosing your goal':[
+  'Fat loss is a gentle cut. Calories sit a little under maintenance so you lose body fat while keeping muscle. Choose this if your main aim is to lean out.',
+  'Lean / toned is maintain and define. Calories sit around maintenance, protein stays high and training shapes shoulders, waist and glutes. Choose this if you like your weight but want more definition, think abs and tone.',
+  'Glute growth is a build phase. Calories sit slightly above maintenance to fuel muscle, with extra glute volume in training. Choose this if growing your lower body is the priority.',
+  'You can change goal any month. Many members cut for a month or two, then build.'],
+ 'Session time + finish points':[
+  'Every workout has three finish points marked inside it. Finish point 1 is the quick session, ending after the main workout. Finish point 2 adds core. Finish point 3 adds the finisher for maximum volume.',
+  'In the planner you set how long you can train in the gym and at home. Your finish point is then highlighted inside every workout, so a busy day never means a wasted session.',
+  'Short on time today? Stop at an earlier point, it still counts. Feeling strong? Push one point further.'],
+ 'Using the weekly planner':[
+  'Every day shows its meals and workout with a running calorie and protein total. Adjust opens a meal so you can resize the portion in 10% steps, swap ingredients or read the recipe, changes save to that day.',
+  'Skip means you are not having that meal today, it drops out of your totals and shopping list. Custom / my own in any dropdown lets you log meals out, extras or your own cooking with a quick calorie and protein estimate.',
+  'You do not need to hit every number every day. Close is perfect. The balance button gently scales a day towards your target, and leftover calories are shown as room for extras.'],
+ 'Swaps + dietary needs':[
+  'Open any recipe and you will only see swaps that make sense for that meal. A swap updates the title, ingredients, method and approximate macros.',
+  'Pick vegetarian, vegan, pescetarian or gluten-free in the planner and every recipe adapts with varied, sensible replacements, chickpeas, tempeh, butter beans and more, not just tofu on repeat. The Golden Hour plan is already dairy-free as written.'],
+ 'Your shopping list':[
+  'The list is built from your planner week and scaled to how many people you cook for, with everything summed into real amounts.',
+  'Tick items off as you shop and they drop to the bottom. Add extras like coffee or oat milk at the top.'],
+ 'Steps, ticks + logs':[
+  'Your Home page is your daily checklist: workout, steps, protein top-up and each meal, tick them off as you go, then mark the day completed.',
+  'The Logs tab keeps a short record of every day so you can see your consistency build over the month. Consistency beats perfection, every time.'],
+ 'A gentle note':[
+  'This is general fitness and nutrition guidance, not medical advice. Results vary and are never guaranteed.',
+  'If you are pregnant, injured or managing a health condition, check in with a professional first. Be kind to yourself, you are building habits for life, not chasing a deadline.']
 };
 function openGuide(k){modalBody.innerHTML=`<div class="label">How to use</div><h2 class="h2">${esc(k)}</h2>${GUIDE[k].map(x=>`<div class="card" style="margin-top:10px"><p class="muted" style="margin:0">${esc(x)}</p></div>`).join('')}`;modal.classList.add('active')}
 function renderGuide(){guideList.innerHTML=Object.keys(GUIDE).map(k=>`<div class="item"><div><div class="it">${esc(k)}</div><p class="meta small">${esc(GUIDE[k][0].slice(0,64))}…</p></div><button class="btn ghost mini" onclick="openGuide('${k.replace(/'/g,"\\'")}')">Open</button></div>`).join('')}
@@ -626,6 +755,6 @@ function renderGuide(){guideList.innerHTML=Object.keys(GUIDE).map(k=>`<div class
 function installHelp(){modalBody.innerHTML='<div class="label">Save to home screen</div><h2 class="h2">Keep it one tap away</h2><div class="card" style="margin-top:10px"><p class="muted" style="margin:0"><b>iPhone.</b> Open this page in Safari, tap Share, then Add to Home Screen.</p></div><div class="card" style="margin-top:10px"><p class="muted" style="margin:0"><b>Android.</b> Open in Chrome, tap the three dots, then Add to Home screen or Install app.</p></div>';modal.classList.add('active')}
 
 /* ============ RENDER ALL ============ */
-function render(){renderHome();renderAvail();renderDrop();renderChosen();renderPlan();renderMeals();renderTrain();renderShop();renderGuide()}
+function render(){renderHome();renderAvail();renderDrop();renderChosen();renderPlan();renderMeals();renderTrain();renderShop();renderLogs();renderGuide()}
 render();
 </script></body></html>
