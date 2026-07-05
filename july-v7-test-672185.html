@@ -417,7 +417,9 @@ function suggestTargets(){
   let base=w*22+(h-160)*4,stepAdd=Math.max(0,(steps-6000)/1000)*35,trainAdd=td*45;
   let cal=Math.round((base+stepAdd+trainAdd)/50)*50;
   if(g==='loss')cal-=250;if(g==='glute')cal+=200;
-  let pro=Math.round(w*(g==='glute'?2.0:1.8));
+  cal=Math.max(1200,cal);
+  let pro=Math.round(w*({loss:1.8,tone:1.6,glute:1.8}[g]||1.6));
+  pro=Math.max(90,Math.min(150,pro));
   S.setup={...S.setup,height:h,weight:w,goal:g,steps,trainDays:td};S.goals={cal,pro};
   calGoal.value=cal;proGoal.value=pro;save();
   let name={loss:'a gentle cut',tone:'a lean, toned look',glute:'glute growth'}[g];
