@@ -1,1 +1,631 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>July Golden Hour App Test</title><style>:root{--bg:#F8F3EB;--paper:#FFFDF8;--line:#E3D7C2;--ink:#1A1410;--muted:#6B5F58;--red:#B42131;--blush:#FCF1ED;--green:#557B50;--gold:#8A6727}*{box-sizing:border-box}body{margin:0;background:linear-gradient(#F8F3EB,#EFE7D9);font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif;color:var(--ink)}button,input,select{font:inherit}button{cursor:pointer}.app{max-width:980px;margin:auto;min-height:100vh;padding-bottom:88px}.top{position:sticky;top:0;z-index:20;background:#f8f3ebf4;backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:14px 18px}.brand{font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.brand b{color:var(--red)}.page{display:none;padding:16px}.page.active{display:block}.card,.hero,.day,.item{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:17px;box-shadow:0 16px 42px #1a141018}.hero{text-align:center;background:radial-gradient(circle at 80% 0,#b4213120,transparent 34%),linear-gradient(135deg,#fffaf4,var(--bg))}h1{font-family:Georgia,serif;font-size:clamp(42px,10vw,78px);font-weight:400;line-height:.9;margin:18px 0 10px;letter-spacing:-.04em}.script{font-style:italic;color:var(--red)}.h2{font-family:Georgia,serif;font-size:32px;margin:0 0 8px;font-weight:400}.h3{font-family:Georgia,serif;font-size:24px;margin:0 0 8px;font-weight:400}.label{display:block;font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin:10px 0 7px}.muted,.meta{color:var(--muted);line-height:1.45}.small{font-size:13px;line-height:1.45}.grid{display:grid;gap:12px}.two{grid-template-columns:repeat(2,1fr)}.three,.controls{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.btn{border:0;border-radius:999px;background:var(--red);color:#fff;font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:12px 15px}.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}.btn.soft{background:var(--blush);color:var(--red);border:1px solid #F0C7C4}select,input{width:100%;border:1px solid var(--line);border-radius:14px;background:#fff;padding:11px}.field span{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);display:block;margin:0 0 5px}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.item{display:grid;grid-template-columns:1fr auto;gap:10px;margin:10px 0}.it{font-weight:900}.tag{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--muted);padding:5px 8px;display:inline-block}.tag.red{background:var(--red);border-color:var(--red);color:#fff}.tag.green{background:#EDF4EA;border-color:#D7E7D0;color:var(--green)}.tag.gold{background:#FFF7E5;color:var(--gold)}.slot{display:grid;grid-template-columns:88px 1fr auto;gap:8px;align-items:center;margin:8px 0}.slot label{font-size:11px;font-weight:900;text-transform:uppercase;color:var(--muted);letter-spacing:.08em}.day{margin:12px 0}.dayTop{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.habitGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}.habit{border:1px solid var(--line);background:#fff;border-radius:12px;padding:8px;font-size:10px;font-weight:900;text-transform:uppercase;color:var(--muted)}.habit.active{background:var(--red);border-color:var(--red);color:#fff}.modal{position:fixed;inset:0;background:#1a141066;display:none;align-items:flex-end;z-index:50}.modal.active{display:flex}.sheet{background:var(--bg);width:100%;max-width:980px;margin:auto;border-radius:28px 28px 0 0;max-height:92vh;overflow:auto;padding:18px 18px 28px}.photo{height:190px;border-radius:22px;background:linear-gradient(135deg,#EACDC7,#F8F3EB 45%,#B42131);display:grid;place-items:end start;color:#fff;padding:18px;margin-bottom:14px}.photo b{background:#1a141099;border-radius:14px;padding:10px;display:inline-block}.detail{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}.box{border:1px solid var(--line);background:#fff;border-radius:14px;padding:11px;text-align:center}.box b{display:block;color:var(--red);font-family:Georgia,serif;font-size:22px;font-weight:400}.bottom{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(980px,100%);display:grid;grid-template-columns:repeat(6,1fr);gap:4px;padding:8px;background:#FFFDF8;border-top:1px solid var(--line);backdrop-filter:blur(14px)}.nav{border:1px solid transparent;background:transparent;border-radius:14px;padding:12px 2px;color:var(--muted);font-size:10px;font-weight:900;text-transform:uppercase}.nav.active{background:var(--blush);border-color:#F0C7C4;color:var(--red)}.hidden{display:none}@media(max-width:720px){.two,.three,.controls,.detail{grid-template-columns:1fr}.slot{grid-template-columns:1fr}.page{padding:13px}.nav{font-size:9px}.dayTop{display:block}}</style></head><body><div class="app"><header class="top"><div class="brand">The Model Body <b>Club</b></div></header><main class="page active" id="home"><section class="hero"><h1>July <span class="script">Golden Hour</span></h1><p class="muted">Build your personal workout, activity and meal plan from the planner tab.</p><div class="row" style="justify-content:center"><button class="btn" data-go="plan">Build my plan</button><button class="btn ghost" onclick="installHelp()">Save to home screen</button></div></section><section class="card" style="margin-top:14px"><div class="label">Today</div><h2 class="h2" id="todayTitle">Your routine</h2><div id="todayBox"></div></section></main><main class="page" id="plan"><section id="builder" class="card"><div class="label">Personal setup</div><h2 class="h2">Build your workout, activity + meal plan</h2><p class="muted">Add your measurements, step goal and training days. The app suggests calories and protein, then you can edit the targets before building.</p><div class="controls"><label class="field"><span>Height (cm)</span><input id="height" type="number" placeholder="168"></label><label class="field"><span>Weight (kg)</span><input id="weight" type="number" placeholder="63"></label><label class="field"><span>Goal</span><select id="goal"><option value="tone">Lean / toned</option><option value="loss">Fat loss</option><option value="glute">Glute growth</option></select></label></div><div class="controls"><label class="field"><span>Step goal</span><input id="stepsGoal" type="number" placeholder="10000"></label><label class="field"><span>Training days</span><select id="trainDays"></select></label><label class="field"><span>Start date</span><input id="startDate" type="date" onchange="S.start=this.value;save();render()"></label></div><button class="btn ghost" onclick="suggestTargets()">Suggest calories + protein</button><div id="setupSummary"></div><div class="controls"><label class="field"><span>Meal plan kcal target</span><input id="calGoal" type="number"></label><label class="field"><span>Meal plan protein target (g)</span><input id="proGoal" type="number"></label><label class="field"><span>Cooking for people</span><input id="people" type="number" min="1" max="6"></label></div><div class="label">Dietary swaps</div><div class="controls"><label class="field"><span>Requirement</span><select id="diet"><option value="none">No changes</option><option value="df">Dairy-free</option><option value="gf">Gluten-free</option><option value="veg">Vegetarian</option><option value="vegan">Vegan</option><option value="pesc">Pescetarian</option></select></label><label class="field"><span>Weeks to build</span><select id="weeks"><option value="1">Build 1 week</option><option value="2">Build 2 weeks</option><option value="3">Build 3 weeks</option><option value="4">Build 4 weeks</option></select></label><label class="field"><span>Snack recipes</span><select id="snacks"></select></label></div><div class="label">Days free to train</div><div id="avail" class="grid three"></div><div class="label" style="margin-top:12px">Workout include / exclude</div><div class="controls"><label class="field"><span>Month</span><select><option>Golden Hour</option></select></label><label class="field"><span>Workout type</span><select id="mode"><option value="gym">Gym workouts</option><option value="home">Home workouts</option></select></label><label class="field"><span>Workout</span><select id="workoutDrop"></select></label></div><div class="row"><button class="btn ghost" onclick="addWorkout(true)">Include</button><button class="btn soft" onclick="addWorkout(false)">Exclude</button></div><div id="chosen"></div><div class="row" style="margin-top:14px"><button class="btn" onclick="buildPlan(false)">Build</button><button class="btn ghost" onclick="buildPlan(true)">Blank planner</button><button class="btn soft" onclick="S.plan=null;showBuilder(true);save();render()">Clear</button><button class="btn ghost" onclick="showBuilder(false)">Close builder</button></div></section><section id="built" class="card hidden" style="margin-top:12px"><div class="dayTop"><div><div class="label">Planner built</div><h2 class="h2">Your weekly planner</h2><p class="muted">Open sits beside each meal/workout. Use custom for extras, missed for skipped meals, and tick habits as you go.</p></div><button class="btn ghost" onclick="showBuilder(true)">Edit builder</button></div></section><div id="planOut"></div></main><main class="page" id="meals"><section class="card"><div class="label">Meals</div><h2 class="h2">Meal bank</h2><p class="muted">Simple list of all meals. Open a recipe to scale portions and use relevant swaps.</p></section><div id="mealList"></div></main><main class="page" id="train"><section class="card"><div class="label">Train</div><h2 class="h2">Workout bank</h2><p class="muted">Simple list of all workouts. Include/exclude is handled in the planner.</p></section><div id="workoutList"></div></main><main class="page" id="shop"><section class="card"><div class="label">Kitchen stocker</div><h2 class="h2">Shopping list</h2><div class="controls"><label class="field"><span>Shopping for</span><select id="shopWeek" onchange="renderShop()"></select></label><label class="field"><span>Extra item</span><input id="extraShop" placeholder="Add extra item"></label><button class="btn ghost" onclick="addShopExtra()">Add</button></div></section><div id="shopList"></div></main><main class="page" id="learn"><section class="card"><div class="label">How to use</div><h2 class="h2">Start here</h2><p class="muted">Detailed guide sections from the meal and training PDFs.</p></section><div id="learnList"></div></main><nav class="bottom"><button class="nav active" data-go="home">Home</button><button class="nav" data-go="plan">Plan</button><button class="nav" data-go="meals">Meals</button><button class="nav" data-go="train">Train</button><button class="nav" data-go="shop">Shop</button><button class="nav" data-go="learn">Use</button></nav></div><div class="modal" id="modal" onclick="if(event.target.id==='modal')closeModal()"><div class="sheet"><button class="btn ghost" style="float:right" onclick="closeModal()">Close</button><div id="modalBody"></div></div></div><script>const days=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],keys=['mon','tue','wed','thu','fri','sat','sun'],habits=['workout','protein','steps','water','meals','stretch'];for(let i=0;i<=6;i++)trainDays.innerHTML+=`<option value="${i}" ${i===4?'selected':''}>${i} training day${i===1?'':'s'}</option>`;for(let i=0;i<=7;i++)snacks.innerHTML+=`<option value="${i}" ${i===2?'selected':''}>${i} snack recipe${i===1?'':'s'}</option>`;const rawMeals=[{id:'r1',type:'Breakfast',name:'Golden Hour Protein Oats',cal:420,pro:32,ing:[['oats',50],['protein powder',30],['berries',80],['soy milk',180]],method:'Cook oats with milk, stir in protein off heat, top with berries.'},{id:'r2',type:'Breakfast',name:'Cherry Bakewell Overnight Oats',cal:430,pro:33,ing:[['oats',50],['protein powder',30],['cherries',80],['almond essence',2]],method:'Mix, chill overnight and top with cherries.'},{id:'r3',type:'Breakfast',name:'Strawberry Matcha Smoothie',cal:360,pro:34,ing:[['soy milk',250],['protein powder',30],['frozen banana',80],['strawberries',100],['matcha',3]],method:'Blend until thick and creamy.'},{id:'r4',type:'Lunch',name:'Chicken Rice Glow Bowl',cal:520,pro:42,ing:[['chicken',140],['cooked rice',180],['cucumber',80],['greens',60]],method:'Cook chicken, build rice bowl and add salad.'},{id:'r5',type:'Lunch',name:'Tuna Protein Pasta',cal:500,pro:45,ing:[['protein pasta',75],['tuna',120],['tomato sauce',120],['spinach',60]],method:'Cook pasta, warm sauce and stir through tuna.'},{id:'r6',type:'Lunch',name:'Satay Chicken Bowl',cal:540,pro:44,ing:[['chicken',140],['cooked rice',180],['light coconut milk',80],['satay sauce',35]],method:'Cook chicken, simmer sauce and serve with rice.'},{id:'r7',type:'Dinner',name:'Lean Burger Bowl',cal:560,pro:45,ing:[['lean mince',140],['potatoes',220],['salad',80],['pickles',30]],method:'Cook mince, air fry potatoes and build burger bowl.'},{id:'r8',type:'Dinner',name:'Salmon Sweet Potato Plate',cal:590,pro:42,ing:[['salmon',150],['sweet potato',230],['greens',100]],method:'Bake salmon and serve with sweet potato and greens.'},{id:'r9',type:'Dinner',name:'Chicken Fajita Bowl',cal:540,pro:43,ing:[['chicken',140],['peppers',120],['cooked rice',180],['salsa',50]],method:'Cook fajita mix and serve over rice.'},{id:'r10',type:'Snack',name:'Chocolate Protein Ice Lolly',cal:180,pro:22,ing:[['soy milk',180],['protein powder',25],['banana',60],['cacao',8]],method:'Blend, pour into moulds and freeze.'},{id:'r11',type:'Snack',name:'Cherry Protein Balls',cal:160,pro:12,ing:[['dates',35],['protein powder',20],['oats',25],['cherries',30]],method:'Blend, roll and chill.'},{id:'r12',type:'Snack',name:'Protein Soda',cal:120,pro:20,ing:[['protein shake',250],['sparkling water',150],['ice',100]],method:'Pour over ice and top with sparkling water.'}];const swaps={chicken:[['tofu',200,-60,-14],['white fish',150,-20,0],['turkey',140,0,0]],tuna:[['tofu',200,40,-19],['prawns',150,-10,0],['white fish',150,-20,-2]],salmon:[['tofu',200,-90,-18],['white fish',150,-110,-2],['prawns',150,-90,0]],'lean mince':[['lentils',220,-80,-18],['turkey mince',140,-30,0],['tofu',200,-80,-16]],'soy milk':[['almond milk',180,-50,-5],['oat milk',180,20,-2]],oats:[['gluten-free oats',50,0,0]],'protein pasta':[['gluten-free pasta',75,0,-5],['rice',180,20,-10]],'protein shake':[['vegan protein shake',250,0,0]],'protein powder':[['vegan protein powder',30,0,0]]};const workouts=[['w1','gym','Golden Hour Glutes A · Gym','Upper glute shelf + thrust focus',['Hip thrust 4 x 8–10','DB RDL 3 x 10','Cable kickback 3 x 12','Abduction finisher 2 x 30'],['tone','glute','loss']],['w2','gym','Golden Hour Posture & Shoulders · Gym','Back, shoulders, posture',['Lat pulldown 3 x 10','Seated row 3 x 10','Lateral raise 4 x 12','Face pulls 3 x 15'],['tone','glute','loss']],['w3','gym','Golden Hour Glutes B · Gym','Glutes, hamstrings, shape',['B-stance RDL 3 x 10','Glute leg press 3 x 12','Reverse lunge 3 x 10','Cable kickback 3 x 12'],['tone','glute']],['w4','gym','Golden Hour Sculpt & Core · Gym','Full body tone + core',['Incline walk 5–8 min','Shoulder press 3 x 8','Row 3 x 10','Pilates core 8–10 min'],['loss','tone']],['w5','home','Golden Hour Glutes A · Home','Bands + dumbbells glutes',['Banded bridge 3 x 20','DB RDL 3 x 12','Banded kickback 3 x 15','Frog pumps 2 x 30'],['tone','glute']],['w6','home','Golden Hour Upper Sculpt · Home','Posture and arms',['Door band row 3 x 15','DB press 3 x 10','Lateral raise 4 x 12','Band face pull 3 x 15'],['loss','tone']],['w7','home','Golden Hour Glutes B · Home','Glute burn + slim legs',['Reverse lunge 3 x 10','Single leg bridge 3 x 12','Banded abduction 4 x 20','Donkey kick 3 x 15'],['tone','glute']],['w8','home','Golden Hour Pilates Core · Home','Small-waist core',['Dead bug 3 x 10','Plank 3 x 30 sec','Toe taps 3 x 12','Stretch 5 min'],['loss','tone']]];const learn={setup:['Personal setup uses height, weight, steps and training days to suggest a starting calorie and protein target. Edit targets before building.'],swaps:['Keep the protein anchor and swap like for like. Manual recipe swaps update title, method, ingredients and approximate macros.'],training:['Training days can be 0–6. If 0 is selected, the app builds meals and leaves workouts as rest.'],disclaimer:['General fitness and nutrition guidance only, not medical advice. Results vary and are not guaranteed.']};let S=JSON.parse(localStorage.mbV8onV7||'{}');S.setup=S.setup||{height:168,weight:63,goal:'tone',steps:10000,trainDays:4};S.goals=S.goals||{cal:1800,pro:130};S.people=S.people||1;S.start=S.start||'';S.dayView=S.dayView||0;S.diet=S.diet||'none';S.avail=S.avail||{mon:'gym',tue:'rest',wed:'home',thu:'gym',fri:'rest',sat:'either',sun:'rest'};S.include=S.include||{};S.exclude=S.exclude||{};S.habits=S.habits||{};S.shopExtra=S.shopExtra||[];function $(id){return document.getElementById(id)}function save(){localStorage.mbV8onV7=JSON.stringify(S)}function go(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));$(p).classList.add('active');document.querySelectorAll('.nav').forEach(x=>x.classList.toggle('active',x.dataset.go===p));scrollTo(0,0)}document.addEventListener('click',e=>{let b=e.target.closest('[data-go]');if(b)go(b.dataset.go)});function todayIndex(){if(!S.start)return S.dayView;let a=new Date(S.start+'T00:00:00'),b=new Date();b.setHours(0,0,0,0);return Math.max(0,Math.floor((b-a)/86400000))}function dayByIndex(idx){if(!S.plan)return null;let w=Math.floor(idx/7)+1,k=keys[idx%7];return S.plan.weeks[w]?.[k]}function mealRaw(id){return rawMeals.find(x=>x.id===id)}function workout(id){return workouts.find(w=>w[0]===id)}function clone(o){return JSON.parse(JSON.stringify(o))}function swapMeal(m,ingredient,repl){let x=clone(m),r=swaps[ingredient]?.find(s=>s[0]===repl);if(!r)return x;let row=x.ing.find(i=>i[0]===ingredient);if(row){row[0]=repl;row[1]=r[1];x.cal+=r[2];x.pro+=r[3];let re=new RegExp(ingredient,'gi');x.name=x.name.replace(re,repl.charAt(0).toUpperCase()+repl.slice(1));x.method=x.method.replace(re,repl)}return x}function applyDiet(m){let x=clone(m),d=S.diet;if(d==='vegan'||d==='veg'){['chicken','tuna','salmon','lean mince'].forEach(i=>{if(x.ing.some(r=>r[0]===i))x=swapMeal(x,i,i==='lean mince'?'lentils':'tofu')});x=swapMeal(x,'protein shake','vegan protein shake');x=swapMeal(x,'protein powder','vegan protein powder')}if(d==='pesc'){if(x.ing.some(r=>r[0]==='chicken'))x=swapMeal(x,'chicken','white fish');if(x.ing.some(r=>r[0]==='lean mince'))x=swapMeal(x,'lean mince','turkey mince')}if(d==='df'){x=swapMeal(x,'protein shake','vegan protein shake');x=swapMeal(x,'protein powder','vegan protein powder')}if(d==='gf'){x=swapMeal(x,'oats','gluten-free oats');x=swapMeal(x,'protein pasta','gluten-free pasta')}return x}function meal(id){let m=mealRaw(id);return m?applyDiet(m):null}function pick(a,i){return a[i%a.length]}function byType(t){return rawMeals.filter(m=>m.type===t).map(applyDiet)}function suggestTargets(){let h=+height.value||168,w=+weight.value||63,td=+trainDays.value,steps=+stepsGoal.value||10000,g=goal.value;let base=w*22+(h-160)*4,stepAdd=Math.max(0,(steps-6000)/1000)*35,trainAdd=td*45;let cal=Math.round((base+stepAdd+trainAdd)/50)*50;if(g==='loss')cal-=250;if(g==='glute')cal+=200;let pro=Math.round(w*(g==='glute'?2.0:1.8));S.setup={height:h,weight:w,goal:g,steps,trainDays:td};S.goals={cal,pro};calGoal.value=cal;proGoal.value=pro;save();renderSummary()}function renderSummary(){let g=goal.value,td=+trainDays.value,steps=+stepsGoal.value||10000;let name={loss:'Fat loss',tone:'Lean / toned',glute:'Glute growth'}[g];setupSummary.innerHTML=`<div class="detail"><div class="box"><b>${S.goals.cal}</b>kcal target</div><div class="box"><b>${S.goals.pro}g</b>protein</div><div class="box"><b>${steps.toLocaleString()}</b>steps</div></div><p class="muted">Suggested for ${name} with ${td} training day${td===1?'':'s'}. Edit the targets before you build if needed.</p>`}function renderBuilder(){height.value=S.setup.height;weight.value=S.setup.weight;goal.value=S.setup.goal;stepsGoal.value=S.setup.steps;trainDays.value=S.setup.trainDays;calGoal.value=S.goals.cal;proGoal.value=S.goals.pro;people.value=S.people;startDate.value=S.start;diet.value=S.diet;weeks.value=S.plan?Object.keys(S.plan.weeks).length:1;renderSummary()}function renderHome(){let idx=todayIndex(),d=dayByIndex(idx);todayTitle.textContent='Day '+(idx+1)+' routine';todayBox.innerHTML=d?renderToday(d,idx):'<p class="muted">No plan built yet. Go to Plan to create your personal week.</p>'}function renderToday(d,idx){let meals=['breakfast','lunch','dinner','snack'].map(s=>slotData(d,s)),cal=meals.reduce((a,m)=>a+m.cal,0),pro=meals.reduce((a,m)=>a+m.pro,0),k='d'+idx;return `<div class="row"><button class="btn ghost" onclick="S.dayView=Math.max(0,${idx}-1);save();render()">Prev</button><button class="btn ghost" onclick="S.dayView=${idx}+1;save();render()">Next</button></div><div class="row" style="margin:10px 0"><span class="tag red">${cal}/${S.goals.cal} kcal</span><span class="tag green">${pro}/${S.goals.pro}g protein</span><span class="tag gold">${S.setup.steps.toLocaleString()} steps</span></div><button class="btn ghost" onclick="openWorkout('${d.workout}')">${workout(d.workout)?.[2]||'Rest day'}</button><div class="grid" style="margin-top:8px">${meals.map(m=>`<button class="btn ghost" onclick="${m.id?'openMeal(\''+m.id+'\')':''}">${m.name}</button>`).join('')}</div><div class="habitGrid">${habits.map(h=>`<button class="habit ${S.habits[k+h]?'active':''}" onclick="S.habits['${k+h}']=!S.habits['${k+h}'];save();render()">${h}</button>`).join('')}</div>`}function renderAvail(){avail.innerHTML=days.map((d,i)=>`<div class="field"><span>${d}</span><select onchange="S.avail['${keys[i]}']=this.value;save()"><option value="rest" ${S.avail[keys[i]]==='rest'?'selected':''}>Not free</option><option value="gym" ${S.avail[keys[i]]==='gym'?'selected':''}>Gym</option><option value="home" ${S.avail[keys[i]]==='home'?'selected':''}>Home</option><option value="either" ${S.avail[keys[i]]==='either'?'selected':''}>Either</option></select></div>`).join('')}function renderDrop(){workoutDrop.innerHTML=workouts.filter(w=>w[1]===mode.value).map(w=>`<option value="${w[0]}">${w[2]}</option>`).join('')}mode.onchange=renderDrop;function addWorkout(inc){let id=workoutDrop.value;if(inc){S.include[id]=true;S.exclude[id]=false}else{S.exclude[id]=true;S.include[id]=false}save();renderChosen()}function renderChosen(){let inc=Object.keys(S.include).filter(k=>S.include[k]),exc=Object.keys(S.exclude).filter(k=>S.exclude[k]);chosen.innerHTML=(inc.length||exc.length)?[...inc.map(id=>`<div class="item"><div><div class="it">${workout(id)[2]}</div><p class="meta">Included</p></div><button class="btn ghost" onclick="S.include['${id}']=false;save();renderChosen()">Remove</button></div>`),...exc.map(id=>`<div class="item"><div><div class="it">${workout(id)[2]}</div><p class="meta">Excluded</p></div><button class="btn ghost" onclick="S.exclude['${id}']=false;save();renderChosen()">Remove</button></div>`)].join(''):'<p class="muted">No include/exclude choices yet. The app will match workouts to your goal and training days.</p>'}function showBuilder(v){builder.classList.toggle('hidden',!v);built.classList.toggle('hidden',v)}function buildPlan(blank){S.setup={height:+height.value||168,weight:+weight.value||63,goal:goal.value,steps:+stepsGoal.value||10000,trainDays:+trainDays.value};S.goals={cal:+calGoal.value||S.goals.cal,pro:+proGoal.value||S.goals.pro};S.people=+people.value||1;S.start=startDate.value;S.diet=diet.value;let wc=+weeks.value,td=+trainDays.value,selected=Object.keys(S.include).filter(k=>S.include[k]).map(workout);if(!selected.length)selected=workouts.filter(w=>w[5].includes(goal.value)&&!S.exclude[w[0]]);S.plan={weeks:{},active:1};for(let w=1;w<=wc;w++){S.plan.weeks[w]={};let free=keys.map((k,i)=>({k,mode:S.avail[k]})).filter(d=>d.mode!=='rest').slice(0,td);keys.forEach((k,i)=>{if(blank){S.plan.weeks[w][k]={workout:'',breakfast:'custom',lunch:'custom',dinner:'custom',snack:+snacks.value?'custom':'none',custom:{},missed:{},left:false};return}let f=free.findIndex(x=>x.k===k),need=f>-1?free[f].mode:null,opts=selected.filter(x=>!need||need==='either'||x[1]===need);if(!opts.length)opts=selected;let idx=Math.floor(i/2)+(w-1)*2,left=i%2===1;S.plan.weeks[w][k]={workout:f>-1&&td>0?pick(opts,f+w)[0]:'',breakfast:pick(byType('Breakfast'),i).id,lunch:pick(byType('Lunch'),idx).id,dinner:pick(byType('Dinner'),idx+1).id,snack:+snacks.value?pick(byType('Snack'),i+w).id:'none',custom:{},missed:{},left}})}S.dayView=0;showBuilder(false);save();render()}function slotData(d,s){if(d.missed?.[s]||d[s]==='none')return {name:d[s]==='none'?'No snack':'Missed / not tracked',cal:0,pro:0};if(d[s]==='custom')return d.custom?.[s]||{name:'Custom / add manually',cal:0,pro:0};let m=meal(d[s]);return m?{name:m.name,cal:m.cal,pro:m.pro,id:m.id}:{name:'Custom',cal:0,pro:0}}function changeMeal(w,k,s,v){S.plan.weeks[w][k][s]=v;save();render()}function openCustom(w,k,s){modalBody.innerHTML=`<h2 class="h2">Custom ${s}</h2><p class="muted">Use this for matcha, extras or meals outside the plan.</p><input id="cn" placeholder="Name"><input id="cc" type="number" placeholder="Calories"><input id="cp" type="number" placeholder="Protein g"><button class="btn" onclick="S.plan.weeks[${w}]['${k}'].custom['${s}']={name:cn.value||'Custom ${s}',cal:+cc.value||0,pro:+cp.value||0};S.plan.weeks[${w}]['${k}']['${s}']='custom';save();closeModal();render()">Save custom</button>`;modal.classList.add('active')}function markMissed(w,k,s){S.plan.weeks[w][k].missed[s]=true;save();render()}function renderPlan(){renderBuilder();if(!S.plan){planOut.innerHTML='<div class="card" style="margin-top:12px">Build your personal setup first, then create your week.</div>';showBuilder(true);return}let opts='';for(let i=1;i<=Object.keys(S.plan.weeks).length;i++)opts+=`<option value="${i}">Week ${i}</option>`;shopWeek.innerHTML=opts;let tabs=Object.keys(S.plan.weeks).map(n=>`<button class="btn ${+n===S.plan.active?'':'ghost'}" onclick="S.plan.active=${n};save();render()">Week ${n}</button>`).join('');let w=S.plan.active||1,wk=S.plan.weeks[w];planOut.innerHTML=`<div class="row" style="margin:14px 0">${tabs}<button class="btn ghost" onclick="installHelp()">Save to home screen</button></div>`+keys.map((k,i)=>{let d=wk[k],ms=['breakfast','lunch','dinner','snack'].map(s=>slotData(d,s)),cal=ms.reduce((a,m)=>a+m.cal,0),pro=ms.reduce((a,m)=>a+m.pro,0);return`<div class="day"><div class="dayTop"><div><div class="label">${days[i]}</div><h2 class="h3">${cal}/${S.goals.cal} kcal</h2><p class="muted">${pro}/${S.goals.pro}g protein</p></div><div class="row"><span class="tag ${cal>S.goals.cal?'red':'green'}">${cal-S.goals.cal>=0?'+':''}${cal-S.goals.cal} kcal</span><span class="tag green">${pro}g protein</span></div></div><div class="slot"><label>Workout</label><select onchange="S.plan.weeks[${w}]['${k}'].workout=this.value;save();render()"><option value="">Rest</option>${workouts.map(x=>`<option value="${x[0]}" ${x[0]===d.workout?'selected':''}>${x[2]}</option>`).join('')}</select><button class="btn ghost" onclick="openWorkout('${d.workout}')">Open</button></div>${['breakfast','lunch','dinner','snack'].map(s=>{let md=slotData(d,s);return`<div class="slot"><label>${s}</label><select onchange="changeMeal(${w},'${k}','${s}',this.value)"><option value="custom">Custom / manual</option><option value="none">None</option>${rawMeals.map(mm=>`<option value="${mm.id}" ${mm.id===d[s]?'selected':''}>${applyDiet(mm).name}</option>`).join('')}</select><button class="btn ghost" onclick="${d[s]==='custom'||d.missed?.[s]?'openCustom('+w+',\''+k+'\',\''+s+'\')':'openMeal(\''+d[s]+'\')'}">Open</button><span class="small"><b>${md.cal}</b> kcal · <b>${md.pro}g</b> protein ${d.left&&s!=='breakfast'?'<span class="tag gold">leftover</span>':''}</span><div class="row"><button class="btn soft" onclick="openCustom(${w},'${k}','${s}')">Custom</button><button class="btn ghost" onclick="markMissed(${w},'${k}','${s}')">Missed</button></div></div>`}).join('')}<div class="habitGrid">${habits.map(h=>`<button class="habit ${S.habits['w'+w+k+h]?'active':''}" onclick="S.habits['w${w}${k}${h}']=!S.habits['w${w}${k}${h}'];save();render()">${h}</button>`).join('')}</div></div>`}).join('')}function relevantSwaps(m){let arr=[];m.ing.forEach(i=>{if(swaps[i[0]])swaps[i[0]].forEach(s=>arr.push([i[0],s[0]]))});return arr}function openMeal(id,p=1,manual){let m=mealRaw(id);if(!m)return;if(manual)m=swapMeal(m,manual[0],manual[1]);else m=applyDiet(m);let sw=relevantSwaps(m);modalBody.innerHTML=`<div class="photo"><b>${m.name}</b></div><div class="label">Recipe</div><h2 class="h2">${m.name}</h2><div class="row"><button class="btn ghost" onclick="openMeal('${id}',${Math.max(.5,p-.1).toFixed(1)})">-10%</button><span class="tag red">${Math.round(p*100)}% portion</span><button class="btn ghost" onclick="openMeal('${id}',${Math.min(1.8,p+.1).toFixed(1)})">+10%</button></div><div class="detail"><div class="box"><b>${Math.round(m.cal*p)}</b>kcal</div><div class="box"><b>${Math.round(m.pro*p)}g</b>protein</div><div class="box"><b>${S.people}</b>${S.people===1?'person':'people'}</div></div><div class="card"><div class="label">Ingredients</div><ul>${m.ing.map(x=>`<li>${x[0]} · ${Math.round(x[1]*p*S.people)}g</li>`).join('')}</ul></div><div class="card" style="margin-top:10px"><div class="label">Method</div><p class="muted">${m.method}</p></div><div class="card" style="margin-top:10px"><div class="label">Swap ingredient</div>${sw.length?sw.map(x=>`<button class="btn ghost" style="margin:4px" onclick="openMeal('${id}',${p},['${x[0]}','${x[1]}'])">${x[0]} → ${x[1]}</button>`).join(''):'<p class="muted">No specific swaps for this recipe.</p>'}</div>`;modal.classList.add('active')}function openWorkout(id){let w=workout(id);if(!w)return;modalBody.innerHTML=`<div class="photo"><b>${w[2]}</b></div><div class="label">Workout</div><h2 class="h2">${w[2]}</h2><p class="muted">${w[3]}</p>${w[4].map(e=>`<div class="item"><div><div class="it">${e}</div><p class="meta">Log your set</p><div class="row"><input placeholder="kg"><input placeholder="reps"></div></div></div>`).join('')}<p class="muted">Progress by adding a rep, slowing tempo or adding a small amount of load.</p>`;modal.classList.add('active')}function closeModal(){modal.classList.remove('active')}function renderMeals(){mealList.innerHTML=rawMeals.map(m=>{let x=applyDiet(m);return`<div class="item"><div><div class="it">${x.name}</div><div class="meta">${x.type} · ${x.cal} kcal · ${x.pro}g protein</div></div><button class="btn ghost" onclick="openMeal('${m.id}')">Open</button></div>`}).join('')}function renderTrain(){workoutList.innerHTML=workouts.map(w=>`<div class="item"><div><div class="it">${w[2]}</div><div class="meta">${w[1]} · ${w[3]}</div></div><button class="btn ghost" onclick="openWorkout('${w[0]}')">Open</button></div>`).join('')}function addShopExtra(){if(extraShop.value.trim()){S.shopExtra.push(extraShop.value.trim());extraShop.value='';save();renderShop()}}function renderShop(){let w=+shopWeek.value||1,c={};if(S.plan&&S.plan.weeks[w])Object.values(S.plan.weeks[w]).forEach(d=>['breakfast','lunch','dinner','snack'].forEach(s=>{let m=meal(d[s]);if(m&&!d.missed?.[s])m.ing.forEach(x=>c[x[0]]=(c[x[0]]||0)+x[1]*S.people)}));S.shopExtra.forEach(x=>c[x]=c[x]||0);shopList.innerHTML=Object.keys(c).length?Object.entries(c).map(([i,g])=>`<label class="item"><input type="checkbox"> <span><b>${i}</b><br><span class="meta">${g?Math.round(g)+'g':'extra item'}</span></span></label>`).join(''):'<div class="card">Build your plan first.</div>'}function openLearn(k){modalBody.innerHTML=`<div class="label">How to use</div><h2 class="h2">${k[0].toUpperCase()+k.slice(1)}</h2>${learn[k].map(x=>`<div class="item"><div>${x}</div></div>`).join('')}`;modal.classList.add('active')}function renderLearn(){learnList.innerHTML=Object.keys(learn).map(k=>`<div class="item"><div><div class="it">${k[0].toUpperCase()+k.slice(1)}</div><p class="meta">Open the detailed guidance.</p></div><button class="btn ghost" onclick="openLearn('${k}')">Open</button></div>`).join('')}function installHelp(){modalBody.innerHTML='<h2 class="h2">Save to home screen</h2><p class="muted">On iPhone, open this page in Safari, tap Share, then Add to Home Screen. On Android, open in Chrome, tap the three dots, then Add to Home screen or Install app.</p>';modal.classList.add('active')}function render(){renderHome();renderAvail();renderDrop();renderChosen();renderPlan();renderMeals();renderTrain();renderShop();renderLearn()}render();</script></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="theme-color" content="#F8F3EB"><title>July Golden Hour · The Model Body Club</title>
+<style>
+:root{--bg:#F8F3EB;--paper:#FFFDF8;--line:#E3D7C2;--ink:#1A1410;--muted:#6B5F58;--red:#B42131;--blush:#FCF1ED;--blushline:#F0C7C4;--green:#557B50;--greenbg:#EDF4EA;--greenline:#D7E7D0;--gold:#8A6727;--goldbg:#FFF7E5}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:linear-gradient(#F8F3EB,#EFE7D9);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--ink)}
+button,input,select{font:inherit}button{cursor:pointer}
+.app{max-width:980px;margin:auto;min-height:100vh;padding-bottom:96px}
+.top{position:sticky;top:0;z-index:20;background:#f8f3ebf2;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:14px 18px;display:flex;justify-content:space-between;align-items:center}
+.brand{font-size:12px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+.brand b{color:var(--red)}
+.top .theme{font-family:Georgia,serif;font-style:italic;font-size:13px;color:var(--gold)}
+.page{display:none;padding:16px}
+.page.active{display:block}
+.card,.hero,.day,.item{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:0 14px 38px #1a141014}
+.hero{text-align:center;padding:30px 18px 26px;background:radial-gradient(circle at 82% -4%,#b4213118,transparent 38%),linear-gradient(150deg,#fffaf4,var(--bg))}
+h1{font-family:Georgia,serif;font-size:clamp(44px,11vw,78px);font-weight:400;line-height:.92;margin:14px 0 10px;letter-spacing:-.03em}
+.script{font-style:italic;color:var(--red)}
+.h2{font-family:Georgia,serif;font-size:29px;margin:0 0 6px;font-weight:400;letter-spacing:-.01em}
+.h3{font-family:Georgia,serif;font-size:22px;margin:0 0 4px;font-weight:400}
+.label{display:block;font-size:11px;font-weight:900;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin:0 0 8px}
+.muted,.meta{color:var(--muted);line-height:1.5}
+.small{font-size:13px;line-height:1.5}
+.grid{display:grid;gap:12px}
+.two{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.controls,.three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.btn{border:0;border-radius:999px;background:var(--red);color:#fff;font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:13px 18px}
+.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn.soft{background:var(--blush);color:var(--red);border:1px solid var(--blushline)}
+.btn.mini{padding:8px 12px;font-size:10px}
+select,input{width:100%;border:1px solid var(--line);border-radius:14px;background:#fff;padding:12px;color:var(--ink)}
+input::placeholder{color:#B9AB9E}
+.field span{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);display:block;margin:0 0 5px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.item{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;margin:10px 0;padding:15px 17px;border-radius:18px}
+.it{font-weight:800;letter-spacing:-.01em}
+.tag{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.07em;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--muted);padding:5px 9px;display:inline-block}
+.tag.red{background:var(--red);border-color:var(--red);color:#fff}
+.tag.blush{background:var(--blush);border-color:var(--blushline);color:var(--red)}
+.tag.green{background:var(--greenbg);border-color:var(--greenline);color:var(--green)}
+.tag.gold{background:var(--goldbg);border-color:#EBD9A9;color:var(--gold)}
+.divider{height:1px;background:var(--line);margin:16px 0;border:0}
+.steps-note{background:var(--blush);border:1px solid var(--blushline);border-radius:16px;padding:12px 15px;color:var(--red);font-size:13px;line-height:1.5}
+/* planner day cards */
+.day{margin:12px 0}
+.dayTop{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.slot{display:grid;grid-template-columns:86px 1fr auto;gap:8px;align-items:center;margin:9px 0}
+.slot .sl{font-size:10px;font-weight:900;text-transform:uppercase;color:var(--muted);letter-spacing:.1em}
+.slotMeta{grid-column:2/4;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding:0 2px 2px}
+.bar{height:6px;border-radius:99px;background:#EFE7DA;overflow:hidden;margin:10px 0 4px}
+.bar i{display:block;height:100%;background:var(--red);border-radius:99px;transition:width .3s}
+.bar i.over{background:var(--gold)}
+.habitGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:12px}
+.habit{border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 6px;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.habit.active{background:var(--red);border-color:var(--red);color:#fff}
+/* modal */
+.modal{position:fixed;inset:0;background:#1a141070;display:none;align-items:flex-end;z-index:50}
+.modal.active{display:flex}
+.sheet{background:var(--bg);width:100%;max-width:980px;margin:auto auto 0;border-radius:28px 28px 0 0;max-height:92vh;overflow:auto;padding:18px 18px 34px;-webkit-overflow-scrolling:touch}
+.sheetTop{display:flex;justify-content:flex-end;position:sticky;top:0;z-index:5;margin-bottom:4px}
+.photo{border-radius:22px;background:linear-gradient(135deg,#EACDC7,#F8F3EB 45%,#EED9C4);padding:26px 20px 20px;margin-bottom:14px;border:1px solid var(--line)}
+.mealType{font-size:11px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--red)}
+.tagline{font-family:Georgia,serif;font-style:italic;font-size:19px;color:var(--red);margin:4px 0 0}
+.macroStrip{display:grid;grid-template-columns:repeat(4,1fr);background:var(--ink);border-radius:18px;overflow:hidden;margin:12px 0}
+.macroStrip .m{padding:13px 8px;text-align:center;border-left:1px solid #ffffff1f}
+.macroStrip .m:first-child{border-left:0}
+.macroStrip .k{font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#E8A0A8;margin-bottom:5px}
+.macroStrip .v{font-family:Georgia,serif;font-size:22px;color:#fff;line-height:1}
+.macroStrip .v small{font-size:11px;color:#D8CFC4;font-family:inherit;margin-left:2px}
+.metaRow{display:flex;gap:22px;margin:12px 2px;flex-wrap:wrap}
+.metaRow .mm .k{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.metaRow .mm .v{font-family:Georgia,serif;font-size:19px}
+ul.ing,ol.method{margin:6px 0 0;padding-left:20px;line-height:1.75}
+ol.method li{margin-bottom:6px}
+.detail{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.box{border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px 8px;text-align:center}
+.box b{display:block;color:var(--red);font-family:Georgia,serif;font-size:22px;font-weight:400}
+.box span{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+/* workout modal */
+.wkSec{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:10px 0}
+.wkSecHead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px}
+.wkSecName{font-family:Georgia,serif;font-size:19px}
+.wkRow{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:9px 0;border-top:1px dashed var(--line)}
+.wkRow:first-of-type{border-top:0}
+.wkRep{font-size:12px;font-weight:800;color:var(--red);white-space:nowrap}
+.wkLog{display:flex;gap:6px;margin-top:5px}
+.wkLog input{width:74px;padding:7px 9px;border-radius:10px;font-size:13px}
+.tierStop{display:flex;justify-content:space-between;align-items:center;gap:10px;border-radius:14px;padding:11px 14px;margin:10px 0;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;border:1px dashed var(--line);color:var(--muted);background:#fff}
+.tierStop.mine{background:var(--blush);border:1px solid var(--blushline);color:var(--red)}
+.tierStop .ts{font-size:10px;font-weight:700;text-transform:none;letter-spacing:0;color:inherit;opacity:.85}
+/* shopping */
+.shopRow{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:11px 14px;margin:7px 0}
+.shopRow input[type=checkbox]{width:19px;height:19px;accent-color:var(--red)}
+.shopRow.done .sn{text-decoration:line-through;color:var(--muted)}
+.shopRow .sg{font-size:13px;font-weight:800;color:var(--red);white-space:nowrap}
+.shopHead{margin:16px 0 4px}
+/* bottom nav */
+.bottom{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(980px,100%);display:grid;grid-template-columns:repeat(6,1fr);gap:4px;padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:#FFFDF8F5;border-top:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);z-index:30}
+.nav{border:1px solid transparent;background:transparent;border-radius:14px;padding:9px 2px 8px;color:var(--muted);font-size:9px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:4px}
+.nav svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.nav.active{background:var(--blush);border-color:var(--blushline);color:var(--red)}
+.hidden{display:none}
+.stepLbl{display:inline-block;font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--red);border-radius:999px;padding:4px 10px;margin-bottom:8px}
+@media(max-width:720px){.two,.three,.controls,.detail{grid-template-columns:1fr 1fr}.controls{grid-template-columns:1fr 1fr}.slot{grid-template-columns:1fr}.slotMeta{grid-column:1}.page{padding:13px}.macroStrip .v{font-size:19px}}
+@media(max-width:420px){.two,.controls{grid-template-columns:1fr 1fr}.habitGrid{grid-template-columns:repeat(3,1fr)}}
+</style></head><body>
+<div class="app">
+<header class="top"><div class="brand">The Model Body <b>Club</b></div><div class="theme">Golden Hour</div></header>
+
+<main class="page active" id="home">
+  <section class="hero">
+    <div class="label" style="color:var(--gold)">July Edition</div>
+    <h1>July <span class="script">Golden Hour</span></h1>
+    <p class="muted" style="max-width:460px;margin:0 auto 16px">Your monthly meals, workouts and daily plan in one place. Designed to help you stay consistent, your way.</p>
+    <div class="row" style="justify-content:center">
+      <button class="btn" data-go="plan">Build my plan</button>
+      <button class="btn ghost" onclick="installHelp()">Save to home screen</button>
+    </div>
+  </section>
+  <section class="card" style="margin-top:14px">
+    <div class="dayTop"><div><div class="label">Today</div><h2 class="h2" id="todayTitle">Your day</h2></div><div id="todayDate" class="tag gold"></div></div>
+    <div id="todayBox"></div>
+  </section>
+  <section class="card" style="margin-top:12px" id="homeTargets"></section>
+</main>
+
+<main class="page" id="plan">
+  <section id="builder" class="card">
+    <div class="label">Personal setup</div>
+    <h2 class="h2">Build your plan</h2>
+    <p class="muted small">Add your details and the app suggests a starting point for calories and protein. Everything stays editable, adjust to your body and routine.</p>
+    <hr class="divider">
+    <span class="stepLbl">Step 1 · About you</span>
+    <div class="controls">
+      <label class="field"><span>Height (cm)</span><input id="height" type="number" inputmode="decimal" placeholder="168"></label>
+      <label class="field"><span>Weight (kg)</span><input id="weight" type="number" inputmode="decimal" placeholder="63"></label>
+      <label class="field"><span>Goal</span><select id="goal"><option value="tone">Lean / toned</option><option value="loss">Fat loss</option><option value="glute">Glute growth</option></select></label>
+    </div>
+    <div class="controls" style="margin-top:10px">
+      <label class="field"><span>Daily step goal</span><input id="stepsGoal" type="number" inputmode="numeric" placeholder="10000"></label>
+      <label class="field"><span>Training days / week</span><select id="trainDays"></select></label>
+      <label class="field"><span>Start date</span><input id="startDate" type="date" onchange="S.start=this.value;save();render()"></label>
+    </div>
+    <div class="row" style="margin-top:12px"><button class="btn soft" onclick="suggestTargets()">Suggest calories + protein</button></div>
+    <div id="setupSummary"></div>
+    <hr class="divider">
+    <span class="stepLbl">Step 2 · Your targets</span>
+    <div class="controls">
+      <label class="field"><span>Calorie target (kcal / day)</span><input id="calGoal" type="number" inputmode="numeric"></label>
+      <label class="field"><span>Protein target (g / day)</span><input id="proGoal" type="number" inputmode="numeric"></label>
+      <label class="field"><span>Cooking for (people)</span><select id="people"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></label>
+    </div>
+    <p class="muted small" style="margin:10px 2px 0">A suggested starting point, not a rule. Snacks, coffees and life outside the plan are fine, the planner shows what each day leaves you to play with.</p>
+    <hr class="divider">
+    <span class="stepLbl">Step 3 · Your meals</span>
+    <div class="controls">
+      <label class="field"><span>Dietary requirement</span><select id="diet"><option value="none">No changes</option><option value="df">Dairy-free</option><option value="gf">Gluten-free</option><option value="veg">Vegetarian</option><option value="vegan">Vegan</option><option value="pesc">Pescetarian</option></select></label>
+      <label class="field"><span>Snack recipes (days / week)</span><select id="snacks"></select></label>
+      <label class="field"><span>Weeks to build</span><select id="weeks"><option value="1">1 week</option><option value="2">2 weeks</option><option value="3">3 weeks</option><option value="4">4 weeks</option></select></label>
+    </div>
+    <hr class="divider">
+    <span class="stepLbl">Step 4 · Your training</span>
+    <div class="label" style="margin-top:6px">Days free to train</div>
+    <div id="avail" class="grid three"></div>
+    <div class="controls" style="margin-top:12px">
+      <label class="field"><span>Workout style</span><select id="mode"><option value="gym">Gym workouts</option><option value="home">Home workouts</option></select></label>
+      <label class="field"><span>Workout</span><select id="workoutDrop"></select></label>
+      <label class="field"><span>&nbsp;</span><span class="row" style="gap:6px"><button class="btn ghost mini" onclick="addWorkout(true)">Include</button><button class="btn soft mini" onclick="addWorkout(false)">Exclude</button></span></label>
+    </div>
+    <div id="chosen"></div>
+    <hr class="divider">
+    <div class="row"><button class="btn" onclick="buildPlan(false)">Build my plan</button><button class="btn ghost" onclick="buildPlan(true)">Blank planner</button><button class="btn soft" onclick="clearPlan()">Clear</button><button class="btn ghost" id="closeBuilderBtn" onclick="showBuilder(false)">Close builder</button></div>
+  </section>
+  <section id="built" class="card hidden" style="margin-top:12px">
+    <div class="dayTop">
+      <div><div class="label">Planner built</div><h2 class="h2">Your weekly planner</h2><p class="muted small">Tap open beside any meal or workout. Swap, resize portions, add customs and mark missed as your week actually happens.</p></div>
+      <button class="btn ghost" onclick="showBuilder(true)">Edit setup</button>
+    </div>
+  </section>
+  <div id="planOut"></div>
+</main>
+
+<main class="page" id="meals">
+  <section class="card"><div class="label">Meal bank</div><h2 class="h2">28 Golden Hour recipes</h2><p class="muted small">Every recipe from this month's plan. Open any meal to scale portions, see the method and use ingredient swaps.</p></section>
+  <div id="mealList"></div>
+</main>
+
+<main class="page" id="train">
+  <section class="card"><div class="label">Workout bank</div><h2 class="h2">8 Golden Hour workouts</h2><p class="muted small">Four gym and four home sessions. Your goal sets your finish line inside each workout. Include or exclude workouts from the planner tab.</p></section>
+  <div id="workoutList"></div>
+</main>
+
+<main class="page" id="shop">
+  <section class="card">
+    <div class="label">Kitchen stocker</div><h2 class="h2">Shopping list</h2>
+    <p class="muted small">Built from your planner, scaled to how many you cook for. Tick items off as you shop.</p>
+    <div class="controls" style="margin-top:12px">
+      <label class="field"><span>Shopping for</span><select id="shopWeek" onchange="renderShop()"></select></label>
+      <label class="field"><span>Extra item</span><input id="extraShop" placeholder="e.g. oat milk"></label>
+      <label class="field"><span>&nbsp;</span><button class="btn ghost" onclick="addShopExtra()">Add item</button></label>
+    </div>
+  </section>
+  <div id="shopList"></div>
+</main>
+
+<main class="page" id="guide">
+  <section class="card"><div class="label">How to use</div><h2 class="h2">Start here</h2><p class="muted small">Everything you need to follow Golden Hour with confidence.</p></section>
+  <div id="guideList"></div>
+</main>
+
+<nav class="bottom">
+  <button class="nav active" data-go="home"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Home</button>
+  <button class="nav" data-go="plan"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="3"/><path d="M8 3v4M16 3v4M4 11h16"/></svg>Plan</button>
+  <button class="nav" data-go="meals"><svg viewBox="0 0 24 24"><path d="M5 3v7a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V3M7 3v18"/><path d="M17 3c-1.5 1.5-2 4-2 6 0 2 .8 3 2 3v9"/></svg>Meals</button>
+  <button class="nav" data-go="train"><svg viewBox="0 0 24 24"><path d="M6.5 6.5v11M17.5 6.5v11M3 9.5v5M21 9.5v5M6.5 12h11"/></svg>Train</button>
+  <button class="nav" data-go="shop"><svg viewBox="0 0 24 24"><path d="M6 6h15l-1.7 8.5a2 2 0 0 1-2 1.5H9a2 2 0 0 1-2-1.6L5 3H2"/><circle cx="9.5" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></svg>Shop</button>
+  <button class="nav" data-go="guide"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 1 2-2h13"/></svg>Guide</button>
+</nav>
+</div>
+
+<div class="modal" id="modal" onclick="if(event.target.id==='modal')closeModal()">
+  <div class="sheet"><div class="sheetTop"><button class="btn ghost mini" onclick="closeModal()">Close</button></div><div id="modalBody"></div></div>
+</div>
+
+<script>
+/* ============ DATA ============ */
+const RECIPES=[{"id":"breakfast-01","type":"breakfast","name":"Kassy's Eggs + Greens","tagline":"Gut-friendly, protein-packed and ready in minutes.","serves":"1","prep":"5 min","cook":"8 min","cal":250,"pro":20,"carbs":8,"fat":15,"tags":["High Protein","Low Bloat","GF Option","10 Min"],"love":"A savoury, gut-friendly start that hits protein without any fuss.","ing":["3 boiled eggs","large handful spinach","large handful kale","50g kimchi","chilli flakes","salt & pepper"],"steps":["Boil eggs to your liking.","Wilt spinach and kale in a non-stick pan with a splash of water.","Season with chilli, salt and pepper.","Serve with kimchi."],"tips":"Swap kimchi for sauerkraut. Add a slice of rye for extra carbs on training days."},{"id":"breakfast-02","type":"breakfast","name":"Strawberry Smoothie Bowl","tagline":"Cool, creamy and bright, summer in a bowl.","serves":"1","prep":"5 min","cook":"0 min","cal":375,"pro":28,"carbs":50,"fat":6,"tags":["High Protein","No Cook","10 Min","DF"],"love":"Tastes like dessert, eats like a protein hit.","ing":["150g frozen strawberries","1 frozen banana","200ml oat or soy milk","1 scoop vanilla protein","1 tsp maple (optional)","toppings: fresh strawberries, blueberries"],"steps":["Blend strawberries, banana, milk and protein until thick.","Pour into a bowl.","Top with berries."],"tips":"Add seeds or granola for crunch. Use less milk for a thicker spoonable bowl."},{"id":"breakfast-03","type":"breakfast","name":"Avo, Smashed Pea & Lemon Rye Toast","tagline":"Fresh, green and ready in five.","serves":"1","prep":"5 min","cook":"0 min","cal":415,"pro":15,"carbs":45,"fat":18,"tags":["DF","10 Min","Busy Girl"],"love":"Light, fresh and full of fibre for an easy morning.","ing":["2 slices rye, toasted","½ avocado","100g cooked peas","juice ½ lemon","handful cherry tomatoes","1 tbsp hemp seeds","salt & pepper"],"steps":["Mash peas, avocado and lemon.","Spread onto rye.","Top with tomatoes and hemp.","Season."],"tips":"Add an egg or protein yoghurt on the side to lift the protein. (Lower protein on its own, pair to suit your tier.)"},{"id":"breakfast-04","type":"breakfast","name":"Poached Eggs on Rye + Kimchi","tagline":"Simple, savoury and gut-loving.","serves":"1","prep":"5 min","cook":"5 min","cal":310,"pro":18,"carbs":32,"fat":11,"tags":["High Protein","Low Bloat","10 Min"],"love":"Five-minute savoury breakfast that keeps you full.","ing":["2 poached eggs","2 slices rye, toasted","50g kimchi or sauerkraut","black pepper"],"steps":["Poach eggs.","Toast rye.","Top with eggs.","Serve kimchi on the side."],"tips":"Add a third egg or egg whites to push protein higher."},{"id":"breakfast-05","type":"breakfast","name":"Cherry Chocolate Chia Pudding","tagline":"Prep tonight, glow tomorrow.","serves":"1","prep":"5 min","cook":"","cal":425,"pro":30,"carbs":35,"fat":16,"tags":["High Protein","Meal Prep","No Cook","DF"],"love":"Made ahead, high protein, tastes like pudding.","ing":["3 tbsp chia seeds","200ml soy milk","1 scoop chocolate protein","100g frozen cherries","1 tsp cocoa"],"steps":["Stir chia, milk, protein and cocoa together.","Leave overnight.","Top with thawed cherries."],"tips":"Batch 3–4 jars at once for grab-and-go mornings."},{"id":"breakfast-06","type":"breakfast","name":"Tomato & Vegetable Omelette","tagline":"Savoury, veg-loaded, high protein.","serves":"1","prep":"5 min","cook":"8 min","cal":260,"pro":32,"carbs":8,"fat":12,"tags":["High Protein","GF Option","10 Min"],"love":"One of the highest-protein, lowest-effort starts in the bank.","ing":["2 whole eggs","150g egg whites","1 tomato, diced","handful spinach","½ red pepper","2 mushrooms (optional)","olive oil spray","salt & pepper"],"steps":["Lightly spray a non-stick pan.","Cook veg until soft.","Add eggs and whites.","Cook until set, fold.","Season."],"tips":"Add rye or potatoes for carbs on a training day."},{"id":"breakfast-07","type":"breakfast","name":"Protein Pancakes + Berry Compote","tagline":"Weekend feel, weekday macros.","serves":"1","prep":"5 min","cook":"8 min","cal":530,"pro":34,"carbs":55,"fat":14,"tags":["High Protein","Kassy's Pick","GF Option"],"love":"The repeatable weekend breakfast that still hits protein.","ing":["1 banana","2 eggs","30g oats","1 scoop vanilla protein","cinnamon","compote: 150g frozen mixed berries, splash water, squeeze lemon"],"steps":["Blend pancake ingredients.","Cook in a non-stick pan with light spray.","Simmer berries 5 min until jammy.","Serve topped with compote."],"tips":"Use GF oats for a gluten-free version. Double the batch and fridge for tomorrow."},{"id":"lunch-01","type":"lunch","name":"Salmon Cucumber Salad","tagline":"Fresh, zingy and protein-rich.","serves":"1","prep":"10 min","cook":"12 min","cal":435,"pro":34,"carbs":30,"fat":18,"tags":["High Protein","DF","No Cook"],"love":"Light but satisfying, with a fresh summer dressing.","ing":["120g salmon fillet","100g cucumber, diced","75g edamame","50g shredded carrot","1 red pepper, sliced","mixed leaves","dressing: 2 tbsp lime juice, 1 tbsp rice vinegar, 1 tsp maple, 1 tsp pickled ginger"],"steps":["Bake or air fry salmon.","Combine cucumber, carrot, pepper, edamame, leaves.","Flake salmon over.","Whisk dressing and pour over."],"tips":"Swap salmon for white fish or prawns (see Adapt & Swap)."},{"id":"lunch-02","type":"lunch","name":"Chopped Chicken Salad","tagline":"Crunchy, fresh, meal-prep friendly.","serves":"1","prep":"10 min","cook":"0 min","cal":350,"pro":40,"carbs":20,"fat":12,"tags":["High Protein","Meal Prep","DF","Busy Girl"],"love":"Big crunch, high protein, holds well for next-day lunch.","ing":["1–2 cups iceberg","1–2 cups cabbage","handful green beans","2–3 spring onions","½ bunch coriander","120g shredded roast chicken","1 tbsp sesame seeds","dressing: 3 tbsp light soy, 3 tbsp rice wine vinegar, juice ½ lemon, 1 tsp maple, 1 tbsp water"],"steps":["Combine salad in a bowl.","Whisk dressing.","Toss and serve."],"tips":"Keep dressing separate if prepping ahead."},{"id":"lunch-03","type":"lunch","name":"Carrot & Cucumber Support Salad","tagline":"Light, fresh and full of crunch.","serves":"1","prep":"10 min","cook":"0 min","cal":325,"pro":34,"carbs":18,"fat":12,"tags":["High Protein","No Cook","DF","Low Bloat"],"love":"Refreshing, light and easy on digestion.","ing":["1 large cucumber, julienned","2 carrots, julienned","shredded chicken","2 tbsp sesame seeds","2 tbsp parsley","1 garlic clove","dressing: 1 tbsp lemon juice, 1 tsp chilli flakes, 1 tsp low-sodium soy, ½ tsp honey"],"steps":["Combine veg, sesame, parsley, garlic.","Mix dressing.","Toss and rest 5–10 min."],"tips":"Add more chicken or edamame to lift protein for higher tiers."},{"id":"lunch-04","type":"lunch","name":"Tuna & Corn Cake Salad","tagline":"Store-cupboard easy, ready in minutes.","serves":"1","prep":"10 min","cook":"0 min","cal":300,"pro":30,"carbs":35,"fat":6,"tags":["High Protein","No Cook","Busy Girl","DF"],"love":"The no-cook lunch for busy days, all from the cupboard.","ing":["1 tin tuna in spring water","mixed leaves","cucumber","cherry tomatoes","red pepper","4 corn cakes","dressing: juice ½ lemon, 1 tsp Dijon, splash water, black pepper"],"steps":["Combine veg and tuna.","Mix dressing, toss.","Serve with corn cakes."],"tips":"Swap tuna for shredded chicken or salmon."},{"id":"lunch-05","type":"lunch","name":"Asian Chicken Lettuce Wraps","tagline":"Light, fresh and full of flavour.","serves":"1","prep":"10 min","cook":"0 min","cal":290,"pro":38,"carbs":18,"fat":7,"tags":["High Protein","No Cook","DF","10 Min"],"love":"Fresh, portable and genuinely high protein.","ing":["120g cooked shredded chicken","little gem leaves","½ cucumber","1 carrot, shredded","2 spring onions","coriander","dressing: 1 tbsp lime, 1 tbsp rice vinegar, 1 tbsp low-sodium soy, 1 tsp honey, 1 tsp ginger, 1 garlic clove, optional sriracha"],"steps":["Combine chicken and veg.","Mix dressing.","Toss, then spoon into lettuce cups."],"tips":"Prep the filling ahead; assemble cups when ready to eat."},{"id":"lunch-06","type":"lunch","name":"Loaded Middle Eastern Sweet Potato","tagline":"Warm, hearty and plant-packed.","serves":"1","prep":"10 min","cook":"35 min","cal":420,"pro":15,"carbs":65,"fat":8,"tags":["DF","Meal Prep","Busy Girl"],"love":"Comforting, fibre-rich and great as leftovers.","ing":["1 large sweet potato","100g chickpeas","½ cucumber","cherry tomatoes","red onion","parsley","mint","dressing: 2 tbsp DF Greek-style yogurt, juice ½ lemon, 1 tsp cumin, salt & pepper"],"steps":["Bake or air fry sweet potato until soft.","Mix chickpeas, cucumber, tomatoes, onion, herbs.","Mix dressing.","Split potato, fill, drizzle."],"tips":"Add chicken or extra chickpeas to lift protein. (Lower protein on its own, pair to your tier.)"},{"id":"lunch-07","type":"lunch","name":"Mediterranean Salmon Bowl","tagline":"Bright, fresh and effortlessly chic.","serves":"1","prep":"10 min","cook":"12 min","cal":430,"pro":33,"carbs":30,"fat":18,"tags":["High Protein","DF","Kassy's Pick"],"love":"The lunch that feels like a holiday plate.","ing":["120g salmon","mixed leaves","½ cucumber","cherry tomatoes","80g chickpeas","parsley","dressing: juice ½ lemon, 1 tsp Dijon, splash water, 1 garlic clove"],"steps":["Bake or air fry salmon.","Combine salad.","Whisk dressing.","Top with salmon, drizzle."],"tips":"Swap salmon for white fish or prawns."},{"id":"dinner-01","type":"dinner","name":"Creamy Lemon Chicken Pasta","tagline":"Comfort food, summer-light.","serves":"2","prep":"10 min","cook":"20 min","cal":600,"pro":44,"carbs":55,"fat":22,"tags":["High Protein","GF Option","DF","Kassy's Pick"],"love":"Creamy and comforting with zero oil.","ing":["400g chicken thigh, diced","1 onion","4 garlic cloves","1 lemon (zest + juice)","270ml light coconut milk","½ cup chicken stock","spinach","1 courgette","250g cooked GF spaghetti"],"steps":["Soften onion and garlic in a splash of stock.","Add chicken, zest, half the juice; brown.","Add coconut milk and stock.","Simmer 10–15 min.","Stir through spinach and pasta.","Top with courgette and remaining juice."],"tips":"Use GF pasta to keep it gluten-free. Halve for a single serving. Macros are per portion (serves 2)."},{"id":"dinner-02","type":"dinner","name":"White Bean, Sweet Potato & Tofu Salad","tagline":"Erewhon-inspired, plant-powered.","serves":"2","prep":"15 min","cook":"30 min","cal":500,"pro":28,"carbs":50,"fat":18,"tags":["High Protein","Vegan Swap","DF","Meal Prep"],"love":"Fully plant-based, high protein and seriously filling.","ing":["1 sweet potato, cubed","200g firm tofu","4–5 cups kale","1 can white beans","2 tbsp pumpkin seeds","2 tbsp hemp seeds","dressing: juice 1 lemon, 1 tbsp Dijon, 1 tsp maple, 1 tbsp ACV, 2–3 tbsp water, salt & pepper"],"steps":["Roast/air fry sweet potato.","Air fry tofu until crisp.","Massage kale with lemon.","Add beans, potato, tofu.","Whisk dressing, pour over.","Finish with seeds."],"tips":"Naturally vegan. Swap tofu for tempeh (see Adapt & Swap). Macros are per portion (serves 2)."},{"id":"dinner-03","type":"dinner","name":"Creamy Satay Protein Bowl","tagline":"Big satay flavour, balanced macros.","serves":"1","prep":"15 min","cook":"0 min","cal":560,"pro":44,"carbs":30,"fat":26,"tags":["High Protein","DF","No Cook"],"love":"Creamy satay without the heaviness.","ing":["100g cooked shredded chicken","1 tbsp DF Greek-style yogurt","1 tbsp soy","1 tbsp rice vinegar/lime","1 tbsp PB or PB2","1 tbsp sriracha","1 tsp honey","2 spring onions","½ cucumber","100g butter beans","½ avocado","mint","2 tbsp edamame"],"steps":["Whisk yogurt, PB, soy, vinegar, sriracha, honey.","Add chicken, spring onions, cucumber, butter beans, avo, mint, edamame.","Toss and serve."],"tips":"Use PB2 to cut fats if you're on the Lean tier."},{"id":"dinner-04","type":"dinner","name":"Loaded Steak, Chickpea & Avo Salad","tagline":"Hearty, fresh and ready fast.","serves":"1","prep":"10 min","cook":"8 min","cal":580,"pro":48,"carbs":35,"fat":26,"tags":["High Protein","DF","10 Min"],"love":"High protein, satisfying and on the table fast.","ing":["150g lean steak","3 Persian cucumbers","½ avocado","cherry tomatoes","¼ red onion","½ can chickpeas","coriander","juice 1 lemon","seasoning: salt, pepper, garlic powder, oregano, chilli flakes"],"steps":["Season and cook steak to your liking.","Rest 5 min, slice.","Combine cucumber, avo, tomatoes, onion, chickpeas, coriander.","Toss with lemon.","Top with steak."],"tips":"Swap steak for lean turkey or chicken if preferred."},{"id":"dinner-05","type":"dinner","name":"Turkey Burger Bowl + Crispy Potatoes","tagline":"Burger night, on plan.","serves":"3","prep":"15 min","cook":"25 min","cal":470,"pro":42,"carbs":40,"fat":14,"tags":["High Protein","Meal Prep","DF"],"love":"The burger-night fix that stays high protein.","ing":["500g lean turkey mince","1 tsp garlic powder","1 tsp onion powder","salt & pepper","bowl: lettuce, cherry tomatoes, cucumber, red onion, pickles","potatoes: 300g baby potatoes, paprika, garlic powder, salt","sauce: 2 tbsp DF Greek-style yogurt, 1 tsp Dijon, 1 tsp ketchup, splash pickle juice"],"steps":["Form and season patties.","Air fry or bake.","Cube and season potatoes, air fry until crispy.","Build bowls with salad, potatoes, burgers, sauce."],"tips":"Batch the patties and potatoes for easy meal-prep lunches. Macros are per portion (serves 3)."},{"id":"dinner-06","type":"dinner","name":"Mango Chicken Rice Bowl","tagline":"Sweet, fresh and tropical.","serves":"1","prep":"10 min","cook":"12 min","cal":480,"pro":42,"carbs":60,"fat":8,"tags":["High Protein","DF","GF Option"],"love":"Bright, tropical and genuinely filling.","ing":["120g chicken breast","100g cooked jasmine rice","½ mango","½ cucumber","1 carrot","edamame","spring onions","coriander","dressing: 1 tbsp lime, 1 tbsp rice vinegar, 1 tsp honey, 1 tsp ginger, 1 tsp low-sodium soy"],"steps":["Cook and slice chicken.","Add rice to a bowl.","Top with mango, cucumber, carrot, edamame, chicken.","Mix dressing, pour over.","Finish with coriander and spring onions."],"tips":"Naturally GF with jasmine rice. Great cold the next day."},{"id":"dinner-07","type":"dinner","name":"Greek Chicken Protein Pasta","tagline":"Fresh, zesty and seriously high protein.","serves":"1","prep":"10 min","cook":"12 min","cal":590,"pro":68,"carbs":45,"fat":16,"tags":["High Protein","Kassy's Pick","DF","Meal Prep"],"love":"The highest-protein dinner in the bank, hot or cold.","ing":["75g dry protein pasta","120g chicken breast","½ cucumber","cherry tomatoes","¼ red onion","parsley","mint","30g DF feta","dressing: juice 1 lemon, 1 tsp Dijon, 1 garlic clove, splash water, salt & pepper"],"steps":["Cook protein pasta.","Grill/air fry chicken, slice.","Combine pasta, cucumber, tomatoes, onion, herbs.","Whisk dressing, pour over.","Top with chicken and feta."],"tips":"Serve chilled as a next-day pasta salad."},{"id":"snack-01","type":"snack","name":"Tropical Fruity Bowl","tagline":"Hydrating, fresh and naturally sweet.","serves":"1","prep":"5 min","cook":"No cook","cal":120,"pro":2,"carbs":30,"fat":0,"tags":["Sweet Craving","No Cook","DF","Low Bloat"],"love":"The lightest, most hydrating way to beat a craving.","ing":["150g pineapple","150g watermelon","juice ½ lime"],"steps":["Chop fruit.","Squeeze over lime.","Serve chilled."],"tips":"Add a scoop of protein yoghurt on the side for a protein hit. (Fruit-only, low protein by design.)"},{"id":"snack-02","type":"snack","name":"Rice Cake Protein Bars","tagline":"Crunchy, chocolatey, batch-friendly.","serves":"1","prep":"10 min","cook":"","cal":255,"pro":14,"carbs":25,"fat":14,"tags":["Sweet Craving","High Protein","Meal Prep","DF"],"love":"A make-ahead bar that sorts your week's sweet fix.","ing":["2 plain rice cakes, crushed","2 tbsp sunflower seed butter","1 tbsp maple","1 scoop vanilla protein","15g dark chocolate, melted"],"steps":["Crush rice cakes.","Mix with seed butter, maple, protein.","Press into a container.","Drizzle chocolate.","Freeze 1 hr, slice."],"tips":"Nut-free as written. Double the batch and keep in the freezer. Macros are per bar."},{"id":"snack-03","type":"snack","name":"Watermelon Hydration Shake","tagline":"Pink, protein-packed and ice-cold.","serves":"1","prep":"5 min","cook":"No cook","cal":210,"pro":25,"carbs":20,"fat":2,"tags":["High Protein","No Cook","DF","10 Min"],"love":"Hydrating, refreshing and 25g protein in one glass.","ing":["300g watermelon","1 scoop vanilla protein","ice"],"steps":["Blend until smooth.","Serve immediately."],"tips":"Freeze the watermelon for a thicker, slushie texture."},{"id":"snack-04","type":"snack","name":"Brownie Batter Protein Bowl","tagline":"Tastes like dessert, built like a snack.","serves":"1","prep":"5 min","cook":"No cook","cal":580,"pro":30,"carbs":90,"fat":8,"tags":["Sweet Craving","High Protein","No Cook","DF"],"love":"The chocolate fix that still hits protein.","ing":["60g oats","2 frozen bananas","1 tbsp cocoa","1 scoop chocolate protein","splash soy milk"],"steps":["Blend until thick and smooth.","Add a little soy milk if needed.","Eat now or chill to thicken."],"tips":"A larger, meal-sized sweet, halve the oats/banana for a lighter version."},{"id":"snack-05","type":"snack","name":"Coconut Yogurt Bowl","tagline":"Creamy, cooling and simple.","serves":"1","prep":"5 min","cook":"No cook","cal":285,"pro":6,"carbs":25,"fat":18,"tags":["Sweet Craving","No Cook","DF"],"love":"Cooling and creamy for a low-effort sweet.","ing":["150g coconut yogurt","100g berries","1 tbsp hemp seeds","cinnamon"],"steps":["Add yogurt to a bowl.","Top with berries, hemp, cinnamon."],"tips":"Use a DF high-protein yogurt to lift the protein."},{"id":"snack-06","type":"snack","name":"Almond Butter Stuffed Dates","tagline":"Two-ingredient, caramel-sweet.","serves":"1","prep":"5 min","cook":"No cook","cal":295,"pro":5,"carbs":50,"fat":11,"tags":["Sweet Craving","No Cook","DF"],"love":"Caramel-sweet and ready in seconds.","ing":["3 Medjool dates","1 tbsp almond butter"],"steps":["Slice dates open.","Fill with almond butter.","Serve."],"tips":"Add a square of dark chocolate or a sprinkle of sea salt."},{"id":"snack-07","type":"snack","name":"Frozen Berry Yogurt Bark","tagline":"Make-ahead, freezer-ready treat.","serves":"1","prep":"10 min","cook":"","cal":215,"pro":6,"carbs":25,"fat":9,"tags":["Sweet Craving","No Cook","Meal Prep","DF"],"love":"A batch-once freezer treat for the whole week.","ing":["200g DF yogurt","strawberries","blueberries","1 tbsp hemp seeds"],"steps":["Spread yogurt onto a lined tray.","Top with berries and hemp.","Freeze until solid.","Break into pieces."],"tips":"Batch note, makes several portions, so you only make it once. Macros are per portion."}];
+const WORKOUTS=[{"id":"gym-1","mode":"Gym","title":"Glutes A","focus":"glute growth + shape","line":"Heavy glute-building session for shape and strength. Drive through the heels and own every rep.","stats":{"duration":"45–60 min","sets":"3–5","reps":"8–15","intensity":"High"},"equip":["Barbell","Machines"],"secs":[{"name":"Activation","meta":"3 moves","rest":"","ex":[["Banded Frog Pumps","2 × 30"],["Banded Abduction Pulses","2 × 25"],["Banded Lateral Walks","2 × 20 steps"]]},{"name":"Main Workout","meta":"5 exercises","rest":"Rest: 60s between working sets","ex":[["Barbell Hip Thrust Pyramid","5 sets · 12/10/8/6/15"],["Single-Leg Hip Thrust","3 × 10–12/leg"],["Barbell Romanian Deadlift","4 × 8–10"],["Weighted Step-Ups","3 × 10/leg"],["Cable Kickback Superset","3 rounds · 12/leg + 12/leg"]]},{"name":"Core","meta":"Captain's chair · 3 sets, no rest","rest":"","ex":[["Weighted Knee Crunches ×8 · Straight Leg Lifts ×12","no rest"],["Alternate Leg Lifts ×5/leg · Around the World ×8","no rest"],["Crunches ×4 (each side + middle) · Hold 15s","×3 sets"]]},{"name":"Finisher","meta":"Seated abduction death set · 2 rounds · 60s rest","rest":"","ex":[["Heavy Abductions","×20"],["Abductions (drop weight)","×20"],["Hold open","30s"],["Abduction Pulses","×30"],["Lean-Forward Partials","×20"]]}],"stops":[{"kind":"essential","label":"Fat Loss ends here","stats":{"Time":"30–40m","Sets":"18","Reps":"6–15","Intensity":"Moderate"}},{"kind":"full","label":"Balanced Toning ends here","stats":{"Time":"40–50m","Sets":"21","Reps":"6–15","Intensity":"Mod–High"}},{"kind":"build","label":"Glute Growth ends here","stats":{"Time":"50–60m","Sets":"23","Reps":"6–15","Intensity":"High"}}]},{"id":"gym-2","mode":"Gym","title":"Shoulders + Arms","focus":"capped shoulders + model arms","line":"Capped shoulders, sculpted triceps and upper-body tone. Slow and controlled wins here.","stats":{"duration":"40–50 min","sets":"3–4","reps":"10–15","intensity":"Moderate"},"equip":["Cables"],"secs":[{"name":"Activation","meta":"1 round · 20s rest","rest":"","ex":[["Push-Up Activation Ladder","10→1 reps"]]},{"name":"Main Workout","meta":"7 exercises","rest":"Rest: 60s between working sets","ex":[["Dumbbell Shoulder Press","3 × 8–10"],["Lateral Raise Superset","4 × 12–15 + 4 × 12"],["Cable Y Raise","3 × 12–15"],["Rear Delt Machine","4 × 12–15"],["Face Pulls","3 × 15–20"],["Tricep Superset (Pushdown + Overhead)","3 rounds · 12 + 12"],["Bench Burnout (Incline Push-Up + Dip)","3 rounds"]]},{"name":"Core","meta":"10-min Pilates abs · 40s / 20s","rest":"","ex":[["R1: Toe Taps · Pilates Hundred · Dead Bug + Reach · Reverse Crunch · Hollow Hold","40s each"],["R2: Single Leg Stretch · Double Leg Ext · Flutter Kicks · Pilates Scissors · Hollow Finisher","40s each"]]},{"name":"Finisher","meta":"Model arm finisher · 2–3 rounds · no rest within","rest":"","ex":[["Lateral Raises","×15"],["Rear Delt Fly","×15"],["Around the Worlds","×15"]]}],"stops":[{"kind":"essential","label":"Fat Loss ends here","stats":{"Time":"30–40m","Sets":"23","Reps":"8–20","Intensity":"Moderate"}},{"kind":"full","label":"Balanced Toning ends here","stats":{"Time":"40–50m","Sets":"25","Reps":"8–20","Intensity":"Mod–High"}},{"kind":"build","label":"Glute Growth ends here","stats":{"Time":"45–55m","Sets":"28","Reps":"8–20","Intensity":"Mod–High"}}]},{"id":"gym-3","mode":"Gym","title":"Glutes B","focus":"upper glute + abductor","line":"Upper glute, abductor and glute-shaping session for that rounded, lifted look.","stats":{"duration":"45–55 min","sets":"3–4","reps":"12–20","intensity":"Advanced"},"equip":["Cables","Machines"],"secs":[{"name":"Activation","meta":"2 rounds · 20s rest","rest":"","ex":[["Banded Frog Pumps","×30"],["Banded Lateral Walks","×20/way"],["Banded Kickbacks","×20/leg"]]},{"name":"Main Workout","meta":"5 exercises","rest":"Rest: 60s between working sets","ex":[["Machine Hip Thrust","4 × 6–8 · 1¼ tempo"],["Bulgarian Split Squat (glute bias)","3 × 8–10/leg + drop 10/leg"],["Dumbbell Romanian Deadlift","4 × 10–12 · 3s lower"],["Seated Leg Press (glute stance)","4 × 12"],["Cable Kickbacks","3 × 12–15/leg"]]},{"name":"Core","meta":"Plank challenge · 45s each","rest":"","ex":[["Forearm Plank · Dead Bug · Plank Knee-to-Arm","45s each"],["Reverse Crunch · Forearm Plank · Shoulder Taps","45s each"],["Toe Taps · Plank Saw · Leg Raises · Forearm Plank","45s each"],["Finisher: Plank / Climber / Plank","60s"]]},{"name":"Finisher","meta":"Evil abductor finisher · 3 rounds · 60s rest","rest":"","ex":[["Hip Abduction, Lean forward","×15"],["Sit upright","×15"],["Partials","×20"],["Hold open","20s"]]}],"stops":[{"kind":"essential","label":"Fat Loss ends here","stats":{"Time":"30–40m","Sets":"18","Reps":"6–15","Intensity":"Moderate"}},{"kind":"full","label":"Balanced Toning ends here","stats":{"Time":"40–50m","Sets":"22","Reps":"6–15","Intensity":"Mod–High"}},{"kind":"build","label":"Glute Growth ends here","stats":{"Time":"50–60m","Sets":"25","Reps":"6–15","Intensity":"High"}}]},{"id":"gym-4","mode":"Gym","title":"Pull + Posture","focus":"back, biceps + posture","line":"Back, biceps and posture work for a sculpted, confident upper body.","stats":{"duration":"40–50 min","sets":"3–4","reps":"10–15","intensity":"Moderate"},"equip":["Cables"],"secs":[{"name":"Activation","meta":"5 min steady","rest":"","ex":[["Rowing Machine","5 min steady"]]},{"name":"Main Workout","meta":"6 exercises","rest":"Rest: 60s between working sets","ex":[["Assisted Pull-Ups","4 × 6–10"],["Chest-Supported Row","4 × 10–12"],["Single-Arm Lat Pulldown","3 × 10–12/side"],["Straight-Arm Cable Pulldown","4 × 12–15"],["Rear Delt Fly Machine","4 × 12–15"],["Bicep 21s","3 rounds · 7/7/7"]]},{"name":"Core","meta":"Weighted abs · 45s / 15s · 2 rounds","rest":"","ex":[["Weighted Crunch · Weighted Reverse Crunch","45s each"],["Weighted Toe Reaches · Dumbbell Dead Bug","45s each"],["Weighted Hollow Hold","45s"],["Finisher: Plank / Hip Dips / Plank","60 / 30 / 30s"]]},{"name":"Finisher","meta":"Posture finisher · 3 rounds · 45s rest","rest":"","ex":[["Face Pulls","×15"],["Cable Y Raises","×12"],["Rear Delt Flys","×20"]]}],"stops":[{"kind":"essential","label":"Fat Loss ends here","stats":{"Time":"30–40m","Sets":"22","Reps":"6–15","Intensity":"Moderate"}},{"kind":"full","label":"Balanced Toning ends here","stats":{"Time":"40–50m","Sets":"26","Reps":"6–15","Intensity":"Mod–High"}},{"kind":"build","label":"Glute Growth ends here","stats":{"Time":"45–55m","Sets":"29","Reps":"6–15","Intensity":"Mod–High"}}]},{"id":"home-1","mode":"Home","title":"Glutes A","focus":"glute growth + shape","line":"Home glute-building session using dumbbells, bands or your home alternatives.","stats":{"duration":"35–45 min","sets":"3–4","reps":"10–20","intensity":"Moderate"},"equip":["Home Equipment","Dumbbells","Bands"],"secs":[{"name":"Activation","meta":"3 rounds","rest":"","ex":[["Banded Glute Bridges","×20"],["Banded Abductions","×30"]]},{"name":"Main Workout","meta":"Giant set + supersets","rest":"Rest: 60s between working sets","ex":[["Sofa Hip Thrust ×20 · Pulses ×20 · Hold 20s · Abductions ×30","Giant Set ×4"],["Reverse Lunges ×15/leg · Banded Frog Pumps ×40","Superset ×4"],["Romanian Deadlift ×15 · Banded Kickbacks ×20/leg","Superset ×3"]]},{"name":"Core","meta":"10-min Pilates abs · 45s / 15s","rest":"","ex":[["R1: Toe Taps · Dead Bug · Leg Raises · Reverse Crunches · Pilates Hundreds","45s each"],["R2: Toe Touches · Flutter Kicks · Single Leg Stretch · Double Leg Ext · Hollow Hold","45s each"]]},{"name":"Finisher","meta":"Glute burnout · 3 rounds","rest":"","ex":[["Frog Pumps","×30"],["Abductions","×30"],["Hold Open","30s"]]}],"stops":[{"kind":"essential","label":"Fat Loss ends here","stats":{"Time":"25–35m","Sets":"11","Reps":"15–40","Intensity":"Moderate"}},{"kind":"full","label":"Balanced Toning ends here","stats":{"Time":"35–45m","Sets":"13","Reps":"15–40","Intensity":"Mod–High"}},{"kind":"build","label":"Glute Growth ends here","stats":{"Time":"40–50m","Sets":"16","Reps":"15–40","Intensity":"High"}}]},{"id":"home-2","mode":"Home","title":"Shoulders + Arms","focus":"capped shoulders + model arms","line":"Upper-body shape session you can do anywhere with dumbbells and bands.","stats":{"duration":"30–40 min","sets":"3–4","reps":"12–15","intensity":"Moderate"},"equip":["Dumbbells","Bands"],"secs":[{"name":"Activation","meta":"2 rounds","rest":"","ex":[["Arm Circles Forward","30s"],["Arm Circles Backward","30s"],["Band Pull-Aparts","×20"]]},{"name":"Main Workout","meta":"9 exercises","rest":"Rest: 60s between working sets","ex":[["Push-Up Challenge","10→1 · 55 reps"],["DB Shoulder Press ×15 · Lateral Raises ×15","Superset 1 ×4"],["Incline Press-Ups ×15 · Tricep Dips ×15","Superset 2 ×4"],["Rear Delt Fly ×20 · Front Raises ×15","Superset 3 ×4"],["Diamond Press-Ups to failure · Plank Shoulder Taps ×20","Burnout ×3"]]},{"name":"Core","meta":"10-min ab challenge · for time","rest":"","ex":[["Sit-Ups ×50 · Reverse Crunches ×40","for time"],["Toe Touches ×30 · Leg Raises ×20 · Sit-Ups ×10","for time"],["Finisher: Flutter / Hollow / Toe Pulses / Hollow","4 × 30s"]]},{"name":"Finisher","meta":"Shoulder finisher · 3 rounds","rest":"","ex":[["Lateral Raises","×20"],["Partial Lateral Raises","×20"],["Hold at 90°","20s"]]}],"stops":[{"kind":"essential","label":"Fat Loss ends here","stats":{"Time":"25–35m","Sets":"16","Reps":"15–20","Intensity":"Moderate"}},{"kind":"full","label":"Balanced Toning ends here","stats":{"Time":"35–45m","Sets":"19","Reps":"15–20","Intensity":"Moderate"}},{"kind":"build","label":"Glute Growth ends here","stats":{"Time":"40–50m","Sets":"22","Reps":"15–20","Intensity":"Mod–High"}}]},{"id":"home-3","mode":"Home","title":"Glutes B","focus":"upper glute + abductor","line":"Upper glute and abductor burn using bands, ankle weights and home equipment.","stats":{"duration":"35–45 min","sets":"3–4","reps":"15–25","intensity":"Advanced"},"equip":["Bands","Ankle Weights"],"secs":[{"name":"Activation","meta":"2 rounds","rest":"","ex":[["Banded Frog Pumps","×30"],["Banded Lateral Walks","×20/way"],["Banded Abductions","×30"]]},{"name":"Main Workout","meta":"Giant sets + superset","rest":"Rest: 60s between working sets","ex":[["Sofa Hip Thrust 1¼ ×15 · Abductions ×30 · Hold 30s","Giant Set 1 ×4"],["Bulgarian Split Squat ×12/leg · BW ×10/leg · Pulses ×10/leg","Giant Set 2 ×3"],["Romanian Deadlift ×15 · Elevated Glute Bridge ×20","Superset 3 ×4"]]},{"name":"Core","meta":"8-min ab challenge · 40s / 20s · 2 rounds","rest":"","ex":[["Sit-Ups","40s"],["Reverse Crunches","40s"],["Toe Touches","40s"],["Leg Raises","40s"],["Final: Sit-Ups as fast as possible","30"]]},{"name":"Finisher","meta":"Evil abductor finisher · 3 rounds · 45s rest","rest":"","ex":[["Banded Abductions","×30"],["Abduction Pulses","×30"],["Hold Open","30s"]]}],"stops":[{"kind":"essential","label":"Fat Loss ends here","stats":{"Time":"25–35m","Sets":"11","Reps":"12–30","Intensity":"Moderate"}},{"kind":"full","label":"Balanced Toning ends here","stats":{"Time":"35–45m","Sets":"16","Reps":"12–30","Intensity":"Mod–High"}},{"kind":"build","label":"Glute Growth ends here","stats":{"Time":"40–50m","Sets":"19","Reps":"12–30","Intensity":"High"}}]},{"id":"home-4","mode":"Home","title":"Pull + Posture","focus":"back + posture","line":"Back, posture and upper-body control you can build from home with bands.","stats":{"duration":"30–40 min","sets":"3–4","reps":"12–15","intensity":"Moderate"},"equip":["Bands"],"secs":[{"name":"Activation","meta":"Warm up","rest":"","ex":[["Jumping Jacks","2 min"],["Arm Circles Forward","30s"],["Arm Circles Backward","30s"]]},{"name":"Main Workout","meta":"Giant sets + 21s","rest":"Rest: 60s between working sets","ex":[["Banded Lat Pulldown (Giant Set 1 ×4)","×20"],["Bent-Over Row","×15"],["Band Pull-Aparts","×20"],["Straight-Arm Pulldown (Giant Set 2 ×4)","×15"],["Bent-Over Reverse Fly","×15"],["Banded Y Raises","×15"],["Bicep 21s","3 rounds · 7/7/7"]]},{"name":"Core","meta":"Water bottle abs · 50s / 10s · 4 rounds","rest":"","ex":[["Water Bottle Sit-Ups","50s"],["Water Bottle Toe Touches","50s"],["Water Bottle Leg Raises","50s"]]},{"name":"Finisher","meta":"Posture finisher · 3 rounds · 45s rest","rest":"","ex":[["Band Pull-Aparts","×25"],["Reverse Snow Angels","×15"],["Hold Squeeze","20s"]]}],"stops":[{"kind":"essential","label":"Fat Loss ends here","stats":{"Time":"25–35m","Sets":"11","Reps":"15–21","Intensity":"Moderate"}},{"kind":"full","label":"Balanced Toning ends here","stats":{"Time":"30–40m","Sets":"14","Reps":"15–21","Intensity":"Moderate"}},{"kind":"build","label":"Glute Growth ends here","stats":{"Time":"40–50m","Sets":"17","Reps":"15–21","Intensity":"Mod–High"}}]}];
+const TYPES=['breakfast','lunch','dinner','snack'];
+const TYPENAME={breakfast:'Breakfast',lunch:'Lunch',dinner:'Dinner',snack:'Snack'};
+const days=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],keys=['mon','tue','wed','thu','fri','sat','sun'],habits=['workout','protein','steps','water','meals','stretch'];
+const TIER={loss:['essential','Fat Loss'],tone:['full','Balanced Toning'],glute:['build','Glute Growth']};
+
+/* swaps: keyword matched in ingredients -> [replacement, kcal delta, protein delta] */
+const SWAPS={
+ 'chicken':[['tofu',-25,-14],['prawns',-45,-4],['white fish',-30,-3],['turkey',0,0]],
+ 'salmon':[['white fish',-90,-2],['prawns',-80,-3],['tofu',-60,-13]],
+ 'tuna':[['chickpeas',30,-14],['prawns',-10,-3],['tofu',0,-16]],
+ 'steak':[['chicken breast',-60,2],['tofu',-90,-22],['prawns',-110,-10]],
+ 'turkey mince':[['chicken mince',0,0],['lean beef mince',40,-2],['lentils',-40,-20]],
+ 'eggs':[['silken tofu scramble',-40,-6]],
+ 'rye':[['gluten-free bread',10,-1],['sourdough',15,-1]],
+ 'protein pasta':[['gluten-free pasta',10,-12],['cooked rice',-20,-14]],
+ 'oats':[['gluten-free oats',0,0]],
+ 'vanilla protein':[['vegan vanilla protein',5,-2]],
+ 'chocolate protein':[['vegan chocolate protein',5,-2]],
+ 'soy milk':[['almond milk',-40,-6],['oat milk',10,-4]],
+ 'coconut yogurt':[['soy protein yogurt',-30,10]],
+ 'DF yogurt':[['coconut yogurt',30,-8],['soy protein yogurt',-10,8]]
+};
+
+/* ============ STATE ============ */
+let S=JSON.parse(localStorage.mbGoldenV9||'{}');
+S.setup=S.setup||{height:168,weight:63,goal:'tone',steps:10000,trainDays:4};
+S.goals=S.goals||{cal:1800,pro:120};
+S.people=S.people||1;S.start=S.start||'';S.dayView=S.dayView||0;S.diet=S.diet||'none';S.mode=S.mode||'gym';
+S.avail=S.avail||{mon:'gym',tue:'rest',wed:'home',thu:'gym',fri:'rest',sat:'either',sun:'rest'};
+S.include=S.include||{};S.exclude=S.exclude||{};S.habits=S.habits||{};S.ticks=S.ticks||{};S.logs=S.logs||{};
+S.shopExtra=S.shopExtra||[];S.shopTicks=S.shopTicks||{};
+function $(id){return document.getElementById(id)}
+function save(){localStorage.mbGoldenV9=JSON.stringify(S)}
+function clone(o){return JSON.parse(JSON.stringify(o))}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+
+/* dropdown fills */
+for(let i=0;i<=6;i++)trainDays.innerHTML+=`<option value="${i}" ${i===4?'selected':''}>${i} day${i===1?'':'s'}</option>`;
+for(let i=0;i<=7;i++)snacks.innerHTML+=`<option value="${i}" ${i===3?'selected':''}>${i} day${i===1?'':'s'}</option>`;
+
+/* ============ NAV ============ */
+function go(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));$(p).classList.add('active');document.querySelectorAll('.nav').forEach(x=>x.classList.toggle('active',x.dataset.go===p));scrollTo(0,0)}
+document.addEventListener('click',e=>{let b=e.target.closest('[data-go]');if(b)go(b.dataset.go)});
+
+/* ============ RECIPE HELPERS ============ */
+function recipeRaw(id){return RECIPES.find(r=>r.id===id)}
+function workoutById(id){return WORKOUTS.find(w=>w.id===id)}
+function applySwap(m,key,repl){
+  let sw=(SWAPS[key]||[]).find(s=>s[0]===repl);if(!sw)return m;
+  let x=clone(m),re=new RegExp(key.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+  if(!x.ing.some(i=>re.test(i)))return x;
+  const tidy=t=>t.replace(/\b(tofu|prawns|white fish|chickpeas|lentils|silken tofu scramble)\s+(breast|thigh|fillet|mince)\b/gi,'$1').replace(/\b(shredded roast|roast)\s+(tofu|prawns|white fish|chickpeas)\b/gi,'$2');
+  x.ing=x.ing.map(i=>tidy(i.replace(re,repl)));
+  x.steps=x.steps.map(s=>tidy(s.replace(re,repl)));
+  x.name=tidy(x.name.replace(re,repl.charAt(0).toUpperCase()+repl.slice(1)));
+  x.cal=Math.max(0,x.cal+sw[1]);x.pro=Math.max(0,x.pro+sw[2]);x.swapped=true;
+  return x;
+}
+function applyDiet(m){
+  let x=clone(m),d=S.diet;
+  const has=k=>x.ing.some(i=>i.toLowerCase().includes(k));
+  if(d==='vegan'){
+    ['chicken','salmon','tuna','steak'].forEach(k=>{if(has(k))x=applySwap(x,k,k==='tuna'?'chickpeas':'tofu')});
+    if(has('turkey mince'))x=applySwap(x,'turkey mince','lentils');
+    if(has('eggs'))x=applySwap(x,'eggs','silken tofu scramble');
+    x.ing=x.ing.map(i=>i.replace(/\bhoney\b/gi,'maple'));
+    if(has('vanilla protein'))x=applySwap(x,'vanilla protein','vegan vanilla protein');
+    if(has('chocolate protein'))x=applySwap(x,'chocolate protein','vegan chocolate protein');
+  }
+  if(d==='veg'){
+    ['chicken','salmon','tuna','steak'].forEach(k=>{if(has(k))x=applySwap(x,k,k==='tuna'?'chickpeas':'tofu')});
+    if(has('turkey mince'))x=applySwap(x,'turkey mince','lentils');
+  }
+  if(d==='pesc'){
+    if(has('chicken'))x=applySwap(x,'chicken','white fish');
+    if(has('steak'))x=applySwap(x,'steak','prawns');
+    if(has('turkey mince'))x=applySwap(x,'turkey mince','white fish');
+  }
+  if(d==='gf'){
+    if(has('rye'))x=applySwap(x,'rye','gluten-free bread');
+    if(has('protein pasta'))x=applySwap(x,'protein pasta','gluten-free pasta');
+    if(has('oats'))x=applySwap(x,'oats','gluten-free oats');
+    x.ing=x.ing.map(i=>i.replace(/low-sodium soy|light soy|\bsoy\b(?! milk| protein)/gi,'tamari'));
+  }
+  /* df: the Golden Hour plan is already dairy-free as written */
+  return x;
+}
+function recipe(id){let m=recipeRaw(id);return m?applyDiet(m):null}
+function byType(t){return RECIPES.filter(r=>r.type===t)}
+function pick(a,i){return a[((i%a.length)+a.length)%a.length]}
+
+/* scale quantities inside an ingredient string */
+const FR={'½':.5,'⅓':1/3,'¼':.25,'¾':.75,'⅔':2/3};
+function fmtQty(v){
+  if(v>=10)return String(Math.round(v));
+  let whole=Math.floor(v),rem=v-whole,out='';
+  const fr=[[.25,'¼'],[1/3,'⅓'],[.5,'½'],[2/3,'⅔'],[.75,'¾']];
+  let best=null;for(const [f,s] of fr)if(Math.abs(rem-f)<.07)best=s;
+  if(Math.abs(rem)<.07)out=String(whole||0);
+  else if(best)out=(whole?whole:'')+best;
+  else out=String(Math.round(v*10)/10);
+  return out==='0'?'0':out;
+}
+function scaleText(str,f){
+  if(f===1)return str;
+  return str.replace(/(?<![A-Za-z0-9])(\d+(?:\.\d+)?|[½⅓¼¾⅔])(\s*[–-]\s*(\d+(?:\.\d+)?))?(?=\s|g\b|ml\b|kg\b|$)/g,(m,a,rng,b)=>{
+    let v1=FR[a]!==undefined?FR[a]:parseFloat(a);
+    if(rng){return fmtQty(v1*f)+'–'+fmtQty(parseFloat(b)*f)}
+    return fmtQty(v1*f);
+  });
+}
+function relevantSwaps(m){
+  let arr=[];Object.keys(SWAPS).forEach(k=>{
+    if(m.ing.some(i=>i.toLowerCase().includes(k.toLowerCase())))SWAPS[k].forEach(s=>{if(!m.name.toLowerCase().includes(s[0].toLowerCase()))arr.push([k,s[0]])});
+  });return arr;
+}
+
+/* ============ TARGETS ============ */
+function suggestTargets(){
+  let h=+height.value||168,w=+weight.value||63,td=+trainDays.value,steps=+stepsGoal.value||10000,g=goal.value;
+  let base=w*22+(h-160)*4,stepAdd=Math.max(0,(steps-6000)/1000)*35,trainAdd=td*45;
+  let cal=Math.round((base+stepAdd+trainAdd)/50)*50;
+  if(g==='loss')cal-=250;if(g==='glute')cal+=200;
+  let pro=Math.round(w*(g==='glute'?2.0:1.8));
+  S.setup={height:h,weight:w,goal:g,steps,trainDays:td};S.goals={cal,pro};
+  calGoal.value=cal;proGoal.value=pro;save();renderSummary();
+}
+function renderSummary(){
+  let g=goal.value,td=+trainDays.value,steps=+stepsGoal.value||10000;
+  let name={loss:'fat loss',tone:'a lean, toned look',glute:'glute growth'}[g];
+  setupSummary.innerHTML=`<div class="detail"><div class="box"><b>${S.goals.cal}</b><span>kcal / day</span></div><div class="box"><b>${S.goals.pro}g</b><span>protein / day</span></div><div class="box"><b>${(+steps).toLocaleString()}</b><span>steps / day</span></div></div><p class="muted small">A suggested starting point for ${name} with ${td} training day${td===1?'':'s'} a week. Edit either number before you build, you know your body best.</p>`;
+}
+
+/* ============ BUILDER ============ */
+function renderBuilder(){
+  height.value=S.setup.height;weight.value=S.setup.weight;goal.value=S.setup.goal;stepsGoal.value=S.setup.steps;trainDays.value=S.setup.trainDays;
+  calGoal.value=S.goals.cal;proGoal.value=S.goals.pro;people.value=S.people;startDate.value=S.start;diet.value=S.diet;mode.value=S.mode;
+  if(S.plan)weeks.value=Object.keys(S.plan.weeks).length;
+  $('closeBuilderBtn').style.display=S.plan?'':'none';
+  renderSummary();
+}
+function renderAvail(){
+  avail.innerHTML=days.map((d,i)=>`<label class="field"><span>${d}</span><select onchange="S.avail['${keys[i]}']=this.value;save()">
+  <option value="rest" ${S.avail[keys[i]]==='rest'?'selected':''}>Not free</option>
+  <option value="gym" ${S.avail[keys[i]]==='gym'?'selected':''}>Gym</option>
+  <option value="home" ${S.avail[keys[i]]==='home'?'selected':''}>Home</option>
+  <option value="either" ${S.avail[keys[i]]==='either'?'selected':''}>Either</option></select></label>`).join('');
+}
+function renderDrop(){workoutDrop.innerHTML=WORKOUTS.filter(w=>w.mode.toLowerCase()===mode.value).map(w=>`<option value="${w.id}">${w.mode} · ${w.title}</option>`).join('')}
+mode.onchange=()=>{S.mode=mode.value;save();renderDrop()};
+function addWorkout(inc){let id=workoutDrop.value;if(inc){S.include[id]=true;S.exclude[id]=false}else{S.exclude[id]=true;S.include[id]=false}save();renderChosen()}
+function renderChosen(){
+  let inc=Object.keys(S.include).filter(k=>S.include[k]),exc=Object.keys(S.exclude).filter(k=>S.exclude[k]);
+  chosen.innerHTML=(inc.length||exc.length)?[...inc.map(id=>`<div class="item"><div><div class="it">${workoutById(id).mode} · ${workoutById(id).title}</div><p class="meta small">Included in your rotation</p></div><button class="btn ghost mini" onclick="S.include['${id}']=false;save();renderChosen()">Remove</button></div>`),...exc.map(id=>`<div class="item"><div><div class="it">${workoutById(id).mode} · ${workoutById(id).title}</div><p class="meta small">Excluded from your rotation</p></div><button class="btn ghost mini" onclick="S.exclude['${id}']=false;save();renderChosen()">Remove</button></div>`)].join(''):'<p class="muted small" style="margin-top:10px">Nothing chosen yet, the app will rotate this month\'s workouts to suit your goal and free days.</p>';
+}
+function showBuilder(v){builder.classList.toggle('hidden',!v);built.classList.toggle('hidden',v||!S.plan)}
+function clearPlan(){if(!confirm('Clear your built plan? Your setup stays saved.'))return;S.plan=null;showBuilder(true);save();render()}
+
+function buildPlan(blank){
+  S.setup={height:+height.value||168,weight:+weight.value||63,goal:goal.value,steps:+stepsGoal.value||10000,trainDays:+trainDays.value};
+  S.goals={cal:+calGoal.value||S.goals.cal,pro:+proGoal.value||S.goals.pro};
+  S.people=+people.value||1;S.start=startDate.value;S.diet=diet.value;S.mode=mode.value;
+  let wc=+weeks.value,td=S.setup.trainDays,snackDays=+snacks.value;
+  let included=Object.keys(S.include).filter(k=>S.include[k]).map(workoutById);
+  S.plan={weeks:{},active:1};
+  for(let w=1;w<=wc;w++){
+    S.plan.weeks[w]={};
+    let free=keys.filter(k=>S.avail[k]!=='rest').slice(0,td);
+    keys.forEach((k,i)=>{
+      if(blank){S.plan.weeks[w][k]={workout:'',breakfast:'custom',lunch:'custom',dinner:'custom',snack:i<snackDays?'custom':'none',custom:{},missed:{},p:{},sw:{}};return}
+      let fi=free.indexOf(k),wk='';
+      if(fi>-1&&td>0){
+        let need=S.avail[k]==='either'?S.mode:S.avail[k];
+        let pool=included.filter(x=>x.mode.toLowerCase()===need);
+        if(!pool.length)pool=WORKOUTS.filter(x=>x.mode.toLowerCase()===need&&!S.exclude[x.id]);
+        if(!pool.length)pool=WORKOUTS.filter(x=>x.mode.toLowerCase()===need);
+        wk=pick(pool,fi+(w-1)).id;
+      }
+      let idx=Math.floor(i/2)+(w-1)*2;
+      S.plan.weeks[w][k]={
+        workout:wk,
+        breakfast:pick(byType('breakfast'),i+(w-1)*3).id,
+        lunch:pick(byType('lunch'),idx).id,
+        dinner:pick(byType('dinner'),idx+1).id,
+        snack:i<snackDays?pick(byType('snack'),i+(w-1)*2).id:'none',
+        custom:{},missed:{},p:{},sw:{}
+      };
+    });
+  }
+  S.dayView=0;showBuilder(false);save();render();
+}
+
+/* ============ DAY / SLOT DATA ============ */
+function todayIndex(){if(!S.start)return S.dayView;let a=new Date(S.start+'T00:00:00'),b=new Date();b.setHours(0,0,0,0);return Math.max(0,Math.floor((b-a)/86400000))}
+function dayByIndex(idx){if(!S.plan)return null;let w=Math.floor(idx/7)+1,k=keys[idx%7];return S.plan.weeks[w]?.[k]}
+function slotRecipe(d,s){
+  if(d[s]==='custom'||d[s]==='none'||d.missed?.[s])return null;
+  let m=recipe(d[s]);if(!m)return null;
+  if(d.sw?.[s])m=applySwap(m,d.sw[s][0],d.sw[s][1]);
+  return m;
+}
+function slotData(d,s){
+  if(d.missed?.[s])return{name:'Missed / not tracked',cal:0,pro:0};
+  if(d[s]==='none')return{name:'No snack planned',cal:0,pro:0};
+  if(d[s]==='custom')return d.custom?.[s]?{...d.custom[s],custom:true}:{name:'Custom / add your own',cal:0,pro:0,custom:true};
+  let m=slotRecipe(d,s);if(!m)return{name:'Custom',cal:0,pro:0};
+  let p=d.p?.[s]||1;
+  return{name:m.name,cal:Math.round(m.cal*p),pro:Math.round(m.pro*p),id:m.id,p};
+}
+function dayTotals(d){
+  let ms=TYPES.map(s=>slotData(d,s));
+  return{cal:ms.reduce((a,m)=>a+m.cal,0),pro:ms.reduce((a,m)=>a+m.pro,0)};
+}
+function balanceDay(w,k){
+  let d=S.plan.weeks[w][k],t=dayTotals(d);if(!t.cal)return;
+  let f=S.goals.cal/t.cal;f=Math.max(.7,Math.min(1.4,f));
+  TYPES.forEach(s=>{if(slotRecipe(d,s)){d.p=d.p||{};d.p[s]=Math.round(((d.p[s]||1)*f)*20)/20}});
+  save();render();
+}
+
+/* ============ RENDER: HOME / TODAY ============ */
+function renderHome(){
+  let idx=todayIndex(),d=dayByIndex(idx);
+  todayTitle.textContent=d?'Day '+(idx+1)+' · '+days[idx%7]:'Your day';
+  todayDate.textContent=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+  todayBox.innerHTML=d?renderToday(d,idx):'<p class="muted" style="margin-top:8px">No plan yet. Build your personal workout, step and meal plan in a couple of minutes.</p><button class="btn" style="margin-top:6px" data-go="plan">Go to the planner</button>';
+  homeTargets.innerHTML=`<div class="label">Your targets</div><div class="detail"><div class="box"><b>${S.goals.cal}</b><span>kcal / day</span></div><div class="box"><b>${S.goals.pro}g</b><span>protein / day</span></div><div class="box"><b>${S.setup.steps.toLocaleString()}</b><span>steps / day</span></div></div><p class="muted small">A suggested starting point, adjust to your body and routine in the planner.</p>`;
+}
+function renderToday(d,idx){
+  let t=dayTotals(d),k='d'+idx,wk=workoutById(d.workout);
+  let free=S.goals.cal-t.cal;
+  let pct=Math.min(100,Math.round(t.cal/S.goals.cal*100));
+  return `
+  <div class="row" style="margin:10px 0 4px"><span class="tag red">${t.cal} / ${S.goals.cal} kcal</span><span class="tag green">${t.pro} / ${S.goals.pro}g protein</span><span class="tag gold">${S.setup.steps.toLocaleString()} steps</span></div>
+  <div class="bar"><i style="width:${pct}%" class="${t.cal>S.goals.cal?'over':''}"></i></div>
+  <p class="muted small" style="margin:2px 0 10px">${free>=0?free+' kcal left for extras, snacks and drinks.':'Around '+Math.abs(free)+' kcal over target, tomorrow is a fresh start.'}</p>
+  <div class="item" style="margin:8px 0"><div><div class="label" style="margin:0 0 3px">Workout</div><div class="it">${wk?wk.mode+' · '+wk.title:'Rest day'}</div>${wk?`<p class="meta small">${wk.focus}</p>`:'<p class="meta small">Recovery, steps and stretching still count.</p>'}</div>${wk?`<button class="btn ghost mini" onclick="openWorkout('${wk.id}')">Open</button>`:''}</div>
+  ${TYPES.map(s=>{let m=slotData(d,s),tick=S.ticks[k+s];return `<div class="item" style="margin:8px 0"><div style="display:flex;gap:11px;align-items:center"><input type="checkbox" style="width:19px;height:19px;accent-color:var(--red)" ${tick?'checked':''} onchange="S.ticks['${k+s}']=this.checked;save()"><div><div class="label" style="margin:0 0 3px">${TYPENAME[s]}</div><div class="it" style="${tick?'text-decoration:line-through;color:var(--muted)':''}">${esc(m.name)}</div><p class="meta small">${m.cal} kcal · ${m.pro}g protein</p></div></div>${m.id?`<button class="btn ghost mini" onclick="openMeal('${m.id}',${m.p||1})">Open</button>`:''}</div>`}).join('')}
+  <div class="habitGrid">${habits.map(h=>`<button class="habit ${S.habits[k+h]?'active':''}" onclick="S.habits['${k+h}']=!S.habits['${k+h}'];save();render()">${h}</button>`).join('')}</div>
+  <div class="row" style="margin-top:12px"><button class="btn ghost mini" onclick="S.dayView=Math.max(0,${idx}-1);S.start='';save();render()">Previous day</button><button class="btn ghost mini" onclick="S.dayView=${idx}+1;S.start='';save();render()">Next day</button></div>`;
+}
+
+/* ============ RENDER: PLANNER ============ */
+function changeMeal(w,k,s,v){let d=S.plan.weeks[w][k];d[s]=v;if(d.missed)delete d.missed[s];if(d.p)delete d.p[s];if(d.sw)delete d.sw[s];save();render()}
+function openCustom(w,k,s){
+  modalBody.innerHTML=`<div class="label">Custom ${s}</div><h2 class="h2">Add your own</h2><p class="muted small">For meals out, extras or anything outside the plan. An estimate is completely fine.</p>
+  <label class="field" style="margin-top:10px"><span>Name</span><input id="cn" placeholder="e.g. Matcha latte"></label>
+  <div class="two" style="margin-top:10px"><label class="field"><span>Calories (kcal)</span><input id="cc" type="number" inputmode="numeric"></label><label class="field"><span>Protein (g)</span><input id="cp" type="number" inputmode="numeric"></label></div>
+  <button class="btn" style="margin-top:14px" onclick="let d=S.plan.weeks[${w}]['${k}'];d.custom['${s}']={name:cn.value||'Custom ${s}',cal:+cc.value||0,pro:+cp.value||0};d['${s}']='custom';delete d.missed['${s}'];save();closeModal();render()">Save custom ${s}</button>`;
+  modal.classList.add('active');
+}
+function markMissed(w,k,s){let d=S.plan.weeks[w][k];d.missed[s]=!d.missed[s];save();render()}
+function renderPlan(){
+  renderBuilder();
+  if(!S.plan){planOut.innerHTML='';showBuilder(true);return}
+  let wn=Object.keys(S.plan.weeks).length,opts='';
+  for(let i=1;i<=wn;i++)opts+=`<option value="${i}">Week ${i}</option>`;
+  shopWeek.innerHTML=opts;
+  let tabs='';for(let n=1;n<=wn;n++)tabs+=`<button class="btn ${n===S.plan.active?'':'ghost'} mini" onclick="S.plan.active=${n};save();render()">Week ${n}</button>`;
+  let w=S.plan.active||1,wk=S.plan.weeks[w];
+  planOut.innerHTML=`<div class="row" style="margin:14px 2px">${tabs}</div>`+keys.map((k,i)=>{
+    let d=wk[k],t=dayTotals(d),diff=t.cal-S.goals.cal,wko=workoutById(d.workout);
+    let pct=Math.min(100,Math.round(t.cal/S.goals.cal*100));
+    return `<div class="day"><div class="dayTop"><div><div class="label">${days[i]}</div><h2 class="h3">${t.cal} / ${S.goals.cal} kcal · ${t.pro}g protein</h2></div>
+    <div class="row"><span class="tag ${diff>60?'gold':'green'}">${diff>=0?'+':''}${diff} kcal</span><button class="btn soft mini" onclick="balanceDay(${w},'${k}')">Balance to target</button></div></div>
+    <div class="bar"><i style="width:${pct}%" class="${diff>60?'over':''}"></i></div>
+    <div class="slot"><label class="sl">Workout</label><select onchange="S.plan.weeks[${w}]['${k}'].workout=this.value;save();render()"><option value="">Rest day</option>${WORKOUTS.map(x=>`<option value="${x.id}" ${x.id===d.workout?'selected':''}>${x.mode} · ${x.title}</option>`).join('')}</select>${d.workout?`<button class="btn ghost mini" onclick="openWorkout('${d.workout}')">Open</button>`:'<span></span>'}</div>
+    ${TYPES.map(s=>{
+      let md=slotData(d,s),m=slotRecipe(d,s),p=d.p?.[s]||1;
+      let openBtn=m?`<button class="btn ghost mini" onclick="openMeal('${d[s]}',${p},null,'${w}|${k}|${s}')">Open</button>`:(d[s]==='custom'&&!d.missed?.[s]?`<button class="btn ghost mini" onclick="openCustom(${w},'${k}','${s}')">Edit</button>`:'<span></span>');
+      return `<div class="slot"><label class="sl">${s}</label><select onchange="changeMeal(${w},'${k}','${s}',this.value)">
+      <option value="custom" ${d[s]==='custom'?'selected':''}>Custom / my own</option><option value="none" ${d[s]==='none'?'selected':''}>None</option>
+      ${byType(s==='snack'?'snack':s).map(mm=>`<option value="${mm.id}" ${mm.id===d[s]?'selected':''}>${esc(applyDiet(mm).name)}</option>`).join('')}</select>${openBtn}
+      <div class="slotMeta"><span class="small ${d.missed?.[s]?'muted':''}" style="${d.missed?.[s]?'text-decoration:line-through':''}"><b>${md.cal}</b> kcal · <b>${md.pro}g</b> protein${p!==1?` · <span class="tag blush">${Math.round(p*100)}% portion</span>`:''}${d.sw?.[s]?` · <span class="tag gold">${d.sw[s][1]}</span>`:''}</span>
+      <span class="row" style="gap:6px"><button class="btn soft mini" onclick="openCustom(${w},'${k}','${s}')">Custom</button><button class="btn ghost mini" onclick="markMissed(${w},'${k}','${s}')">${d.missed?.[s]?'Unmiss':'Missed'}</button></span></div></div>`;
+    }).join('')}
+    <div class="habitGrid">${habits.map(h=>`<button class="habit ${S.habits['w'+w+k+h]?'active':''}" onclick="S.habits['w${w}${k}${h}']=!S.habits['w${w}${k}${h}'];save();render()">${h}</button>`).join('')}</div></div>`;
+  }).join('');
+}
+
+/* ============ RECIPE MODAL ============ */
+function openMeal(id,p=1,manual=null,ctx=null){
+  let m=recipeRaw(id);if(!m)return;
+  m=applyDiet(m);
+  if(ctx){let[w,k,s]=ctx.split('|'),d=S.plan.weeks[w][k];
+    if(manual){d.sw=d.sw||{};d.sw[s]=manual}
+    if(manual===false){if(d.sw)delete d.sw[s]}
+    d.p=d.p||{};d.p[s]=p;save();
+    if(d.sw?.[s])m=applySwap(m,d.sw[s][0],d.sw[s][1]);
+  }else if(manual){m=applySwap(m,manual[0],manual[1])}
+  let sw=relevantSwaps(m);
+  let f=p*S.people/(+m.serves||1);
+  let ctxArg=ctx?`'${ctx}'`:'null';
+  let manArg=x=>x?`['${x[0]}','${x[1]}']`:'null';
+  modalBody.innerHTML=`
+  <div class="photo"><div class="mealType">${TYPENAME[m.type]} ${m.swapped?'· swapped':''}</div><h2 class="h2" style="font-size:34px;margin:6px 0 0">${esc(m.name)}</h2><div class="tagline">${esc(m.tagline)}</div></div>
+  <div class="row">${m.tags.map(t=>`<span class="tag blush">${esc(t)}</span>`).join('')}</div>
+  <div class="metaRow"><div class="mm"><div class="k">Serves</div><div class="v">${m.serves}</div></div><div class="mm"><div class="k">Prep</div><div class="v">${m.prep}</div></div><div class="mm"><div class="k">Cook</div><div class="v">${m.cook}</div></div></div>
+  <div class="macroStrip"><div class="m"><div class="k">Calories</div><div class="v">${Math.round(m.cal*p)}<small>kcal</small></div></div><div class="m"><div class="k">Protein</div><div class="v">${Math.round(m.pro*p)}<small>g</small></div></div><div class="m"><div class="k">Carbs</div><div class="v">${Math.round(m.carbs*p)}<small>g</small></div></div><div class="m"><div class="k">Fats</div><div class="v">${Math.round(m.fat*p)}<small>g</small></div></div></div>
+  <p class="muted small" style="margin:0 2px 10px">Per serving at ${Math.round(p*100)}% portion. Macros are estimates, use them as a guide.</p>
+  <div class="row" style="margin-bottom:12px"><button class="btn ghost mini" onclick="openMeal('${id}',${Math.max(.5,Math.round((p-.1)*10)/10)},null,${ctxArg})">−10%</button><span class="tag red">${Math.round(p*100)}% portion</span><button class="btn ghost mini" onclick="openMeal('${id}',${Math.min(2,Math.round((p+.1)*10)/10)},null,${ctxArg})">+10%</button>${ctx?'<span class="tag green">saved to your planner</span>':''}</div>
+  <div class="card"><div class="label">Ingredients${S.people>1||f!==1?` · scaled for ${S.people} ${S.people===1?'person':'people'}`:''}</div><ul class="ing">${m.ing.map(x=>`<li>${esc(scaleText(x,f))}</li>`).join('')}</ul></div>
+  <div class="card" style="margin-top:10px"><div class="label">Method</div><ol class="method">${m.steps.map(x=>`<li>${esc(x)}</li>`).join('')}</ol></div>
+  ${m.tips?`<div class="card" style="margin-top:10px"><div class="label">Tips + notes</div><p class="muted small" style="margin:0">${esc(m.tips)}</p></div>`:''}
+  ${m.love?`<div class="steps-note" style="margin-top:10px"><b>Why you'll love it.</b> ${esc(m.love)}</div>`:''}
+  <div class="card" style="margin-top:10px"><div class="label">Swap an ingredient</div>${sw.length?`<div class="row">${sw.map(x=>`<button class="btn ghost mini" onclick="openMeal('${id}',${p},['${x[0]}','${x[1]}'],${ctxArg})">${esc(x[0])} → ${esc(x[1])}</button>`).join('')}${m.swapped?`<button class="btn soft mini" onclick="openMeal('${id}',${p},false,${ctxArg})">Back to original</button>`:''}</div><p class="muted small" style="margin:10px 2px 0">Swaps update the title, ingredients, method and approximate macros.</p>`:'<p class="muted small" style="margin:0">This one is best exactly as written.</p>'}</div>`;
+  modal.classList.add('active');
+}
+
+/* ============ WORKOUT MODAL ============ */
+function openWorkout(id){
+  let w=workoutById(id);if(!w)return;
+  let[myKind,myName]=TIER[S.setup.goal]||TIER.tone;
+  let stopHTML=st=>{if(!st)return'';let mine=st.kind===myKind;
+    return `<div class="tierStop ${mine?'mine':''}"><span>${esc(st.label)}${mine?' · your finish line':''}</span><span class="ts">${Object.entries(st.stats).map(([k,v])=>k+' '+v).join(' · ')}</span></div>`};
+  let secHTML=(sec,si)=>`<div class="wkSec"><div class="wkSecHead"><div class="wkSecName">${esc(sec.name)}</div><span class="tag">${esc(sec.meta)}</span></div>${sec.rest?`<p class="muted small" style="margin:2px 0 6px">${esc(sec.rest)}</p>`:''}
+    ${sec.ex.map((e,ei)=>{let lk=id+'|'+si+'|'+ei,lg=S.logs[lk]||{};
+      return `<div class="wkRow"><div><div style="font-weight:700">${esc(e[0])}</div>${sec.name==='Main Workout'?`<div class="wkLog"><input placeholder="kg" value="${lg.kg||''}" onchange="S.logs['${lk}']=S.logs['${lk}']||{};S.logs['${lk}'].kg=this.value;save()"><input placeholder="reps" value="${lg.reps||''}" onchange="S.logs['${lk}']=S.logs['${lk}']||{};S.logs['${lk}'].reps=this.value;save()"></div>`:''}</div><span class="wkRep">${esc(e[1])}</span></div>`}).join('')}</div>`;
+  modalBody.innerHTML=`
+  <div class="photo"><div class="mealType">${esc(w.mode)} workout</div><h2 class="h2" style="font-size:34px;margin:6px 0 0">${esc(w.title)}</h2><div class="tagline">${esc(w.focus)}</div></div>
+  <p class="muted" style="margin:0 2px 12px">${esc(w.line)}</p>
+  <div class="detail" style="grid-template-columns:repeat(4,1fr)">${Object.entries(w.stats).map(([k,v])=>`<div class="box"><b style="font-size:16px">${esc(v)}</b><span>${esc(k)}</span></div>`).join('')}</div>
+  <div class="row" style="margin-bottom:8px">${w.equip.map(t=>`<span class="tag blush">${esc(t)}</span>`).join('')}<span class="tag gold">Your tier · ${myName}</span></div>
+  ${secHTML(w.secs[0],0)}
+  ${secHTML(w.secs[1],1)}
+  ${stopHTML(w.stops[0])}
+  ${secHTML(w.secs[2],2)}
+  ${stopHTML(w.stops[1])}
+  ${secHTML(w.secs[3],3)}
+  ${stopHTML(w.stops[2])}
+  <div class="steps-note" style="margin-top:12px"><b>Progress gently.</b> Add a rep, slow the tempo or add a little load each week. Stop at your tier's finish line, or keep going on days you feel strong.</div>`;
+  modal.classList.add('active');
+}
+function closeModal(){modal.classList.remove('active');render()}
+
+/* ============ MEAL + TRAIN BANKS ============ */
+function renderMeals(){
+  mealList.innerHTML=TYPES.map(t=>`<div class="shopHead"><div class="label">${TYPENAME[t]}s</div></div>`+byType(t).map(m=>{let x=applyDiet(m);
+    return `<div class="item"><div><div class="it">${esc(x.name)}</div><div class="meta small">${x.cal} kcal · ${x.pro}g protein · ${esc(x.prep)} prep${+x.serves>1?` · serves ${x.serves}`:''}</div></div><button class="btn ghost mini" onclick="openMeal('${m.id}')">Open</button></div>`}).join('')).join('');
+}
+function renderTrain(){
+  workoutList.innerHTML=['Gym','Home'].map(md=>`<div class="shopHead"><div class="label">${md} sessions</div></div>`+WORKOUTS.filter(w=>w.mode===md).map(w=>`<div class="item"><div><div class="it">${esc(w.title)}</div><div class="meta small">${esc(w.focus)} · ${esc(w.stats.duration||'')}</div></div><button class="btn ghost mini" onclick="openWorkout('${w.id}')">Open</button></div>`).join('')).join('');
+}
+
+/* ============ SHOPPING LIST ============ */
+const PREP=/,\s*(diced|sliced|julienned|shredded|crushed|melted|toasted|cubed|chopped)\b/gi;
+function parseIngLine(str){
+  let out=[];
+  let cm=str.match(/^([a-z ]+):\s*(.*)$/i);
+  if(cm){cm[2].split(/,\s*/).forEach(x=>out.push(...parseIngLine(x)));return out}
+  let s=str.replace(/\(optional\)/gi,'').replace(PREP,'').replace(/\boptional\b/gi,'').trim();
+  let jm=s.match(/^(?:juice|zest)\s+(.+)$/i);
+  if(jm)s=jm[1]+' (for juice)';
+  let m=s.match(/^(\d+(?:\.\d+)?|[½⅓¼¾⅔])(?:\s*[–-]\s*(\d+(?:\.\d+)?))?\s*(g|kg|ml|tbsp|tsp|scoops?|slices?|cups?|tins?|cans?)?\s+(.+)$/i);
+  if(!m){out.push({name:s,unit:'',qty:0});return out}
+  let q=FR[m[1]]!==undefined?FR[m[1]]:parseFloat(m[1]);
+  if(m[2])q=parseFloat(m[2]);
+  let unit=(m[3]||'').toLowerCase().replace(/s$/,'');if(unit==='kg'){q*=1000;unit='g'}
+  if(unit==='scoop')unit='scoop';
+  out.push({name:m[4].trim(),unit,qty:q});return out;
+}
+function addShopExtra(){if(extraShop.value.trim()){S.shopExtra.push(extraShop.value.trim());extraShop.value='';save();renderShop()}}
+function renderShop(){
+  if(!S.plan){shopList.innerHTML='<div class="card" style="margin-top:12px"><p class="muted" style="margin:0">Build your plan first, then your shopping list appears here automatically.</p></div>';return}
+  let w=+shopWeek.value||1,agg={};
+  Object.values(S.plan.weeks[w]||{}).forEach(d=>TYPES.forEach(s=>{
+    let m=slotRecipe(d,s);if(!m)return;
+    let f=(d.p?.[s]||1)*S.people/(+m.serves||1);
+    m.ing.forEach(line=>parseIngLine(line).forEach(it=>{
+      let key=it.name.toLowerCase();
+      if(!agg[key])agg[key]={name:it.name,unit:it.unit,qty:0,any:false};
+      if(it.qty&&agg[key].unit===it.unit)agg[key].qty+=it.qty*f;else if(it.qty){agg[key].qty+=it.qty*f;agg[key].unit=agg[key].unit||it.unit}
+      else agg[key].any=true;
+    }));
+  }));
+  S.shopExtra.forEach((x,xi)=>{agg['extra:'+x]={name:x,unit:'',qty:0,any:true,extra:xi}});
+  let entries=Object.entries(agg);
+  if(!entries.length){shopList.innerHTML='<div class="card" style="margin-top:12px"><p class="muted" style="margin:0">Nothing to shop for this week yet.</p></div>';return}
+  shopList.innerHTML=`<p class="muted small" style="margin:12px 4px 4px">Week ${w} · cooking for ${S.people} ${S.people===1?'person':'people'} · ${entries.length} items</p>`+entries.map(([key,v])=>{
+    let amt=v.qty?(v.unit==='g'||v.unit==='ml'?Math.round(v.qty)+v.unit:fmtQty(v.qty)+(v.unit?' '+v.unit:'')):'as needed';
+    let tk='w'+w+'|'+key,done=S.shopTicks[tk];
+    return `<label class="shopRow ${done?'done':''}"><input type="checkbox" ${done?'checked':''} onchange="S.shopTicks['${tk.replace(/'/g,"\\'")}']=this.checked;save();renderShop()"><span class="sn">${esc(v.name)}</span><span class="sg">${amt}${v.extra!==undefined?` <button class="btn ghost mini" onclick="S.shopExtra.splice(${v.extra},1);save();renderShop()">×</button>`:''}</span></label>`;
+  }).join('');
+}
+
+/* ============ GUIDE ============ */
+const GUIDE={
+ 'Getting started':['Set your height, weight, step goal and training days in the Plan tab, then tap suggest. The app offers a starting point for calories and protein that you can edit before building.','Pick your weeks, snack days and dietary requirement, then build. Your planner, Today view and shopping list all update together.'],
+ 'Calories + protein':['Your targets are a suggested starting point, not a rule. Adjust to your body, your hunger and your routine.','Each day shows what your planned meals add up to and what that leaves for extras, snacks and drinks. Use the balance button on any day to gently scale portions towards your target.'],
+ 'Swaps + dietary needs':['Open any recipe to see swaps that actually fit that meal. A swap updates the title, ingredients, method and approximate macros.','Choose vegetarian, vegan, pescetarian or gluten-free in the planner and every meal, and your shopping list, adapts. The Golden Hour plan is already dairy-free as written.'],
+ 'Training tiers':['Every workout has three finish lines. Fat Loss ends after the main workout, Balanced Toning adds core, Glute Growth adds the finisher.','Your goal sets your finish line automatically, it is highlighted inside each workout. Stop there, or keep going on days you feel strong.'],
+ 'Steps + rest days':['Your step goal matters as much as your sessions. Walks, errands and everyday movement all count.','Zero training days is a valid setup. The app will plan meals and steps and leave every day as rest.'],
+ 'A gentle note':['This is general fitness and nutrition guidance, not medical advice. Results vary and are never guaranteed.','If you are pregnant, injured or managing a health condition, check in with a professional first. Be kind to yourself, consistency beats perfection.']
+};
+function openGuide(k){modalBody.innerHTML=`<div class="label">How to use</div><h2 class="h2">${esc(k)}</h2>${GUIDE[k].map(x=>`<div class="card" style="margin-top:10px"><p class="muted" style="margin:0">${esc(x)}</p></div>`).join('')}`;modal.classList.add('active')}
+function renderGuide(){guideList.innerHTML=Object.keys(GUIDE).map(k=>`<div class="item"><div><div class="it">${esc(k)}</div><p class="meta small">${esc(GUIDE[k][0].slice(0,64))}…</p></div><button class="btn ghost mini" onclick="openGuide('${k.replace(/'/g,"\\'")}')">Open</button></div>`).join('')}
+
+function installHelp(){modalBody.innerHTML='<div class="label">Save to home screen</div><h2 class="h2">Keep it one tap away</h2><div class="card" style="margin-top:10px"><p class="muted" style="margin:0"><b>iPhone.</b> Open this page in Safari, tap Share, then Add to Home Screen.</p></div><div class="card" style="margin-top:10px"><p class="muted" style="margin:0"><b>Android.</b> Open in Chrome, tap the three dots, then Add to Home screen or Install app.</p></div>';modal.classList.add('active')}
+
+/* ============ RENDER ALL ============ */
+function render(){renderHome();renderAvail();renderDrop();renderChosen();renderPlan();renderMeals();renderTrain();renderShop();renderGuide()}
+render();
+</script></body></html>
