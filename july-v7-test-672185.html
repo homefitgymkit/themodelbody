@@ -728,11 +728,11 @@ function renderShop(){
   let entries=Object.entries(agg);
   if(!entries.length){shopList.innerHTML='<div class="card" style="margin-top:12px"><p class="muted" style="margin:0">Nothing to shop for this week yet.</p></div>';return}
   const CATS=[
-   ['Protein',/\b(chicken|salmon|tuna|steak|turkey|prawns|white fish|tofu|tempeh|egg|chickpeas|butter beans|black beans|white beans|lentils|edamame|mince)\b/i],
+   ['Herbs + seasoning',/\b(coriander|parsley|mint|basil|chilli|salt|black pepper|cumin|paprika|garlic powder|onion powder|oregano|cinnamon|ginger|seasoning|almond essence|matcha)\b/i],
+   ['Protein',/\b(chicken(?! stock)|salmon|tuna|steak|turkey|prawns|white fish|tofu|tempeh|egg|chickpeas|butter beans|black beans|white beans|lentils|edamame|mince)\b/i],
    ['Fruit + veg',/\b(spinach|kale|cucumber|carrot|pepper|tomato|onion|garlic clove|lemon|lime|mango|banana|berr|strawberr|blueberr|cherr|watermelon|pineapple|avocado|courgette|mushroom|lettuce|iceberg|cabbage|leaves|little gem|green beans|peas|sweet potato|potato|pickle|salad|greens|grapes|dates|kimchi|sauerkraut)\b/i],
    ['Carbs + grains',/\b(rice|pasta|spaghetti|oats|rye|bread|sourdough|rice cakes?|corn cakes?|wrap|granola)\b/i],
    ['Chilled + dairy-free',/\b(yogurt|(?<!coconut )milk|feta|protein shake|(?<!almond |peanut |seed )butter(?! beans))\b/i],
-   ['Herbs + seasoning',/\b(coriander|parsley|mint|basil|chilli|salt|black pepper|cumin|paprika|garlic powder|onion powder|oregano|cinnamon|ginger|seasoning|almond essence|matcha|pepper \(for)/i],
    ['Pantry + sauces',/./]
   ];
   const catOf=v=>{if(v.extra!==undefined)return'Extras';let n=v.name;for(const[c,re]of CATS)if(re.test(n))return c;return'Pantry + sauces'};
