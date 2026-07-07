@@ -26,7 +26,7 @@ button,select,input,label,.nav{touch-action:manipulation}
 .page.active{animation:pageIn .28s ease}
 @keyframes sheetUp{from{transform:translateY(40px);opacity:.6}to{transform:none;opacity:1}}
 .modal.active .sheet{animation:sheetUp .3s cubic-bezier(.2,.8,.3,1)}
-.rings{display:flex;justify-content:center;gap:26px;margin:8px 0 2px}
+.rings{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 22px;margin:8px 0 2px}
 .ringBox{text-align:center}
 .ringBox .rl{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:2px}
 .ringBox svg text{font-family:var(--serif);fill:var(--ink)}
@@ -306,15 +306,15 @@ ol.method li{margin-bottom:6px}
 </main>
 
 <main class="page" id="logs">
-  <section class="card"><div class="label">Logs</div><h2 class="h2">Your month so far</h2><p class="muted small">A short record of what you achieved each day. Ticks come from your Today page.</p></section>
+  <section class="card"><div class="label">Logs</div><h2 class="h2">Your month so far</h2><p class="muted small">A short record of what you achieved each day, and your personal bests. Ticks come from your Today page.</p></section>
+  <div class="row" style="margin:14px 2px 2px;gap:8px"><button class="btn guideTab mini" id="ltabLog" onclick="setLogTab('log')">Daily log</button><button class="btn ghost guideTab mini" id="ltabPB" onclick="setLogTab('pb')">Personal Bests</button></div>
   <div id="logList"></div>
+  <div id="pbList" class="hidden"></div>
 </main>
 
 <main class="page" id="guide">
-  <section class="card"><div class="label">The Model Body</div><h2 class="h2">Your Guide</h2><p class="muted small">Everything you need to follow Golden Hour with confidence, and a running record of your personal bests.</p></section>
-  <div class="row" style="margin:14px 2px 2px;gap:8px"><button class="btn guideTab mini" id="gtabGuide" onclick="setGuideTab('guide')">The Guide</button><button class="btn ghost guideTab mini" id="gtabPB" onclick="setGuideTab('pb')">Personal Bests</button></div>
+  <section class="card"><div class="label">The Model Body</div><h2 class="h2">Your Guide</h2><p class="muted small">Everything you need to follow Golden Hour with confidence.</p></section>
   <div id="guideList"></div>
-  <div id="pbList" class="hidden"></div>
 </main>
 
 <nav class="bottom">
@@ -362,7 +362,7 @@ const SWAPS={
  'salmon':[['butter beans',-100,-14],['marinated tofu',-50,-12],['white fish',-90,-2],['prawns',-80,-3]],
  'tuna':[['chickpeas',30,-14],['white beans',20,-14],['prawns',-10,-3]],
  'steak':[['tempeh',-60,-14],['black beans',-90,-24],['chicken breast',-60,2],['prawns',-110,-10]],
- 'turkey mince':[['lentils',-40,-20],['chicken mince',0,0],['lean beef mince',40,-2]],
+ 'turkey mince':[['lentils',-40,-20],['chicken mince',0,0],['lean beef mince',40,-2],['white fish',-50,-3]],
  'eggs':[['scrambled tofu',-40,-6],['flax eggs',-60,-10]],
  'egg whites':[['silken tofu',-20,-8]],
  'rye':[['gluten-free bread',10,-1],['sourdough',15,-1]],
@@ -381,13 +381,15 @@ const SWAPS={
  'peanut butter':[['sunflower seed butter',0,0],['powdered peanut butter',-70,3],['almond butter',0,-1]],
  'cashew butter':[['sunflower seed butter',-10,0],['peanut butter',0,1]],
  'almond milk':[['oat milk',15,0],['soy milk',0,3]],
- 'cooked jasmine rice':[['cauliflower rice',-140,-3],['quinoa',10,3]]
+ 'cooked jasmine rice':[['cauliflower rice',-140,-3],['quinoa',10,3]],
+ 'prawns':[['butter beans',20,-13],['chickpeas',30,-13]],
+ 'egg':[['flax egg',-30,-5]]
 };
 /* Preferred replacements per diet, in order. Recipes rotate through the list so
    vegan weeks are not wall-to-wall tofu. */
 const DIET_PREFS={
- vegan:{'chicken':['chickpeas','tempeh','tofu'],'salmon':['butter beans','marinated tofu'],'tuna':['chickpeas','white beans'],'steak':['tempeh','black beans'],'turkey mince':['lentils'],'eggs':['scrambled tofu'],'egg whites':['silken tofu'],'vanilla protein':['vegan vanilla protein'],'chocolate protein':['vegan chocolate protein']},
- veg:{'chicken':['chickpeas','tempeh','tofu'],'salmon':['marinated tofu','butter beans'],'tuna':['chickpeas'],'steak':['tempeh'],'turkey mince':['lentils']},
+ vegan:{'chicken':['chickpeas','tempeh','tofu'],'salmon':['butter beans','marinated tofu'],'tuna':['chickpeas','white beans'],'steak':['tempeh','black beans'],'turkey mince':['lentils'],'eggs':['scrambled tofu'],'egg whites':['silken tofu'],'vanilla protein':['vegan vanilla protein'],'chocolate protein':['vegan chocolate protein'],'prawns':['butter beans','chickpeas'],'egg':['flax egg']},
+ veg:{'chicken':['chickpeas','tempeh','tofu'],'salmon':['marinated tofu','butter beans'],'tuna':['chickpeas'],'steak':['tempeh'],'turkey mince':['lentils'],'prawns':['butter beans','chickpeas']},
  pesc:{'chicken':['white fish','prawns'],'steak':['prawns'],'turkey mince':['white fish']},
  gf:{'rye':['gluten-free bread'],'protein pasta':['gluten-free pasta'],'oats':['gluten-free oats']},
  df:{}
@@ -410,11 +412,12 @@ const DIET_TEXT={
 /* after applyDiet, if any of these still appear the recipe can't be made to fit that diet,
    so it is dropped from that diet's planner rather than filled with a random recipe. */
 const DIET_BAN={
- vegan:/\b(chicken(?! stock)|turkey|steak|beef|bacon|ham|pork|salmon|tuna|white fish|\bfish\b|prawns|\beggs?\b|egg whites|honey)\b/i,
+ vegan:/\b(chicken(?! stock)|turkey|steak|beef|bacon|ham|pork|salmon|tuna|white fish|\bfish\b|prawns|(?<!flax )eggs?|honey)\b/i,
  veg:/\b(chicken(?! stock)|turkey|steak|beef|bacon|ham|pork|salmon|tuna|white fish|\bfish\b|prawns)\b/i,
  pesc:/\b(chicken(?! stock)|turkey|steak|beef|bacon|ham|pork)\b/i
 };
-function dietFits(m){let d=S.diet,re=DIET_BAN[d];if(!re)return true;let x=applyDiet(m);return !x.ing.some(i=>re.test(i))&&!re.test(x.name)}
+/* a recipe fits a diet if, after auto-swaps, no banned ingredient remains (title is cosmetic) */
+function dietFits(m){let d=S.diet,re=DIET_BAN[d];if(!re)return true;let x=applyDiet(m);return !x.ing.some(i=>re.test(i))}
 
 /* ============ STATE ============ */
 let S=JSON.parse(localStorage.mbGoldenV9||'{}');
@@ -581,7 +584,8 @@ function applyDiet(m){
   let x=clone(m),d=S.diet;
   if(d==='none')return x;
   const prefs=DIET_PREFS[d]||{},over=(DIET_OVERRIDES[m.id]||{})[d]||{};
-  const idx=parseInt(m.id.split('-')[1])||0;
+  /* take the last number in the id, so pack ids like june-lunch-01 / pack-sgs-06 rotate correctly */
+  const idx=parseInt((m.id.match(/\d+/g)||['1']).pop())||1;
   const has=k=>x.ing.some(i=>i.toLowerCase().includes(k.toLowerCase()));
   Object.keys(prefs).forEach(k=>{
     if(!has(k))return;
@@ -589,6 +593,13 @@ function applyDiet(m){
     x=applySwap(x,k,repl);
   });
   (DIET_TEXT[d]||[]).forEach(([re,to])=>{x.ing=x.ing.map(i=>i.replace(re,to));x.steps=x.steps.map(s=>s.replace(re,to))});
+  /* tidy any protein word left in the title so it matches the swapped ingredients */
+  const titleFix={
+   vegan:{chicken:'Chickpea',turkey:'Lentil',steak:'Tempeh',beef:'Lentil',salmon:'Butter Bean',tuna:'Chickpea',prawn:'Butter Bean'},
+   veg:{chicken:'Chickpea',turkey:'Lentil',steak:'Tempeh',beef:'Lentil',salmon:'Tofu',tuna:'Chickpea',prawn:'Bean'},
+   pesc:{chicken:'Fish',turkey:'Fish',steak:'Prawn',beef:'Fish'}
+  }[d];
+  if(titleFix)Object.keys(titleFix).forEach(wd=>{x.name=x.name.replace(new RegExp('\\b'+wd+'s?\\b','gi'),titleFix[wd])});
   return x;
 }
 function recipe(id){let m=recipeRaw(id);return m?applyDiet(m):null}
@@ -849,6 +860,8 @@ function renderToday(d,idx){
   <div class="rings">
     ${ring(eaten.cal/S.goals.cal,'var(--red)',eaten.cal,'of '+S.goals.cal,'kcal eaten')}
     ${ring(eaten.pro/S.goals.pro,'var(--green)',eaten.pro+'g','of '+S.goals.pro+'g','protein eaten')}
+    ${ring(S.ticks[k+'workout']?1:0,'var(--ink)',S.ticks[k+'workout']?'✓':'·',S.ticks[k+'workout']?'done':'to do','workout')}
+    ${ring(S.ticks[k+'steps']?1:0,'var(--gold)',S.ticks[k+'steps']?'✓':'·',S.ticks[k+'steps']?'done':'to do','steps')}
   </div>
   <p class="muted small" style="margin:2px 0 4px;text-align:center">Tick meals off below and your rings fill up.</p>
   <p class="muted small" style="margin:0 0 10px;text-align:center">Planned today: <b>${t.cal}</b> kcal · <b>${t.pro}g</b> protein${free>=0?' · '+free+' kcal left for extras.':' · about '+Math.abs(free)+' kcal over, close is perfect.'}</p>
@@ -874,6 +887,7 @@ function openMealOptions(idx,s){
 
 /* ============ RENDER: LOGS ============ */
 function renderLogs(){
+  renderPB();setLogTab(S.logTab||'log');
   if(!S.plan){logList.innerHTML='<div class="card" style="margin-top:12px"><p class="muted" style="margin:0">Build your plan and start ticking days off, your log grows here.</p></div>';return}
   let total=Object.keys(S.plan.weeks).length*7,cur=todayIndex();
   let rows='';
@@ -1263,16 +1277,15 @@ const GUIDE={
   'Be kind to yourself, you are building habits for life, not chasing a deadline.']}
 };
 function openGuide(k){let g=GUIDE[k];modalBody.innerHTML=`<div class="guideDoc"><div class="gcap">The Model Body · Guide</div><h2 class="gtitle">${k}</h2><div class="gsub">${g.sub||''}</div><div class="grule"></div>${g.body.map((x,i)=>`<p class="gpara${i===0?' lead':''}">${x}</p>`).join('')}</div>`;modal.classList.add('active')}
-function setGuideTab(t){S.guideTab=t;
-  $('gtabGuide').className='btn guideTab mini'+(t==='guide'?'':' ghost');
-  $('gtabPB').className='btn guideTab mini'+(t==='pb'?'':' ghost');
-  $('guideList').classList.toggle('hidden',t!=='guide');
+function setLogTab(t){S.logTab=t;
+  if(!$('ltabLog'))return;
+  $('ltabLog').className='btn guideTab mini'+(t==='log'?'':' ghost');
+  $('ltabPB').className='btn guideTab mini'+(t==='pb'?'':' ghost');
+  $('logList').classList.toggle('hidden',t!=='log');
   $('pbList').classList.toggle('hidden',t!=='pb');
 }
 function renderGuide(){
   guideList.innerHTML=Object.keys(GUIDE).map((k,i)=>`<div class="guideItem"><div style="display:flex;gap:13px;align-items:center"><span class="gnum">${i+1}</span><div><div class="gk">${k}</div><div class="gs">${GUIDE[k].sub||''}</div></div></div><button class="btn ghost mini" onclick="openGuide('${k.replace(/'/g,"\\'")}')">Open</button></div>`).join('');
-  renderPB();
-  setGuideTab(S.guideTab||'guide');
 }
 /* ============ PERSONAL BESTS ============ */
 /* best set per exercise: highest weight first, then most reps at that weight */
