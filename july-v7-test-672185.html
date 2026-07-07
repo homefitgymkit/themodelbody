@@ -1,9 +1,13 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Golden Hour"><meta name="theme-color" content="#F8F3EB"><link rel="apple-touch-icon" href="/Members/meals-icon.png"><link rel="manifest" href="/july-v7-test-672185.webmanifest"><title>July Golden Hour · The Model Body Club</title>
 <style>
-:root{--bg:#F8F3EB;--paper:#FFFDF8;--line:#E3D7C2;--ink:#1A1410;--muted:#6B5F58;--red:#B42131;--blush:#FCF1ED;--blushline:#F0C7C4;--green:#557B50;--greenbg:#EDF4EA;--greenline:#D7E7D0;--gold:#8A6727;--goldbg:#FFF7E5}
+@font-face{font-family:'DM Serif Display';src:url('/fonts/dm-serif-display-latin.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'DM Serif Display';src:url('/fonts/dm-serif-display-italic-latin.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:'Manrope';src:url('/fonts/manrope-latin.woff2') format('woff2');font-weight:200 800;font-style:normal;font-display:swap}
+@font-face{font-family:'Archivo';src:url('/fonts/archivo-latin.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
+:root{--bg:#F8F3EB;--paper:#FFFDF8;--line:#E3D7C2;--ink:#1A1410;--muted:#6B5F58;--red:#B42131;--blush:#FCF1ED;--blushline:#F0C7C4;--green:#557B50;--greenbg:#EDF4EA;--greenline:#D7E7D0;--gold:#8A6727;--goldbg:#FFF7E5;--serif:'DM Serif Display',Georgia,serif}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:linear-gradient(#F8F3EB,#EFE7D9);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--ink)}
+body{margin:0;background:linear-gradient(#F8F3EB,#EFE7D9);font-family:'Manrope',-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--ink)}
 button,input,select{font:inherit}button{cursor:pointer}
 button,select,input,label,.nav{touch-action:manipulation}
 .btn,.arrow,.nav,.habit{-webkit-tap-highlight-color:transparent;transition:transform .12s ease}
@@ -16,20 +20,38 @@ button,select,input,label,.nav{touch-action:manipulation}
 .heroMini{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 18px}
 .heroClose{position:absolute;top:12px;right:12px;border:1px solid var(--line);background:#fff;border-radius:999px;width:30px;height:30px;font-size:13px;color:var(--muted);display:grid;place-items:center;padding:0}
 .wkSec.beyond{opacity:.62}
-.wkSec.beyond .wkSecName:after{content:" · optional extra";font-size:11px;color:var(--gold);font-family:-apple-system,BlinkMacSystemFont,sans-serif}
+.wkSec.beyond .wkSecName:after{content:" · optional extra";font-size:11px;color:var(--gold);font-family:'Manrope',-apple-system,sans-serif}
+.label,.tag,.stepLbl,.brand,.nav,.habit,.mealType,.slot .sl{font-family:'Archivo','Manrope',-apple-system,sans-serif}
+@keyframes pageIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.page.active{animation:pageIn .28s ease}
+@keyframes sheetUp{from{transform:translateY(40px);opacity:.6}to{transform:none;opacity:1}}
+.modal.active .sheet{animation:sheetUp .3s cubic-bezier(.2,.8,.3,1)}
+.rings{display:flex;justify-content:center;gap:26px;margin:8px 0 2px}
+.ringBox{text-align:center}
+.ringBox .rl{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.ringBox svg text{font-family:var(--serif);fill:var(--ink)}
+#restPill{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(88px + env(safe-area-inset-bottom));z-index:70;background:var(--ink);color:#fff;border-radius:999px;padding:12px 20px;font-weight:800;font-size:15px;display:flex;gap:12px;align-items:center;box-shadow:0 12px 30px #1a141055}
+#restPill button{background:#ffffff22;border:0;color:#fff;border-radius:999px;padding:5px 11px;font-size:12px;font-weight:800}
+#restPill.done{background:var(--green)}
+.timerBtn{border:1px solid #EBD9A9;background:var(--goldbg);color:var(--gold);border-radius:999px;padding:6px 11px;font-size:11px;font-weight:900;letter-spacing:.05em}
+.thumb{width:56px;height:56px;object-fit:contain;flex:none;filter:drop-shadow(0 4px 8px #1a141022)}
+.photoImg{width:150px;height:150px;object-fit:contain;float:right;margin:-8px -4px 0 10px;filter:drop-shadow(0 8px 16px #1a141026)}
+@media(max-width:720px){.photoImg{width:112px;height:112px}}
+#confettiC{position:fixed;inset:0;pointer-events:none;z-index:80}
+.milestone{display:inline-block;background:var(--goldbg);border:1px solid #EBD9A9;color:var(--gold);border-radius:999px;padding:5px 11px;font-size:11px;font-weight:900;letter-spacing:.05em}
 .app{max-width:980px;margin:auto;min-height:100vh;padding-bottom:96px}
 .top{position:sticky;top:0;z-index:20;background:#f8f3ebf2;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:14px 18px;display:flex;justify-content:space-between;align-items:center}
 .brand{font-size:12px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
 .brand b{color:var(--red)}
-.top .theme{font-family:Georgia,serif;font-style:italic;font-size:13px;color:var(--gold)}
+.top .theme{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--gold)}
 .page{display:none;padding:16px}
 .page.active{display:block}
 .card,.hero,.day,.item{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:0 14px 38px #1a141014}
 .hero{text-align:center;padding:30px 18px 26px;background:radial-gradient(circle at 82% -4%,#b4213118,transparent 38%),linear-gradient(150deg,#fffaf4,var(--bg))}
-h1{font-family:Georgia,serif;font-size:clamp(44px,11vw,78px);font-weight:400;line-height:.92;margin:14px 0 10px;letter-spacing:-.03em}
+h1{font-family:var(--serif);font-size:clamp(44px,11vw,78px);font-weight:400;line-height:.92;margin:14px 0 10px;letter-spacing:-.03em}
 .script{font-style:italic;color:var(--red)}
-.h2{font-family:Georgia,serif;font-size:29px;margin:0 0 6px;font-weight:400;letter-spacing:-.01em}
-.h3{font-family:Georgia,serif;font-size:22px;margin:0 0 4px;font-weight:400}
+.h2{font-family:var(--serif);font-size:29px;margin:0 0 6px;font-weight:400;letter-spacing:-.01em}
+.h3{font-family:var(--serif);font-size:22px;margin:0 0 4px;font-weight:400}
 .label{display:block;font-size:11px;font-weight:900;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin:0 0 8px}
 .muted,.meta{color:var(--muted);line-height:1.5}
 .small{font-size:13px;line-height:1.5}
@@ -81,26 +103,26 @@ input::placeholder{color:#B9AB9E}
 .sheetTop{display:flex;justify-content:flex-end;position:sticky;top:0;z-index:5;margin-bottom:4px}
 .photo{border-radius:22px;background:linear-gradient(135deg,#EACDC7,#F8F3EB 45%,#EED9C4);padding:26px 20px 20px;margin-bottom:14px;border:1px solid var(--line)}
 .mealType{font-size:11px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--red)}
-.tagline{font-family:Georgia,serif;font-style:italic;font-size:19px;color:var(--red);margin:4px 0 0}
+.tagline{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--red);margin:4px 0 0}
 .macroStrip{display:grid;grid-template-columns:repeat(4,1fr);background:var(--ink);border-radius:18px;overflow:hidden;margin:12px 0}
 .macroStrip .m{padding:13px 8px;text-align:center;border-left:1px solid #ffffff1f}
 .macroStrip .m:first-child{border-left:0}
 .macroStrip .k{font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#E8A0A8;margin-bottom:5px}
-.macroStrip .v{font-family:Georgia,serif;font-size:22px;color:#fff;line-height:1}
+.macroStrip .v{font-family:var(--serif);font-size:22px;color:#fff;line-height:1}
 .macroStrip .v small{font-size:11px;color:#D8CFC4;font-family:inherit;margin-left:2px}
 .metaRow{display:flex;gap:22px;margin:12px 2px;flex-wrap:wrap}
 .metaRow .mm .k{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.metaRow .mm .v{font-family:Georgia,serif;font-size:19px}
+.metaRow .mm .v{font-family:var(--serif);font-size:19px}
 ul.ing,ol.method{margin:6px 0 0;padding-left:20px;line-height:1.75}
 ol.method li{margin-bottom:6px}
 .detail{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
 .box{border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px 8px;text-align:center}
-.box b{display:block;color:var(--red);font-family:Georgia,serif;font-size:22px;font-weight:400}
+.box b{display:block;color:var(--red);font-family:var(--serif);font-size:22px;font-weight:400}
 .box span{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
 /* workout modal */
 .wkSec{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:10px 0}
 .wkSecHead{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
-.wkSecName{font-family:Georgia,serif;font-size:20px}
+.wkSecName{font-family:var(--serif);font-size:20px}
 .wkNote{font-size:12px;color:var(--muted);margin:3px 0 6px}
 .wkRow{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:10px 0;border-top:1px dashed var(--line)}
 .wkRow:first-of-type{border-top:0}
@@ -148,13 +170,14 @@ ol.method li{margin-bottom:6px}
     <p class="muted small" style="max-width:460px;margin:14px auto 0;font-size:11px">Calorie, protein and training figures are general guidance to help you plan, not medical or professional advice. Adjust for your own body, and speak to a qualified professional if you are pregnant, injured or managing a health condition.</p>
   </section>
   <section class="card heroMini hidden" id="heroMini">
-    <div><div class="label" style="margin:0;color:var(--gold)">July Edition</div><div class="it" style="font-family:Georgia,serif;font-weight:400;font-size:19px">July <span class="script">Golden Hour</span></div></div>
+    <div><div class="label" style="margin:0;color:var(--gold)">July Edition</div><div class="it" style="font-family:var(--serif);font-weight:400;font-size:19px">July <span class="script">Golden Hour</span></div></div>
     <button class="btn ghost mini" onclick="S.heroMin=false;save();renderHero()">Open</button>
   </section>
   <section class="card" style="margin-top:14px">
     <div id="todayBox"></div>
   </section>
   <section class="card" style="margin-top:12px" id="homeTargets"></section>
+  <section class="card hidden" style="margin-top:12px" id="weekBox"></section>
 </main>
 
 <main class="page" id="plan">
@@ -230,7 +253,7 @@ ol.method li{margin-bottom:6px}
   <section class="card"><div class="label">Meal bank</div><h2 class="h2">Golden Hour recipes</h2><p class="muted small">Every recipe from this month's plan. Open any meal to scale servings, see the method and use relevant swaps. Tap the heart to save a favourite, swapped versions save too.</p>
   <div class="two" style="margin-top:12px">
     <label class="field"><span>Meal type</span><select id="mealTypeFilter" onchange="renderMeals()"><option value="all">All meals</option><option value="favs">♥ Favourites</option><option value="breakfast">Breakfasts</option><option value="lunch">Lunches</option><option value="dinner">Dinners</option><option value="snack">Snacks</option></select></label>
-    <label class="field"><span>Season</span><select id="mealSeasonFilter" onchange="renderMeals()"><option value="all">All seasons</option><option value="golden">July · Golden Hour</option></select></label>
+    <label class="field"><span>Season</span><select id="mealSeasonFilter" onchange="renderMeals()"><option value="all">All seasons</option><option value="golden">July · Golden Hour</option><option value="lean">June · Lean Season</option></select></label>
   </div>
   <label class="field" style="margin-top:10px"><span>Search</span><input id="mealSearch" placeholder="e.g. salmon, smoothie, high protein" oninput="renderMeals()"></label></section>
   <div id="mealList"></div>
@@ -241,7 +264,7 @@ ol.method li{margin-bottom:6px}
   <section class="card"><div class="label">Workout bank</div><h2 class="h2">8 Golden Hour workouts</h2><p class="muted small">Four gym and four home sessions. Each one has three finish points, your session time in the planner sets which is highlighted for you.</p>
   <div class="two" style="margin-top:12px">
     <label class="field"><span>Workout type</span><select id="trainModeFilter" onchange="renderTrain()"><option value="all">All workouts</option><option value="Gym">Gym</option><option value="Home">Home</option></select></label>
-    <label class="field"><span>Season</span><select id="trainSeasonFilter" onchange="renderTrain()"><option value="golden">July · Golden Hour</option></select></label>
+    <label class="field"><span>Season</span><select id="trainSeasonFilter" onchange="renderTrain()"><option value="all">All seasons</option><option value="golden">July · Golden Hour</option><option value="lean">June · Lean Season</option></select></label>
   </div></section>
   <div id="workoutList"></div>
 </main>
@@ -283,6 +306,8 @@ ol.method li{margin-bottom:6px}
 <div class="modal" id="modal" onclick="if(event.target.id==='modal')closeModal()">
   <div class="sheet"><div class="sheetTop"><button class="btn ghost mini" onclick="closeModal()">Close</button></div><div id="modalBody"></div></div>
 </div>
+<div id="restPill" class="hidden"></div>
+<canvas id="confettiC" class="hidden"></canvas>
 
 <script>
 /* ============ DATA ============ */
@@ -295,13 +320,7 @@ const WORKOUTS=[{"id":"gym-1","mode":"Gym","title":"Glutes A","focus":"glute gro
    Codes are stored as hashes so they are not readable in the page source.
    To make a code hash: open the app, then in the browser console run  hashCode('YOURCODE')
    and paste the number into the pack's "keys" list below. Multiple codes per pack are fine. */
-const PACKS=[
- {id:'summer-sweets',name:'Summer Sweets Pack',line:'Five extra high-protein sweet treats, unlocked forever on this device.',price:'£7',
-  buy:'https://kassyalicee.gumroad.com/l/summer-sweets',keys:[801463229],
-  recipes:[
-   {"id":"pack-ss-01","type":"snack","season":"golden","pack":"summer-sweets","name":"Cherry Ripe Protein Pots","tagline":"Dark chocolate, cherries and cream, on plan.","serves":"1","prep":"10 min","cook":"No cook","cal":260,"pro":22,"carbs":24,"fat":9,"tags":["Sweet Craving","High Protein","No Cook","DF"],"love":"Tastes like the chocolate box, hits like a protein snack.","ing":["150g DF high-protein yogurt","1 scoop chocolate protein","100g frozen cherries, thawed","10g dark chocolate, grated","1 tsp cocoa"],"steps":["Stir protein and cocoa through the yogurt.","Layer with cherries in a glass.","Top with grated chocolate.","Chill 10 min."],"tips":"Batch 3 pots for the week, they keep for 3 days."}
-  ]}
-];
+const PACKS=[{"id":"summer-sweets","name":"Summer Sweets Pack","line":"Five extra high-protein sweet treats, unlocked forever on this device.","price":"£7","buy":"https://kassyalicee.gumroad.com/l/summer-sweets","keys":[801463229],"recipes":[{"id":"pack-ss-01","type":"snack","season":"golden","name":"Cherry Ripe Protein Pots","tagline":"Dark chocolate, cherries and cream, on plan.","serves":"1","prep":"10 min","cook":"No cook","cal":260,"pro":22,"carbs":24,"fat":9,"tags":["Sweet Craving","High Protein","No Cook","DF"],"love":"Tastes like the chocolate box, hits like a protein snack.","ing":["150g DF high-protein yogurt","1 scoop chocolate protein","100g frozen cherries, thawed","10g dark chocolate, grated","1 tsp cocoa"],"steps":["Stir protein and cocoa through the yogurt.","Layer with cherries in a glass.","Top with grated chocolate.","Chill 10 min."],"tips":"Batch 3 pots for the week, they keep for 3 days."}]},{"id":"lean-meals-june","name":"Lean Season Meals · June","line":"Last month's full meal bank, 28 high-protein recipes, breakfast to snack.","price":"$19","buy":"https://kassyalicee.gumroad.com/l/lean-season-meal","keys":[3320495939],"recipes":[{"id":"june-breakfast-01","type":"breakfast","season":"lean","name":"Berry Protein Overnight Oats","tagline":"Make it tonight. Wake up to a stress-free morning.","serves":"1","prep":"10 min","cook":"","cal":360,"pro":32,"carbs":42,"fat":8,"tags":["High Protein","No Cook","Meal Prep","DF"],"love":"Set yourself up the night before, easy wins.","ing":["50g oats","1 scoop dairy-free protein powder","Almond milk","Strawberries","1 tsp chia seeds"],"steps":["Mix oats, protein, almond milk and chia seeds.","Leave overnight in the fridge.","Top with strawberries before serving."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-lunch-01","type":"lunch","season":"lean","name":"Chicken Mango Summer Salad","tagline":"Sweet, sharp, summery, protein meets the tropics.","serves":"1","prep":"10 min","cook":"","cal":360,"pro":38,"carbs":28,"fat":5,"tags":["High Protein","Meal Prep"],"love":"High protein, low effort, all flavour.","ing":["Cooked chicken breast","Mixed lettuce","Mango","Cucumber","Red onion","Lime juice","Balsamic vinegar","Salt, pepper, chilli flakes"],"steps":["Slice the cooked chicken into bite-sized pieces.","Toss everything together with lime and balsamic.","Season with salt, pepper and chilli flakes."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-dinner-01","type":"dinner","season":"lean","name":"Turkey Taco Bowl","tagline":"A weeknight winner, high protein, big flavour.","serves":"1","prep":"10 min","cook":"","cal":520,"pro":45,"carbs":55,"fat":10,"tags":["High Protein"],"love":"Build the bowl, eat the rainbow.","ing":["150g lean turkey mince","Cooked rice","Lettuce","Salsa","Sweetcorn","Peppers","Taco seasoning"],"steps":["Cook turkey mince in a non-stick pan with a splash of water and taco seasoning.","Serve over cooked rice.","Top with lettuce, salsa, sweetcorn and peppers."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-snack-01","type":"snack","season":"lean","name":"Sweet Potato Brownie","tagline":"Pudding-tier protein. Cocoa-rich, naturally sweet.","serves":"1","prep":"10 min","cook":"","cal":280,"pro":20,"carbs":35,"fat":6,"tags":["High Protein","DF","Sweet Craving"],"love":"Naturally sweet, naturally satisfying.","ing":["80g cooked sweet potato, mashed","½ ripe banana","1 egg white or 1 small egg","1 tbsp cocoa powder","½ scoop chocolate protein powder","1 tbsp oats or oat flour","¼ tsp baking powder","Splash of almond milk if needed","Optional: a few dairy-free chocolate chips"],"steps":["Mash sweet potato and banana together until smooth.","Mix in egg, cocoa, protein, oats and baking powder.","Add a splash of almond milk if too thick.","Pour into a small oven-safe dish or ramekin.","Bake at 180°C for 15–18 mins.","Let it cool for 5 mins so it firms up."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-breakfast-02","type":"breakfast","season":"lean","name":"Protein Smoothie Bowl","tagline":"Thick, cold, and packed with protein. Spoon required.","serves":"1","prep":"10 min","cook":"","cal":350,"pro":32,"carbs":50,"fat":5,"tags":["High Protein","No Cook","DF"],"love":"Cold, creamy, summer-ready.","ing":["1 frozen banana","1 scoop dairy-free protein","100g frozen berries","150ml almond milk","10g peanut butter powder or 1 tsp peanut butter","Ice"],"steps":["Blend everything thick, add ice if needed.","Pour into a bowl.","Top with extra berries and serve immediately."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-lunch-02","type":"lunch","season":"lean","name":"Tuna Sweetcorn Jacket Potato","tagline":"Comfort lunch, balanced and quick to throw together.","serves":"1","prep":"10 min","cook":"","cal":450,"pro":42,"carbs":55,"fat":5,"tags":["High Protein","DF"],"love":"Old-school comfort, new-school macros.","ing":["1 medium baked sweet potato","1 tin tuna in spring water","Sweetcorn","Cucumber","Lettuce","Dairy-free yoghurt or light mayo alternative","Lemon juice"],"steps":["Bake the sweet potato until soft.","Mix tuna with lemon, sweetcorn and dairy-free yoghurt.","Stuff the potato with the tuna mix.","Serve with lettuce and cucumber on the side."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-dinner-02","type":"dinner","season":"lean","name":"Lemon Garlic Chicken Wrap Plate","tagline":"Bright, garlicky chicken, wraps it up perfectly.","serves":"1","prep":"10 min","cook":"","cal":500,"pro":43,"carbs":48,"fat":9,"tags":["High Protein"],"love":"Bright flavours, balanced macros.","ing":["140g chicken breast","1 wrap","Lettuce","Cucumber","Tomato","Pickled onions","Lemon juice","Garlic powder","Paprika"],"steps":["Season chicken with lemon, garlic and paprika.","Cook in a non-stick pan with a splash of water (or air fry).","Slice chicken and pile into wrap with salad.","Serve with extra lemon."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-snack-02","type":"snack","season":"lean","name":"Watermelon + Protein Yoghurt Bowl","tagline":"Refreshing, hydrating, summer snack on demand.","serves":"1","prep":"10 min","cook":"","cal":280,"pro":25,"carbs":30,"fat":5,"tags":["High Protein","No Cook","DF","Sweet Craving"],"love":"Hydrating + high protein. Snack done right.","ing":["Dairy-free high-protein yoghurt","Watermelon","Optional: protein powder stirred in"],"steps":["Cube the watermelon.","Stir protein powder into yoghurt if using.","Spoon the yoghurt into a bowl and top with watermelon."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-breakfast-03","type":"breakfast","season":"lean","name":"Chocolate Protein Chia Pudding","tagline":"Dessert for breakfast, and the macros agree.","serves":"1","prep":"10 min","cook":"","cal":380,"pro":34,"carbs":28,"fat":13,"tags":["High Protein","No Cook","Meal Prep","DF"],"love":"Chocolate breakfast > chocolate at 3pm.","ing":["25g chia seeds","1 scoop dairy-free chocolate protein","180ml almond milk","1 tsp cocoa powder","Strawberries"],"steps":["Mix chia, protein, almond milk and cocoa together.","Chill overnight in the fridge.","Top with strawberries before serving."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-lunch-03","type":"lunch","season":"lean","name":"Chicken Sushi Bowl","tagline":"All the flavour of sushi, none of the rolling.","serves":"1","prep":"10 min","cook":"","cal":520,"pro":42,"carbs":58,"fat":8,"tags":["High Protein"],"love":"Bowl culture > roll culture.","ing":["Chicken breast","Cooked rice","Cucumber","Carrot","Edamame","Soy sauce","Rice vinegar","Pickled ginger"],"steps":["Cook chicken until done, slice.","Layer rice in a bowl with chicken and chopped veg.","Drizzle soy sauce and rice vinegar.","Top with pickled ginger."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-dinner-03","type":"dinner","season":"lean","name":"Turkey Burger Bowl","tagline":"Burger night, healthy spin, no bun required.","serves":"1","prep":"10 min","cook":"","cal":520,"pro":45,"carbs":50,"fat":10,"tags":["High Protein"],"love":"All the burger feels, none of the bun.","ing":["Turkey mince","Lettuce","Gherkins","Tomato","Red onion","200g air fryer potato wedges","Mustard","Ketchup"],"steps":["Cook turkey mince into burger-style patties.","Air fry the potato wedges (no oil) with seasoning.","Assemble in a bowl: lettuce, turkey, wedges, toppings.","Drizzle mustard and ketchup."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-snack-03","type":"snack","season":"lean","name":"Frozen Grapes","tagline":"The simplest snack, nature's ice pop.","serves":"1","prep":"10 min","cook":"","cal":200,"pro":25,"carbs":20,"fat":2,"tags":["High Protein","No Cook","Meal Prep","Sweet Craving"],"love":"Five-minute snack, zero faff.","ing":["Grapes","Optional: a side scoop of protein yoghurt for protein top-up"],"steps":["Wash and dry the grapes.","Spread on a tray and freeze for 1+ hour.","Eat straight from the freezer."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-breakfast-04","type":"breakfast","season":"lean","name":"Banana Protein Pancakes","tagline":"Cinnamon-spiced, naturally sweet, Thursday energy.","serves":"1","prep":"10 min","cook":"","cal":390,"pro":35,"carbs":45,"fat":8,"tags":["High Protein","DF"],"love":"Pancake stack > excuses.","ing":["1 banana","1 egg","1 scoop dairy-free protein","20g oats","Cinnamon","Splash almond milk"],"steps":["Blend everything until smooth.","Cook in a non-stick pan on low heat, no oil.","Flip when bubbles appear on top.","Stack and top with berries."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-lunch-04","type":"lunch","season":"lean","name":"Prawn Summer Noodle Salad","tagline":"Cold noodles, fresh herbs, zingy lime, summer in a bowl.","serves":"1","prep":"10 min","cook":"","cal":420,"pro":38,"carbs":48,"fat":4,"tags":["High Protein","Meal Prep"],"love":"Cold noodles, hot results.","ing":["150g cooked prawns","100g cooked rice noodles","Cucumber","Carrot","Lettuce","Lime juice","Soy sauce","Chilli flakes"],"steps":["Cook the noodles, drain and cool.","Toss everything together cold.","Drizzle with lime, soy and chilli.","Serve immediately."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-dinner-04","type":"dinner","season":"lean","name":"Chicken Fajita Rice Bowl","tagline":"Spice, char, and a hint of lime, the dinner glow-up.","serves":"1","prep":"10 min","cook":"","cal":540,"pro":48,"carbs":58,"fat":8,"tags":["High Protein"],"love":"Spice it, build it, devour it.","ing":["Chicken breast","Cooked rice","Peppers","Onion","Salsa","Fajita seasoning","Lettuce"],"steps":["Slice chicken and peppers into strips.","Cook in a non-stick pan with fajita seasoning and a splash of water.","Build a bowl: rice, chicken, peppers, lettuce.","Top with salsa."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-snack-04","type":"snack","season":"lean","name":"Strawberry Protein Smoothie","tagline":"Quick, blended, naturally sweet, the 5-min snack.","serves":"1","prep":"10 min","cook":"","cal":280,"pro":20,"carbs":35,"fat":6,"tags":["High Protein","No Cook","DF","Sweet Craving"],"love":"Five minutes. Twenty grams of protein.","ing":["3 dates","1 scoop protein powder","Frozen strawberries","½ a weetabix","Almond milk"],"steps":["Blend everything until smooth.","Pour into a glass, top with extra strawberries if you like."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-breakfast-05","type":"breakfast","season":"lean","name":"Strawberry Cheesecake Protein Oats","tagline":"Pudding for breakfast, naturally sweet, dairy-free.","serves":"1","prep":"10 min","cook":"","cal":380,"pro":32,"carbs":50,"fat":6,"tags":["High Protein","Meal Prep","DF"],"love":"Pudding energy, breakfast macros.","ing":["40g oats","1 scoop vanilla dairy-free protein","150ml almond milk","Strawberries","1 crushed rice cake"],"steps":["Cook oats with almond milk (or make overnight).","Stir in protein powder once cooked.","Top with sliced strawberries and crushed rice cake for crunch."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-lunch-05","type":"lunch","season":"lean","name":"Chicken Caesar-Style Wrap","tagline":"Caesar vibes, no dairy, no oil, full flavour.","serves":"1","prep":"10 min","cook":"","cal":480,"pro":45,"carbs":42,"fat":8,"tags":["High Protein","DF"],"love":"Caesar made smart.","ing":["140g chicken breast","1 wrap","Romaine lettuce","Cucumber","Dairy-free yoghurt","Lemon juice","Garlic powder","Mustard","Nutritional yeast"],"steps":["Mix yoghurt, lemon, mustard, garlic and nutritional yeast for a Caesar-style sauce.","Cook the chicken (no oil).","Add chicken, lettuce and cucumber to wrap.","Drizzle sauce inside, wrap and slice."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-dinner-05","type":"dinner","season":"lean","name":"Salmon Potato Summer Plate","tagline":"Light, herby, satisfying, Friday dinner sorted.","serves":"1","prep":"10 min","cook":"","cal":560,"pro":38,"carbs":45,"fat":18,"tags":["High Protein"],"love":"Light + filling. The best Friday plate.","ing":["120g salmon fillet","250g new potatoes","Green beans","Salad","Lemon juice","Dill","Garlic"],"steps":["Air fry or bake the salmon with lemon, dill and garlic.","Boil the new potatoes until tender.","Lightly steam or blanch the green beans.","Plate with salad and a wedge of lemon."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-snack-05","type":"snack","season":"lean","name":"Protein Iced Coffee + Fruit","tagline":"Caffeine, protein, fruit, afternoon reset.","serves":"1","prep":"10 min","cook":"","cal":220,"pro":25,"carbs":20,"fat":2,"tags":["High Protein","No Cook","DF","Sweet Craving"],"love":"Caffeine + protein. The afternoon edit.","ing":["Cold coffee","Almond milk","1 scoop dairy-free protein","Ice","Strawberries or watermelon"],"steps":["Shake protein, almond milk and cold coffee together.","Pour over ice.","Serve alongside fresh fruit."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-breakfast-06","type":"breakfast","season":"lean","name":"Chocolate Banana Protein Smoothie","tagline":"Saturday slow-start, chocolate, banana, on tap.","serves":"1","prep":"10 min","cook":"","cal":330,"pro":30,"carbs":42,"fat":5,"tags":["High Protein","No Cook","DF"],"love":"Chocolate without the guilt, and 30g of protein.","ing":["1 banana","1 scoop chocolate dairy-free protein","150ml almond milk","1 tsp cocoa powder","Ice","Optional: spinach"],"steps":["Blend everything until thick and creamy.","Pour over ice and serve."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-lunch-06","type":"lunch","season":"lean","name":"Turkey Taco Lettuce Wraps","tagline":"Crunch, spice, lime, handheld lunch.","serves":"1","prep":"10 min","cook":"","cal":500,"pro":45,"carbs":48,"fat":8,"tags":["High Protein"],"love":"Crunch, spice, lime, handheld and happy.","ing":["150g lean turkey mince","Baby gem lettuce cups","Salsa","Sweetcorn","Cucumber","Lime","Taco seasoning","100g cooked rice on the side"],"steps":["Cook turkey mince with taco seasoning and a splash of water.","Spoon the mince into lettuce cups.","Top with salsa, sweetcorn and cucumber.","Serve with rice on the side and a wedge of lime."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-dinner-06","type":"dinner","season":"lean","name":"Chicken Satay Noodle Bowl","tagline":"Peanut, lime, chilli, restaurant-style at home.","serves":"1","prep":"10 min","cook":"","cal":550,"pro":45,"carbs":58,"fat":9,"tags":["High Protein","Meal Prep"],"love":"Saturday-night takeout, kitchen-made.","ing":["140g chicken breast","100g cooked noodles","Cucumber","Carrot","Lettuce","1 tbsp peanut butter powder or 1 tsp peanut butter","Soy sauce","Lime juice","Chilli flakes"],"steps":["Cook the chicken and slice.","Mix peanut powder, soy, lime and water into a sauce.","Toss noodles, chicken and veg with sauce.","Sprinkle chilli flakes on top."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-snack-06","type":"snack","season":"lean","name":"Frozen Watermelon Lime Slush","tagline":"Hydrating, refreshing, and protein-packed.","serves":"1","prep":"10 min","cook":"","cal":230,"pro":25,"carbs":25,"fat":2,"tags":["High Protein","No Cook","DF","Sweet Craving"],"love":"Cold, lime-sharp, protein-strong.","ing":["Frozen watermelon","Lime juice","Ice","1 scoop dairy-free protein","Almond milk on the side"],"steps":["Blend watermelon, lime and ice into a slush.","Shake the protein shake separately.","Drink them side by side, slush + shake."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-breakfast-07","type":"breakfast","season":"lean","name":"Protein French Toast","tagline":"Cinnamon-vanilla, slow Sunday energy.","serves":"1","prep":"10 min","cook":"","cal":420,"pro":35,"carbs":48,"fat":8,"tags":["High Protein","DF"],"love":"Sunday breakfast, properly fuelled.","ing":["2 slices bread","1 egg","1 scoop vanilla dairy-free protein","Splash almond milk","Cinnamon","Strawberries"],"steps":["Whisk egg, protein, almond milk and cinnamon together.","Dip bread slices and cook in a non-stick pan, no oil.","Flip when golden.","Top with strawberries and serve warm."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-lunch-07","type":"lunch","season":"lean","name":"Tuna Pasta Salad","tagline":"Cold pasta, fresh veg, lemon-bright dressing.","serves":"1","prep":"10 min","cook":"","cal":520,"pro":42,"carbs":62,"fat":6,"tags":["High Protein","DF"],"love":"Cold pasta. Hot summer day. Sorted.","ing":["70g protein pasta","1 tin tuna","Cucumber","Sweetcorn","Red onion","Dairy-free yoghurt","Lemon juice","Black pepper"],"steps":["Cook pasta, cool it under cold water.","Mix tuna, veg and yoghurt dressing.","Stir cold pasta through.","Season with lemon and pepper."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-dinner-07","type":"dinner","season":"lean","name":"Chicken Burger Bowl","tagline":"Sunday dinner glow-up, no bun, all flavour.","serves":"1","prep":"10 min","cook":"","cal":520,"pro":45,"carbs":55,"fat":7,"tags":["High Protein"],"love":"Burger night, balanced.","ing":["150g chicken breast","200g potato wedges","Lettuce","Tomato","Gherkins","Onion","Mustard","Ketchup","Paprika"],"steps":["Season chicken with paprika.","Air fry chicken and wedges.","Build the bowl: lettuce base, chicken, wedges, toppings.","Drizzle mustard and ketchup."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."},{"id":"june-snack-07","type":"snack","season":"lean","name":"Protein Mug Cake","tagline":"A 60-second chocolate dessert with the macros.","serves":"1","prep":"10 min","cook":"","cal":240,"pro":20,"carbs":22,"fat":5,"tags":["High Protein","DF","Sweet Craving"],"love":"A minute. A mug. A win.","ing":["1 scoop chocolate protein powder","1 tbsp cocoa powder","1 tbsp oat flour or blended oats","¼ tsp baking powder","1 egg white","2–3 tbsp almond milk","1 tsp maple syrup, honey or sweetener","Optional: a few dark chocolate chips"],"steps":["Mix everything in a mug until smooth.","Add a splash more almond milk if too thick.","Microwave for 45–60 seconds.","Let it sit for 1 minute so it firms up."],"tips":"Sub the protein source 1:1, any swap from the swap buttons keeps it balanced."}]},{"id":"lean-gym-june","name":"Lean Season Gym · June","line":"Last month's 4-week gym block, heavy hip thrusts, cables and machines.","price":"$19","buy":"https://kassyalicee.gumroad.com/l/lean-season-gym","keys":[3231917534],"workouts":[{"id":"june-gym-1","mode":"Gym","season":"lean","title":"Glutes A","focus":"glute growth + shape","line":"Barbells, cables and machines, the heavy glute-building day that sets the week.","stats":{"duration":"45–60 min","sets":"~24","reps":"8–20","intensity":"Mod–High"},"equip":["Barbell","Cables","Machines"],"secs":[{"name":"Activation","meta":"3 moves · 20s rest","rest":"","ex":[["Banded Hip Thrust","2 × 20"],["Seated Abductions","2 × 25"],["Banded Lateral Walks","2 × 20 steps"]]},{"name":"Main Workout","meta":"6 exercises","rest":"Rest: 60–90s between working sets","ex":[["Barbell Hip Thrust","5 × 8–10"],["Paused Hip Thrust (3s hold)","3 × 8"],["Dumbbell Romanian Deadlift","4 × 10–12"],["Cable Kickbacks","4 × 12–15 / leg"],["Smith Machine Reverse Lunge","3 × 8–10 / leg"],["Hip Abduction Machine","4 × 15–20"]]},{"name":"Conditioning","meta":"Cardio add-on · 2–3 rounds · 45–60s rest","rest":"","ex":[["Walking Lunges","20 steps"],["Kettlebell Swings","15 reps"],["Banded Squat Pulses","40s"]]},{"name":"Core","meta":"Weighted abs · complete in order","rest":"","ex":[["Weighted Sit-Ups","50"],["Russian Twists","40"],["Weighted Crunches","30"],["Weighted Leg Raises","20"],["Weighted Toe Touches","10"],["Weighted Plank Hold","1 min"]]},{"name":"Finisher","meta":"Burnout · 2–3 rounds · 30–45s between rounds","rest":"","ex":[["Banded Squat Pulses","40s"],["Glute Bridge March","40s"],["Banded Abductions","30 reps"]]}],"stops":[{"kind":"essential","label":"Fat Loss ends here","stats":{"Time":"30–40m","Intensity":"Moderate"}},{"kind":"full","label":"Balanced Toning ends here","stats":{"Time":"45–55m","Intensity":"Mod–High"}},{"kind":"build","label":"Glute Growth ends here","stats":{"Time":"55–65m","Intensity":"High"}}]},{"id":"june-gym-2","mode":"Gym","season":"lean","title":"Shoulders + Arms","focus":"capped shoulders, triceps + upper body","line":"Dumbbells, cables and machines, the upper-body shape and posture day.","stats":{"duration":"50–60 min","sets":"~23","reps":"8–15","intensity":"Moderate"},"equip":["Dumbbells","Cables","Machines"],"secs":[{"name":"Activation","meta":"3 moves · 20s rest","rest":"","ex":[["Cable Face Pulls (light)","2 × 15"],["Light Cable Lateral Raises","2 × 15 / side"],["Rope Pushdowns (light)","2 × 15"]]},{"name":"Main Workout","meta":"6 exercises","rest":"Rest: 60–90s between working sets","ex":[["Dumbbell Shoulder Press","4 × 8–10"],["Seated Arnold Press","3 × 10–12"],["Dumbbell Lateral Raise","4 × 12–15"],["Rear Delt Machine","4 × 12–15"],["Rope Tricep Pushdown","4 × 10–12"],["Overhead Cable Tricep Extension","3 × 12–15"]]},{"name":"Conditioning","meta":"Upper-body cardio · 2–3 rounds · 45–60s rest","rest":"","ex":[["Medicine Ball Slams","12 reps"],["Push-Up Walkouts","12 reps"],["Push-Up Hold","20s"]]},{"name":"Core","meta":"8-min plank burn · 1 min each · 2 rounds","rest":"","ex":[["Forearm Plank","1 min"],["High Plank Shoulder Taps","1 min"],["Plank Up-Downs","1 min"],["Side Plank","30s / side"]]},{"name":"Finisher","meta":"Burnout · 2–3 rounds · 30–45s between rounds","rest":"","ex":[["Lateral Raise Pulses","30 reps"],["Push-Ups","10–12 reps"],["Plate Overhead Press","15 reps"],["Lateral Raise Hold","20s"]]}],"stops":[{"kind":"essential","label":"Fat Loss ends here","stats":{"Time":"30–40m","Intensity":"Moderate"}},{"kind":"full","label":"Balanced Toning ends here","stats":{"Time":"45–55m","Intensity":"Moderate"}},{"kind":"build","label":"Glute Growth ends here","stats":{"Time":"55–65m","Intensity":"Mod–High"}}]},{"id":"june-gym-3","mode":"Gym","season":"lean","title":"Glutes B","focus":"upper glute + abductor","line":"Smith machine, cables and abductor work, round the shelf, build the side.","stats":{"duration":"50–60 min","sets":"~23","reps":"8–20","intensity":"Mod–High"},"equip":["Smith Machine","Cables","Machines"],"secs":[{"name":"Activation","meta":"3 moves · 20s rest","rest":"","ex":[["Banded Glute Bridge","2 × 20"],["Banded Side Steps","2 × 20 steps"],["Cable Kickbacks (banded)","2 × 15 / leg"]]},{"name":"Main Workout","meta":"6 exercises","rest":"Rest: 60–90s between working sets","ex":[["Smith Machine Hip Thrust","4 × 10–12"],["Dumbbell Bulgarian Split Squat (glute bias)","3 × 8–10 / leg"],["Seated Hamstring Curl","4 × 10–12"],["Cable Pull-Throughs","4 × 12"],["Cable Abductions","3 × 12–15 / leg"],["Hip Abduction Machine","3 × 15–20"]]},{"name":"Conditioning","meta":"Glute cardio finisher · 2 rounds · 30s rest","rest":"","ex":[["Kettlebell Swings","15 reps"],["Step-Ups","10 / leg"]]},{"name":"Core","meta":"Complete in order · rest whenever needed","rest":"","ex":[["Sit-Ups","100"],["Plank","1 min"],["Sit-Ups","50"],["Plank","1 min"]]},{"name":"Finisher","meta":"Burnout · 2–3 rounds · 30–45s between rounds","rest":"","ex":[["Hip Thrust Pulses","30 reps"],["Bodyweight Reverse Lunges","10 / leg"],["Glute Bridge Hold","30s"]]}],"stops":[{"kind":"essential","label":"Fat Loss ends here","stats":{"Time":"30–40m","Intensity":"Moderate"}},{"kind":"full","label":"Balanced Toning ends here","stats":{"Time":"45–55m","Intensity":"Mod–High"}},{"kind":"build","label":"Glute Growth ends here","stats":{"Time":"55–65m","Intensity":"High"}}]},{"id":"june-gym-4","mode":"Gym","season":"lean","title":"Pull + Posture","focus":"back, biceps + posture","line":"Pull-ups, pulldowns and rows, stand taller, pull harder, build a strong back.","stats":{"duration":"50–60 min","sets":"~22","reps":"6–15","intensity":"Mod–High"},"equip":["Cables","Machines"],"secs":[{"name":"Activation","meta":"2 moves · 20s rest","rest":"","ex":[["Arm Circles","2 × 8"],["Y Raises","2 × 12"]]},{"name":"Main Workout","meta":"6 exercises","rest":"Rest: 60–90s between working sets","ex":[["Pull-Ups / Assisted Pull-Ups","4 × 6–10"],["Lat Pulldown","4 × 8–12"],["Row Machine","4 × 10–12"],["Single-Arm Lat Pulldown","3 × 10 / side"],["Straight-Arm Cable Pulldown","3 × 12–15"],["Rear Delt Fly Machine","4 × 12–15"]]},{"name":"Conditioning","meta":"Pull cardio finisher · 3 rounds · no rest","rest":"","ex":[["Ski Erg","45s"],["Dumbbell Farmer Walk","20 m"]]},{"name":"Core","meta":"1 min each · 2 rounds","rest":"","ex":[["Reverse Crunches","1 min"],["Leg Raises","1 min"],["Flutter Kicks","1 min"],["Dead Bugs","1 min"],["Scissor Kicks","1 min"]]},{"name":"Finisher","meta":"Biceps · 3 rounds · 60s rest","rest":"","ex":[["Cable Bicep Curl","3 × 10–12"],["Cable Hammer Curl","3 × 10–12"]]}],"stops":[{"kind":"essential","label":"Fat Loss ends here","stats":{"Time":"30–40m","Intensity":"Moderate"}},{"kind":"full","label":"Balanced Toning ends here","stats":{"Time":"45–55m","Intensity":"Mod–High"}},{"kind":"build","label":"Glute Growth ends here","stats":{"Time":"55–65m","Intensity":"Mod–High"}}]}]},{"id":"lean-home-june","name":"Lean Season Home · June","line":"Last month's 4-week home block, bands, bottles and bodyweight.","price":"$19","buy":"https://kassyalicee.gumroad.com/l/lean-season-home","keys":[1155211610],"workouts":[{"id":"june-home-1","mode":"Home","season":"lean","title":"Glutes A","focus":"glute growth + shape","line":"No equipment, all effort. The glute-forward day that sets the week.","stats":{"duration":"45–60 min","sets":"~22","reps":"12–40","intensity":"Mod–High"},"equip":["Bodyweight","Dumbbells optional"],"secs":[{"name":"Activation","meta":"3 moves · 20s rest","rest":"","ex":[["Glute Bridges","2 × 25"],["Frog Pumps","2 × 30"],["Side-Lying Abductions","2 × 20 / side"]]},{"name":"Main Workout","meta":"6 exercises","rest":"Rest: 30–60s between working sets","ex":[["Dumbbell / Water Bottle Glute Bridge (3s squeeze)","5 × 20"],["Bulgarian Split Squat Glute Bias","4 × 12 / leg"],["Single-Leg Romanian Deadlift","4 × 12 / leg"],["Reverse Lunges","4 × 15 / leg"],["Frog Pumps","4 × 40"],["Side-Lying Abduction Pulses","3 × 30 / side"]]},{"name":"Core","meta":"10-min burn · 1 min each · 2 rounds","rest":"","ex":[["Dead Bugs","1 min"],["Reverse Crunches","1 min"],["Leg Raises","1 min"],["Forearm Plank","1 min"],["Plank","1 min"]]},{"name":"Finisher","meta":"3 rounds · no rest within · 45s between rounds","rest":"","ex":[["Glute Bridge Pulses","40 reps"],["Glute Bridge Hold","40s"],["Frog Pumps","40 reps"],["Bodyweight Squat Pulses","40 reps"]]}],"stops":[{"kind":"essential","label":"Fat Loss ends here","stats":{"Time":"25–35m","Intensity":"Moderate"}},{"kind":"full","label":"Balanced Toning ends here","stats":{"Time":"40–50m","Intensity":"Mod–High"}},{"kind":"build","label":"Glute Growth ends here","stats":{"Time":"50–60m","Intensity":"High"}}]},{"id":"june-home-2","mode":"Home","season":"lean","title":"Shoulders + Arms","focus":"capped shoulders + arms","line":"Shoulders, triceps and a small waist, the upper-body shape day at home.","stats":{"duration":"45–60 min","sets":"~22","reps":"10–20","intensity":"Moderate"},"equip":["Dumbbells","Water Bottles"],"secs":[{"name":"Activation","meta":"3 moves · 20s rest","rest":"","ex":[["Arm Circles","2 × 20s each way"],["Light Lateral Raises","2 × 20"],["Plank Shoulder Taps","2 × 20"]]},{"name":"Main Workout","meta":"7 exercises","rest":"Rest: 45–60s between working sets","ex":[["Dumbbell Shoulder Press","4 × 15"],["Arnold Press","4 × 12"],["Lateral Raises","5 × 20"],["Front Raise to Lateral Raise Combo","4 × 10 each"],["Rear Delt Fly","4 × 20"],["Overhead Tricep Extension","4 × 20"],["Tricep Bench Dips","4 × 20"]]},{"name":"Core","meta":"Waist finisher · 1 min each · 2 rounds","rest":"","ex":[["Forearm Plank","1 min"],["High Plank Shoulder Taps","1 min"],["Reverse Crunches","1 min"],["Toe Touches","1 min"],["Hollow Hold","1 min"]]},{"name":"Finisher","meta":"3 rounds · 45s rest between rounds","rest":"","ex":[["Lateral Raise Pulses","15 reps"],["Shoulder Press Pulses","15 reps"],["Push-Ups","15 reps"]]}],"stops":[{"kind":"essential","label":"Fat Loss ends here","stats":{"Time":"25–35m","Intensity":"Moderate"}},{"kind":"full","label":"Balanced Toning ends here","stats":{"Time":"40–50m","Intensity":"Moderate"}},{"kind":"build","label":"Glute Growth ends here","stats":{"Time":"50–60m","Intensity":"Mod–High"}}]},{"id":"june-home-3","mode":"Home","season":"lean","title":"Glutes B","focus":"upper glute + abductor","line":"Round the shelf, build the side, abductor and upper-glute day.","stats":{"duration":"45–60 min","sets":"~28","reps":"12–40","intensity":"High"},"equip":["Bands","Dumbbells optional"],"secs":[{"name":"Activation","meta":"3 moves · 20s rest","rest":"","ex":[["Donkey Kicks","2 × 20 / leg"],["Fire Hydrants","2 × 20 / leg"],["Glute Bridge Abductions","2 × 25"]]},{"name":"Main Workout","meta":"7 exercises","rest":"Rest: 30–60s between working sets","ex":[["Single-Leg Glute Bridge","4 × 15 / leg"],["Dumbbell Sumo Squat","4 × 20"],["Curtsy Lunges","4 × 15 / leg"],["Step-Back Lunges","3 × 12 / leg"],["Banded Donkey Kick","4 × 30 / leg"],["Banded Hydrant Pulses","4 × 30 / leg"],["Glute Bridge March","3 × 40s"]]},{"name":"Conditioning","meta":"Cardio burn · 40s work / 20s rest · 2 rounds","rest":"","ex":[["High Knees or Marches","40s"],["Squat to Calf Raise","40s"],["Mountain Climbers","40s"],["Skaters","40s"],["Fast Feet","40s"]]},{"name":"Core","meta":"In order · rest as needed","rest":"","ex":[["Sit-Ups","100"],["Plank","1 min"],["Toe Touches","50"],["Plank","1 min"],["Reverse Crunches","30"],["Hollow Hold","1 min"]]},{"name":"Finisher","meta":"3 rounds · 45s rest between rounds","rest":"","ex":[["Squat Pulses","40 reps"],["Alternating Reverse Lunges","20 reps"],["Frog Pumps","40 reps"],["Wall Sit","45s"],["Glute Bridge Hold","45s"]]}],"stops":[{"kind":"essential","label":"Fat Loss ends here","stats":{"Time":"25–35m","Intensity":"Moderate"}},{"kind":"full","label":"Balanced Toning ends here","stats":{"Time":"40–50m","Intensity":"Mod–High"}},{"kind":"build","label":"Glute Growth ends here","stats":{"Time":"55–65m","Intensity":"High"}}]},{"id":"june-home-4","mode":"Home","season":"lean","title":"Pull + Posture","focus":"back, rear delts, biceps + waist","line":"Stand taller. Pull harder. The posture-and-back day at home.","stats":{"duration":"45–60 min","sets":"~24","reps":"12–30","intensity":"Moderate"},"equip":["Dumbbells","Water Bottles"],"secs":[{"name":"Activation","meta":"3 moves · 20s rest","rest":"","ex":[["Arm Circles","2 × 20s each way"],["Y Raises","2 × 15"],["Superman Squeezes","2 × 15"]]},{"name":"Main Workout","meta":"8 exercises","rest":"Rest: 30–60s between working sets","ex":[["Dumbbell Bent-Over Row","4 × 20"],["Single-Arm Row","4 × 15 / side"],["Rear Delt Fly","4 × 20"],["Superman Pull-Downs","4 × 15"],["Reverse Snow Angels","3 × 12"],["Dumbbell Bicep Curl","4 × 20"],["Hammer Curl","4 × 20"],["Curl Pulses","2 × 30"]]},{"name":"Core","meta":"Ab burn · 1 min each · 2 rounds","rest":"","ex":[["Scissor Kicks","1 min"],["Flutter Kicks","1 min"],["Reverse Crunches","1 min"],["Plank","1 min"],["Plank Toe Taps","1 min"]]},{"name":"Finisher","meta":"3 rounds · 45s rest between rounds","rest":"","ex":[["Superman Hold","30s"],["Rear Delt Pulses","30 reps"],["Plank Shoulder Taps","30 reps"],["Bent-Over Row Pulses","20 reps"],["Y Raise Hold","20s"]]}],"stops":[{"kind":"essential","label":"Fat Loss ends here","stats":{"Time":"25–35m","Intensity":"Moderate"}},{"kind":"full","label":"Balanced Toning ends here","stats":{"Time":"40–50m","Intensity":"Moderate"}},{"kind":"build","label":"Glute Growth ends here","stats":{"Time":"50–60m","Intensity":"Mod–High"}}]}]}];
 function hashCode(s){s=String(s).trim().toUpperCase();let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))>>>0;return h}
 const TYPES=['breakfast','lunch','dinner','snack'];
 const TYPENAME={breakfast:'Breakfast',lunch:'Lunch',dinner:'Dinner',snack:'Snack'};
@@ -373,16 +392,95 @@ S.avail=S.avail||{mon:'gym',tue:'rest',wed:'home',thu:'gym',fri:'rest',sat:'eith
 S.include=S.include||{};S.exclude=S.exclude||{};S.habits=S.habits||{};S.ticks=S.ticks||{};S.logs=S.logs||{};
 S.shopExtra=S.shopExtra||[];S.shopTicks=S.shopTicks||{};
 S.favs=S.favs||{};S.unlocked=S.unlocked||{};S.heroMin=S.heroMin||false;
-/* fold unlocked pack recipes into the recipe bank */
+/* fold unlocked pack recipes + workouts into the banks */
 RECIPES.forEach(r=>r.season=r.season||'golden');
-function syncPacks(){PACKS.forEach(pk=>{if(S.unlocked[pk.id])pk.recipes.forEach(r=>{if(!RECIPES.some(x=>x.id===r.id))RECIPES.push(r)})})}
+WORKOUTS.forEach(w=>w.season=w.season||'golden');
+function syncPacks(){PACKS.forEach(pk=>{
+  if(!S.unlocked[pk.id])return;
+  (pk.recipes||[]).forEach(r=>{if(!RECIPES.some(x=>x.id===r.id))RECIPES.push(r)});
+  (pk.workouts||[]).forEach(w=>{if(!WORKOUTS.some(x=>x.id===w.id))WORKOUTS.push(w)});
+})}
 syncPacks();
+S.logHist=S.logHist||{};
 function tomorrowStr(){let d=new Date();d.setDate(d.getDate()+1);return d.toISOString().slice(0,10)}
 if(!S.start)S.start=tomorrowStr();
 function $(id){return document.getElementById(id)}
 function save(){localStorage.mbGoldenV9=JSON.stringify(S)}
 function clone(o){return JSON.parse(JSON.stringify(o))}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+
+/* ============ FEEL: haptics, sound, confetti ============ */
+function buzz(ms){try{navigator.vibrate&&navigator.vibrate(ms||8)}catch(e){}}
+function beep(){try{
+  let ac=window.__ac=window.__ac||new (window.AudioContext||window.webkitAudioContext)();
+  [0,.18].forEach((t,i)=>{let o=ac.createOscillator(),g=ac.createGain();o.connect(g);g.connect(ac.destination);
+  o.frequency.value=i?1175:880;g.gain.setValueAtTime(.12,ac.currentTime+t);g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+t+.15);
+  o.start(ac.currentTime+t);o.stop(ac.currentTime+t+.16)});
+}catch(e){}}
+function celebrate(big){
+  let c=$('confettiC');c.classList.remove('hidden');
+  c.width=innerWidth;c.height=innerHeight;
+  let ctx=c.getContext('2d'),cols=['#B42131','#8A6727','#557B50','#F0C7C4','#EBD9A9'];
+  let N=big?140:70,parts=[];
+  for(let i=0;i<N;i++)parts.push({x:innerWidth/2+(Math.random()-.5)*160,y:innerHeight*.42,vx:(Math.random()-.5)*11,vy:-(4+Math.random()*9),r:3+Math.random()*5,c:cols[i%cols.length],rot:Math.random()*6,ch:Math.random()<(big?.22:.12)?'🍒':null,life:1});
+  let t0=performance.now();
+  (function fr(t){
+    let dt=(t-t0)/1000;ctx.clearRect(0,0,c.width,c.height);
+    parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.32;p.rot+=.1;p.life=Math.max(0,1-dt/1.6);
+      ctx.globalAlpha=p.life;
+      if(p.ch){ctx.font='18px serif';ctx.fillText(p.ch,p.x,p.y)}
+      else{ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.fillStyle=p.c;ctx.fillRect(-p.r,-p.r/2,p.r*2,p.r);ctx.restore()}});
+    ctx.globalAlpha=1;
+    if(dt<1.7)requestAnimationFrame(fr);else{ctx.clearRect(0,0,c.width,c.height);c.classList.add('hidden')}
+  })(t0);
+  buzz(big?[30,40,30]:20);
+}
+
+/* ============ PROGRESS RINGS ============ */
+function ring(pct,color,valTxt,subTxt,label){
+  const r=34,c=2*Math.PI*r,off=c*(1-Math.min(1,Math.max(0,pct)));
+  return `<div class="ringBox"><svg width="96" height="96" viewBox="0 0 84 84">
+  <circle cx="42" cy="42" r="${r}" fill="none" stroke="#EFE7DA" stroke-width="7"/>
+  <circle cx="42" cy="42" r="${r}" fill="none" stroke="${color}" stroke-width="7" stroke-linecap="round" stroke-dasharray="${c.toFixed(1)}" stroke-dashoffset="${off.toFixed(1)}" transform="rotate(-90 42 42)" style="transition:stroke-dashoffset .6s ease"/>
+  <text x="42" y="41" text-anchor="middle" font-size="17">${valTxt}</text>
+  <text x="42" y="55" text-anchor="middle" font-size="8.5" style="fill:var(--muted);font-family:'Archivo',sans-serif;letter-spacing:.06em">${subTxt}</text></svg>
+  <div class="rl">${label}</div></div>`;
+}
+/* what you've actually ticked off today, counts towards the rings */
+function eatenTotals(d,k){
+  let cal=0,pro=0;
+  TYPES.forEach(s=>{if(S.ticks[k+s]){let m=slotData(d,s);cal+=m.cal;pro+=m.pro}});
+  let t=dayTotals(d),gap=Math.max(0,S.goals.pro-t.pro);
+  if(S.ticks[k+'protein']&&gap>0){pro+=gap;cal+=Math.round(gap*4)}
+  return{cal,pro};
+}
+
+/* ============ REST TIMER ============ */
+let restT=null;
+function stopRest(){clearInterval(restT);restT=null;$('restPill').classList.add('hidden');$('restPill').classList.remove('done')}
+function startRest(sec){
+  clearInterval(restT);
+  let end=Date.now()+sec*1000,el=$('restPill');
+  el.classList.remove('hidden','done');buzz(10);
+  const tick=()=>{
+    let left=Math.ceil((end-Date.now())/1000);
+    if(left<=0){clearInterval(restT);restT=null;el.classList.add('done');el.innerHTML='Rest done · next set';beep();buzz([40,60,40]);setTimeout(stopRest,2200);return}
+    el.innerHTML=`⏱ Rest · ${left}s <button onclick="startRest(${sec})">↺ ${sec}s</button><button onclick="stopRest()">✕</button>`;
+  };
+  tick();restT=setInterval(tick,250);
+}
+function restSecs(sec){ /* pull a sensible rest length out of a section's notes */
+  let src=(sec.rest||'')+' '+(sec.meta||'');
+  let m=src.match(/(\d+)(?:\s*[–-]\s*(\d+))?\s*s/);
+  return m?parseInt(m[2]||m[1]):60;
+}
+
+/* ============ STREAK ============ */
+function streakCount(){
+  let cur=Math.max(0,Math.min(planLen()-1,dateIndex())),n=0;
+  for(let i=cur;i>=0;i--){if(S.ticks['d'+i+'done'])n++;else if(i===cur)continue;else break}
+  return n;
+}
 
 /* dropdown fills */
 trainDays.innerHTML='<option value="">Select</option>';
@@ -598,7 +696,17 @@ function balanceDay(w,k){
 
 /* ============ RENDER: HOME / TODAY ============ */
 function tickBox(key,title,sub,checked){
-  return `<div class="item" style="margin:8px 0"><div style="display:flex;gap:11px;align-items:center"><input type="checkbox" class="tick" ${checked?'checked':''} onchange="S.ticks['${key}']=this.checked;save();render()"><div><div class="it" style="${checked?'text-decoration:line-through;color:var(--muted)':''}">${title}</div><p class="meta small" style="margin:2px 0 0">${sub}</p></div></div></div>`;
+  return `<div class="item" style="margin:8px 0"><div style="display:flex;gap:11px;align-items:center"><input type="checkbox" class="tick" ${checked?'checked':''} onchange="S.ticks['${key}']=this.checked;buzz();save();render()"><div><div class="it" style="${checked?'text-decoration:line-through;color:var(--muted)':''}">${title}</div><p class="meta small" style="margin:2px 0 0">${sub}</p></div></div></div>`;
+}
+function greet(){let h=new Date().getHours();return h<5?'Late night':h<12?'Good morning':h<17?'Good afternoon':'Good evening'}
+function toggleDone(idx){
+  let k='d'+idx;S.ticks[k+'done']=!S.ticks[k+'done'];save();
+  if(S.ticks[k+'done']){
+    let base=Math.floor(idx/7)*7,all=true;
+    for(let i=base;i<base+7;i++)if(!S.ticks['d'+i+'done'])all=false;
+    celebrate(all);
+  }
+  render();
 }
 function renderHero(){$('heroFull').classList.toggle('hidden',!!S.heroMin);$('heroMini').classList.toggle('hidden',!S.heroMin)}
 function renderHome(){
@@ -607,26 +715,50 @@ function renderHome(){
   todayBox.innerHTML=d?renderToday(d,idx):`<div class="label">Today</div><h2 class="h2">Your day</h2><p class="muted" style="margin-top:8px">No plan yet. Build your personal workout, step and meal plan in a couple of minutes.</p><button class="btn" style="margin-top:6px" data-go="plan">Go to the planner</button>`;
   let doneDays=Object.keys(S.ticks).filter(k=>/^d\d+done$/.test(k)&&S.ticks[k]).length;
   homeTargets.innerHTML=`<div class="label">Your targets</div><div class="detail"><div class="box"><b>${S.goals.cal}</b><span>kcal / day</span></div><div class="box"><b>${S.goals.pro}g</b><span>protein / day</span></div><div class="box"><b>${S.setup.steps.toLocaleString()}</b><span>steps / day</span></div></div><p class="muted small" style="margin:6px 0 0">A suggested starting point, adjust to your body and routine in the planner.${doneDays?` <b style="color:var(--green)">${doneDays} day${doneDays>1?'s':''} completed so far, keep going.</b>`:''}</p>`;
+  renderWeekBox(idx);
+}
+function renderWeekBox(idx){
+  let box=$('weekBox');
+  if(!S.plan){box.classList.add('hidden');return}
+  let w=Math.floor(idx/7)+1,base=(w-1)*7;
+  let done=0,wo=0,meals=0,steps=0,anyTick=false;
+  for(let i=base;i<base+7;i++){
+    let k='d'+i;
+    if(S.ticks[k+'done'])done++;
+    if(S.ticks[k+'workout'])wo++;
+    if(S.ticks[k+'steps'])steps++;
+    TYPES.forEach(s=>{if(S.ticks[k+s]){meals++;anyTick=true}});
+    if(S.ticks[k+'done']||S.ticks[k+'workout']||S.ticks[k+'steps'])anyTick=true;
+  }
+  if(!anyTick){box.classList.add('hidden');return}
+  box.classList.remove('hidden');
+  let st=streakCount();
+  let mile=st>=28?'🍒 Full month!':st>=21?'🍒 21-day streak':st>=14?'🍒 14-day streak':st>=7?'🍒 7-day streak':'';
+  box.innerHTML=`<div class="label">Week ${w} so far</div>
+  <div class="detail"><div class="box"><b>${done}/7</b><span>days done</span></div><div class="box"><b>${wo}</b><span>workouts</span></div><div class="box"><b>${meals}</b><span>meals ticked</span></div></div>
+  <div class="row" style="margin-top:8px">${st>1?`<span class="tag green">${st}-day streak</span>`:''}${steps?`<span class="tag">${steps} step-goal day${steps>1?'s':''}</span>`:''}${mile?`<span class="milestone">${mile}</span>`:''}</div>`;
 }
 function renderToday(d,idx){
   let t=dayTotals(d),k='d'+idx,wk=workoutById(d.workout);
   let free=S.goals.cal-t.cal,proGap=Math.max(0,S.goals.pro-t.pro);
   let pct=Math.min(100,Math.round(t.cal/S.goals.cal*100));
   let done=S.ticks[k+'done'];
-  let workoutBox=`<div class="item" style="margin:8px 0"><div style="display:flex;gap:11px;align-items:center"><input type="checkbox" class="tick" ${S.ticks[k+'workout']?'checked':''} onchange="S.ticks['${k}workout']=this.checked;save();render()"><div><div class="label" style="margin:0 0 3px">Workout</div><div class="it" style="${S.ticks[k+'workout']?'text-decoration:line-through;color:var(--muted)':''}">${wk?wk.mode+' · '+wk.title:'Rest day'}</div><p class="meta small" style="margin:2px 0 0">${wk?esc(wk.focus):'Recovery, steps and stretching still count.'}</p></div></div>${wk?`<button class="btn ghost mini" onclick="openWorkout('${wk.id}')">Open</button>`:''}</div>`;
+  let workoutBox=`<div class="item" style="margin:8px 0"><div style="display:flex;gap:11px;align-items:center"><input type="checkbox" class="tick" ${S.ticks[k+'workout']?'checked':''} onchange="S.ticks['${k}workout']=this.checked;buzz();save();render()"><div><div class="label" style="margin:0 0 3px">Workout</div><div class="it" style="${S.ticks[k+'workout']?'text-decoration:line-through;color:var(--muted)':''}">${wk?wk.mode+' · '+wk.title:'Rest day'}</div><p class="meta small" style="margin:2px 0 0">${wk?esc(wk.focus):'Recovery, steps and stretching still count.'}</p></div></div>${wk?`<button class="btn ghost mini" onclick="openWorkout('${wk.id}')">Open</button>`:''}</div>`;
   let stepsBox=tickBox(k+'steps',S.setup.steps.toLocaleString()+' steps','Your daily step goal from the planner.',S.ticks[k+'steps']);
-  let proBox=proGap>0?tickBox(k+'protein','Top up '+proGap+'g protein','Your meals cover '+t.pro+'g of '+S.goals.pro+'g. A shake or high-protein yogurt closes the gap.',S.ticks[k+'protein']):tickBox(k+'protein','Protein covered','Your planned meals already hit your '+S.goals.pro+'g target.',S.ticks[k+'protein']);
+  let proBox=proGap>0?tickBox(k+'protein','Top up '+proGap+'g protein <span style="font-weight:600;color:var(--muted)">(and optionally ~'+(proGap*4)+' kcal)</span>','Your meals cover '+t.pro+'g of '+S.goals.pro+'g. A shake or high-protein yogurt closes the gap, tick it and your rings count it.',S.ticks[k+'protein']):tickBox(k+'protein','Protein covered','Your planned meals already hit your '+S.goals.pro+'g target.',S.ticks[k+'protein']);
   let total=planLen(),isToday=idx===Math.max(0,Math.min(total-1,dateIndex()));
-  let proPct=Math.min(100,Math.round(t.pro/S.goals.pro*100));
+  let eaten=eatenTotals(d,k);
   return `
-  <div class="todayHead"><button class="arrow" ${idx<=0?'disabled':''} onclick="S.dayView=${idx-1};save();render()">‹</button><div><div class="label" style="text-align:center">${isToday?'Today':'Viewing'}${done?' · completed':''}</div><h2 class="h2" style="text-align:center">${dayLabel(idx)}</h2>${isToday?'':`<div style="text-align:center;margin-top:4px"><button class="btn soft mini" onclick="S.dayView=null;save();render()">Back to today</button></div>`}</div><button class="arrow" ${idx>=total-1?'disabled':''} onclick="S.dayView=${idx+1};save();render()">›</button></div>
-  <div class="row" style="justify-content:center;margin:0 0 6px"><span class="tag red">${t.cal} / ${S.goals.cal} kcal</span><span class="tag green">${t.pro} / ${S.goals.pro}g protein</span></div>
-  <div class="bar"><i style="width:${pct}%" class="${t.cal>S.goals.cal?'over':''}"></i></div>
-  <div class="bar" style="margin:0 0 4px"><i class="pro" style="width:${proPct}%"></i></div>
-  <p class="muted small" style="margin:2px 0 10px;text-align:center">${free>=0?free+' kcal left for extras, snacks and drinks.':'Around '+Math.abs(free)+' kcal over target, tomorrow is a fresh start.'}</p>
+  <div class="todayHead"><button class="arrow" ${idx<=0?'disabled':''} onclick="S.dayView=${idx-1};save();render()">‹</button><div><div class="label" style="text-align:center">${isToday?greet()+' · today':'Viewing'}${done?' · completed':''}</div><h2 class="h2" style="text-align:center">${dayLabel(idx)}</h2>${isToday?'':`<div style="text-align:center;margin-top:4px"><button class="btn soft mini" onclick="S.dayView=null;save();render()">Back to today</button></div>`}</div><button class="arrow" ${idx>=total-1?'disabled':''} onclick="S.dayView=${idx+1};save();render()">›</button></div>
+  <div class="rings">
+    ${ring(eaten.cal/S.goals.cal,'var(--red)',eaten.cal,'of '+S.goals.cal,'kcal eaten')}
+    ${ring(eaten.pro/S.goals.pro,'var(--green)',eaten.pro+'g','of '+S.goals.pro+'g','protein eaten')}
+  </div>
+  <p class="muted small" style="margin:2px 0 4px;text-align:center">Tick meals off below and your rings fill up.</p>
+  <p class="muted small" style="margin:0 0 10px;text-align:center">Planned today: <b>${t.cal}</b> kcal · <b>${t.pro}g</b> protein${free>=0?' · '+free+' kcal left for extras.':' · about '+Math.abs(free)+' kcal over, close is perfect.'}</p>
   ${workoutBox}${stepsBox}${proBox}
-  ${TYPES.map(s=>{let m=slotData(d,s),tick=S.ticks[k+s];return `<div class="item" style="margin:8px 0"><div style="display:flex;gap:11px;align-items:center"><input type="checkbox" class="tick" ${tick?'checked':''} onchange="S.ticks['${k+s}']=this.checked;save();render()"><div><div class="label" style="margin:0 0 3px">${TYPENAME[s]}</div><div class="it" style="${tick?'text-decoration:line-through;color:var(--muted)':''}">${esc(m.name)}</div><p class="meta small" style="margin:2px 0 0">${m.cal} kcal · ${m.pro}g protein</p></div></div><span class="row" style="gap:6px;justify-content:flex-end">${m.id?`<button class="btn ghost mini" onclick="openMeal('${m.id}',${m.p||1})">Open</button>`:''}<button class="btn soft mini" onclick="openMealOptions(${idx},'${s}')">Edit</button></span></div>`}).join('')}
-  <button class="btn ${done?'soft':''}" style="width:100%;margin-top:12px" onclick="S.ticks['${k}done']=!S.ticks['${k}done'];save();render()">${done?'Completed · tap to undo':'Mark today as completed'}</button>`;
+  ${TYPES.map(s=>{let m=slotData(d,s),tick=S.ticks[k+s];return `<div class="item" style="margin:8px 0"><div style="display:flex;gap:11px;align-items:center"><input type="checkbox" class="tick" ${tick?'checked':''} onchange="S.ticks['${k+s}']=this.checked;buzz();save();render()"><div><div class="label" style="margin:0 0 3px">${TYPENAME[s]}</div><div class="it" style="${tick?'text-decoration:line-through;color:var(--muted)':''}">${esc(m.name)}</div><p class="meta small" style="margin:2px 0 0">${m.cal} kcal · ${m.pro}g protein</p></div></div><span class="row" style="gap:6px;justify-content:flex-end">${m.id?`<button class="btn ghost mini" onclick="openMeal('${m.id}',${m.p||1})">Open</button>`:''}<button class="btn soft mini" onclick="openMealOptions(${idx},'${s}')">Edit</button></span></div>`}).join('')}
+  <button class="btn ${done?'soft':''}" style="width:100%;margin-top:12px" onclick="toggleDone(${idx})">${done?'Completed · tap to undo':'Mark today as completed'}</button>`;
 }
 /* Edit a meal straight from the Home screen, for eating out, leftovers or a different recipe */
 function openMealOptions(idx,s){
@@ -704,9 +836,11 @@ function renderPlan(){
 
 /* ============ RECIPE MODAL ============ */
 const TAGMAP={'DF':'Dairy Free','GF Option':'Gluten-Free Option'};
-const SEASONNAME={golden:'July · Golden Hour'};
+const SEASONNAME={golden:'July · Golden Hour',lean:'June · Lean Season'};
 function tagName(t){return TAGMAP[t]||t}
 function favKeyOf(id,sw){return sw?id+'::'+sw[0]+'>'+sw[1]:id}
+/* recipe photos, hosted in the repo under /app-img/<season>/<id>.webp */
+function imgFor(m){return (m.season||'golden')==='golden'&&/^(breakfast|lunch|dinner|snack)-\d\d$/.test(m.id)?'/app-img/golden/'+m.id+'.webp':null}
 function toggleFav(id,sw,name){
   let key=favKeyOf(id,sw);
   if(S.favs[key])delete S.favs[key];
@@ -732,7 +866,7 @@ function openMeal(id,p=1,manual=null,ctx=null,ppl=null){
   let favKey=favKeyOf(id,curSw),isFav=!!S.favs[favKey];
   let reopen=(np,nppl)=>`openMeal('${id}',${np},${manualArg},${ctxArg},${nppl})`;
   modalBody.innerHTML=`
-  <div class="photo" style="position:relative"><button class="heart ${isFav?'on':''}" style="position:absolute;top:14px;right:14px" onclick="toggleFav('${id}',${swArg},'${esc(m.name).replace(/'/g,"\\'")}');${reopen(p,curPpl)}" aria-label="Favourite">♥</button><div class="mealType">${TYPENAME[m.type]} ${m.swapped?'· swapped':''}</div><h2 class="h2" style="font-size:34px;margin:6px 0 0">${esc(m.name)}</h2><div class="tagline">${esc(m.tagline)}</div></div>
+  <div class="photo" style="position:relative"><button class="heart ${isFav?'on':''}" style="position:absolute;top:14px;right:14px" onclick="toggleFav('${id}',${swArg},'${esc(m.name).replace(/'/g,"\\'")}');${reopen(p,curPpl)}" aria-label="Favourite">♥</button>${imgFor(m)?`<img class="photoImg" src="${imgFor(m)}" alt="" loading="lazy" style="margin-top:26px" onerror="this.remove()">`:''}<div class="mealType">${TYPENAME[m.type]} ${m.swapped?'· swapped':''}</div><h2 class="h2" style="font-size:34px;margin:6px 0 0">${esc(m.name)}</h2><div class="tagline">${esc(m.tagline)}</div><div style="clear:both"></div></div>
   <div class="row"><span class="tag gold">${SEASONNAME[m.season]||''}</span>${m.tags.map(t=>`<span class="tag blush">${esc(tagName(t))}</span>`).join('')}${isFav?'<span class="tag red">♥ Favourite</span>':''}</div>
   <div class="metaRow"><div class="mm"><div class="k">Prep</div><div class="v">${m.prep}</div></div><div class="mm"><div class="k">Cook</div><div class="v">${m.cook||'—'}</div></div><div class="mm"><div class="k">Cooking for</div><div class="v"><span class="row" style="gap:7px;align-items:center"><button class="btn ghost mini" ${curPpl<=1?'disabled style="opacity:.35"':''} onclick="${reopen(p,Math.max(1,curPpl-1))}">−</button>${curPpl}<button class="btn ghost mini" ${curPpl>=6?'disabled style="opacity:.35"':''} onclick="${reopen(p,Math.min(6,curPpl+1))}">+</button></span></div></div></div>
   <div class="macroStrip"><div class="m"><div class="k">Calories</div><div class="v">${Math.round(m.cal*p)}<small>kcal</small></div></div><div class="m"><div class="k">Protein</div><div class="v">${Math.round(m.pro*p)}<small>g</small></div></div><div class="m"><div class="k">Carbs</div><div class="v">${Math.round(m.carbs*p)}<small>g</small></div></div><div class="m"><div class="k">Fats</div><div class="v">${Math.round(m.fat*p)}<small>g</small></div></div></div>
@@ -760,31 +894,51 @@ function secNote(sec){
   if(meta&&/rest|no rest/i.test(meta))return meta;
   return [meta,rest].filter(Boolean).join(' · ');
 }
+function logSet(lk,f,v){
+  S.logs[lk]=S.logs[lk]||{};S.logs[lk][f]=v;
+  let h=S.logHist[lk]=S.logHist[lk]||[];
+  let today=new Date().toISOString().slice(0,10),last=h[h.length-1];
+  if(!last||last.d!==today)h.push({d:today,kg:S.logs[lk].kg||'',reps:S.logs[lk].reps||''});
+  else{last.kg=S.logs[lk].kg||'';last.reps=S.logs[lk].reps||''}
+  if(h.length>30)h.shift();
+  save();
+}
+function lastLog(lk){
+  let h=S.logHist[lk]||[],today=new Date().toISOString().slice(0,10);
+  for(let i=h.length-1;i>=0;i--)if(h[i].d!==today&&(h[i].kg||h[i].reps))return h[i];
+  return null;
+}
 function openWorkout(id){
   let w=workoutById(id);if(!w)return;
   let myKind=S.setup[w.mode.toLowerCase()==='gym'?'gymTime':'homeTime']||'full';
   let myIdx={essential:0,full:1,build:2}[myKind];
   let myTime=(w.stops[myIdx]?.stats?.Time||w.stats.duration||'').toLowerCase();
+  let mainIdx=w.secs.findIndex(s=>/main/i.test(s.name));if(mainIdx<0)mainIdx=1;
+  let coreIdx=w.secs.findIndex(s=>/core|abs/i.test(s.name));if(coreIdx<0)coreIdx=w.secs.length-2;
   let stopHTML=(st,n)=>{if(!st)return'';let mine=st.kind===myKind;
     return `<div class="tierStop ${mine?'mine':''}"><span>Finish point ${n}${mine?' · your finish point':''}</span><span class="ts">${st.stats.Time?'about '+st.stats.Time.toLowerCase():''}${st.stats.Intensity?' · '+st.stats.Intensity.toLowerCase()+' intensity':''}</span></div>`};
   let secHTML=(sec,si)=>{if(!sec)return'';
-    let beyond=(si===2&&myIdx<1)||(si===3&&myIdx<2);
-    return `<div class="wkSec${beyond?' beyond':''}"><div class="wkSecHead"><div class="wkSecName">${esc(sec.name)}</div></div><div class="wkNote">${esc(secNote(sec))}</div>
-    ${sec.ex.map((e,ei)=>{let lk=id+'|'+si+'|'+ei,lg=S.logs[lk]||{};
-      return `<div class="wkRow"><div><div style="font-weight:700">${esc(e[0])}</div><div class="wkLog"><input placeholder="kg" value="${lg.kg||''}" onchange="S.logs['${lk}']=S.logs['${lk}']||{};S.logs['${lk}'].kg=this.value;save()"><input placeholder="reps" value="${lg.reps||''}" onchange="S.logs['${lk}']=S.logs['${lk}']||{};S.logs['${lk}'].reps=this.value;save()"></div></div><span class="wkRep">${esc(normRep(e[1]))}</span></div>`}).join('')}</div>`};
+    let beyond=(si>mainIdx&&myIdx<1)||(si>coreIdx&&myIdx<2);
+    let rs=restSecs(sec);
+    return `<div class="wkSec${beyond?' beyond':''}"><div class="wkSecHead"><div class="wkSecName">${esc(sec.name)}</div><button class="timerBtn" onclick="startRest(${rs})">⏱ Rest ${rs}s</button></div><div class="wkNote">${esc(secNote(sec))}</div>
+    ${sec.ex.map((e,ei)=>{let lk=id+'|'+si+'|'+ei,lg=S.logs[lk]||{},prev=lastLog(lk);
+      let trend=prev&&lg.kg&&parseFloat(lg.kg)>parseFloat(prev.kg||0)?' <span style="color:var(--green)">▲</span>':'';
+      return `<div class="wkRow"><div><div style="font-weight:700">${esc(e[0])}</div><div class="wkLog"><input placeholder="kg" value="${lg.kg||''}" onchange="logSet('${lk}','kg',this.value)"><input placeholder="reps" value="${lg.reps||''}" onchange="logSet('${lk}','reps',this.value)"></div>${prev?`<div class="meta" style="font-size:11px;margin-top:4px">Last time: ${esc(prev.kg||'—')}${prev.kg?'kg':''}${prev.reps?' × '+esc(prev.reps):''}${trend}</div>`:''}</div><span class="wkRep">${esc(normRep(e[1]))}</span></div>`}).join('')}</div>`};
+  let body=w.secs.map((sec,si)=>{
+    let h=secHTML(sec,si);
+    if(si===mainIdx)h+=stopHTML(w.stops[0],1);
+    if(si===coreIdx)h+=stopHTML(w.stops[1],2);
+    if(si===w.secs.length-1)h+=stopHTML(w.stops[2],3);
+    return h;
+  }).join('');
   modalBody.innerHTML=`
-  <div class="photo"><div class="mealType">${esc(w.mode)} workout</div><h2 class="h2" style="font-size:34px;margin:6px 0 0">${esc(w.title)}</h2><div class="tagline">${esc(w.focus)}</div></div>
+  <div class="photo"><div class="mealType">${esc(w.mode)} workout · ${SEASONNAME[w.season||'golden']||''}</div><h2 class="h2" style="font-size:34px;margin:6px 0 0">${esc(w.title)}</h2><div class="tagline">${esc(w.focus)}</div></div>
   <p class="muted" style="margin:0 2px 12px">${esc(w.line)}</p>
   <div class="row" style="margin-bottom:8px">${w.equip.map(t=>`<span class="tag blush">${esc(t)}</span>`).join('')}<span class="tag gold">Your session · about ${esc(myTime)}</span><span class="tag green">Your finish point · ${POINT[myKind][0]}</span></div>
+  <div class="row" style="margin-bottom:10px"><span class="label" style="margin:0">Rest timer</span><button class="timerBtn" onclick="startRest(30)">30s</button><button class="timerBtn" onclick="startRest(60)">60s</button><button class="timerBtn" onclick="startRest(90)">90s</button><span class="muted small">or tap ⏱ on any section</span></div>
   <div class="steps-note" style="margin-bottom:10px"><b>Real-world timing.</b> About ${esc(myTime)} of working time to your finish point. Allow an extra 5–10 minutes for setting up, warming up and moving between stations, and a little more the first time while you learn the moves. Anything greyed out below is beyond your finish point, a bonus for days with more time.</div>
-  ${secHTML(w.secs[0],0)}
-  ${secHTML(w.secs[1],1)}
-  ${stopHTML(w.stops[0],1)}
-  ${secHTML(w.secs[2],2)}
-  ${stopHTML(w.stops[1],2)}
-  ${secHTML(w.secs[3],3)}
-  ${stopHTML(w.stops[2],3)}
-  <div class="steps-note" style="margin-top:12px"><b>Progress gently.</b> Add a rep, slow the tempo or add a little load each week. Stop at your finish point, or keep going on days you have more time and energy.</div>`;
+  ${body}
+  <div class="steps-note" style="margin-top:12px"><b>Progress gently.</b> Add a rep, slow the tempo or add a little load each week, your last session shows under each exercise. Stop at your finish point, or keep going on days you have more time and energy.</div>`;
   modal.classList.add('active');
 }
 function closeModal(){modal.classList.remove('active');render()}
@@ -795,7 +949,7 @@ function mealCard(m,sw){
   let fav=!!S.favs[favKeyOf(m.id,sw)];
   let swArg=sw?`['${sw[0]}','${sw[1]}']`:'null';
   let nameArg=esc(x.name).replace(/'/g,"\\'");
-  return `<div class="item"><div><div class="it">${esc(x.name)}</div><div class="meta small">${x.cal} kcal · ${x.pro}g protein · ${esc(x.prep)} prep</div><div class="row" style="margin-top:7px"><span class="tag">${TYPENAME[m.type]}</span><span class="tag gold">${SEASONNAME[m.season||'golden']||''}</span>${x.tags.slice(0,3).map(t=>`<span class="tag blush">${esc(tagName(t))}</span>`).join('')}</div></div><span class="row" style="gap:6px;flex-wrap:nowrap"><button class="heart ${fav?'on':''}" onclick="toggleFav('${m.id}',${swArg},'${nameArg}');renderMeals()" aria-label="Favourite">♥</button><button class="btn ghost mini" onclick="openMeal('${m.id}',1,${swArg})">Open</button></span></div>`;
+  return `<div class="item" style="grid-template-columns:${imgFor(m)?'auto ':''}1fr auto">${imgFor(m)?`<img class="thumb" src="${imgFor(m)}" alt="" loading="lazy" onerror="this.remove()">`:''}<div><div class="it">${esc(x.name)}</div><div class="meta small">${x.cal} kcal · ${x.pro}g protein · ${esc(x.prep)} prep</div><div class="row" style="margin-top:7px"><span class="tag">${TYPENAME[m.type]}</span><span class="tag gold">${SEASONNAME[m.season||'golden']||''}</span>${x.tags.slice(0,3).map(t=>`<span class="tag blush">${esc(tagName(t))}</span>`).join('')}</div></div><span class="row" style="gap:6px;flex-wrap:nowrap"><button class="heart ${fav?'on':''}" onclick="toggleFav('${m.id}',${swArg},'${nameArg}');renderMeals()" aria-label="Favourite">♥</button><button class="btn ghost mini" onclick="openMeal('${m.id}',1,${swArg})">Open</button></span></div>`;
 }
 function renderMeals(){
   let f=$('mealTypeFilter')?.value||'all';
@@ -820,11 +974,19 @@ function renderMeals(){
   renderPacks();
 }
 /* ============ RECIPE PACK UNLOCKS ============ */
+function packContents(pk){
+  let bits=[];
+  if((pk.recipes||[]).length)bits.push(pk.recipes.length+' recipe'+(pk.recipes.length>1?'s':''));
+  if((pk.workouts||[]).length)bits.push(pk.workouts.length+' workout'+(pk.workouts.length>1?'s':''));
+  return bits.join(' + ');
+}
 function renderPacks(){
   if(!PACKS.length){packList.innerHTML='';return}
-  packList.innerHTML=`<div class="shopHead"><div class="label">Recipe packs</div></div>`+PACKS.map(pk=>{
-    if(S.unlocked[pk.id])return `<div class="item"><div><div class="it">${esc(pk.name)}</div><p class="meta small" style="margin:2px 0 0">${pk.recipes.length} extra recipe${pk.recipes.length>1?'s':''} live in your meal bank.</p></div><span class="tag green">Unlocked ✓</span></div>`;
-    return `<div class="item lockItem"><div><div class="it">🔒 ${esc(pk.name)}</div><p class="meta small" style="margin:2px 0 0">${esc(pk.line)}</p><div class="row" style="margin-top:7px">${pk.recipes.map(r=>`<span class="tag">${esc(r.name)}</span>`).join('')}</div></div><span style="display:grid;gap:6px;justify-items:end"><a class="btn mini" style="text-decoration:none;text-align:center" href="${pk.buy}" target="_blank" rel="noopener">Get the pack${pk.price?' · '+pk.price:''}</a><button class="btn ghost mini" onclick="enterCode()">I have a code</button></span></div>`;
+  packList.innerHTML=`<div class="shopHead"><div class="label">Recipe + workout packs</div></div>`+PACKS.map(pk=>{
+    if(S.unlocked[pk.id])return `<div class="item"><div><div class="it">${esc(pk.name)}</div><p class="meta small" style="margin:2px 0 0">${packContents(pk)} live in your Meals and Train tabs.</p></div><span class="tag green">Unlocked ✓</span></div>`;
+    let items=[...(pk.recipes||[]).map(r=>r.name),...(pk.workouts||[]).map(w=>w.mode+' · '+w.title)];
+    let shown=items.slice(0,6),more=items.length-shown.length;
+    return `<div class="item lockItem"><div><div class="it">🔒 ${esc(pk.name)}</div><p class="meta small" style="margin:2px 0 0">${esc(pk.line)} <b>${packContents(pk)}.</b></p><div class="row" style="margin-top:7px">${shown.map(n=>`<span class="tag">${esc(n)}</span>`).join('')}${more>0?`<span class="tag gold">+ ${more} more</span>`:''}</div></div><span style="display:grid;gap:6px;justify-items:end"><a class="btn mini" style="text-decoration:none;text-align:center" href="${pk.buy}" target="_blank" rel="noopener">Get the pack${pk.price?' · '+pk.price:''}</a><button class="btn ghost mini" onclick="enterCode()">I have a code</button></span></div>`;
   }).join('');
 }
 function unlockWithCode(code){
@@ -834,7 +996,8 @@ function unlockWithCode(code){
   S.unlocked[hit.id]=true;save();syncPacks();return hit;
 }
 function showUnlockModal(pk){
-  modalBody.innerHTML=`<div class="label">Unlocked</div><h2 class="h2">${esc(pk.name)} is yours</h2><p class="muted">${pk.recipes.length} new recipe${pk.recipes.length>1?'s are':' is'} now live in your Meal bank on this device, favourite them, plan them and shop them like any other recipe.</p><button class="btn" style="margin-top:12px" onclick="closeModal();go('meals')">See my new recipes</button>`;
+  let hasR=(pk.recipes||[]).length,hasW=(pk.workouts||[]).length;
+  modalBody.innerHTML=`<div class="label">Unlocked</div><h2 class="h2">${esc(pk.name)} is yours</h2><p class="muted">${packContents(pk)} now live on this device${hasR?', favourite them, plan them and shop them like any other recipe':''}${hasW?(hasR?'. Workouts appear in your Train tab and planner dropdowns':', they appear in your Train tab and planner dropdowns'):''}.</p><button class="btn" style="margin-top:12px" onclick="closeModal();go('${hasR?'meals':'train'}')">${hasR?'See my new recipes':'See my new workouts'}</button>`;
   modal.classList.add('active');
 }
 function enterCode(){
@@ -845,8 +1008,12 @@ function enterCode(){
 }
 function renderTrain(){
   let f=$('trainModeFilter')?.value||'all';
+  let season=$('trainSeasonFilter')?.value||'all';
   let modes=f==='all'?['Gym','Home']:[f];
-  workoutList.innerHTML=modes.map(md=>`<div class="shopHead"><div class="label">${md} sessions</div></div>`+WORKOUTS.filter(w=>w.mode===md).map(w=>`<div class="item"><div><div class="it">${esc(w.title)}</div><div class="meta small">${esc(w.focus)} · ${esc(w.stats.duration||'')}</div></div><button class="btn ghost mini" onclick="openWorkout('${w.id}')">Open</button></div>`).join('')).join('');
+  workoutList.innerHTML=modes.map(md=>{
+    let list=WORKOUTS.filter(w=>w.mode===md&&(season==='all'||(w.season||'golden')===season));
+    return list.length?`<div class="shopHead"><div class="label">${md} sessions</div></div>`+list.map(w=>`<div class="item"><div><div class="it">${esc(w.title)}</div><div class="meta small">${esc(w.focus)} · ${esc(w.stats.duration||'')}</div><div class="row" style="margin-top:6px"><span class="tag gold">${SEASONNAME[w.season||'golden']||''}</span></div></div><button class="btn ghost mini" onclick="openWorkout('${w.id}')">Open</button></div>`).join(''):'';
+  }).join('')||'<div class="card" style="margin-top:12px"><p class="muted" style="margin:0">No workouts in this view yet.</p></div>';
 }
 
 /* ============ SHOPPING LIST ============ */
@@ -947,6 +1114,10 @@ const GUIDE={
  'Steps, ticks + logs':[
   'Your Home page is your daily checklist: workout, steps, protein top-up and each meal, tick them off as you go, then mark the day completed.',
   'The Logs tab keeps a short record of every day so you can see your consistency build over the month. Consistency beats perfection, every time.'],
+ 'Favourites, packs + rest timer':[
+  'Tap the heart on any recipe to save it to your Favourites tab in the meal bank. If you swap an ingredient first, the swapped version is saved exactly as you made it.',
+  'Recipe and workout packs at the bottom of the Meals tab unlock extra seasons. Buy a pack on Gumroad and open the magic link in your receipt, or tap "I have a code" and type it in. Unlocks live on your device.',
+  'Inside every workout there is a rest timer, tap 30s, 60s or 90s at the top, or the ⏱ button on any section. It buzzes and chimes when it is time for your next set, and your last session\'s weight shows under each exercise so you always know what to beat.'],
  'A gentle note · disclaimer':[
   'This is general fitness and nutrition guidance, not medical advice. Calorie and protein figures are estimates to help you plan, results vary and are never guaranteed.',
   'Nothing in this app replaces advice from your doctor, physio or a registered dietitian. If you are pregnant, injured or managing a health condition, check in with a professional first.',
