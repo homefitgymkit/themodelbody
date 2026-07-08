@@ -152,6 +152,8 @@ ol.method li{margin-bottom:6px}
 .nav svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .nav.active{background:var(--blush);border-color:var(--blushline);color:var(--red)}
 .hidden{display:none}
+.figAccent{position:relative;overflow:hidden}
+.figAccent::after{content:"";position:absolute;top:-6px;right:-8px;width:84px;height:150px;pointer-events:none;opacity:.055;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 160'><circle cx='50' cy='13' r='7.5' fill='%231A1410'/><path fill='%231A1410' d='M50 21c8 0 13 5 15 13l3 15c1 5-6 6-7 1l-3-12c-1 5-1 10 1 15l2 6c-4 3-8 4-11 4-3 0-7-1-11-4l2-6c2-5 2-10 1-15l-3 12c-1 5-8 4-7-1l3-15c2-8 7-13 15-13z M40 60c3 2 7 3 10 3 3 0 7-1 10-3l3 30c1 6 0 12-1 18l-3 34c-1 5-8 5-8-1l-1-30-1 30c0 6-7 6-8 1l-3-34c-1-6-2-12-1-18z'/></svg>") no-repeat top right;background-size:contain}
 .guideTab{letter-spacing:.04em}
 .guideItem{border:1px solid var(--line);background:linear-gradient(135deg,#FFFDF8,#FBF4E6);border-radius:16px;padding:16px 17px;margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:12px;box-shadow:0 6px 16px #1a14100a}
 .guideItem .gk{font-family:var(--serif);font-size:19px;letter-spacing:.01em;color:var(--ink);line-height:1.15}
@@ -272,7 +274,7 @@ ol.method li{margin-bottom:6px}
 </main>
 
 <main class="page" id="meals">
-  <section class="card"><div class="label">Meal bank</div><h2 class="h2">Golden Hour recipes</h2><p class="muted small">Every recipe from this month's plan. Open any meal to scale servings, see the method and use relevant swaps. Tap the heart to save a favourite, swapped versions save too.</p>
+  <section class="card figAccent"><div class="label">Meal bank</div><h2 class="h2">Golden Hour recipes</h2><p class="muted small">Every recipe from this month's plan. Open any meal to scale servings, see the method and use relevant swaps. Tap the heart to save a favourite, swapped versions save too.</p>
   <div class="two" style="margin-top:12px">
     <label class="field"><span>Meal type</span><select id="mealTypeFilter" onchange="renderMeals()"><option value="all">All meals</option><option value="favs">♥ Favourites</option><option value="breakfast">Breakfasts</option><option value="lunch">Lunches</option><option value="dinner">Dinners</option><option value="snack">Snacks</option></select></label>
     <label class="field"><span>Season</span><select id="mealSeasonFilter" onchange="renderMeals()"><option value="all">All seasons</option><option value="golden">Golden Hour</option><option value="lean">Lean Season</option><option value="april">April Reset</option><option value="shred">Summer Shred</option></select></label>
@@ -283,7 +285,7 @@ ol.method li{margin-bottom:6px}
 </main>
 
 <main class="page" id="train">
-  <section class="card"><div class="label">Workout bank</div><h2 class="h2">8 Golden Hour workouts</h2><p class="muted small">Four gym and four home sessions. Each one has three finish points, your session time in the planner sets which is highlighted for you.</p>
+  <section class="card figAccent"><div class="label">Workout bank</div><h2 class="h2">8 Golden Hour workouts</h2><p class="muted small">Four gym and four home sessions. Each one has three finish points, your session time in the planner sets which is highlighted for you.</p>
   <div class="two" style="margin-top:12px">
     <label class="field"><span>Workout type</span><select id="trainModeFilter" onchange="renderTrain()"><option value="all">All workouts</option><option value="Gym">Gym</option><option value="Home">Home</option></select></label>
     <label class="field"><span>Season</span><select id="trainSeasonFilter" onchange="renderTrain()"><option value="all">All seasons</option><option value="golden">Golden Hour</option><option value="lean">Lean Season</option><option value="april">April Reset</option><option value="shred">Summer Shred</option></select></label>
@@ -306,14 +308,14 @@ ol.method li{margin-bottom:6px}
 </main>
 
 <main class="page" id="logs">
-  <section class="card"><div class="label">Logs</div><h2 class="h2">Your month so far</h2><p class="muted small">A short record of what you achieved each day, and your personal bests. Ticks come from your Today page.</p></section>
+  <section class="card figAccent"><div class="label">Logs</div><h2 class="h2">Your month so far</h2><p class="muted small">A short record of what you achieved each day, and your personal bests. Ticks come from your Today page.</p></section>
   <div class="row" style="margin:14px 2px 2px;gap:8px"><button class="btn guideTab mini" id="ltabLog" onclick="setLogTab('log')">Daily log</button><button class="btn ghost guideTab mini" id="ltabPB" onclick="setLogTab('pb')">Personal Bests</button></div>
   <div id="logList"></div>
   <div id="pbList" class="hidden"></div>
 </main>
 
 <main class="page" id="guide">
-  <section class="card"><div class="label">The Model Body</div><h2 class="h2">Your Guide</h2><p class="muted small">Everything you need to follow Golden Hour with confidence.</p></section>
+  <section class="card figAccent"><div class="label">The Model Body</div><h2 class="h2">Your Guide</h2><p class="muted small">Everything you need to follow Golden Hour with confidence.</p></section>
   <div id="guideList"></div>
 </main>
 
@@ -952,7 +954,8 @@ const SEASONNAME={golden:'Golden Hour',lean:'Lean Season',april:'April Reset',sh
 function tagName(t){return TAGMAP[t]||t}
 function favKeyOf(id,sw){let l=normSw(sw);return l.length?id+'::'+l.map(p=>p[0]+'>'+p[1]).sort().join('+'):id}
 /* recipe photos, hosted in the repo under /app-img/<season>/<id>.webp */
-function imgFor(m){return (m.season||'golden')==='golden'&&/^(breakfast|lunch|dinner|snack)-\d\d$/.test(m.id)?'/app-img/golden/'+m.id+'.webp':null}
+/* photos hosted in the repo under /app-img/<season>/<id>.webp; missing files auto-remove via onerror */
+function imgFor(m){let s=m.season||'golden';return (s==='golden'&&/^(breakfast|lunch|dinner|snack)-\d\d$/.test(m.id))||(s==='lean'&&/^june-(breakfast|lunch|dinner|snack)-\d\d$/.test(m.id))?'/app-img/'+s+'/'+m.id+'.webp':null}
 function toggleFav(id,sw,name){
   let l=normSw(sw),key=favKeyOf(id,sw);
   if(S.favs[key])delete S.favs[key];
