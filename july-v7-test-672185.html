@@ -27,6 +27,9 @@ button,select,input,label,.nav{touch-action:manipulation}
 @keyframes sheetUp{from{transform:translateY(40px);opacity:.6}to{transform:none;opacity:1}}
 .modal.active .sheet{animation:sheetUp .3s cubic-bezier(.2,.8,.3,1)}
 .rings{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 22px;margin:8px 0 2px}
+.rings.week3{flex-wrap:nowrap;gap:6px 8px}
+.rings.week3 .ringBox{min-width:0}
+.rings.week3 svg{width:min(84px,26vw);height:auto}
 .ringBox{text-align:center}
 .ringBox .rl{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:2px}
 .ringBox svg text{font-family:var(--serif);fill:var(--ink)}
@@ -155,7 +158,7 @@ ol.method li{margin-bottom:6px}
 .figAccent{position:relative;overflow:hidden}
 .figAccent::after{content:"";position:absolute;top:-6px;right:-8px;width:84px;height:150px;pointer-events:none;opacity:.055;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 160'><circle cx='50' cy='13' r='7.5' fill='%231A1410'/><path fill='%231A1410' d='M50 21c8 0 13 5 15 13l3 15c1 5-6 6-7 1l-3-12c-1 5-1 10 1 15l2 6c-4 3-8 4-11 4-3 0-7-1-11-4l2-6c2-5 2-10 1-15l-3 12c-1 5-8 4-7-1l3-15c2-8 7-13 15-13z M40 60c3 2 7 3 10 3 3 0 7-1 10-3l3 30c1 6 0 12-1 18l-3 34c-1 5-8 5-8-1l-1-30-1 30c0 6-7 6-8 1l-3-34c-1-6-2-12-1-18z'/></svg>") no-repeat top right;background-size:contain}
 .guideTab{letter-spacing:.04em}
-.guideItem{border:1px solid var(--line);background:linear-gradient(135deg,#FFFDF8,#FBF4E6);border-radius:16px;padding:16px 17px;margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:12px;box-shadow:0 6px 16px #1a14100a}
+.guideItem{border:1px solid var(--line);background:var(--paper);border-radius:22px;padding:18px;margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:12px;box-shadow:0 14px 38px #1a141014}
 .guideItem .gk{font-family:var(--serif);font-size:19px;letter-spacing:.01em;color:var(--ink);line-height:1.15}
 .guideItem .gs{font-size:12px;color:var(--muted);margin:4px 0 0;font-family:'Archivo','Manrope',sans-serif;letter-spacing:.03em;text-transform:uppercase}
 .gnum{font-family:var(--serif);font-size:15px;color:var(--gold);border:1px solid var(--goldbg);background:var(--goldbg);border-radius:999px;width:30px;height:30px;display:grid;place-items:center;flex:none}
@@ -183,8 +186,7 @@ ol.method li{margin-bottom:6px}
 <main class="page active" id="home">
   <section class="hero" id="heroFull" style="position:relative">
     <button class="heroClose" onclick="S.heroMin=true;save();renderHero()" aria-label="Collapse">✕</button>
-    <div class="label" style="color:var(--gold)">July Edition</div>
-    <h1>July <span class="script">Golden Hour</span></h1>
+    <h1 style="font-size:clamp(38px,9vw,64px)">Welcome to <span class="script">the Model Body</span></h1>
     <p class="muted" style="max-width:460px;margin:0 auto 16px">Your monthly meals, workouts and daily plan in one place. Designed to help you stay consistent, your way.</p>
     <div class="row" style="justify-content:center">
       <button class="btn" data-go="plan">Build my plan</button>
@@ -193,17 +195,20 @@ ol.method li{margin-bottom:6px}
     <p class="muted small" style="max-width:460px;margin:14px auto 0;font-size:11px">Calorie, protein and training figures are general guidance to help you plan, not medical or professional advice. Adjust for your own body, and speak to a qualified professional if you are pregnant, injured or managing a health condition.</p>
   </section>
   <section class="card heroMini hidden" id="heroMini">
-    <div><div class="label" style="margin:0;color:var(--gold)">July Edition</div><div class="it" style="font-family:var(--serif);font-weight:400;font-size:19px">July <span class="script">Golden Hour</span></div></div>
+    <div><div class="it" style="font-family:var(--serif);font-weight:400;font-size:19px">Welcome to <span class="script">the Model Body</span></div></div>
     <button class="btn ghost mini" onclick="S.heroMin=false;save();renderHero()">Open</button>
   </section>
   <section class="card" style="margin-top:14px">
     <div id="todayBox"></div>
   </section>
-  <section class="card" style="margin-top:12px" id="homeTargets"></section>
   <section class="card hidden" style="margin-top:12px" id="weekBox"></section>
 </main>
 
 <main class="page" id="plan">
+  <section class="card" id="planHelp" style="margin-bottom:12px">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><div><div class="label" style="margin:0">How to use</div><p class="muted small" style="margin:4px 0 0">Everything from the Guide, one tap away while you build.</p></div><button class="btn ghost mini" id="planHelpBtn" onclick="S.planHelpOpen=!S.planHelpOpen;save();renderGuide()">Open</button></div>
+    <div id="planGuideList" class="hidden"></div>
+  </section>
   <section id="builder" class="card">
     <div class="label">Personal setup</div>
     <h2 class="h2">Build your plan</h2>
@@ -261,7 +266,10 @@ ol.method li{margin-bottom:6px}
     </div>
     <div id="chosen"></div>
     <hr class="divider">
-    <div class="row"><button class="btn" onclick="buildPlan(false)">Build my plan</button><button class="btn ghost" onclick="buildPlan(true)">Blank planner</button><button class="btn soft" onclick="clearPlan()">Clear</button><button class="btn ghost" id="closeBuilderBtn" onclick="showBuilder(false)">Close builder</button></div>
+    <div class="controls"><label class="field"><span>Plan includes</span><select id="planScope"><option value="both">Workouts + meals</option><option value="meals">Just meals</option><option value="workouts">Just workouts</option></select></label><label class="field"><span>Portion style</span><select id="portionStyle"><option value="smart">Smart adjustment</option><option value="asis">As written</option></select></label></div>
+    <p class="muted small" style="margin:8px 2px 0">Build a full plan, or just the side you want. You can rebuild any time to add the other.</p>
+    <p class="muted small" style="margin:8px 2px 0"><b>Smart adjustment</b> gently resizes each day's portions so you land on your protein target with a little calorie room spare for a snack. <b>As written</b> keeps every recipe exactly as printed, so days may sit a little over or under your targets. You can switch any single meal between the two inside the planner.</p>
+    <div class="row" style="margin-top:12px"><button class="btn" onclick="buildPlan(false)">Build my plan</button><button class="btn ghost" onclick="buildPlan(true)">Blank planner</button><button class="btn soft" onclick="clearPlan()">Clear</button><button class="btn ghost" id="closeBuilderBtn" onclick="showBuilder(false)">Close builder</button></div>
   </section>
   <section id="built" class="card hidden" style="margin-top:12px">
     <div class="dayTop">
@@ -279,15 +287,15 @@ ol.method li{margin-bottom:6px}
     <label class="field"><span>Meal type</span><select id="mealTypeFilter" onchange="renderMeals()"><option value="all">All meals</option><option value="favs">♥ Favourites</option><option value="breakfast">Breakfasts</option><option value="lunch">Lunches</option><option value="dinner">Dinners</option><option value="snack">Snacks</option></select></label>
     <label class="field"><span>Season</span><select id="mealSeasonFilter" onchange="renderMeals()"><option value="all">All seasons</option><option value="golden">Golden Hour</option><option value="lean">Lean Season</option><option value="april">April Reset</option><option value="shred">Summer Shred</option></select></label>
   </div>
-  <label class="field" style="margin-top:10px"><span>Search</span><input id="mealSearch" placeholder="e.g. salmon, smoothie, high protein" oninput="renderMeals()"></label></section>
+  <label class="field" style="margin-top:10px"><span>Search</span><input id="mealSearch" placeholder="e.g. salmon, smoothie, high protein" oninput="renderMeals()"></label>
+  <div class="row" style="margin-top:10px"><button class="btn soft mini" onclick="openFoodLog(todayIndex())">Food log · calorie counter</button><span class="muted small">quick add, favourites + barcode scanner</span></div></section>
   <div id="mealList"></div>
   <div id="packList"></div>
 </main>
 
 <main class="page" id="train">
-  <section class="card figAccent"><div class="label">Workout bank</div><h2 class="h2">8 Golden Hour workouts</h2><p class="muted small">Four gym and four home sessions. Each one has three finish points, your session time in the planner sets which is highlighted for you.</p>
+  <section class="card figAccent"><div class="label">Workout bank</div><h2 class="h2">Golden Hour workouts</h2><p class="muted small">Four signature sessions, each with a gym and a home version. Every workout has three finish points, your session time in the planner sets which is highlighted for you.</p>
   <div class="two" style="margin-top:12px">
-    <label class="field"><span>Workout type</span><select id="trainModeFilter" onchange="renderTrain()"><option value="all">All workouts</option><option value="Gym">Gym</option><option value="Home">Home</option></select></label>
     <label class="field"><span>Season</span><select id="trainSeasonFilter" onchange="renderTrain()"><option value="all">All seasons</option><option value="golden">Golden Hour</option><option value="lean">Lean Season</option><option value="april">April Reset</option><option value="shred">Summer Shred</option></select></label>
   </div></section>
   <div id="workoutList"></div>
@@ -316,6 +324,12 @@ ol.method li{margin-bottom:6px}
 
 <main class="page" id="guide">
   <section class="card figAccent"><div class="label">The Model Body</div><h2 class="h2">Your Guide</h2><p class="muted small">Everything you need to follow Golden Hour with confidence.</p></section>
+  <section class="card" style="margin-top:12px"><div class="label">Data + backup</div>
+    <details style="margin-top:6px"><summary style="cursor:pointer;font-weight:700">Where your progress is saved</summary>
+      <p class="muted small" style="margin:8px 0 0">Progress is saved on this device only. Save a backup before changing phones, clearing browser data or reinstalling. <a href="javascript:void(0)" onclick="exportProgress()" style="color:var(--gold);font-weight:700">Click here to save a backup.</a></p>
+    </details>
+    <button class="btn ghost mini" style="margin-top:10px" onclick="openData()">Open Data + settings</button>
+  </section>
   <div id="guideList"></div>
 </main>
 
@@ -430,7 +444,7 @@ S.goals=S.goals||{cal:1800,pro:120};
 S.variety=S.variety||{b:4,l:4,d:4};
 S.people=S.people||1;S.start=S.start||'';S.diet=S.diet||'none';S.mode=S.mode||'gym';
 if(S.dayView===undefined||S.dayView===0)S.dayView=null; /* null = follow today's date */
-S.avail=S.avail||{mon:'gym',tue:'rest',wed:'home',thu:'gym',fri:'rest',sat:'either',sun:'rest'};
+S.avail=S.avail||{mon:'either',tue:'either',wed:'either',thu:'either',fri:'either',sat:'either',sun:'either'};
 S.include=S.include||{};S.exclude=S.exclude||{};S.habits=S.habits||{};S.ticks=S.ticks||{};S.logs=S.logs||{};
 S.shopExtra=S.shopExtra||[];S.shopTicks=S.shopTicks||{};
 S.shop=S.shop||{mode:'plan',sig:'',ex:{},bought:{}};
@@ -438,19 +452,84 @@ S.favs=S.favs||{};S.unlocked=S.unlocked||{};S.heroMin=S.heroMin||false;S.priorit
 /* fold unlocked pack recipes + workouts into the banks */
 RECIPES.forEach(r=>r.season=r.season||'golden');
 WORKOUTS.forEach(w=>w.season=w.season||'golden');
+/* themed workout names per season: same sessions, clearer identity. Keyed by season + the number in the id. */
+const WK_NAMES={
+ golden:{1:'Golden Glutes',2:'Sunset Sculpt',3:'Peach Hour',4:'Golden Standard'},
+ lean:{1:'Lean Glutes',2:'Sleek Sculpt',3:'Lean Peach',4:'Long & Lean'},
+ april:{1:'Reset Glutes',2:'Reset Push',3:'Spring Peach',4:'Reset & Realign'},
+ shred:{1:'Shred Glutes',2:"Sun's Out Sculpt",3:'Peach Shred',4:'Shredded Back'}
+};
+function renameWk(w){let n=parseInt((w.id.match(/\d+$/)||[0])[0]),t=(WK_NAMES[w.season||'golden']||{})[n];if(t)w.title=t}
+WORKOUTS.forEach(renameWk);
+PACKS.forEach(p=>(p.workouts||[]).forEach(w=>{w.season=w.season||'golden';renameWk(w)}));
+/* merge each season's separate gym + home workout packs into one training pack.
+   Old unlock codes keep working (keys are merged) and anyone who unlocked either half keeps access. */
+(function mergeTrainPacks(){
+  [['lean-train-june','Lean Season Training · June','lean-gym-june','lean-home-june'],
+   ['april-train','April Reset Training','april-gym','april-home'],
+   ['shred-train','Summer Shred Training','shred-gym','shred-home']].forEach(([id,name,g,h])=>{
+    let gi=PACKS.findIndex(p=>p.id===g),hi=PACKS.findIndex(p=>p.id===h);
+    if(gi<0||hi<0)return;
+    let G=PACKS[gi],H=PACKS[hi];
+    let m={id,name,line:'Every gym and home session from the season, together in one pack.',price:G.price||H.price||'',buy:G.buy,keys:[...(G.keys||[]),...(H.keys||[])],recipes:[],workouts:[...(G.workouts||[]),...(H.workouts||[])]};
+    PACKS.splice(Math.min(gi,hi),0,m);
+    [g,h].forEach(x=>{let i=PACKS.findIndex(p=>p.id===x);if(i>-1)PACKS.splice(i,1)});
+    if(S.unlocked&&(S.unlocked[g]||S.unlocked[h]))S.unlocked[id]=true;
+  });
+})();
 function syncPacks(){PACKS.forEach(pk=>{
   if(!S.unlocked[pk.id])return;
   (pk.recipes||[]).forEach(r=>{if(!RECIPES.some(x=>x.id===r.id))RECIPES.push(r)});
   (pk.workouts||[]).forEach(w=>{if(!WORKOUTS.some(x=>x.id===w.id))WORKOUTS.push(w)});
 })}
 syncPacks();
+/* ============ SEASON LOCKS ============
+   Lock a past season's meals and/or workouts in a given month's file. New downloaders then
+   only get this month's content; previous months unlock with a code (kept in their Gumroad receipt).
+   July = nothing locked (Golden Hour is the live season). For August, set e.g.
+   LOCKS={golden:{meals:true,workouts:true}} and add codes to SEASON_KEYS (hashCode of the code -> what it frees).
+   Unlocks are saved per device in S.unlocked as 'season:<name>' (whole) or 'season:<name>:<kind>'. */
+const LOCKS={}; /* season -> {meals:true|false, workouts:true|false} */
+const SEASON_KEYS={}; /* hashCode('CODE') -> {season:'golden', kind:'meals'|'workouts'|undefined(=both)} */
+function seasonLocked(season,kind){
+  season=season||'golden';let cfg=LOCKS[season];if(!cfg||!cfg[kind])return false;
+  if(S.unlocked['season:'+season]||S.unlocked['season:'+season+':'+kind])return false;
+  return true;
+}
+function anyLocked(kind){return Object.keys(LOCKS).some(s=>seasonLocked(s,kind))}
+function lockBanner(kind){
+  if(!anyLocked(kind))return'';
+  let names=Object.keys(LOCKS).filter(s=>seasonLocked(s,kind)).map(s=>SEASONNAME[s]||s).join(', ');
+  let what=kind==='meals'?'recipes':'workouts';
+  return `<div class="card" style="margin-top:12px"><div class="label">Locked ${what}</div><p class="muted small" style="margin:0 0 10px">${esc(names)} ${what} are from a previous release. Unlock them with the code in your Gumroad receipt.</p><button class="btn ghost mini" onclick="enterCode()">I have a code</button></div>`;
+}
 S.logHist=S.logHist||{};
 function tomorrowStr(){let d=new Date();d.setDate(d.getDate()+1);return d.toISOString().slice(0,10)}
 if(!S.start)S.start=tomorrowStr();
 function $(id){return document.getElementById(id)}
-function save(){localStorage.mbGoldenV9=JSON.stringify(S)}
+function save(){try{S.backupMeta=S.backupMeta||{};S.backupMeta.lastSaved=new Date().toISOString()}catch(e){}localStorage.mbGoldenV9=JSON.stringify(S)}
 function clone(o){return JSON.parse(JSON.stringify(o))}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+/* ============ APP HEALTH CHECK / MIGRATION ============
+   One permanent storage key for every version: localStorage.mbGoldenV9 (never rename; bump SCHEMA + migrate).
+   Runs on every load: ensures each saved section exists, never wipes existing member data. */
+const SCHEMA=2;
+const APP_VERSION='2026.07-v19'; /* bump each release; used by the Check for updates button */
+(function healthCheck(){
+  try{
+    S.mealEdits=S.mealEdits||{};     /* per-plan-meal overrides: serves + custom macro swaps */
+    S.customMeals=S.customMeals||{}; /* member's own saved meals */
+    S.food=S.food||{};               /* food log / calorie counter entries per day */
+    S.foodFavs=S.foodFavs||[];       /* favourite foods for one-tap logging */
+    S.backupMeta=S.backupMeta||{lastSaved:null,lastBackup:null};
+    const req={setup:{},goals:{cal:1800,pro:120},variety:{b:4,l:4,d:4},avail:{},include:{},exclude:{},
+      habits:{},ticks:{},logs:{},logHist:{},shop:{mode:'plan',sig:'',ex:{},bought:{}},shopExtra:[],
+      favs:{},unlocked:{},mealEdits:{},customMeals:{},food:{},foodFavs:[]};
+    Object.keys(req).forEach(k=>{if(S[k]===undefined||S[k]===null)S[k]=clone(req[k])});
+    S.schema=SCHEMA; /* migrations for older schemas go above this line, never delete data */
+    S.backupMeta.lastSaved=S.backupMeta.lastSaved||new Date().toISOString();
+  }catch(e){console.warn('healthCheck',e)}
+})();
 
 /* ============ FEEL: haptics, sound, confetti ============ */
 function buzz(ms){try{navigator.vibrate&&navigator.vibrate(ms||8)}catch(e){}}
@@ -495,6 +574,9 @@ function eatenTotals(d,k){
   TYPES.forEach(s=>{if(S.ticks[k+s]){let m=slotData(d,s);cal+=m.cal;pro+=m.pro}});
   let t=dayTotals(d),gap=Math.max(0,S.goals.pro-t.pro);
   if(S.ticks[k+'protein']&&gap>0){pro+=gap;cal+=Math.round(gap*4)}
+  /* food log extras count too */
+  let fi=parseInt(String(k).slice(1),10);
+  if(!isNaN(fi)){let ft=foodTotals(fi);cal+=ft.cal;pro+=ft.pro}
   return{cal,pro};
 }
 
@@ -605,7 +687,8 @@ function applyDiet(m){
   return x;
 }
 function recipe(id){let m=recipeRaw(id);return m?applyDiet(m):null}
-function byType(t){return RECIPES.filter(r=>r.type===t)}
+function byType(t){return RECIPES.filter(r=>r.type===t&&!seasonLocked(r.season||'golden','meals'))}
+function availWorkouts(){return WORKOUTS.filter(w=>!seasonLocked(w.season||'golden','workouts'))}
 function pick(a,i){return a[((i%a.length)+a.length)%a.length]}
 
 /* scale quantities inside an ingredient string */
@@ -666,6 +749,8 @@ function renderBuilder(){
   calGoal.value=S.goals.cal;proGoal.value=S.goals.pro;people.value=S.people;startDate.value=S.start;diet.value=S.diet;mode.value=S.mode;
   varB.value=S.variety.b;varL.value=S.variety.l;varD.value=S.variety.d;
   if($('priorityFavs'))$('priorityFavs').checked=!!S.priorityFavs;
+  if($('planScope'))$('planScope').value=S.planScope||'both';
+  if($('portionStyle'))$('portionStyle').value=S.portionStyle||'smart';
   if(S.plan)weeks.value=Object.keys(S.plan.weeks).length;
   $('closeBuilderBtn').style.display=S.plan?'':'none';
 }
@@ -676,7 +761,7 @@ function renderAvail(){
   <option value="home" ${S.avail[keys[i]]==='home'?'selected':''}>Home</option>
   <option value="either" ${S.avail[keys[i]]==='either'?'selected':''}>Either</option></select></label>`).join('');
 }
-function renderDrop(){workoutDrop.innerHTML=WORKOUTS.filter(w=>w.mode.toLowerCase()===mode.value).map(w=>`<option value="${w.id}">${w.mode} · ${w.title}</option>`).join('')}
+function renderDrop(){workoutDrop.innerHTML=availWorkouts().filter(w=>w.mode.toLowerCase()===mode.value).map(w=>`<option value="${w.id}">${w.mode} · ${w.title}</option>`).join('')}
 mode.onchange=()=>{S.mode=mode.value;save();renderDrop()};
 function addWorkout(inc){let id=workoutDrop.value;if(inc){S.include[id]=true;S.exclude[id]=false}else{S.exclude[id]=true;S.include[id]=false}save();renderChosen()}
 function renderChosen(){
@@ -695,7 +780,11 @@ function buildPlan(blank){
   S.variety={b:+varB.value||4,l:+varL.value||4,d:+varD.value||4};
   S.people=+people.value||1;S.start=startDate.value||tomorrowStr();S.diet=diet.value;S.mode=mode.value;
   S.priorityFavs=!!$('priorityFavs')?.checked;
+  S.planScope=$('planScope')?.value||'both';
+  S.portionStyle=$('portionStyle')?.value||'smart';
+  let scope=S.planScope,wantMeals=scope!=='workouts',wantWorkouts=scope!=='meals';
   let wc=+weeks.value,td=S.setup.trainDays,snackCount=+snacks.value;
+  if(!wantWorkouts)td=0;
   let included=Object.keys(S.include).filter(k=>S.include[k]).map(workoutById);
   let favList=Object.values(S.favs),favIds=new Set(favList.map(v=>v.id));
   let favSwOf=id=>{let f=favList.find(v=>v.id===id&&normSw(v.sw).length);return f?normSw(f.sw):null};
@@ -713,19 +802,19 @@ function buildPlan(blank){
     plan.weeks[w]={};
     let free=keys.filter(k=>S.avail[k]!=='rest').slice(0,td);
     keys.forEach((k,i)=>{
-      if(blank){plan.weeks[w][k]={workout:'',breakfast:'custom',lunch:'custom',dinner:'custom',snack:snackCount>0?'custom':'none',custom:{},missed:{},p:{},sw:{}};return}
+      if(blank){plan.weeks[w][k]={workout:'',breakfast:wantMeals?'custom':'none',lunch:wantMeals?'custom':'none',dinner:wantMeals?'custom':'none',snack:(wantMeals&&snackCount>0)?'custom':'none',custom:{},missed:{},p:{},sw:{}};return}
       let fi=free.indexOf(k),wk='';
       if(fi>-1&&td>0){
         let need=S.avail[k]==='either'?S.mode:S.avail[k];
         let pool=included.filter(x=>x.mode.toLowerCase()===need);
-        if(!pool.length)pool=WORKOUTS.filter(x=>x.mode.toLowerCase()===need&&!S.exclude[x.id]);
-        if(!pool.length)pool=WORKOUTS.filter(x=>x.mode.toLowerCase()===need);
+        if(!pool.length)pool=availWorkouts().filter(x=>x.mode.toLowerCase()===need&&!S.exclude[x.id]);
+        if(!pool.length)pool=availWorkouts().filter(x=>x.mode.toLowerCase()===need);
         wk=pick(pool,fi+(w-1)).id;
       }
       /* one index per day so "different lunches/dinners" is honoured (7 chosen = 7 distinct across the week);
          fewer chosen simply rotate across the days for meal prep. Weeks offset so multi-week plans vary too. */
       let dayIdx=i+(w-1)*7;
-      let bId=pick(banks.breakfast,dayIdx).id,lId=pick(banks.lunch,dayIdx).id,dId=pick(banks.dinner,dayIdx).id,sId=snackCount>0?pick(banks.snack,dayIdx).id:'none';
+      let bId=wantMeals?pick(banks.breakfast,dayIdx).id:'none',lId=wantMeals?pick(banks.lunch,dayIdx).id:'none',dId=wantMeals?pick(banks.dinner,dayIdx).id:'none',sId=(wantMeals&&snackCount>0)?pick(banks.snack,dayIdx).id:'none';
       let sw={};
       if(S.priorityFavs)[['breakfast',bId],['lunch',lId],['dinner',dId],['snack',sId]].forEach(([slot,rid])=>{let fsw=favSwOf(rid);if(fsw)sw[slot]=fsw});
       plan.weeks[w][k]={
@@ -737,6 +826,16 @@ function buildPlan(blank){
       };
     });
   }
+  /* Smart adjustment portion style: resize each built day towards the protein target with calorie room spare */
+  if(S.portionStyle!=='asis'&&!blank&&wantMeals){
+    Object.keys(plan.weeks).forEach(pw=>keys.forEach(pk=>{
+      let d=plan.weeks[pw][pk],t=dayTotals(d);if(!t.cal||!t.pro)return;
+      let fPro=S.goals.pro/t.pro,fCal=(S.goals.cal*0.90)/t.cal;
+      let f=Math.max(.6,Math.min(1.6,Math.min(fPro,fCal)));
+      if(Math.abs(f-1)<.05)return;
+      TYPES.forEach(s=>{if(slotRecipe(d,s))d.p[s]=Math.round(f*20)/20});
+    }));
+  }
   PENDING=plan;
   let replacing=!!S.plan;
   let startTxt=new Date(S.start+'T00:00:00').toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
@@ -744,8 +843,8 @@ function buildPlan(blank){
   <div class="detail" style="margin-top:12px"><div class="box"><b>${wc}</b><span>week${wc>1?'s':''}</span></div><div class="box"><b>${S.goals.cal}</b><span>kcal / day</span></div><div class="box"><b>${S.goals.pro}g</b><span>protein / day</span></div></div>
   <p class="muted small" style="margin:6px 2px 0">Starts ${startTxt}. ${snackCount>0?`Your ${snackCount} snack${snackCount>1?'s':''} rotate across the week, batch-make them once and they cover every day. `:''}You can still swap any meal or workout in the planner.</p>
   ${dietShort.length?`<div class="steps-note" style="margin-top:12px"><b>A note on your ${diet.options[diet.selectedIndex].text.toLowerCase()} plan.</b> There aren${"'"}t enough ${[...new Set(dietShort)].join(' or ')} recipes yet to fill every slot, so some repeat rather than being padded with meals that don${"'"}t fit. More ${[...new Set(dietShort)].join(' and ')} recipes are on the way.</div>`:''}
-  ${replacing?'<div class="steps-note" style="margin-top:12px"><b>Heads up.</b> You already have a plan. Adding this one replaces it so you only ever have one live plan, your ticks, logs and favourites all stay.</div>':''}
-  <div class="row" style="margin-top:14px"><button class="btn" onclick="commitPlan()">Add to my home</button><button class="btn ghost" onclick="PENDING=null;closeModal()">${replacing?'Keep my current plan':'Go back'}</button></div>`;
+  ${replacing?'<div class="steps-note" style="margin-top:12px"><b>Plan update protection.</b> This will replace your current active plan. Your workout history and favourites will stay saved. Do you want to replace the plan?</div>':''}
+  <div class="row" style="margin-top:14px"><button class="btn" onclick="commitPlan()">${replacing?'Replace the plan':'Add to my home'}</button><button class="btn ghost" onclick="PENDING=null;closeModal()">${replacing?'Keep my current plan':'Go back'}</button></div>`;
   modal.classList.add('active');
 }
 function commitPlan(){if(!PENDING)return;S.plan=PENDING;PENDING=null;S.dayView=null;showBuilder(false);save();modal.classList.remove('active');go('home');render()}
@@ -776,8 +875,8 @@ function slotData(d,s){
   if(d[s]==='none')return{name:'No snack planned',cal:0,pro:0};
   if(d[s]==='custom')return d.custom?.[s]?{...d.custom[s],custom:true}:{name:'Custom / add your own',cal:0,pro:0,custom:true};
   let m=slotRecipe(d,s);if(!m)return{name:'Custom',cal:0,pro:0};
-  let p=d.p?.[s]||1;
-  return{name:m.name,cal:Math.round(m.cal*p),pro:Math.round(m.pro*p),id:m.id,p};
+  let p=d.p?.[s]||1,adj=d.macAdj?.[s];
+  return{name:m.name,cal:Math.round(m.cal*p)+(adj?.cal||0),pro:Math.round(m.pro*p)+(adj?.pro||0),id:m.id,p,adj};
 }
 function dayTotals(d){
   let ms=TYPES.map(s=>slotData(d,s));
@@ -804,6 +903,20 @@ function smartAdjust(w,k){
   <button class="btn" style="margin-top:14px" onclick="closeModal()">Looks good</button>`;
   modal.classList.add('active');
 }
+/* per-meal smart portion: size ONE meal to your remaining protein + calories for its day.
+   Returns the portion factor; openMeal saves it. 1 = as written. */
+function smartSlotP(ctx){
+  let[w,k,s]=ctx.split('|'),d=S.plan?.weeks?.[w]?.[k];if(!d)return 1;
+  let cur=d.p?.[s]||1,md=slotData(d,s);
+  if(!md.id||!md.cal)return 1;
+  let base={cal:md.cal/cur,pro:md.pro/cur};             /* this meal at 100% */
+  let t=dayTotals(d),others={cal:t.cal-md.cal,pro:t.pro-md.pro};
+  let fPro=base.pro>0?(S.goals.pro-others.pro)/base.pro:1;
+  let fCal=base.cal>0?(S.goals.cal*0.95-others.cal)/base.cal:1;
+  let f=Math.min(fPro,fCal);
+  f=Math.max(.5,Math.min(2,f));
+  return Math.round(f*20)/20||1;
+}
 
 /* ============ RENDER: HOME / TODAY ============ */
 function tickBox(key,title,sub,checked){
@@ -824,39 +937,47 @@ function renderHome(){
   renderHero();
   let idx=todayIndex(),d=dayByIndex(idx);
   todayBox.innerHTML=d?renderToday(d,idx):`<div class="label">Today</div><h2 class="h2">Your day</h2><p class="muted" style="margin-top:8px">No plan yet. Build your personal workout, step and meal plan in a couple of minutes.</p><button class="btn" style="margin-top:6px" data-go="plan">Go to the planner</button>`;
-  let doneDays=Object.keys(S.ticks).filter(k=>/^d\d+done$/.test(k)&&S.ticks[k]).length;
-  homeTargets.innerHTML=`<div class="label">Your targets</div><div class="detail"><div class="box"><b>${S.goals.cal}</b><span>kcal / day</span></div><div class="box"><b>${S.goals.pro}g</b><span>protein / day</span></div><div class="box"><b>${S.setup.steps.toLocaleString()}</b><span>steps / day</span></div></div><p class="muted small" style="margin:6px 0 0">A suggested starting point, adjust to your body and routine in the planner.${doneDays?` <b style="color:var(--green)">${doneDays} day${doneDays>1?'s':''} completed so far, keep going.</b>`:''}</p>`;
   renderWeekBox(idx);
 }
 function renderWeekBox(idx){
   let box=$('weekBox');
   if(!S.plan){box.classList.add('hidden');return}
-  let w=Math.floor(idx/7)+1,base=(w-1)*7;
-  let done=0,wo=0,meals=0,steps=0,anyTick=false;
-  for(let i=base;i<base+7;i++){
-    let k='d'+i;
-    if(S.ticks[k+'done'])done++;
+  let scope=S.planScope||'both';
+  /* the calendar week around the viewed day, Monday to Sunday */
+  let dt=new Date(S.start+'T00:00:00');dt.setDate(dt.getDate()+idx);
+  let monIdx=idx-((dt.getDay()+6)%7),total=planLen();
+  let wo=0,steps=0,proDays=0,anyTick=false;
+  for(let i=monIdx;i<monIdx+7;i++){
+    if(i<0||i>=total)continue;
+    let k='d'+i,dd=dayByIndex(i);if(!dd)continue;
     if(S.ticks[k+'workout'])wo++;
     if(S.ticks[k+'steps'])steps++;
-    TYPES.forEach(s=>{if(S.ticks[k+s]){meals++;anyTick=true}});
-    if(S.ticks[k+'done']||S.ticks[k+'workout']||S.ticks[k+'steps'])anyTick=true;
+    if(eatenTotals(dd,k).pro>=S.goals.pro)proDays++;
+    if(S.ticks[k+'done']||S.ticks[k+'workout']||S.ticks[k+'steps']||S.ticks[k+'protein']||TYPES.some(s=>S.ticks[k+s]))anyTick=true;
   }
   if(!anyTick){box.classList.add('hidden');return}
   box.classList.remove('hidden');
+  let td=(scope!=='meals'&&S.setup.trainDays)?S.setup.trainDays:7;
   let st=streakCount();
   let mile=st>=28?'🍒 Full month!':st>=21?'🍒 21-day streak':st>=14?'🍒 14-day streak':st>=7?'🍒 7-day streak':'';
-  box.innerHTML=`<div class="label">Week ${w} so far</div>
-  <div class="detail"><div class="box"><b>${done}/7</b><span>days done</span></div><div class="box"><b>${wo}</b><span>workouts</span></div><div class="box"><b>${meals}</b><span>meals ticked</span></div></div>
-  <div class="row" style="margin-top:8px">${st>1?`<span class="tag green">${st}-day streak</span>`:''}${steps?`<span class="tag">${steps} step-goal day${steps>1?'s':''}</span>`:''}${mile?`<span class="milestone">${mile}</span>`:''}</div>`;
+  box.innerHTML=`<div class="label">Week so far · Mon–Sun</div>
+  <div class="rings week3">
+    ${ring(proDays/7,'var(--green)',proDays,'of 7 days','protein')}
+    ${scope!=='meals'?ring(wo/td,'var(--ink)',wo,'of '+td,'workouts'):''}
+    ${ring(steps/7,'var(--gold)',steps,'of 7 days','steps')}
+  </div>
+  <div class="row" style="margin-top:8px;justify-content:center">${st>1?`<span class="tag green">${st}-day streak</span>`:''}${mile?`<span class="milestone">${mile}</span>`:''}</div>`;
 }
 function renderToday(d,idx){
+  let scope=S.planScope||'both',wantMeals=scope!=='workouts',wantWorkouts=scope!=='meals';
   let t=dayTotals(d),k='d'+idx,wk=workoutById(d.workout);
   let free=S.goals.cal-t.cal,proGap=Math.max(0,S.goals.pro-t.pro);
-  let pct=Math.min(100,Math.round(t.cal/S.goals.cal*100));
   let done=S.ticks[k+'done'];
-  let workoutBox=`<div class="item" style="margin:8px 0"><div style="display:flex;gap:11px;align-items:center"><input type="checkbox" class="tick" ${S.ticks[k+'workout']?'checked':''} onchange="S.ticks['${k}workout']=this.checked;buzz();save();render()"><div><div class="label" style="margin:0 0 3px">Workout</div><div class="it" style="${S.ticks[k+'workout']?'text-decoration:line-through;color:var(--muted)':''}">${wk?wk.mode+' · '+wk.title:'Rest day'}</div><p class="meta small" style="margin:2px 0 0">${wk?esc(wk.focus):'Recovery, steps and stretching still count.'}</p></div></div>${wk?`<button class="btn ghost mini" onclick="openWorkout('${wk.id}')">Open</button>`:''}</div>`;
+  let workoutBox=wantWorkouts?`<div class="item" style="margin:8px 0"><div style="display:flex;gap:11px;align-items:center"><input type="checkbox" class="tick" ${S.ticks[k+'workout']?'checked':''} onchange="S.ticks['${k}workout']=this.checked;buzz();save();render()"><div><div class="label" style="margin:0 0 3px">Workout</div><div class="it" style="${S.ticks[k+'workout']?'text-decoration:line-through;color:var(--muted)':''}">${wk?wk.mode+' · '+wk.title:'Rest day'}</div><p class="meta small" style="margin:2px 0 0">${wk?esc(wk.focus):'Recovery, steps and stretching still count.'}</p></div></div>${wk?`<button class="btn ghost mini" onclick="openWorkout('${wk.id}')">Open</button>`:''}</div>`:'';
   let stepsBox=tickBox(k+'steps',S.setup.steps.toLocaleString()+' steps','Your daily step goal from the planner.',S.ticks[k+'steps']);
-  let proBox=proGap>0?tickBox(k+'protein','Top up '+proGap+'g protein <span style="font-weight:600;color:var(--muted)">(and optionally ~'+(proGap*4)+' kcal)</span>','Your meals cover '+t.pro+'g of '+S.goals.pro+'g. A shake or high-protein yogurt closes the gap, tick it and your rings count it.',S.ticks[k+'protein']):tickBox(k+'protein','Protein covered','Your planned meals already hit your '+S.goals.pro+'g target.',S.ticks[k+'protein']);
+  let proBox=wantMeals?(proGap>0?tickBox(k+'protein','Top up '+proGap+'g protein <span style="font-weight:600;color:var(--muted)">(and optionally ~'+(proGap*4)+' kcal)</span>','Your meals cover '+t.pro+'g of '+S.goals.pro+'g. A shake or high-protein yogurt closes the gap, tick it and your rings count it.',S.ticks[k+'protein']):tickBox(k+'protein','Protein covered','Your planned meals already hit your '+S.goals.pro+'g target.',S.ticks[k+'protein'])):'';
+  let fl=(S.food&&S.food[k])||[],ft=foodTotals(idx);
+  let foodBox=`<div class="item" style="margin:8px 0"><div><div class="label" style="margin:0 0 3px">Food log</div><div class="it">${fl.length?fl.length+' item'+(fl.length>1?'s':'')+' · '+ft.cal+' kcal · '+ft.pro+'g protein':'Extras, snacks + barcode scanner'}</div><p class="meta small" style="margin:2px 0 0">Quick-add anything you eat or scan a barcode, it counts towards your rings.</p></div><button class="btn ghost mini" onclick="openFoodLog(${idx})">Open</button></div>`;
   let total=planLen(),isToday=idx===Math.max(0,Math.min(total-1,dateIndex()));
   let eaten=eatenTotals(d,k);
   return `
@@ -864,13 +985,14 @@ function renderToday(d,idx){
   <div class="rings">
     ${ring(eaten.cal/S.goals.cal,'var(--red)',eaten.cal,'of '+S.goals.cal,'kcal eaten')}
     ${ring(eaten.pro/S.goals.pro,'var(--green)',eaten.pro+'g','of '+S.goals.pro+'g','protein eaten')}
-    ${ring(S.ticks[k+'workout']?1:0,'var(--ink)',S.ticks[k+'workout']?'✓':'·',S.ticks[k+'workout']?'done':'to do','workout')}
+    ${wantWorkouts?ring(S.ticks[k+'workout']?1:0,'var(--ink)',S.ticks[k+'workout']?'✓':'·',S.ticks[k+'workout']?'done':'to do','workout'):''}
     ${ring(S.ticks[k+'steps']?1:0,'var(--gold)',S.ticks[k+'steps']?'✓':'·',S.ticks[k+'steps']?'done':'to do','steps')}
   </div>
-  <p class="muted small" style="margin:2px 0 4px;text-align:center">Tick meals off below and your rings fill up.</p>
-  <p class="muted small" style="margin:0 0 10px;text-align:center">Planned today: <b>${t.cal}</b> kcal · <b>${t.pro}g</b> protein${free>=0?' · '+free+' kcal left for extras.':' · about '+Math.abs(free)+' kcal over, close is perfect.'}</p>
+  ${wantMeals?`<p class="muted small" style="margin:2px 0 4px;text-align:center">Tick meals off below and your rings fill up.</p>
+  <p class="muted small" style="margin:0 0 10px;text-align:center">Planned today: <b>${t.cal}</b> kcal · <b>${t.pro}g</b> protein${free>=0?' · '+free+' kcal left for extras.':' · about '+Math.abs(free)+' kcal over, close is perfect.'}</p>`:`<p class="muted small" style="margin:2px 0 10px;text-align:center">Log what you eat in the Food log and your rings fill up.</p>`}
   ${workoutBox}${stepsBox}${proBox}
-  ${TYPES.map(s=>{let m=slotData(d,s),tick=S.ticks[k+s];return `<div class="item" style="margin:8px 0"><div style="display:flex;gap:11px;align-items:center"><input type="checkbox" class="tick" ${tick?'checked':''} onchange="S.ticks['${k+s}']=this.checked;buzz();save();render()"><div><div class="label" style="margin:0 0 3px">${TYPENAME[s]}</div><div class="it" style="${tick?'text-decoration:line-through;color:var(--muted)':''}">${esc(m.name)}</div><p class="meta small" style="margin:2px 0 0">${m.cal} kcal · ${m.pro}g protein</p></div></div><span class="row" style="gap:6px;justify-content:flex-end">${m.id?`<button class="btn ghost mini" onclick="openMeal('${m.id}',${m.p||1})">Open</button>`:''}<button class="btn soft mini" onclick="openMealOptions(${idx},'${s}')">Edit</button></span></div>`}).join('')}
+  ${wantMeals?TYPES.map(s=>{let m=slotData(d,s),tick=S.ticks[k+s];return `<div class="item" style="margin:8px 0"><div style="display:flex;gap:11px;align-items:center"><input type="checkbox" class="tick" ${tick?'checked':''} onchange="S.ticks['${k+s}']=this.checked;buzz();save();render()"><div><div class="label" style="margin:0 0 3px">${TYPENAME[s]}</div><div class="it" style="${tick?'text-decoration:line-through;color:var(--muted)':''}">${esc(m.name)}</div><p class="meta small" style="margin:2px 0 0">${m.cal} kcal · ${m.pro}g protein</p></div></div><span class="row" style="gap:6px;justify-content:flex-end">${m.id?`<button class="btn ghost mini" onclick="openMeal('${m.id}',${m.p||1})">Open</button>`:''}<button class="btn soft mini" onclick="openMealOptions(${idx},'${s}')">Edit</button></span></div>`}).join(''):''}
+  ${foodBox}
   <button class="btn ${done?'soft':''}" style="width:100%;margin-top:12px" onclick="toggleDone(${idx})">${done?'Completed · tap to undo':'Mark today as completed'}</button>`;
 }
 /* Edit a meal straight from the Home screen, for eating out, leftovers or a different recipe */
@@ -895,15 +1017,14 @@ function renderLogs(){
   if(!S.plan){logList.innerHTML='<div class="card" style="margin-top:12px"><p class="muted" style="margin:0">Build your plan and start ticking days off, your log grows here.</p></div>';return}
   let total=Object.keys(S.plan.weeks).length*7,cur=todayIndex();
   let rows='';
+  let scope=S.planScope||'both';
   for(let i=0;i<total;i++){
     let k='d'+i,d=dayByIndex(i);if(!d)continue;
-    let meals=TYPES.filter(s=>S.ticks[k+s]).length;
-    let mealsPlanned=TYPES.filter(s=>slotData(d,s).cal>0||d[s]==='custom').length||4;
-    let any=S.ticks[k+'done']||S.ticks[k+'workout']||S.ticks[k+'steps']||S.ticks[k+'protein']||meals>0;
+    let any=S.ticks[k+'done']||S.ticks[k+'workout']||S.ticks[k+'steps']||S.ticks[k+'protein']||TYPES.some(s=>S.ticks[k+s]);
     let future=i>cur;
     if(future&&!any)continue;
     let chip=(on,txt)=>`<span class="tag ${on?'green':''}">${txt}${on?' ✓':''}</span>`;
-    rows+=`<div class="logRow"><div><div class="it">${dayLabel(i)}${i===cur?' · today':''}</div><div class="logTicks">${chip(S.ticks[k+'workout'],'Workout')}${chip(S.ticks[k+'steps'],'Steps')}${chip(S.ticks[k+'protein'],'Protein')}<span class="tag ${meals>=mealsPlanned?'green':''}">Meals ${meals}/${mealsPlanned}</span></div></div>${S.ticks[k+'done']?'<span class="tag red">Completed</span>':''}</div>`;
+    rows+=`<div class="logRow"><div><div class="it">${dayLabel(i)}${i===cur?' · today':''}</div><div class="logTicks">${scope!=='meals'?chip(S.ticks[k+'workout'],'Workout'):''}${chip(S.ticks[k+'steps'],'Steps')}${chip(S.ticks[k+'protein'],'Protein')}</div></div>${S.ticks[k+'done']?'<span class="tag red">Completed</span>':''}</div>`;
   }
   logList.innerHTML=rows||'<div class="card" style="margin-top:12px"><p class="muted" style="margin:0">Nothing logged yet. Tick things off on your Home page as you go.</p></div>';
 }
@@ -927,16 +1048,17 @@ function renderPlan(){
   shopWeek.innerHTML=opts;
   let tabs='';for(let n=1;n<=wn;n++)tabs+=`<button class="btn ${n===S.plan.active?'':'ghost'} mini" onclick="S.plan.active=${n};save();render()">Week ${n}</button>`;
   let w=S.plan.active||1,wk=S.plan.weeks[w];
+  let scope=S.planScope||'both',wantMeals=scope!=='workouts',wantWorkouts=scope!=='meals';
   planOut.innerHTML=`<div class="row" style="margin:14px 2px">${tabs}</div>`+keys.map((k,i)=>{
     let d=wk[k],t=dayTotals(d),diff=t.cal-S.goals.cal;
     let pct=Math.min(100,Math.round(t.cal/S.goals.cal*100)),proPct=Math.min(100,Math.round(t.pro/S.goals.pro*100));
-    let dateStr=shortDate((w-1)*7+i);
-    return `<div class="day"><div class="dayTop"><div><div class="label">${days[i]}${dateStr?' · '+dateStr:''}</div><div class="row" style="margin-top:4px"><span class="tag red">${t.cal} / ${S.goals.cal} kcal</span><span class="tag green">${t.pro} / ${S.goals.pro}g protein</span></div></div>
-    <div class="row"><span class="tag ${diff>60?'gold':'green'}">${diff>=0?'+':''}${diff} kcal</span><button class="btn soft mini" onclick="balanceDay(${w},'${k}')">Balance to target</button><button class="btn soft mini" onclick="smartAdjust(${w},'${k}')">Smart adjustment</button></div></div>
-    <div class="bar"><i style="width:${pct}%" class="${diff>60?'over':''}"></i></div>
-    <div class="bar" style="margin:4px 0 4px"><i class="pro" style="width:${proPct}%"></i></div>
-    <div class="slot"><label class="sl">Workout</label><select onchange="S.plan.weeks[${w}]['${k}'].workout=this.value;save();render()"><option value="">Rest day</option>${WORKOUTS.map(x=>`<option value="${x.id}" ${x.id===d.workout?'selected':''}>${x.mode} · ${x.title}</option>`).join('')}</select>${d.workout?`<button class="btn ghost mini" onclick="openWorkout('${d.workout}')">Open</button>`:'<span></span>'}<span></span><span class="mac">${d.workout?esc(workoutById(d.workout)?.stats.duration||''):''}</span></div>
-    ${TYPES.map(s=>{
+    let dateStr=shortDate((w-1)*7+i),dayIdx=(w-1)*7+i;
+    return `<div class="day"><div class="dayTop"><div><div class="label">${days[i]}${dateStr?' · '+dateStr:''}</div>${wantMeals?`<div class="row" style="margin-top:4px"><span class="tag red">${t.cal} / ${S.goals.cal} kcal</span><span class="tag green">${t.pro} / ${S.goals.pro}g protein</span></div>`:''}</div>
+    <div class="row">${wantMeals?`<span class="tag ${diff>60?'gold':'green'}">${diff>=0?'+':''}${diff} kcal</span><button class="btn soft mini" onclick="balanceDay(${w},'${k}')">Balance to target</button><button class="btn soft mini" onclick="smartAdjust(${w},'${k}')">Smart adjustment</button>`:''}<button class="btn ghost mini" onclick="openFoodLog(${dayIdx})">Food log</button></div></div>
+    ${wantMeals?`<div class="bar"><i style="width:${pct}%" class="${diff>60?'over':''}"></i></div>
+    <div class="bar" style="margin:4px 0 4px"><i class="pro" style="width:${proPct}%"></i></div>`:''}
+    ${wantWorkouts?`<div class="slot"><label class="sl">Workout</label><select onchange="S.plan.weeks[${w}]['${k}'].workout=this.value;save();render()"><option value="">Rest day</option>${WORKOUTS.map(x=>`<option value="${x.id}" ${x.id===d.workout?'selected':''}>${x.mode} · ${x.title}</option>`).join('')}</select>${d.workout?`<button class="btn ghost mini" onclick="openWorkout('${d.workout}')">Open</button>`:'<span></span>'}<span></span><span class="mac">${d.workout?esc(workoutById(d.workout)?.stats.duration||''):''}</span></div>`:''}
+    ${!wantMeals?'':TYPES.map(s=>{
       let md=slotData(d,s),m=slotRecipe(d,s),p=d.p?.[s]||1,skipped=d.missed?.[s];
       let btn=m?`<button class="btn ghost mini" onclick="openMeal('${d[s]}',${p},null,'${w}|${k}|${s}')">Adjust</button>`:(d[s]==='custom'&&!skipped?`<button class="btn ghost mini" onclick="openCustom(${w},'${k}','${s}')">Edit</button>`:'<span></span>');
       return `<div class="slot"><label class="sl">${s}</label><select onchange="changeMeal(${w},'${k}','${s}',this.value)">
@@ -955,7 +1077,7 @@ function tagName(t){return TAGMAP[t]||t}
 function favKeyOf(id,sw){let l=normSw(sw);return l.length?id+'::'+l.map(p=>p[0]+'>'+p[1]).sort().join('+'):id}
 /* recipe photos, hosted in the repo under /app-img/<season>/<id>.webp */
 /* photos hosted in the repo under /app-img/<season>/<id>.webp; missing files auto-remove via onerror */
-function imgFor(m){let s=m.season||'golden';return (s==='golden'&&/^(breakfast|lunch|dinner|snack)-\d\d$/.test(m.id))||(s==='lean'&&/^june-(breakfast|lunch|dinner|snack)-\d\d$/.test(m.id))?'/app-img/'+s+'/'+m.id+'.webp':null}
+function imgFor(m){let s=m.season||'golden';return (s==='golden'&&(/^(breakfast|lunch|dinner|snack)-\d\d$/.test(m.id)||/^pack-sgs-\d\d$/.test(m.id)))||(s==='lean'&&/^june-(breakfast|lunch|dinner|snack)-\d\d$/.test(m.id))?'/app-img/'+s+'/'+m.id+'.webp':null}
 function toggleFav(id,sw,name){
   let l=normSw(sw),key=favKeyOf(id,sw);
   if(S.favs[key])delete S.favs[key];
@@ -971,11 +1093,16 @@ function openMeal(id,p=1,manual=null,ctx=null,ppl=null){
     else if(manual)curList=normSw(manual);
     else curList=normSw(d.sw?.[s]);
     d.sw=d.sw||{};if(curList.length)d.sw[s]=curList;else delete d.sw[s];
-    d.p=d.p||{};d.p[s]=p;save();
+    d.p=d.p||{};d.p[s]=p;
+    d.ppl=d.ppl||{};
+    if(ppl!=null)d.ppl[s]=ppl;         /* stepper change saves per-meal serves for this planned meal */
+    ppl=d.ppl[s]||ppl||S.people||1;    /* reopen at the saved serve count, feeds the shopping list */
+    save();
   }else{curList=manual===false?[]:normSw(manual)}
   m=applySwaps(m,curList);
   let sw=relevantSwaps(m);
   let curPpl=ppl||S.people||1;
+  let curAdj=null;if(ctx){let cp=ctx.split('|');curAdj=S.plan.weeks[cp[0]]?.[cp[1]]?.macAdj?.[cp[2]]||null}
   let f=p*curPpl/(+m.serves||1);
   let ctxArg=ctx?`'${ctx}'`:'null';
   let swArg=swLit(curList);
@@ -986,17 +1113,41 @@ function openMeal(id,p=1,manual=null,ctx=null,ppl=null){
   <div class="photo" style="position:relative"><button class="heart ${isFav?'on':''}" style="position:absolute;top:14px;right:14px" onclick="toggleFav('${id}',${swArg},'${esc(m.name).replace(/'/g,"\\'")}');${reopen(p,curPpl)}" aria-label="Favourite">♥</button>${imgFor(m)?`<img class="photoImg" src="${imgFor(m)}" alt="" loading="lazy" style="margin-top:26px" onerror="this.remove()">`:''}<div class="mealType">${TYPENAME[m.type]} ${m.swapped?'· swapped':''}</div><h2 class="h2" style="font-size:34px;margin:6px 0 0">${esc(m.name)}</h2><div class="tagline">${esc(m.tagline)}</div><div style="clear:both"></div></div>
   <div class="row"><span class="tag gold">${SEASONNAME[m.season]||''}</span>${m.tags.map(t=>`<span class="tag blush">${esc(tagName(t))}</span>`).join('')}${isFav?'<span class="tag red">♥ Favourite</span>':''}</div>
   <div class="metaRow"><div class="mm"><div class="k">Prep</div><div class="v">${m.prep}</div></div><div class="mm"><div class="k">Cook</div><div class="v">${m.cook||'—'}</div></div><div class="mm"><div class="k">Cooking for</div><div class="v"><span class="row" style="gap:7px;align-items:center"><button class="btn ghost mini" ${curPpl<=1?'disabled style="opacity:.35"':''} onclick="${reopen(p,Math.max(1,curPpl-1))}">−</button>${curPpl}<button class="btn ghost mini" ${curPpl>=6?'disabled style="opacity:.35"':''} onclick="${reopen(p,Math.min(6,curPpl+1))}">+</button></span></div></div></div>
-  <div class="macroStrip"><div class="m"><div class="k">Calories</div><div class="v">${Math.round(m.cal*p)}<small>kcal</small></div></div><div class="m"><div class="k">Protein</div><div class="v">${Math.round(m.pro*p)}<small>g</small></div></div><div class="m"><div class="k">Carbs</div><div class="v">${Math.round(m.carbs*p)}<small>g</small></div></div><div class="m"><div class="k">Fats</div><div class="v">${Math.round(m.fat*p)}<small>g</small></div></div></div>
+  <div class="macroStrip"><div class="m"><div class="k">Calories</div><div class="v">${Math.round(m.cal*p)+(curAdj?.cal||0)}<small>kcal</small></div></div><div class="m"><div class="k">Protein</div><div class="v">${Math.round(m.pro*p)+(curAdj?.pro||0)}<small>g</small></div></div><div class="m"><div class="k">Carbs</div><div class="v">${Math.round(m.carbs*p)+(curAdj?.carbs||0)}<small>g</small></div></div><div class="m"><div class="k">Fats</div><div class="v">${Math.round(m.fat*p)+(curAdj?.fat||0)}<small>g</small></div></div></div>
   <p class="muted small" style="margin:0 2px 10px">Per person at ${Math.round(p*100)}% portion. Macros are estimates, use them as a guide.</p>
-  <div class="row" style="margin-bottom:12px"><button class="btn ghost mini" onclick="${reopen(Math.max(.5,Math.round((p-.1)*10)/10),curPpl)}">−10%</button><span class="tag red">${Math.round(p*100)}% portion</span><button class="btn ghost mini" onclick="${reopen(Math.min(2,Math.round((p+.1)*10)/10),curPpl)}">+10%</button>${ctx?'<span class="tag green">saved to your planner</span>':''}</div>
+  <div class="row" style="margin-bottom:${ctx?'8px':'12px'}"><button class="btn ghost mini" onclick="${reopen(Math.max(.5,Math.round((p-.1)*10)/10),curPpl)}">−10%</button><span class="tag red">${Math.round(p*100)}% portion</span><button class="btn ghost mini" onclick="${reopen(Math.min(2,Math.round((p+.1)*10)/10),curPpl)}">+10%</button>${ctx?'<span class="tag green">saved to your planner</span>':''}</div>
+  ${ctx?`<div class="row" style="margin-bottom:12px"><button class="btn ${p!==1?'ghost':'soft'} mini" onclick="openMeal('${id}',smartSlotP(${ctxArg}),${manualArg},${ctxArg},${curPpl})">Smart portion</button><button class="btn ${p===1?'soft':'ghost'} mini" onclick="${reopen(1,curPpl)}">As written</button><span class="muted small" style="flex:1;min-width:160px">Smart portion sizes this meal to the protein and calories your day still needs. As written resets to the recipe as printed.</span></div>`:''}
   <div class="card"><div class="label">Ingredients · ${curPpl===1?'for 1 person':'scaled for '+curPpl+' people'}</div><ul class="ing">${m.ing.map(x=>`<li>${esc(scaleText(x,f))}</li>`).join('')}</ul></div>
   <div class="card" style="margin-top:10px"><div class="label">Method</div><ol class="method">${m.steps.map(x=>`<li>${esc(x)}</li>`).join('')}</ol></div>
   ${m.tips?`<div class="card" style="margin-top:10px"><div class="label">Tips + notes</div><p class="muted small" style="margin:0">${esc(m.tips)}</p></div>`:''}
   ${m.love?`<div class="steps-note" style="margin-top:10px"><b>Why you'll love it.</b> ${esc(m.love)}</div>`:''}
   ${curList.length?`<div class="steps-note" style="margin-top:10px"><b>Applied ${curList.length>1?'swaps':'swap'}.</b> ${curList.map(pp=>esc(pp[0])+' → '+esc(pp[1])).join(', ')}. Macros above already reflect ${curList.length>1?'them all':'it'}.</div>`:''}
-  <div class="card" style="margin-top:10px"><div class="label">Swap an ingredient</div>${sw.length?`<div class="row">${sw.map(x=>`<button class="btn ghost mini" onclick="openMeal('${id}',${p},${swLit(mergeSwap(curList,[x[0],x[1]]))},${ctxArg},${curPpl})">${esc(x[0])} → ${esc(x[1])}</button>`).join('')}${curList.length?`<button class="btn soft mini" onclick="openMeal('${id}',${p},false,${ctxArg},${curPpl})">Back to original</button>`:''}</div><p class="muted small" style="margin:10px 2px 0">Apply as many swaps as you like, one per ingredient, and the title, method and macros update each time. Favourite the swapped version and it saves exactly as you made it.</p>`:(curList.length?'<p class="muted small" style="margin:0">Every swappable ingredient is already swapped. Tap Back to original to reset.</p>':'<p class="muted small" style="margin:0">This one is best exactly as written.</p>')}</div>`;
+  <div class="card" style="margin-top:10px"><div class="label">Swap an ingredient</div>${sw.length?`<div class="row">${sw.map(x=>`<button class="btn ghost mini" onclick="openMeal('${id}',${p},${swLit(mergeSwap(curList,[x[0],x[1]]))},${ctxArg},${curPpl})">${esc(x[0])} → ${esc(x[1])}</button>`).join('')}${curList.length?`<button class="btn soft mini" onclick="openMeal('${id}',${p},false,${ctxArg},${curPpl})">Back to original</button>`:''}</div><p class="muted small" style="margin:10px 2px 0">Apply as many swaps as you like, one per ingredient, and the title, method and macros update each time. Favourite the swapped version and it saves exactly as you made it.</p>`:(curList.length?'<p class="muted small" style="margin:0">Every swappable ingredient is already swapped. Tap Back to original to reset.</p>':'<p class="muted small" style="margin:0">This one is best exactly as written.</p>')}</div>
+  ${ctx?`<div class="card" style="margin-top:10px"><div class="label">Swap in your own</div>
+  <p class="muted small" style="margin:0 0 8px">Cooking your own version or adding something? Note your ingredient and adjust the macros. It saves just for this meal in your plan and updates your day's totals.</p>
+  ${curAdj?`<div class="steps-note" style="margin:0 0 8px"><b>Your version${curAdj.name?': '+esc(curAdj.name):''}.</b> ${['cal','pro','carbs','fat'].filter(kk=>curAdj[kk]).map(kk=>(curAdj[kk]>0?'+':'')+curAdj[kk]+' '+({cal:'kcal',pro:'g protein',carbs:'g carbs',fat:'g fat'}[kk])).join(', ')||'no macro change'}. Already in the totals above.</div>`:''}
+  <div class="row"><button class="btn ghost mini" onclick="openOwnSwap('${id}',${p},${ctxArg},${curPpl})">${curAdj?'Edit your version':'Swap in your own + edit macros'}</button>${curAdj?`<button class="btn soft mini" onclick="clearOwnSwap(${ctxArg});openMeal('${id}',${p},${manualArg},${ctxArg},${curPpl})">Remove</button>`:''}</div></div>`:''}`;
   modal.classList.add('active');
 }
+/* member's own ingredient + macro tweak, saved per planned meal */
+function openOwnSwap(id,p,ctx,ppl){
+  if(!ctx)return;let[w,k,s]=ctx.split('|');let a=S.plan.weeks[w][k].macAdj?.[s]||{};
+  modalBody.innerHTML=`<div class="label">Swap in your own</div><h2 class="h2">Your version of this meal</h2>
+  <p class="muted small" style="margin:2px 0 10px">Add what you swapped in and adjust the macros by however much it changes the meal. Pluses add, minuses take away. Leave any at zero to keep it the same. An estimate is fine.</p>
+  <label class="field"><span>What did you swap in or add? (optional)</span><input id="osName" placeholder="e.g. extra chicken, oat milk instead of dairy" value="${esc(a.name||'')}"></label>
+  <div class="two" style="margin-top:10px"><label class="field"><span>Calories (kcal)</span><input id="osCal" type="number" inputmode="numeric" value="${a.cal||''}"></label><label class="field"><span>Protein (g)</span><input id="osPro" type="number" inputmode="numeric" value="${a.pro||''}"></label></div>
+  <div class="two" style="margin-top:10px"><label class="field"><span>Carbs (g)</span><input id="osCarb" type="number" inputmode="numeric" value="${a.carbs||''}"></label><label class="field"><span>Fats (g)</span><input id="osFat" type="number" inputmode="numeric" value="${a.fat||''}"></label></div>
+  <div class="row" style="margin-top:14px"><button class="btn" onclick="saveOwnSwap('${id}',${p},'${ctx}',${ppl})">Save my version</button><button class="btn ghost" onclick="openMeal('${id}',${p},null,'${ctx}',${ppl})">Cancel</button></div>`;
+  modal.classList.add('active');
+}
+function saveOwnSwap(id,p,ctx,ppl){
+  let[w,k,s]=ctx.split('|'),d=S.plan.weeks[w][k];
+  let adj={name:($('osName').value||'').trim(),cal:+osCal.value||0,pro:+osPro.value||0,carbs:+osCarb.value||0,fat:+osFat.value||0};
+  d.macAdj=d.macAdj||{};
+  if(!adj.name&&!adj.cal&&!adj.pro&&!adj.carbs&&!adj.fat)delete d.macAdj[s];else d.macAdj[s]=adj;
+  save();openMeal(id,p,null,ctx,ppl);
+}
+function clearOwnSwap(ctx){if(!ctx)return;let[w,k,s]=ctx.split('|'),d=S.plan.weeks[w][k];if(d.macAdj)delete d.macAdj[s];save()}
 
 /* ============ WORKOUT MODAL ============ */
 function normRep(r){
@@ -1026,6 +1177,47 @@ function lastLog(lk){
   for(let i=h.length-1;i>=0;i--)if(h[i].d!==today&&(h[i].kg||h[i].reps))return h[i];
   return null;
 }
+/* crowns: gold = highest weight (then reps), silver = most reps (then weight) */
+function crowns(hist){
+  let g=null,s=null;
+  (hist||[]).forEach(h=>{
+    let kg=parseFloat(h.kg)||0,reps=parseInt(h.reps)||0;if(!kg&&!reps)return;
+    if(!g||kg>g.kg||(kg===g.kg&&reps>g.reps))g={kg,reps,d:h.d};
+    if(!s||reps>s.reps||(reps===s.reps&&kg>s.kg))s={kg,reps,d:h.d};
+  });
+  return{gold:g,silver:s};
+}
+function setTxt(o){if(!o)return'—';return (o.kg?o.kg+'kg':'')+(o.kg&&o.reps?' × ':'')+(o.reps?o.reps+' reps':'')||'—'}
+/* second page: full logged history for a workout, newest first, with crowns */
+function openWorkoutHistory(id){
+  let w=workoutById(id);if(!w)return;
+  let blocks=[];
+  w.secs.forEach((sec,si)=>sec.ex.forEach((e,ei)=>{
+    let lk=id+'|'+si+'|'+ei,hist=(S.logHist[lk]||[]).filter(h=>h.kg||h.reps);
+    if(!hist.length)return;
+    let cr=crowns(hist),rows=hist.slice().reverse().map(h=>{
+      let isG=cr.gold&&h.d===cr.gold.d&&(parseFloat(h.kg)||0)===cr.gold.kg&&(parseInt(h.reps)||0)===cr.gold.reps;
+      let isS=cr.silver&&h.d===cr.silver.d&&(parseFloat(h.kg)||0)===cr.silver.kg&&(parseInt(h.reps)||0)===cr.silver.reps;
+      let dt=new Date(h.d+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+      return `<div class="pbRow"><div><div class="pbEx">${esc(dt)}</div></div><div class="pbVal">${isG?'🥇 ':''}${isS&&!isG?'🥈 ':''}${esc(setTxt({kg:h.kg,reps:h.reps}))}</div></div>`;
+    }).join('');
+    blocks.push(`<div class="card" style="margin-top:10px"><div class="label">${esc(e[0])}</div>${rows}</div>`);
+  }));
+  modalBody.innerHTML=`<div class="label">Workout history</div><h2 class="h2">${esc(w.title)}</h2>
+  <p class="muted small" style="margin:2px 2px 6px">Every set you have logged for this session. 🥇 gold = your heaviest set, weight first. 🥈 silver = your highest reps.</p>
+  <button class="btn ghost mini" onclick="openWorkout('${id}')">Back to workout</button>
+  ${blocks.length?blocks.join(''):'<div class="card" style="margin-top:10px"><p class="muted" style="margin:0">Nothing logged for this workout yet. Enter your weights and reps as you train and your history builds here.</p></div>'}`;
+  modal.classList.add('active');
+}
+/* session stopwatch shown while a workout is in progress */
+let sessInt=null,sessStart=0;
+function stopSession(){if(sessInt){clearInterval(sessInt);sessInt=null}}
+function startSession(){
+  stopSession();sessStart=Date.now();
+  let el=$('sessTimer');if(!el)return;
+  let paint=()=>{let s=Math.floor((Date.now()-sessStart)/1000);el.textContent='In progress · '+String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');};
+  paint();sessInt=setInterval(paint,1000);buzz(10);
+}
 function openWorkout(id){
   let w=workoutById(id);if(!w)return;
   let myKind=S.setup[w.mode.toLowerCase()==='gym'?'gymTime':'homeTime']||'full';
@@ -1053,13 +1245,15 @@ function openWorkout(id){
   <div class="photo"><div class="mealType">${esc(w.mode)} workout · ${SEASONNAME[w.season||'golden']||''}</div><h2 class="h2" style="font-size:34px;margin:6px 0 0">${esc(w.title)}</h2><div class="tagline">${esc(w.focus)}</div></div>
   <p class="muted" style="margin:0 2px 12px">${esc(w.line)}</p>
   <div class="row" style="margin-bottom:8px">${w.equip.map(t=>`<span class="tag blush">${esc(t)}</span>`).join('')}<span class="tag gold">Your session · about ${esc(myTime)}</span><span class="tag green">Your finish point · ${POINT[myKind][0]}</span></div>
+  <div class="row" style="margin-bottom:10px"><button class="btn mini" onclick="startSession()">Start workout</button><button class="btn ghost mini" onclick="openWorkoutHistory('${id}')">History</button><span class="tag green" id="sessTimer" style="align-self:center"></span></div>
+  <p class="muted small" style="margin:-4px 2px 8px">Enter weight and reps as you go. Not every move needs a weight, leave it blank for bodyweight or banded work and just log your reps.</p>
   <div class="row" style="margin-bottom:10px"><span class="label" style="margin:0">Rest timer</span><button class="timerBtn" onclick="startRest(60)">60s</button><button class="timerBtn" onclick="startRest(90)">90s</button><button class="timerBtn" onclick="startRest(120)">120s</button><span class="muted small">tap ⏱ on any section · drag to move</span></div>
   <div class="steps-note" style="margin-bottom:10px"><b>Real-world timing.</b> About ${esc(myTime)} of working time to your finish point. Allow an extra 5–10 minutes for setting up, warming up and moving between stations, and a little more the first time while you learn the moves. Anything greyed out below is beyond your finish point, a bonus for days with more time.</div>
   ${body}
   <div class="steps-note" style="margin-top:12px"><b>Progress gently.</b> Add a rep, slow the tempo or add a little load each week, your last session shows under each exercise. Stop at your finish point, or keep going on days you have more time and energy.</div>`;
   modal.classList.add('active');
 }
-function closeModal(){modal.classList.remove('active');render()}
+function closeModal(){stopSession();stopScan();modal.classList.remove('active');let sh=modal.querySelector('.sheet');if(sh)sh.scrollTop=0;render()}
 
 /* ============ MEAL + TRAIN BANKS ============ */
 function mealCard(m,sw){
@@ -1089,6 +1283,7 @@ function renderMeals(){
       return list.length?`<div class="shopHead"><div class="label">${TYPENAME[t]}s</div></div>`+list.map(m=>mealCard(m)).join(''):'';
     }).join('')||'<div class="card" style="margin-top:12px"><p class="muted" style="margin:0">Nothing matches that search.</p></div>';
   }
+  mealList.innerHTML=lockBanner('meals')+mealList.innerHTML;
   renderPacks();
 }
 /* ============ RECIPE PACK UNLOCKS ============ */
@@ -1114,10 +1309,22 @@ function renderPacks(){
 function unlockWithCode(code){
   let h=hashCode(code),hit=null;
   PACKS.forEach(pk=>{if(pk.keys.includes(h))hit=pk});
-  if(!hit)return null;
-  S.unlocked[hit.id]=true;save();syncPacks();return hit;
+  if(hit){S.unlocked[hit.id]=true;save();syncPacks();return hit}
+  /* season unlock codes (previous months) */
+  let sk=SEASON_KEYS[h];
+  if(sk){
+    let key='season:'+sk.season+(sk.kind?':'+sk.kind:'');
+    S.unlocked[key]=true;save();
+    return {_season:true,season:sk.season,kind:sk.kind,name:(SEASONNAME[sk.season]||sk.season)+' unlocked'};
+  }
+  return null;
 }
 function showUnlockModal(pk){
+  if(pk._season){
+    let kindTxt=pk.kind==='meals'?'meals':pk.kind==='workouts'?'workouts':'meals and workouts';
+    modalBody.innerHTML=`<div class="label">Unlocked</div><h2 class="h2">${esc(pk.name)}</h2><p class="muted">The ${esc(SEASONNAME[pk.season]||pk.season)} ${kindTxt} are now unlocked on this device. Build them into your plan like any other month.</p><button class="btn" style="margin-top:12px" onclick="closeModal()">Great</button>`;
+    modal.classList.add('active');return;
+  }
   let hasR=(pk.recipes||[]).length,hasW=(pk.workouts||[]).length;
   modalBody.innerHTML=`<div class="label">Unlocked</div><h2 class="h2">${esc(pk.name)} is yours</h2><p class="muted">${packContents(pk)} now live on this device${hasR?', favourite them, plan them and shop them like any other recipe':''}${hasW?(hasR?'. Workouts appear in your Train tab and planner dropdowns':', they appear in your Train tab and planner dropdowns'):''}.</p><button class="btn" style="margin-top:12px" onclick="closeModal();go('${hasR?'meals':'train'}')">${hasR?'See my new recipes':'See my new workouts'}</button>`;
   modal.classList.add('active');
@@ -1129,13 +1336,21 @@ function enterCode(){
   else alert('That code was not recognised. Check your Gumroad receipt, or open the magic link in it directly.');
 }
 function renderTrain(){
-  let f=$('trainModeFilter')?.value||'all';
   let season=$('trainSeasonFilter')?.value||'all';
-  let modes=f==='all'?['Gym','Home']:[f];
-  workoutList.innerHTML=modes.map(md=>{
-    let list=WORKOUTS.filter(w=>w.mode===md&&(season==='all'||(w.season||'golden')===season));
-    return list.length?`<div class="shopHead"><div class="label">${md} sessions</div></div>`+list.map(w=>`<div class="item"><div><div class="it">${esc(w.title)}</div><div class="meta small">${esc(w.focus)} · ${esc(w.stats.duration||'')}</div><div class="row" style="margin-top:6px"><span class="tag gold">${SEASONNAME[w.season||'golden']||''}</span></div></div><button class="btn ghost mini" onclick="openWorkout('${w.id}')">Open</button></div>`).join(''):'';
+  let list=availWorkouts().filter(w=>season==='all'||(w.season||'golden')===season);
+  /* one card per session: the gym and home versions of a workout live together */
+  let pairs={},order=[];
+  list.forEach(w=>{
+    let pk=(w.season||'golden')+'|'+w.id.replace(/(gym|home)-/,'');
+    if(!pairs[pk]){pairs[pk]={};order.push(pk)}
+    pairs[pk][w.mode]=w;
+  });
+  workoutList.innerHTML=order.map(pk=>{
+    let pr=pairs[pk],a=pr.Gym||pr.Home;
+    let durs=[pr.Gym?'Gym '+(pr.Gym.stats.duration||''):'',pr.Home?'Home '+(pr.Home.stats.duration||''):''].filter(Boolean).join(' · ');
+    return `<div class="item"><div><div class="it">${esc(a.title)}</div><div class="meta small">${esc(a.focus)}${durs?' · '+esc(durs):''}</div><div class="row" style="margin-top:6px"><span class="tag gold">${SEASONNAME[a.season||'golden']||''}</span></div></div><span style="display:grid;gap:6px;justify-items:end">${pr.Gym?`<button class="btn ghost mini" onclick="openWorkout('${pr.Gym.id}')">Open gym</button>`:''}${pr.Home?`<button class="btn ghost mini" onclick="openWorkout('${pr.Home.id}')">Open home</button>`:''}</span></div>`;
   }).join('')||'<div class="card" style="margin-top:12px"><p class="muted" style="margin:0">No workouts in this view yet.</p></div>';
+  workoutList.innerHTML=lockBanner('workouts')+workoutList.innerHTML;
 }
 
 /* ============ SHOPPING LIST ============ */
@@ -1167,7 +1382,7 @@ function parseIngLine(str){
 }
 function addShopExtra(){if(extraShop.value.trim()){S.shopExtra.push(extraShop.value.trim());extraShop.value='';S.shop.mode='plan';save();renderShop()}}
 /* a fingerprint of the current plan, used to resync the list on reopen */
-function planSig(){if(!S.plan)return'';let a=[];Object.keys(S.plan.weeks).forEach(w=>keys.forEach(k=>{let d=S.plan.weeks[w][k];if(!d)return;TYPES.forEach(s=>a.push((d[s]||'')+(d.sw?.[s]?JSON.stringify(d.sw[s]):'')+(d.p?.[s]||1)))}));return a.join(',')+'|p'+S.people}
+function planSig(){if(!S.plan)return'';let a=[];Object.keys(S.plan.weeks).forEach(w=>keys.forEach(k=>{let d=S.plan.weeks[w][k];if(!d)return;TYPES.forEach(s=>a.push((d[s]||'')+(d.sw?.[s]?JSON.stringify(d.sw[s]):'')+(d.p?.[s]||1)+'x'+(d.ppl?.[s]||'')))}));return a.join(',')+'|p'+S.people}
 function shopGenerate(){S.shop.mode='shop';save();renderShop()}
 function shopEdit(){S.shop.mode='plan';save();renderShop()}
 function shopClearTicks(){S.shop.bought={};save();renderShop()}
@@ -1186,7 +1401,7 @@ function renderShop(){
   let w=+shopWeek.value||1,agg={};
   Object.values(S.plan.weeks[w]||{}).forEach(d=>TYPES.forEach(s=>{
     let m=slotRecipe(d,s);if(!m)return;
-    let f=(d.p?.[s]||1)*S.people/(+m.serves||1);
+    let f=(d.p?.[s]||1)*(d.ppl?.[s]||S.people)/(+m.serves||1);
     m.ing.forEach(line=>parseIngLine(line).forEach(it=>{
       if(!it.name)return;
       let key=it.name.toLowerCase();
@@ -1266,22 +1481,30 @@ const GUIDE={
   '<em>Every season has its own feel, its own focus and its own set of recipes and workouts.</em>',
   '<b>Golden Hour · July.</b> Long light evenings, protein first, and food that feels like summer. This season is built around one simple habit: a real protein source at every meal, with bright, fresh, mostly no-cook lunches and dinners that come together fast. Training leans into glutes and shape, with honest finish points so a warm, busy month still moves you forward. The heart of it is the <em>7-Day Golden Hour Reset</em>: protein at breakfast, a prepped high-protein snack, one plate built properly, and repeating your favourite meal of the week. Show up beats perfect.',
   '<b>Lean Season · June.</b> The lead-in month, a little lighter and tighter, focused on locking in consistency before summer. Higher-protein, lower-fuss meals and steady, repeatable training. If you have June unlocked, its recipes and workouts sit alongside Golden Hour in your Meals and Train tabs.',
-  'More seasons arrive through recipe and workout packs. Each one brings its own intro and notes here as it lands.']},
+  '<b>Summer Shred · May.</b> The push month. 28 lighter, higher-protein recipes built to keep you full and fuelled while calories come down, and four sessions, <em>Shred Glutes, Sun\'s Out Sculpt, Peach Shred and Shredded Back</em>, built around supersets and finishers that keep your heart rate up while you hold on to muscle. Choose Shred when you want to turn the intensity up before a holiday, an event, or just because the sun is out. %BUY_SHRED%',
+  '<b>April Reset · The reset routine.</b> The fresh-start month. 28 clean, simple recipes around everyday ingredients you already know how to shop for, and four back-to-basics sessions, <em>Reset Glutes, Reset Push, Spring Peach and Reset &amp; Realign</em>, that rebuild your base: form first, steady volume, posture and core running through everything. Choose the Reset when you have drifted off track and want a calm, structured way back in. %BUY_APRIL%',
+  'Unlock a season and its recipes and workouts sit alongside this month\'s in your Meals and Train tabs, ready to build into any plan.']},
  'Steps, Ticks & Logs':{sub:'Your daily rhythm',body:[
   '<em>Consistency beats perfection, every single time.</em>',
   'Your Home page is your daily checklist: workout, steps, protein top-up and each meal. Tick them off as you go, then mark the day completed and watch your rings fill.',
   'The <b>Logs</b> tab keeps a short record of every day so you can see your streak build across the month.']},
- 'Favourites, Packs & Rest Timer':{sub:'The little tools',body:[
-  'Tap the heart on any recipe to save it to your <b>Favourites</b> tab in the meal bank. Swap an ingredient first and the swapped version saves exactly as you made it.',
-  '<b>Recipe &amp; workout packs</b> at the bottom of the Meals tab unlock extra seasons. Buy a pack, open the magic link in your receipt, or tap "I have a code" and type it in. Unlocks live on your device.',
-  'Inside every workout there is a <b>rest timer</b>. Tap 60s, 90s or 120s at the top, or the ⏱ button on any section. Drag it anywhere on screen, and the ✕ closes it. It buzzes and chimes when it is time for your next set, and your last session\'s weight shows under each exercise so you always know what to beat.']},
+ 'Calorie Counter & Food Log':{sub:'Scan, log + stay on track',body:[
+  '<em>Everything you eat can count towards your rings, planned or not.</em>',
+  '<b>Your rings.</b> The calorie and protein rings on Home fill from the meals you tick off, plus anything in your Food log. Coffees, snacks out, extras at dinner, it all counts.',
+  '<b>Quick add.</b> Open the Food log from Home, the Meals tab or any planner day. Type a name, calories and protein and it lands on today. Tick <em>Save as favourite</em> and your matcha, oats or usual protein bar become one-tap adds.',
+  '<b>Barcode scanner.</b> Tap Scan barcode and point your camera at any packaged food. Nutrition comes from Open Food Facts, the world\'s largest open food database. It is community data, so glance at the label the first time you scan something new.',
+  '<b>Scan to meal.</b> Anything you add can be logged as an extra, or set as today\'s breakfast, lunch, dinner or snack. Set it as a meal and it replaces that slot in your plan, already ticked and counted.',
+  'Estimates are fine. Close is perfect, and consistency wins.']},
  'A Gentle Note':{sub:'Disclaimer',body:[
   '<em>This is general fitness and nutrition guidance, not medical advice.</em>',
   'Calorie and protein figures are estimates to help you plan. Results vary and are never guaranteed.',
   'Nothing in this app replaces advice from your doctor, physio or a registered dietitian. If you are pregnant, injured or managing a health condition, check in with a professional first.',
   'Be kind to yourself, you are building habits for life, not chasing a deadline.']}
 };
-function openGuide(k){let g=GUIDE[k];modalBody.innerHTML=`<div class="guideDoc"><div class="gcap">The Model Body · Guide</div><h2 class="gtitle">${k}</h2><div class="gsub">${g.sub||''}</div><div class="grule"></div>${g.body.map((x,i)=>`<p class="gpara${i===0?' lead':''}">${x}</p>`).join('')}</div>`;modal.classList.add('active')}
+/* 'Add to app' purchase links per season. Leave '' to hide the button until the Gumroad product is live. */
+const SEASON_BUY={shred:'',april:''};
+function seasonBuyBtn(season){let u=SEASON_BUY[season];return u?`<br><a class="btn mini" style="text-decoration:none;display:inline-block;margin-top:8px" href="${u}" target="_blank" rel="noopener">Add ${SEASONNAME[season]||season} to my app</a>`:''}
+function openGuide(k){let g=GUIDE[k];modalBody.innerHTML=`<div class="guideDoc"><div class="gcap">The Model Body · Guide</div><h2 class="gtitle">${k}</h2><div class="gsub">${g.sub||''}</div><div class="grule"></div>${g.body.map((x,i)=>`<p class="gpara${i===0?' lead':''}">${x.replace('%BUY_SHRED%',seasonBuyBtn('shred')).replace('%BUY_APRIL%',seasonBuyBtn('april'))}</p>`).join('')}</div>`;modal.classList.add('active')}
 function setLogTab(t){S.logTab=t;
   if(!$('ltabLog'))return;
   $('ltabLog').className='btn guideTab mini'+(t==='log'?'':' ghost');
@@ -1291,6 +1514,12 @@ function setLogTab(t){S.logTab=t;
 }
 function renderGuide(){
   guideList.innerHTML=Object.keys(GUIDE).map((k,i)=>`<div class="guideItem"><div style="display:flex;gap:13px;align-items:center"><span class="gnum">${i+1}</span><div><div class="gk">${k}</div><div class="gs">${GUIDE[k].sub||''}</div></div></div><button class="btn ghost mini" onclick="openGuide('${k.replace(/'/g,"\\'")}')">Open</button></div>`).join('');
+  /* collapsible copy of the guide at the top of the planner */
+  if($('planGuideList')){
+    $('planGuideList').innerHTML=guideList.innerHTML;
+    $('planGuideList').classList.toggle('hidden',!S.planHelpOpen);
+    if($('planHelpBtn'))$('planHelpBtn').textContent=S.planHelpOpen?'Close':'Open';
+  }
 }
 /* ============ PERSONAL BESTS ============ */
 /* best set per exercise: highest weight first, then most reps at that weight */
@@ -1315,11 +1544,206 @@ function renderPB(){
   pbList.innerHTML=`<p class="muted small" style="margin:12px 4px 2px">Your best logged set for each exercise, weight first then reps.</p>`+names.map(n=>{
     let b=map[n],val=b.kg?`${b.kg}kg${b.reps?' × '+b.reps:''}`:`${b.reps} reps`;
     let dt=b.date?new Date(b.date+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short'}):'';
-    return `<div class="pbRow"><div><div class="pbEx">${esc(n)}</div><div class="pbMeta">${esc(b.workout||'')}${dt?' · '+dt:''}</div></div><div class="pbVal">${esc(val)}</div></div>`;
+    return `<div class="pbRow"><div><div class="pbEx">${esc(n)}</div><div class="pbMeta">${esc(b.workout||'')}${dt?' · '+dt:''}</div></div><div class="pbVal">🥇 ${esc(val)}</div></div>`;
   }).join('');
 }
 
 function installHelp(){modalBody.innerHTML='<div class="label">Save to home screen</div><h2 class="h2">Keep it one tap away</h2><div class="card" style="margin-top:10px"><p class="muted" style="margin:0"><b>iPhone.</b> Open this page in Safari, tap Share, then Add to Home Screen.</p></div><div class="card" style="margin-top:10px"><p class="muted" style="margin:0"><b>Android.</b> Open in Chrome, tap the three dots, then Add to Home screen or Install app.</p></div>';modal.classList.add('active')}
+
+/* ============ FOOD LOG / CALORIE COUNTER ============
+   Manual quick-add, favourite foods, and a barcode scanner powered by Open Food Facts
+   (native BarcodeDetector when available, ZXing from CDN otherwise, typed number as backup).
+   Extras count straight into the Home rings; anything can also be set as one of today's meals. */
+function foodTotals(idx){let a=(S.food&&S.food['d'+idx])||[];return{cal:a.reduce((x,e)=>x+(+e.cal||0),0),pro:a.reduce((x,e)=>x+(+e.pro||0),0)}}
+function slotOptions(){return '<option value="extra">Extra · just count it</option>'+TYPES.map(s=>`<option value="${s}">Set as today's ${s}</option>`).join('')}
+function openFoodLog(idx){
+  let list=(S.food['d'+idx]=S.food['d'+idx]||[]),favs=S.foodFavs||[];
+  modalBody.innerHTML=`<div class="label">Food log · calorie counter</div><h2 class="h2">${dayLabel(idx)}</h2>
+  <p class="muted small" style="margin:2px 0 10px">Log anything you eat and it counts towards your rings. Add it as an extra, or set it as one of today's meals.</p>
+  <div class="row" style="margin-bottom:12px"><button class="btn mini" onclick="openScanner(${idx})">📷 Scan barcode</button><span class="muted small">powered by Open Food Facts</span></div>
+  <div class="card"><div class="label">Quick add</div>
+    <label class="field"><span>Name</span><input id="fname" placeholder="e.g. Matcha latte, protein bar"></label>
+    <div class="two" style="margin-top:10px"><label class="field"><span>Calories (kcal)</span><input id="fcal" type="number" inputmode="numeric"></label><label class="field"><span>Protein (g)</span><input id="fpro" type="number" inputmode="numeric"></label></div>
+    <div class="two" style="margin-top:10px"><label class="field"><span>Count it as</span><select id="fslot">${slotOptions()}</select></label><label class="row" style="gap:8px;cursor:pointer;align-self:end;padding-bottom:10px"><input type="checkbox" class="tick" id="ffav"><span class="small">Save as favourite</span></label></div>
+    <button class="btn" style="margin-top:12px" onclick="addFood(${idx})">Add to today</button>
+  </div>
+  ${favs.length?`<div class="card" style="margin-top:10px"><div class="label">Favourites · one tap</div>${favs.map((f,i)=>`<div class="pbRow"><div><div class="pbEx">${esc(f.name)}</div><div class="pbMeta">${f.cal} kcal · ${f.pro}g protein</div></div><span class="row" style="gap:6px;flex-wrap:nowrap"><button class="btn ghost mini" onclick="addFavFood(${idx},${i})">+ Add</button><button class="btn soft mini" onclick="S.foodFavs.splice(${i},1);save();openFoodLog(${idx})">×</button></span></div>`).join('')}</div>`:''}
+  <div class="card" style="margin-top:10px"><div class="label">Logged this day</div>${list.length?list.map((e,i)=>`<div class="pbRow"><div><div class="pbEx">${esc(e.name)}</div><div class="pbMeta">${e.cal} kcal · ${e.pro}g protein</div></div><button class="btn soft mini" onclick="S.food['d${idx}'].splice(${i},1);save();openFoodLog(${idx})">×</button></div>`).join('')+`<p class="muted small" style="margin:10px 0 0">Total: <b>${foodTotals(idx).cal}</b> kcal · <b>${foodTotals(idx).pro}g</b> protein, already counted in your rings.</p>`:'<p class="muted small" style="margin:0">Nothing logged yet. Extras you add appear here and count towards your rings.</p>'}</div>
+  <label class="field" style="margin-top:12px"><span>Or type a barcode number</span></label>
+  <div class="row" style="flex-wrap:nowrap"><input id="fbarcode" inputmode="numeric" placeholder="e.g. 5000159407236" style="flex:1"><button class="btn ghost" onclick="lookupBarcode(${idx},$('fbarcode').value)">Look up</button></div>`;
+  modal.classList.add('active');
+}
+function addFood(idx,entry,slot,fav){
+  let e=entry||{name:($('fname')?.value||'').trim()||'Food',cal:+($('fcal')?.value)||0,pro:+($('fpro')?.value)||0};
+  slot=slot||($('fslot')?$('fslot').value:'extra');
+  fav=fav!==undefined?fav:!!($('ffav')&&$('ffav').checked);
+  if(fav&&e.name&&!S.foodFavs.some(f=>f.name.toLowerCase()===e.name.toLowerCase()))S.foodFavs.push({name:e.name,cal:e.cal,pro:e.pro});
+  if(slot!=='extra'&&attachFoodToMeal(idx,slot,e)){save();buzz(10);render();openFoodLog(idx);return}
+  (S.food['d'+idx]=S.food['d'+idx]||[]).push({name:e.name,cal:e.cal,pro:e.pro});
+  save();buzz(10);render();openFoodLog(idx);
+}
+function addFavFood(idx,i){let f=S.foodFavs[i];if(f)addFood(idx,{name:f.name,cal:f.cal,pro:f.pro},'extra',false)}
+/* set a logged food as one of the day's meals: it replaces that slot, ticked and counted */
+function attachFoodToMeal(idx,s,e){
+  let w=Math.floor(idx/7)+1,k=keys[idx%7],d=S.plan?.weeks?.[w]?.[k];
+  if(!d)return false;
+  d.custom=d.custom||{};d.custom[s]={name:e.name,cal:e.cal,pro:e.pro};d[s]='custom';
+  if(d.missed)delete d.missed[s];
+  S.ticks['d'+idx+s]=true;
+  return true;
+}
+let scanStream=null,scanLoop=null,zxReader=null;
+function stopScan(){
+  if(scanLoop){cancelAnimationFrame(scanLoop);scanLoop=null}
+  if(zxReader){try{zxReader.reset()}catch(e){}zxReader=null}
+  if(scanStream){try{scanStream.getTracks().forEach(t=>t.stop())}catch(e){}scanStream=null}
+}
+function openScanner(idx){
+  stopScan();
+  modalBody.innerHTML=`<div class="label">Scan a barcode</div><h2 class="h2">Point at the barcode</h2>
+  <video id="scanVid" playsinline muted style="width:100%;border-radius:18px;background:#1A1410;aspect-ratio:3/4;object-fit:cover;margin:10px 0"></video>
+  <p class="muted small" id="scanMsg" style="margin:0 0 10px">Starting camera…</p>
+  <div class="row"><button class="btn ghost" onclick="stopScan();openFoodLog(${idx})">Cancel</button></div>`;
+  modal.classList.add('active');
+  let vid=$('scanVid'),done=false;
+  const hit=code=>{if(done||!code)return;done=true;buzz(20);stopScan();lookupBarcode(idx,String(code))};
+  const fail=t=>{let m=$('scanMsg');if(m)m.textContent=t+' Go back and type the barcode number instead.'};
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){fail('Camera not available here.');return}
+  navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'},audio:false}).then(st=>{
+    scanStream=st;vid.srcObject=st;vid.play().catch(()=>{});
+    if('BarcodeDetector' in window){
+      let det;
+      try{det=new BarcodeDetector({formats:['ean_13','ean_8','upc_a','upc_e','code_128']})}catch(e){det=null}
+      if(det){
+        $('scanMsg').textContent='Looking for a barcode…';
+        const loop=()=>{if(!scanStream)return;det.detect(vid).then(cs=>{if(cs&&cs[0])hit(cs[0].rawValue);else scanLoop=requestAnimationFrame(loop)}).catch(()=>{scanLoop=requestAnimationFrame(loop)})};
+        scanLoop=requestAnimationFrame(loop);
+        return;
+      }
+    }
+    $('scanMsg').textContent='Loading scanner…';
+    let sc=document.createElement('script');
+    sc.src='https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js';
+    sc.onload=()=>{try{
+      zxReader=new ZXing.BrowserMultiFormatReader();
+      $('scanMsg').textContent='Looking for a barcode…';
+      zxReader.decodeFromStream(scanStream,vid,res=>{if(res)hit(res.getText())});
+    }catch(e){fail('The scanner could not start.')}};
+    sc.onerror=()=>fail('The scanner could not load.');
+    document.head.appendChild(sc);
+  }).catch(()=>fail('Camera permission was not given.'));
+}
+function lookupBarcode(idx,code){
+  code=String(code||'').replace(/\D/g,'');
+  if(!code){alert('Scan a barcode or type its number first.');return}
+  modalBody.innerHTML=`<div class="label">Food log</div><h2 class="h2">Looking it up…</h2><p class="muted small">Checking Open Food Facts for ${esc(code)}.</p>`;
+  modal.classList.add('active');
+  fetch('https://world.openfoodfacts.org/api/v2/product/'+code+'.json?fields=product_name,brands,serving_size,nutriments')
+   .then(r=>r.json())
+   .then(j=>{
+     if(!j||j.status!==1||!j.product){foodNotFound(idx,code);return}
+     let p=j.product,n=p.nutriments||{};
+     let cal=n['energy-kcal_100g'];if(cal==null&&n['energy_100g']!=null)cal=n['energy_100g']/4.184;
+     let pro=n['proteins_100g'];
+     openFoodResult(idx,{name:[p.brands,p.product_name].filter(Boolean).join(' · ')||'Scanned food',cal100:cal!=null?Math.round(cal):null,pro100:pro!=null?Math.round(pro*10)/10:null,serving:p.serving_size||''});
+   }).catch(()=>foodNotFound(idx,code));
+}
+function openFoodResult(idx,p){
+  window.__scan=p;
+  let sg=parseFloat(p.serving)||0;
+  modalBody.innerHTML=`<div class="label">Scanned</div><h2 class="h2">${esc(p.name)}</h2>
+  <p class="muted small" style="margin:2px 0 10px">${p.cal100!=null?`Per 100g: <b>${p.cal100}</b> kcal · <b>${p.pro100!=null?p.pro100:'—'}g</b> protein.`:'No nutrition data on file, fill it in from the label below.'}${p.serving?' Serving size: '+esc(p.serving)+'.':''}</p>
+  <div class="two"><label class="field"><span>How much? (g or ml)</span><input id="fgr" type="number" inputmode="numeric" value="${sg||100}" oninput="scanCalc()"></label><label class="field"><span>Count it as</span><select id="fslot">${slotOptions()}</select></label></div>
+  <div class="two" style="margin-top:10px"><label class="field"><span>Calories (kcal)</span><input id="fcal" type="number" inputmode="numeric"></label><label class="field"><span>Protein (g)</span><input id="fpro" type="number" inputmode="numeric"></label></div>
+  <label class="row" style="gap:8px;cursor:pointer;margin-top:10px"><input type="checkbox" class="tick" id="ffav"><span class="small">Save as favourite for one-tap adds</span></label>
+  <input type="hidden" id="fname" value="${esc(p.name).replace(/"/g,'&quot;')}">
+  <div class="row" style="margin-top:14px"><button class="btn" onclick="addFood(${idx})">Add to today</button><button class="btn ghost" onclick="openScanner(${idx})">Scan again</button><button class="btn soft" onclick="openFoodLog(${idx})">Back</button></div>`;
+  modal.classList.add('active');
+  scanCalc();
+}
+function scanCalc(){
+  let p=window.__scan;if(!p)return;
+  let g=+($('fgr')?.value)||0;
+  if(p.cal100!=null&&$('fcal'))$('fcal').value=Math.round(p.cal100*g/100);
+  if(p.pro100!=null&&$('fpro'))$('fpro').value=Math.round(p.pro100*g/100);
+}
+function foodNotFound(idx,code){
+  modalBody.innerHTML=`<div class="label">Food log</div><h2 class="h2">Not found</h2><p class="muted small">Barcode ${esc(code)} is not on Open Food Facts yet, or the lookup did not go through. Add it manually from the label instead.</p><div class="row" style="margin-top:12px"><button class="btn" onclick="openFoodLog(${idx})">Add manually</button><button class="btn ghost" onclick="openScanner(${idx})">Scan again</button></div>`;
+  modal.classList.add('active');
+}
+
+/* ============ DATA + BACKUP ============ */
+function fmtWhen(iso){
+  if(!iso)return'never';
+  let d=new Date(iso),n=new Date(),t=d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+  let sameDay=d.toDateString()===n.toDateString();
+  let yest=new Date(n);yest.setDate(n.getDate()-1);
+  if(sameDay)return'Today, '+t;
+  if(d.toDateString()===yest.toDateString())return'Yesterday, '+t;
+  return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'})+', '+t;
+}
+function backupStale(){
+  let lb=S.backupMeta?.lastBackup;if(!lb)return true;
+  return (Date.now()-new Date(lb).getTime())>7*86400000; /* recommend weekly */
+}
+function exportProgress(){
+  try{
+    S.backupMeta=S.backupMeta||{};S.backupMeta.lastBackup=new Date().toISOString();save();
+    let payload={app:'themodelbody',key:'mbGoldenV9',schema:SCHEMA,exportedAt:new Date().toISOString(),data:S};
+    let blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+    let url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download='the-model-body-backup-'+new Date().toISOString().slice(0,10)+'.json';
+    document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+    buzz(12);if($('dataStatus'))openData();
+  }catch(e){alert('Could not save the backup. Please try again.')}
+}
+function importProgress(input){
+  let file=input.files&&input.files[0];if(!file)return;
+  let rd=new FileReader();
+  rd.onload=()=>{
+    try{
+      let obj=JSON.parse(rd.result);
+      let data=obj&&obj.data?obj.data:obj; /* accept wrapped or raw */
+      if(!data||typeof data!=='object'||(!data.setup&&!data.plan&&!data.favs))throw 0;
+      if(!confirm('Restore this backup? It replaces the progress currently on this device with the saved file.'))return;
+      localStorage.mbGoldenV9=JSON.stringify(data);
+      alert('Backup restored. The app will reload.');location.reload();
+    }catch(e){alert('That file was not a valid Model Body backup. Choose the .json backup you saved earlier.')}
+  };
+  rd.readAsText(file);
+}
+function clearAppData(){
+  if(!confirm('Clear ALL app data on this device? Your planner, logs, favourites and unlocks will be erased. This cannot be undone. Save a backup first if you are not sure.'))return;
+  if(!confirm('Last check. Really clear everything on this device?'))return;
+  localStorage.removeItem('mbGoldenV9');location.reload();
+}
+function checkUpdates(){
+  let el=$('updStatus');if(el)el.textContent='Checking…';
+  fetch('/app-version.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(j=>{
+    let latest=j&&(j.version||j.latest);
+    if(!latest){if(el)el.textContent='Could not check right now. You are on '+APP_VERSION+'.';return}
+    if(String(latest)!==String(APP_VERSION)){
+      if(confirm('A newer version is available ('+latest+'). You are on '+APP_VERSION+'. Reload now to update? Your progress stays saved on this device.')){
+        let u=new URL(location.href);u.searchParams.set('v',Date.now());location.href=u.toString();
+      }
+    }else if(el)el.textContent='You are on the latest version ('+APP_VERSION+').';
+  }).catch(()=>{if(el)el.textContent='Could not check for updates. You are on '+APP_VERSION+'. It usually updates itself when you reopen.';});
+}
+function openData(){
+  let stale=backupStale();
+  modalBody.innerHTML=`<div class="label">Data + settings</div><h2 class="h2">Your progress + backups</h2>
+  <p class="muted small" style="margin:2px 2px 12px">The Model Body app saves your planner and progress locally on your device. This means it can work without a login, but it is not the same as cloud sync. To protect your progress, use Save Progress and save the file to iCloud, Google Drive or your Files app.</p>
+  <div class="card"><div class="label">Storage status</div>
+    <div class="pbRow"><div><div class="pbEx">Saved on this device</div><div class="pbMeta">Last saved: ${esc(fmtWhen(S.backupMeta?.lastSaved))}</div></div><span class="tag green">On device</span></div>
+    <div class="pbRow"><div><div class="pbEx">Backup recommended: Weekly</div><div class="pbMeta">Last backup: ${esc(fmtWhen(S.backupMeta?.lastBackup))}</div></div><span class="tag ${stale?'gold':'green'}">${stale?'Backup due':'Backed up'}</span></div>
+  </div>
+  ${stale?'<div class="steps-note" style="margin-top:10px"><b>Backup reminder.</b> It has been a while since your last backup. Save one now so a new phone, cleared browser or reinstall can never lose your progress.</div>':''}
+  <div class="row" style="margin-top:12px"><button class="btn" onclick="exportProgress()">Save Progress</button><label class="btn ghost" style="cursor:pointer;margin:0">Import Progress<input type="file" accept="application/json,.json" style="display:none" onchange="importProgress(this)"></label></div>
+  <div class="card" style="margin-top:12px"><div class="label">App version</div><p class="muted small" style="margin:0 0 10px">You are on <b>${esc(APP_VERSION)}</b>. The app usually updates itself when you reopen it. If something looks out of date, check here.</p><button class="btn ghost" onclick="checkUpdates()">Check for updates</button><p class="muted small" id="updStatus" style="margin:10px 2px 0"></p></div>
+  <div class="card" style="margin-top:12px"><div class="label">Danger zone</div><p class="muted small" style="margin:0 0 10px">Clearing wipes everything on this device. Save a backup first.</p><button class="btn soft" onclick="clearAppData()">Clear App Data</button></div>
+  <p class="muted small" style="margin:12px 2px 0" id="dataStatus">Progress is saved on this device only. Backups are plain files you keep in iCloud, Google Drive or Files.</p>`;
+  modal.classList.add('active');
+}
 
 /* ============ RENDER ALL ============ */
 function render(){renderHome();renderAvail();renderDrop();renderChosen();renderPlan();renderMeals();renderTrain();renderShop();renderLogs();renderGuide()}
