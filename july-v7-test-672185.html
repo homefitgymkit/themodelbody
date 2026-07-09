@@ -40,8 +40,9 @@ button,select,input,label,.nav{touch-action:manipulation}
 #restPill.done{background:var(--green)}
 .timerBtn{border:1px solid #EBD9A9;background:var(--goldbg);color:var(--gold);border-radius:999px;padding:6px 11px;font-size:11px;font-weight:900;letter-spacing:.05em}
 .thumb{width:56px;height:56px;object-fit:contain;flex:none;filter:drop-shadow(0 4px 8px #1a141022)}
-.photoImg{width:150px;height:150px;object-fit:contain;float:right;margin:-8px -4px 0 10px;filter:drop-shadow(0 8px 16px #1a141026)}
-@media(max-width:720px){.photoImg{width:112px;height:112px}}
+.mealPhotoWrap{text-align:center;margin:2px 0 14px}
+.mealPhoto{max-width:min(360px,82%);max-height:320px;width:auto;height:auto;filter:drop-shadow(0 22px 34px #1a141030)}
+@media(max-width:720px){.mealPhoto{max-width:74%;max-height:250px}}
 #confettiC{position:fixed;inset:0;pointer-events:none;z-index:80}
 .milestone{display:inline-block;background:var(--goldbg);border:1px solid #EBD9A9;color:var(--gold);border-radius:999px;padding:5px 11px;font-size:11px;font-weight:900;letter-spacing:.05em}
 .app{max-width:980px;margin:auto;min-height:100vh;padding-bottom:96px}
@@ -294,12 +295,24 @@ ol.method li{margin-bottom:6px}
 </main>
 
 <main class="page" id="train">
-  <section class="card figAccent"><div class="label">Workout bank</div><h2 class="h2">Golden Hour workouts</h2><p class="muted small">Four signature sessions, each with a gym and a home version. Every workout has three finish points, your session time in the planner sets which is highlighted for you.</p>
-  <div class="two" style="margin-top:12px">
-    <label class="field"><span>Season</span><select id="trainSeasonFilter" onchange="renderTrain()"><option value="all">All seasons</option><option value="golden">Golden Hour</option><option value="lean">Lean Season</option><option value="april">April Reset</option><option value="shred">Summer Shred</option></select></label>
-  </div></section>
-  <div id="workoutList"></div>
-  <div id="trainPackList"></div>
+  <section class="card figAccent"><div class="label">Train</div><h2 class="h2">Your training</h2><p class="muted small">This season's workouts, and the exercise library behind every movement in them.</p></section>
+  <div class="row" style="margin:14px 2px 2px;gap:8px"><button class="btn guideTab mini" id="ttabWk" onclick="setTrainTab('wk')">Workouts</button><button class="btn ghost guideTab mini" id="ttabEx" onclick="setTrainTab('ex')">Exercise Library</button></div>
+  <div id="wkPane">
+    <section class="card" style="margin-top:12px"><div class="label">Workout bank</div><h2 class="h2">Golden Hour workouts</h2><p class="muted small">Four signature sessions, each with a gym and a home version. Every workout has three finish points, your session time in the planner sets which is highlighted for you.</p>
+    <div class="two" style="margin-top:12px">
+      <label class="field"><span>Season</span><select id="trainSeasonFilter" onchange="renderTrain()"><option value="all">All seasons</option><option value="golden">Golden Hour</option><option value="lean">Lean Season</option><option value="april">April Reset</option><option value="shred">Summer Shred</option></select></label>
+    </div></section>
+    <div id="workoutList"></div>
+    <div id="trainPackList"></div>
+  </div>
+  <div id="exPane" class="hidden">
+    <section class="card" style="margin-top:12px"><div class="label">Exercise Library</div><h2 class="h2">Every move, explained</h2><p class="muted small">The key movements from your workouts, with setup, Model Body cues and swaps, so every rep feels intentional. Tap the heart to keep your favourites together.</p>
+    <div class="two" style="margin-top:12px">
+      <label class="field"><span>Category</span><select id="exCat" onchange="renderExLib()"><option value="all">All</option><option value="favs">♥ Favourites</option><option value="Glutes">Glutes</option><option value="Hamstrings">Hamstrings</option><option value="Quads">Quads</option><option value="Back">Back</option><option value="Shoulders">Shoulders</option><option value="Arms">Arms</option><option value="Abs/Core">Abs/Core</option><option value="Home/Bands">Home/Bands</option><option value="Gym Machines">Gym Machines</option><option value="Dumbbells Only">Dumbbells Only</option></select></label>
+      <label class="field"><span>Search</span><input id="exSearch" placeholder="e.g. hip thrust, band, glutes" oninput="renderExLib()"></label>
+    </div></section>
+    <div id="exList"></div>
+  </div>
 </main>
 
 <main class="page" id="shop">
@@ -514,7 +527,7 @@ function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
    One permanent storage key for every version: localStorage.mbGoldenV9 (never rename; bump SCHEMA + migrate).
    Runs on every load: ensures each saved section exists, never wipes existing member data. */
 const SCHEMA=2;
-const APP_VERSION='2026.07-v19'; /* bump each release; used by the Check for updates button */
+const APP_VERSION='2026.07-v20'; /* bump each release; used by the Check for updates button */
 (function healthCheck(){
   try{
     S.mealEdits=S.mealEdits||{};     /* per-plan-meal overrides: serves + custom macro swaps */
@@ -524,7 +537,8 @@ const APP_VERSION='2026.07-v19'; /* bump each release; used by the Check for upd
     S.backupMeta=S.backupMeta||{lastSaved:null,lastBackup:null};
     const req={setup:{},goals:{cal:1800,pro:120},variety:{b:4,l:4,d:4},avail:{},include:{},exclude:{},
       habits:{},ticks:{},logs:{},logHist:{},shop:{mode:'plan',sig:'',ex:{},bought:{}},shopExtra:[],
-      favs:{},unlocked:{},mealEdits:{},customMeals:{},food:{},foodFavs:[]};
+      favs:{},unlocked:{},mealEdits:{},customMeals:{},food:{},foodFavs:[],exFavs:{}};
+    S.exFavs=S.exFavs||{};           /* favourite exercises from the Exercise Library */
     Object.keys(req).forEach(k=>{if(S[k]===undefined||S[k]===null)S[k]=clone(req[k])});
     S.schema=SCHEMA; /* migrations for older schemas go above this line, never delete data */
     S.backupMeta.lastSaved=S.backupMeta.lastSaved||new Date().toISOString();
@@ -1110,13 +1124,14 @@ function openMeal(id,p=1,manual=null,ctx=null,ppl=null){
   let favKey=favKeyOf(id,curList),isFav=!!S.favs[favKey];
   let reopen=(np,nppl)=>`openMeal('${id}',${np},${manualArg},${ctxArg},${nppl})`;
   modalBody.innerHTML=`
-  <div class="photo" style="position:relative"><button class="heart ${isFav?'on':''}" style="position:absolute;top:14px;right:14px" onclick="toggleFav('${id}',${swArg},'${esc(m.name).replace(/'/g,"\\'")}');${reopen(p,curPpl)}" aria-label="Favourite">♥</button>${imgFor(m)?`<img class="photoImg" src="${imgFor(m)}" alt="" loading="lazy" style="margin-top:26px" onerror="this.remove()">`:''}<div class="mealType">${TYPENAME[m.type]} ${m.swapped?'· swapped':''}</div><h2 class="h2" style="font-size:34px;margin:6px 0 0">${esc(m.name)}</h2><div class="tagline">${esc(m.tagline)}</div><div style="clear:both"></div></div>
+  <div class="photo" style="position:relative"><button class="heart ${isFav?'on':''}" style="position:absolute;top:14px;right:14px" onclick="toggleFav('${id}',${swArg},'${esc(m.name).replace(/'/g,"\\'")}');${reopen(p,curPpl)}" aria-label="Favourite">♥</button><div class="mealType">${TYPENAME[m.type]} ${m.swapped?'· swapped':''}</div><h2 class="h2" style="font-size:34px;margin:6px 0 0">${esc(m.name)}</h2><div class="tagline">${esc(m.tagline)}</div></div>
   <div class="row"><span class="tag gold">${SEASONNAME[m.season]||''}</span>${m.tags.map(t=>`<span class="tag blush">${esc(tagName(t))}</span>`).join('')}${isFav?'<span class="tag red">♥ Favourite</span>':''}</div>
   <div class="metaRow"><div class="mm"><div class="k">Prep</div><div class="v">${m.prep}</div></div><div class="mm"><div class="k">Cook</div><div class="v">${m.cook||'—'}</div></div><div class="mm"><div class="k">Cooking for</div><div class="v"><span class="row" style="gap:7px;align-items:center"><button class="btn ghost mini" ${curPpl<=1?'disabled style="opacity:.35"':''} onclick="${reopen(p,Math.max(1,curPpl-1))}">−</button>${curPpl}<button class="btn ghost mini" ${curPpl>=6?'disabled style="opacity:.35"':''} onclick="${reopen(p,Math.min(6,curPpl+1))}">+</button></span></div></div></div>
   <div class="macroStrip"><div class="m"><div class="k">Calories</div><div class="v">${Math.round(m.cal*p)+(curAdj?.cal||0)}<small>kcal</small></div></div><div class="m"><div class="k">Protein</div><div class="v">${Math.round(m.pro*p)+(curAdj?.pro||0)}<small>g</small></div></div><div class="m"><div class="k">Carbs</div><div class="v">${Math.round(m.carbs*p)+(curAdj?.carbs||0)}<small>g</small></div></div><div class="m"><div class="k">Fats</div><div class="v">${Math.round(m.fat*p)+(curAdj?.fat||0)}<small>g</small></div></div></div>
   <p class="muted small" style="margin:0 2px 10px">Per person at ${Math.round(p*100)}% portion. Macros are estimates, use them as a guide.</p>
   <div class="row" style="margin-bottom:${ctx?'8px':'12px'}"><button class="btn ghost mini" onclick="${reopen(Math.max(.5,Math.round((p-.1)*10)/10),curPpl)}">−10%</button><span class="tag red">${Math.round(p*100)}% portion</span><button class="btn ghost mini" onclick="${reopen(Math.min(2,Math.round((p+.1)*10)/10),curPpl)}">+10%</button>${ctx?'<span class="tag green">saved to your planner</span>':''}</div>
   ${ctx?`<div class="row" style="margin-bottom:12px"><button class="btn ${p!==1?'ghost':'soft'} mini" onclick="openMeal('${id}',smartSlotP(${ctxArg}),${manualArg},${ctxArg},${curPpl})">Smart portion</button><button class="btn ${p===1?'soft':'ghost'} mini" onclick="${reopen(1,curPpl)}">As written</button><span class="muted small" style="flex:1;min-width:160px">Smart portion sizes this meal to the protein and calories your day still needs. As written resets to the recipe as printed.</span></div>`:''}
+  ${imgFor(m)?`<div class="mealPhotoWrap"><img class="mealPhoto" src="${imgFor(m)}" alt="${esc(m.name)}" loading="lazy" onerror="this.parentNode.remove()"></div>`:''}
   <div class="card"><div class="label">Ingredients · ${curPpl===1?'for 1 person':'scaled for '+curPpl+' people'}</div><ul class="ing">${m.ing.map(x=>`<li>${esc(scaleText(x,f))}</li>`).join('')}</ul></div>
   <div class="card" style="margin-top:10px"><div class="label">Method</div><ol class="method">${m.steps.map(x=>`<li>${esc(x)}</li>`).join('')}</ol></div>
   ${m.tips?`<div class="card" style="margin-top:10px"><div class="label">Tips + notes</div><p class="muted small" style="margin:0">${esc(m.tips)}</p></div>`:''}
@@ -1233,7 +1248,8 @@ function openWorkout(id){
     return `<div class="wkSec${beyond?' beyond':''}"><div class="wkSecHead"><div class="wkSecName">${esc(sec.name)}</div><button class="timerBtn" onclick="startRest(${rs})">⏱ Rest ${rs}s</button></div><div class="wkNote">${esc(secNote(sec))}</div>
     ${sec.ex.map((e,ei)=>{let lk=id+'|'+si+'|'+ei,lg=S.logs[lk]||{},prev=lastLog(lk);
       let trend=prev&&lg.kg&&parseFloat(lg.kg)>parseFloat(prev.kg||0)?' <span style="color:var(--green)">▲</span>':'';
-      return `<div class="wkRow"><div><div style="font-weight:700">${esc(e[0])}</div><div class="wkLog"><input placeholder="kg" value="${lg.kg||''}" onchange="logSet('${lk}','kg',this.value)"><input placeholder="reps" value="${lg.reps||''}" onchange="logSet('${lk}','reps',this.value)"></div>${prev?`<div class="meta" style="font-size:11px;margin-top:4px">Last time: ${esc(prev.kg||'—')}${prev.kg?'kg':''}${prev.reps?' × '+esc(prev.reps):''}${trend}</div>`:''}</div><span class="wkRep">${esc(normRep(e[1]))}</span></div>`}).join('')}</div>`};
+      let lib=findExercise(e[0]); /* link the row to the Exercise Library where a match exists */
+      return `<div class="wkRow"><div><div style="font-weight:700">${esc(e[0])}${lib?` <button class="btn ghost mini" style="padding:4px 9px;font-size:9px;vertical-align:2px;margin-left:4px" onclick="openExercise('${lib.id}','${id}')">View cues</button>`:''}</div><div class="wkLog"><input placeholder="kg" value="${lg.kg||''}" onchange="logSet('${lk}','kg',this.value)"><input placeholder="reps" value="${lg.reps||''}" onchange="logSet('${lk}','reps',this.value)"></div>${prev?`<div class="meta" style="font-size:11px;margin-top:4px">Last time: ${esc(prev.kg||'—')}${prev.kg?'kg':''}${prev.reps?' × '+esc(prev.reps):''}${trend}</div>`:''}</div><span class="wkRep">${esc(normRep(e[1]))}</span></div>`}).join('')}</div>`};
   let body=w.secs.map((sec,si)=>{
     let h=secHTML(sec,si);
     if(si===mainIdx)h+=stopHTML(w.stops[0],1);
@@ -1335,7 +1351,16 @@ function enterCode(){
   if(pk){render();showUnlockModal(pk)}
   else alert('That code was not recognised. Check your Gumroad receipt, or open the magic link in it directly.');
 }
+/* Train sub-tabs, same pattern as the Logs tab (Daily log / Personal Bests) */
+function setTrainTab(t){S.trainTab=t;save();
+  if(!$('ttabWk'))return;
+  $('ttabWk').className='btn guideTab mini'+(t==='wk'?'':' ghost');
+  $('ttabEx').className='btn guideTab mini'+(t==='ex'?'':' ghost');
+  $('wkPane').classList.toggle('hidden',t!=='wk');
+  $('exPane').classList.toggle('hidden',t!=='ex');
+}
 function renderTrain(){
+  setTrainTab(S.trainTab||'wk');
   let season=$('trainSeasonFilter')?.value||'all';
   let list=availWorkouts().filter(w=>season==='all'||(w.season||'golden')===season);
   /* one card per session: the gym and home versions of a workout live together */
@@ -1351,6 +1376,357 @@ function renderTrain(){
     return `<div class="item"><div><div class="it">${esc(a.title)}</div><div class="meta small">${esc(a.focus)}${durs?' · '+esc(durs):''}</div><div class="row" style="margin-top:6px"><span class="tag gold">${SEASONNAME[a.season||'golden']||''}</span></div></div><span style="display:grid;gap:6px;justify-items:end">${pr.Gym?`<button class="btn ghost mini" onclick="openWorkout('${pr.Gym.id}')">Open gym</button>`:''}${pr.Home?`<button class="btn ghost mini" onclick="openWorkout('${pr.Home.id}')">Open home</button>`:''}</span></div>`;
   }).join('')||'<div class="card" style="margin-top:12px"><p class="muted" style="margin:0">No workouts in this view yet.</p></div>';
   workoutList.innerHTML=lockBanner('workouts')+workoutList.innerHTML;
+}
+
+/* ============ MODEL BODY EXERCISE LIBRARY ============
+   Curated, branded exercise data. Deliberately NOT a raw 800-exercise dump: every entry is
+   written in the Model Body voice with setup, cues, mistakes and swaps. Add new exercises by
+   appending objects in the same shape.
+
+   FUTURE · Free Exercise DB compatibility:
+   A public-domain dataset (e.g. github.com/yuhonas/free-exercise-db) can be folded in later by
+   mapping each raw record through mapFreeExerciseDbToModelBodyExercise() below, then reviewing
+   the copy so it matches the Model Body tone before it ships. Do not import the dataset raw. */
+const MODEL_BODY_EXERCISES=[
+/* ---- GLUTES ---- */
+{id:'hip-thrust',name:'Hip Thrust',aliases:['machine hip thrust','sofa hip thrust'],categories:['Glutes'],primaryMuscles:['Glutes'],secondaryMuscles:['Hamstrings','Core'],equipment:['Bench','Barbell or machine'],level:'All levels',
+ bestFor:'The number one glute builder, shape and strength together.',
+ instructions:['Sit on the floor with your upper back on a bench, feet hip-width and flat.','Tuck your chin slightly and brace, ribs down.','Drive through your heels and lift your hips until your body is level from knees to shoulders.','Squeeze at the top for a second, then lower with control.'],
+ setupTips:['Bench edge sits just under your shoulder blades.','Feet close enough that your shins are vertical at the top.','Eyes forward at the top, not at the ceiling.'],
+ commonMistakes:['Arching the lower back at the top instead of squeezing the glutes.','Pushing through the toes so the quads take over.','Rushing the lowering half of the rep.'],
+ modelBodyCues:['Ribs down, chin gently tucked.','Squeeze through the glute at the top, not the lower back.','Slow and intentional, do not rush the reps.','Stop the set if your lower back takes over.'],
+ swapOptions:['Glute Bridge for a floor-based version.','Dumbbell Hip Thrust at home.','Single-Leg Hip Thrust for one side at a time.'],demoImage:'',demoVideo:''},
+{id:'barbell-hip-thrust',name:'Barbell Hip Thrust',aliases:['barbell hip thrust pyramid','hip thrust pyramid'],categories:['Glutes'],primaryMuscles:['Glutes'],secondaryMuscles:['Hamstrings','Core'],equipment:['Barbell','Bench','Bar pad'],level:'Intermediate',
+ bestFor:'Loading the hip thrust heavy for real glute growth.',
+ instructions:['Set up as for a hip thrust with a padded bar across your hips.','Brace, then drive through your heels to full hip extension.','Pause and squeeze at the top.','Lower under control until your hips hover just off the floor, then go again.'],
+ setupTips:['Always use a bar pad, comfort first.','Roll the bar over your hip bones before you set your back on the bench.','Warm up with a lighter set before your working weight.'],
+ commonMistakes:['Half reps that never reach full extension.','Letting the knees fall in on the drive.','Hyperextending the back to fake a bigger range.'],
+ modelBodyCues:['Keep tension where you want it, in the glutes.','Knees track over toes the whole rep.','Control the movement down, own the squeeze up.','Choose a weight you can pause at the top with.'],
+ swapOptions:['Machine Hip Thrust if your gym has one.','Dumbbell Hip Thrust for lighter days.','Glute Bridge to groove the pattern first.'],demoImage:'',demoVideo:''},
+{id:'dumbbell-hip-thrust',name:'Dumbbell Hip Thrust',aliases:[],categories:['Glutes','Dumbbells Only'],primaryMuscles:['Glutes'],secondaryMuscles:['Hamstrings'],equipment:['Dumbbell','Bench or sofa'],level:'Beginner',
+ bestFor:'The home-friendly hip thrust, same shape, simpler setup.',
+ instructions:['Rest your upper back on a bench or sofa edge, dumbbell sitting across your hips.','Hold the dumbbell steady with both hands.','Drive through your heels to full hip extension and squeeze.','Lower slowly, lightly touch down, repeat.'],
+ setupTips:['A cushion or folded towel under the dumbbell keeps it comfortable.','Feet hip-width, shins vertical at the top.'],
+ commonMistakes:['Bouncing off the floor between reps.','Letting the dumbbell drift towards your stomach.'],
+ modelBodyCues:['Squeeze through the glute at the top.','Slow and intentional, especially on the way down.','Keep your ribs down as you lift.'],
+ swapOptions:['Banded Glute Bridge if you have no dumbbell.','Single-Leg Hip Thrust to make bodyweight harder.'],demoImage:'',demoVideo:''},
+{id:'glute-bridge',name:'Glute Bridge',aliases:['elevated glute bridge','glute bridges'],categories:['Glutes','Home/Bands'],primaryMuscles:['Glutes'],secondaryMuscles:['Hamstrings','Core'],equipment:['None'],level:'Beginner',
+ bestFor:'Waking the glutes up and grooving the hip-drive pattern.',
+ instructions:['Lie on your back, knees bent, feet flat and hip-width.','Push through your heels and lift your hips until your body is a straight line from knees to shoulders.','Squeeze for one to two seconds at the top.','Lower with control without fully resting between reps.'],
+ setupTips:['Heels close enough to brush with your fingertips.','Press your lower back gently into the floor before you lift.'],
+ commonMistakes:['Lifting so high the lower back arches.','Letting the knees drop outwards or inwards.'],
+ modelBodyCues:['Ribs down, squeeze through the glute.','Think "long body", not "high hips".','Do not rush the reps, the pause is the work.'],
+ swapOptions:['Banded Glute Bridge to add resistance.','Hip Thrust to progress with load.'],demoImage:'',demoVideo:''},
+{id:'single-leg-hip-thrust',name:'Single-Leg Hip Thrust',aliases:[],categories:['Glutes','Home/Bands'],primaryMuscles:['Glutes'],secondaryMuscles:['Hamstrings','Core'],equipment:['Bench or sofa'],level:'Intermediate',
+ bestFor:'Evening up left and right, and making bodyweight genuinely hard.',
+ instructions:['Set up as for a hip thrust, then lift one foot off the floor.','Drive through the standing heel to full extension, hips level.','Pause at the top, then lower slowly.','Finish all reps on one side before switching.'],
+ setupTips:['Keep the free leg bent at ninety degrees, like a tray table.','Hands can rest lightly on your hips to feel them stay level.'],
+ commonMistakes:['Letting the hips twist or drop on one side.','Cutting the range short as you tire.'],
+ modelBodyCues:['Hips stay square, like headlights pointing at the ceiling.','Control the movement, no bouncing.','Stop if your lower back takes over.'],
+ swapOptions:['Glute Bridge with two legs while you build strength.','Barbell Hip Thrust to load both sides.'],demoImage:'',demoVideo:''},
+{id:'cable-kickback',name:'Cable Kickback',aliases:['cable kickbacks','cable kickback superset'],categories:['Glutes','Gym Machines'],primaryMuscles:['Glutes'],secondaryMuscles:['Hamstrings'],equipment:['Cable machine','Ankle strap'],level:'All levels',
+ bestFor:'Isolating one glute at a time with smooth, constant tension.',
+ instructions:['Attach the ankle strap, face the machine and hold the frame.','Hinge slightly forward, soft knees.','Sweep the working leg back and slightly up, squeezing the glute.','Return with control, keeping tension on the cable.'],
+ setupTips:['Set the cable to the lowest notch.','Light weight, full control, this is a squeeze exercise not a strength test.'],
+ commonMistakes:['Swinging the leg with momentum.','Arching the lower back to fake extra height.'],
+ modelBodyCues:['Squeeze through the glute at the end of the sweep.','Keep tension where you want it, the cable never goes slack.','Slow and intentional, both directions.'],
+ swapOptions:['Banded Kickback at home.','Hip Abduction for the upper glute.'],demoImage:'',demoVideo:''},
+{id:'banded-kickback',name:'Banded Kickback',aliases:['banded kickbacks'],categories:['Glutes','Home/Bands'],primaryMuscles:['Glutes'],secondaryMuscles:['Hamstrings'],equipment:['Resistance band'],level:'Beginner',
+ bestFor:'The home version of the kickback, burn without any machines.',
+ instructions:['Loop the band around your ankles or above the knees, hands on a wall or chair.','Shift your weight to one leg, soft knee.','Press the other leg back and slightly out, squeezing the glute.','Return with control and repeat.'],
+ setupTips:['Stand tall with ribs down before you start.','The smaller and cleaner the movement, the better it works.'],
+ commonMistakes:['Leaning the whole body forward to swing the leg.','Losing band tension at the bottom of each rep.'],
+ modelBodyCues:['Squeeze through the glute, not the lower back.','Keep tension on the band the whole set.','Do not rush the reps.'],
+ swapOptions:['Cable Kickback in the gym.','Banded Glute Bridge for the same muscles lying down.'],demoImage:'',demoVideo:''},
+{id:'hip-abduction',name:'Hip Abduction',aliases:['heavy abductions','abduction pulses','seated abduction','abductions','lean-forward partials','hip abduction, lean forward'],categories:['Glutes','Gym Machines'],primaryMuscles:['Glute medius'],secondaryMuscles:['Glutes'],equipment:['Abduction machine'],level:'All levels',
+ bestFor:'The upper glute shelf, shape at the top and side.',
+ instructions:['Sit in the machine with pads against your outer thighs.','Press your knees apart as far as your range allows.','Pause at the widest point.','Return slowly, stopping just before the weight stack touches down.'],
+ setupTips:['Lean slightly forward off the backrest to bias the upper glute.','Grip the handles lightly, stay tall through the spine.'],
+ commonMistakes:['Letting the weight slam back between reps.','Using momentum instead of a controlled press.'],
+ modelBodyCues:['Keep tension where you want it, never fully rest the stack.','Slow and intentional, feel the top of each glute.','Pulses at the end are a bonus, not the whole set.'],
+ swapOptions:['Banded Abduction at home.','Banded Lateral Walks for the same muscles standing.'],demoImage:'',demoVideo:''},
+{id:'glute-back-extension',name:'Glute-Biased Back Extension',aliases:['back extension','hyperextension'],categories:['Glutes','Gym Machines'],primaryMuscles:['Glutes'],secondaryMuscles:['Hamstrings','Lower back'],equipment:['45° back extension bench'],level:'Intermediate',
+ bestFor:'Glutes and hamstrings with the lower back protected, not punished.',
+ instructions:['Set the pad so your hip bones sit just above it.','Round your upper back slightly and tuck your chin.','Hinge down, then squeeze your glutes to lift until your body is straight, no higher.','Pause, then lower under control.'],
+ setupTips:['Turn your toes out slightly to feel the glutes more.','Hold a plate to your chest to progress.'],
+ commonMistakes:['Lifting past straight into a big back arch.','Pulling with the lower back instead of squeezing up.'],
+ modelBodyCues:['Squeeze through the glute to lift, ribs stay down.','Stop at straight, shape comes from the squeeze not the height.','Stop the set if your lower back takes over.'],
+ swapOptions:['Romanian Deadlift for the same hinge with weights.','Glute Bridge for a floor version.'],demoImage:'',demoVideo:''},
+{id:'glute-leg-press',name:'Glute Leg Press',aliases:['seated leg press (glute stance)','leg press glute stance'],categories:['Glutes','Gym Machines'],primaryMuscles:['Glutes'],secondaryMuscles:['Hamstrings','Quads'],equipment:['Leg press machine'],level:'All levels',
+ bestFor:'Turning the leg press into a glute exercise with one stance change.',
+ instructions:['Place your feet high and wide on the plate, toes slightly out.','Lower the plate slowly until your knees reach your chest sides.','Push through your heels back to nearly straight, without locking out.','Keep the reps smooth and deep.'],
+ setupTips:['The higher your feet, the more glute and hamstring you feel.','Keep your lower back and hips glued to the seat pad.'],
+ commonMistakes:['Letting the hips tuck and lift off the pad at depth.','Pressing through the toes so the quads take over.'],
+ modelBodyCues:['Drive through the heels, squeeze as you press.','Depth with control beats weight with bounce.','Keep tension where you want it, do not lock the knees.'],
+ swapOptions:['Leg Press with mid-stance for more quad.','Reverse Lunge for a free-weight version.'],demoImage:'',demoVideo:''},
+{id:'reverse-lunge',name:'Reverse Lunge',aliases:['reverse lunges'],categories:['Glutes','Quads','Home/Bands','Dumbbells Only'],primaryMuscles:['Glutes'],secondaryMuscles:['Quads','Hamstrings','Core'],equipment:['Bodyweight or dumbbells'],level:'All levels',
+ bestFor:'Glute-friendly lunging that is kinder on the knees.',
+ instructions:['Stand tall, then step one foot back into a long stride.','Lower until the back knee hovers just above the floor.','Push through the front heel to stand back up.','Repeat on one side or alternate.'],
+ setupTips:['A slight forward lean of the torso brings in more glute.','Hold dumbbells by your sides to progress.'],
+ commonMistakes:['Stepping too short so the front knee shoots forward.','Pushing off the back toes instead of the front heel.'],
+ modelBodyCues:['Drive through the front heel, squeeze through the glute to stand.','Slow and intentional on the way down.','Choose the depth that feels strong for your body.'],
+ swapOptions:['Step Up for a similar pattern.','Glute Leg Press if balance is the limiter.'],demoImage:'',demoVideo:''},
+/* ---- HAMSTRINGS ---- */
+{id:'rdl',name:'Romanian Deadlift',aliases:['barbell romanian deadlift'],categories:['Hamstrings','Glutes'],primaryMuscles:['Hamstrings'],secondaryMuscles:['Glutes','Lower back'],equipment:['Barbell'],level:'Intermediate',
+ bestFor:'The classic hinge, hamstrings and glutes in one lift.',
+ instructions:['Hold the bar at hip height, feet hip-width, soft knees.','Push your hips back and slide the bar down your thighs.','Lower until you feel a full hamstring stretch, back flat.','Drive your hips forward to stand tall and squeeze.'],
+ setupTips:['Keep the bar brushing your legs the whole way.','Shoulders stay pulled gently back and down.'],
+ commonMistakes:['Bending the knees into a squat instead of hinging.','Rounding the back to reach lower than your hamstrings allow.'],
+ modelBodyCues:['Hips back, ribs down.','Go to your stretch, not the floor.','Squeeze through the glute to stand, do not yank the bar.','Stop if your lower back takes over.'],
+ swapOptions:['Dumbbell RDL for an easier grip.','B-Stance RDL to focus one side.','Hamstring Curl for isolation.'],demoImage:'',demoVideo:''},
+{id:'dumbbell-rdl',name:'Dumbbell RDL',aliases:['dumbbell romanian deadlift','db rdl'],categories:['Hamstrings','Glutes','Dumbbells Only','Home/Bands'],primaryMuscles:['Hamstrings'],secondaryMuscles:['Glutes'],equipment:['Dumbbells'],level:'All levels',
+ bestFor:'The hinge with dumbbells, perfect for home and lighter days.',
+ instructions:['Hold a dumbbell in each hand in front of your thighs.','Hinge at the hips, dumbbells tracing down your legs.','Feel the hamstring stretch, keep the back long.','Stand tall by driving the hips forward.'],
+ setupTips:['Film a side view once, a flat back is easier to feel when you have seen it.','Slight knee bend, held constant through the rep.'],
+ commonMistakes:['Letting the dumbbells drift away from the legs.','Turning it into a squat.'],
+ modelBodyCues:['Hips back first, weight follows.','Control the movement, two seconds down.','Squeeze through the glute at the top.'],
+ swapOptions:['Romanian Deadlift with a barbell to go heavier.','B-Stance RDL for balance work.'],demoImage:'',demoVideo:''},
+{id:'hamstring-curl',name:'Hamstring Curl',aliases:['hamstring curls','lying hamstring curl','seated hamstring curl'],categories:['Hamstrings','Gym Machines'],primaryMuscles:['Hamstrings'],secondaryMuscles:[],equipment:['Curl machine'],level:'Beginner',
+ bestFor:'Pure hamstring isolation, no balance or back involved.',
+ instructions:['Set the pad just above your heels.','Curl your heels towards your glutes.','Pause briefly at the top of the squeeze.','Lower slowly to a full stretch.'],
+ setupTips:['Adjust the seat so your knees line up with the machine pivot.','Point your toes to feel the hamstrings more.'],
+ commonMistakes:['Kicking the weight up with momentum.','Letting it drop on the way back.'],
+ modelBodyCues:['Slow and intentional, the lowering half builds the muscle.','Keep tension where you want it, never let the stack rest mid-set.'],
+ swapOptions:['Dumbbell RDL for a hinge alternative.','Banded curl lying on the floor at home.'],demoImage:'',demoVideo:''},
+{id:'b-stance-rdl',name:'B-Stance RDL',aliases:['b stance rdl','staggered rdl'],categories:['Hamstrings','Glutes','Dumbbells Only'],primaryMuscles:['Hamstrings'],secondaryMuscles:['Glutes'],equipment:['Dumbbells'],level:'Intermediate',
+ bestFor:'Single-leg focus without the wobble of a full single-leg RDL.',
+ instructions:['Stand on one leg with the other foot a step behind, toes down like a kickstand.','Keep ninety percent of your weight on the front leg.','Hinge at the hips until the front hamstring stretches.','Drive back up and squeeze the front glute.'],
+ setupTips:['The back foot is for balance only, keep it light.','Start with one lighter dumbbell held on the working side.'],
+ commonMistakes:['Sharing the weight evenly between both feet.','Twisting the hips as you hinge.'],
+ modelBodyCues:['Hips square, headlights forward.','Choose the swap that feels best for your body if this aggravates anything.','Squeeze through the glute of the front leg to stand.'],
+ swapOptions:['Dumbbell RDL with both legs.','Single-Leg Hip Thrust for one-sided glute work.'],demoImage:'',demoVideo:''},
+/* ---- QUADS ---- */
+{id:'leg-press',name:'Leg Press',aliases:[],categories:['Quads','Gym Machines'],primaryMuscles:['Quads'],secondaryMuscles:['Glutes','Hamstrings'],equipment:['Leg press machine'],level:'All levels',
+ bestFor:'Strong, shaped legs without loading your spine.',
+ instructions:['Feet mid-plate, hip-width apart.','Lower the plate under control until your knees reach ninety degrees or your comfortable depth.','Press back up through your whole foot.','Stop just short of locking the knees.'],
+ setupTips:['Back and hips stay against the pad the whole set.','Adjust the seat so your knees do not hit your ribs at depth.'],
+ commonMistakes:['Bouncing at the bottom.','Locking out hard at the top of each rep.'],
+ modelBodyCues:['Control the movement, two seconds down.','Depth you can own beats depth you fall into.','Keep tension where you want it, stop short of lockout.'],
+ swapOptions:['Glute Leg Press with a high-wide stance.','Step Up for a free-weight option.'],demoImage:'',demoVideo:''},
+{id:'leg-extension',name:'Leg Extension',aliases:['leg extensions'],categories:['Quads','Gym Machines'],primaryMuscles:['Quads'],secondaryMuscles:[],equipment:['Extension machine'],level:'Beginner',
+ bestFor:'Quad definition, that clean line down the front of the thigh.',
+ instructions:['Set the pad on your shins just above the ankles.','Extend your legs until they are straight.','Pause and squeeze the quads at the top.','Lower slowly without letting the stack touch down.'],
+ setupTips:['Knees in line with the machine pivot.','Sit tall, hold the handles lightly.'],
+ commonMistakes:['Swinging the weight up.','Half reps that skip the squeeze at the top.'],
+ modelBodyCues:['Squeeze at the top, slow on the way down.','Lighter and controlled beats heavy and swung.'],
+ swapOptions:['Step Up for a standing quad option.','Leg Press for heavier work.'],demoImage:'',demoVideo:''},
+{id:'step-up',name:'Step Up',aliases:['weighted step-ups','step-ups','step ups'],categories:['Quads','Glutes','Home/Bands','Dumbbells Only'],primaryMuscles:['Quads'],secondaryMuscles:['Glutes','Core'],equipment:['Box, bench or stairs'],level:'All levels',
+ bestFor:'Legs and glutes with real-life carryover, anywhere you have a step.',
+ instructions:['Place one whole foot on the box.','Push through that heel to stand up on the box.','Control the descent back to the floor, same leg leading.','Finish your reps then switch sides.'],
+ setupTips:['Knee height box is plenty, lower is fine to start.','Hold dumbbells by your sides to progress.'],
+ commonMistakes:['Bouncing off the bottom leg instead of working the top one.','Letting the knee cave inwards on the drive.'],
+ modelBodyCues:['Drive through the heel on the box, squeeze through the glute at the top.','Slow and intentional on the way down, that is the secret.','Choose a height that feels strong for your body.'],
+ swapOptions:['Reverse Lunge for a floor version.','Leg Press in the gym.'],demoImage:'',demoVideo:''},
+/* ---- BACK ---- */
+{id:'lat-pulldown',name:'Lat Pulldown',aliases:['single-arm lat pulldown','assisted pull-ups','banded lat pulldown'],categories:['Back','Gym Machines'],primaryMuscles:['Lats'],secondaryMuscles:['Biceps','Upper back'],equipment:['Cable machine'],level:'All levels',
+ bestFor:'That elegant V-line and posture that holds itself.',
+ instructions:['Grip the bar just wider than your shoulders.','Sit tall, chest proud, thighs under the pads.','Pull the bar to your collarbone, elbows driving down.','Let the bar rise slowly to a full stretch.'],
+ setupTips:['Think elbows to hips rather than hands to chest.','A slight lean back is fine, a rowing motion is not.'],
+ commonMistakes:['Swinging the torso to move the weight.','Cutting the stretch short at the top.'],
+ modelBodyCues:['Control the movement, feel the stretch at the top.','Ribs down, no arching to finish reps.','Squeeze the mid-back as the bar arrives.'],
+ swapOptions:['Door Anchor Row at home.','Seated Row for a horizontal pull.'],demoImage:'',demoVideo:''},
+{id:'seated-row',name:'Seated Row',aliases:['seated cable row','bent-over row'],categories:['Back','Gym Machines'],primaryMuscles:['Mid-back'],secondaryMuscles:['Lats','Biceps'],equipment:['Cable row machine'],level:'All levels',
+ bestFor:'Back thickness and the posture that makes every outfit sit better.',
+ instructions:['Sit tall with knees soft, grab the handle.','Pull the handle to your lower ribs.','Squeeze your shoulder blades together for a beat.','Return with control until your arms are long.'],
+ setupTips:['Set the chest up proud before the first rep.','A neutral close grip is most comfortable for most people.'],
+ commonMistakes:['Rocking back and forth with the weight.','Shrugging the shoulders towards the ears.'],
+ modelBodyCues:['Lead with the elbows, shoulders stay away from your ears.','Slow and intentional, squeeze every rep.','Keep tension where you want it, no slack at the front.'],
+ swapOptions:['Chest-Supported Row to remove the lower back entirely.','Door Anchor Row at home.'],demoImage:'',demoVideo:''},
+{id:'chest-supported-row',name:'Chest-Supported Row',aliases:[],categories:['Back','Gym Machines','Dumbbells Only'],primaryMuscles:['Mid-back'],secondaryMuscles:['Lats','Rear delts','Biceps'],equipment:['Incline bench','Dumbbells'],level:'All levels',
+ bestFor:'Rowing hard with zero lower-back stress.',
+ instructions:['Lie chest-down on an incline bench, dumbbells hanging below.','Row the dumbbells up towards your hips.','Squeeze the shoulder blades at the top.','Lower slowly to a full hang.'],
+ setupTips:['Bench around thirty to forty-five degrees.','Toes on the floor, chest glued to the pad.'],
+ commonMistakes:['Lifting the chest off the pad to heave the weight.','Rowing to the shoulders instead of the hips.'],
+ modelBodyCues:['Chest stays on the pad, the back does the work.','Control the movement, no dropping.','Think elbows to back pockets.'],
+ swapOptions:['Seated Row on the cable.','Door Anchor Row at home.'],demoImage:'',demoVideo:''},
+{id:'face-pull',name:'Face Pull',aliases:['face pulls'],categories:['Back','Shoulders','Gym Machines'],primaryMuscles:['Rear delts'],secondaryMuscles:['Upper back','Rotator cuff'],equipment:['Cable machine','Rope'],level:'All levels',
+ bestFor:'Open shoulders, better posture, the finishing touch on upper body days.',
+ instructions:['Set a rope at upper-chest height.','Pull the rope towards your face, splitting the ends past your ears.','Finish with your upper arms in a goalpost shape.','Return slowly, keeping tension.'],
+ setupTips:['Light weight, high control, every time.','Step back enough that the stack never rests between reps.'],
+ commonMistakes:['Turning it into a heavy row.','Elbows dropping so the lats take over.'],
+ modelBodyCues:['Pull apart, not just back.','Slow and intentional, feel the back of the shoulders.','Ribs down, no leaning back.'],
+ swapOptions:['Band Face Pull at home.','Rear Delt Fly for a similar focus.'],demoImage:'',demoVideo:''},
+/* ---- SHOULDERS ---- */
+{id:'lateral-raise',name:'Lateral Raise',aliases:['lateral raises','lateral raise superset','partial lateral raises'],categories:['Shoulders','Dumbbells Only','Home/Bands'],primaryMuscles:['Side delts'],secondaryMuscles:[],equipment:['Dumbbells'],level:'All levels',
+ bestFor:'Capped shoulders that give your whole frame that model line.',
+ instructions:['Stand tall, dumbbells by your sides, soft elbows.','Raise the weights out to shoulder height, leading with the elbows.','Pause for a beat at the top.','Lower slowly back to your sides.'],
+ setupTips:['Go lighter than you think, this is a shape exercise.','Tilt the dumbbells slightly, like pouring water, to keep the delt working.'],
+ commonMistakes:['Swinging the weights up with the hips.','Shrugging so the traps steal the work.'],
+ modelBodyCues:['Shoulders away from your ears.','Control the movement, three seconds down.','Stop at shoulder height, higher is not better.'],
+ swapOptions:['Cable Y Raise for constant tension.','Band lateral raises at home.'],demoImage:'',demoVideo:''},
+{id:'shoulder-press',name:'Shoulder Press',aliases:['dumbbell shoulder press','db shoulder press'],categories:['Shoulders','Dumbbells Only'],primaryMuscles:['Shoulders'],secondaryMuscles:['Triceps','Core'],equipment:['Dumbbells'],level:'All levels',
+ bestFor:'Strong, rounded shoulders and upper-body confidence.',
+ instructions:['Hold dumbbells at shoulder height, palms forward or neutral.','Brace, ribs down.','Press the weights up until your arms are long, biceps by your ears.','Lower with control back to shoulder height.'],
+ setupTips:['Seated with back support lets you focus purely on the press.','Wrists stacked over elbows at the start.'],
+ commonMistakes:['Arching the lower back to press bigger weights.','Stopping the press short of full length.'],
+ modelBodyCues:['Ribs down, squeeze your glutes if standing.','Control the movement both directions.','Stop the set if your lower back takes over.'],
+ swapOptions:['Lateral Raise for shape without pressing.','Band press at home.'],demoImage:'',demoVideo:''},
+{id:'rear-delt-fly',name:'Rear Delt Fly',aliases:['rear delt machine','rear delt fly machine','bent-over reverse fly','rear delt flys'],categories:['Shoulders','Back','Gym Machines','Dumbbells Only'],primaryMuscles:['Rear delts'],secondaryMuscles:['Upper back'],equipment:['Machine or dumbbells'],level:'All levels',
+ bestFor:'The back of the shoulder, the part that finishes the look from every angle.',
+ instructions:['On the machine, set handles in front of your chest; with dumbbells, hinge forward with a flat back.','Sweep your arms out wide like opening curtains.','Squeeze between the shoulder blades at the end.','Return slowly without letting the weight rest.'],
+ setupTips:['Very light weight, very honest reps.','Soft elbows held constant, the shoulder moves not the arm.'],
+ commonMistakes:['Bouncing the torso to swing the weight.','Turning it into a row with bent elbows.'],
+ modelBodyCues:['Open wide, slow and intentional.','Keep tension where you want it, the back of the shoulders.'],
+ swapOptions:['Face Pull for a rope version.','Band Face Pull at home.'],demoImage:'',demoVideo:''},
+/* ---- ARMS ---- */
+{id:'tricep-pushdown',name:'Tricep Pushdown',aliases:['pushdown','tricep superset'],categories:['Arms','Gym Machines'],primaryMuscles:['Triceps'],secondaryMuscles:[],equipment:['Cable machine'],level:'Beginner',
+ bestFor:'Toned, defined arms, the sleeveless-top muscle.',
+ instructions:['Set a bar or rope at chest height, elbows pinned to your sides.','Press your hands down until your arms are straight.','Squeeze the triceps at the bottom.','Let your hands rise slowly to chest height, elbows never moving.'],
+ setupTips:['Stand tall, a small forward lean is fine.','With a rope, split the ends apart at the bottom for a stronger squeeze.'],
+ commonMistakes:['Elbows drifting forward and back like a press.','Leaning body weight onto the bar.'],
+ modelBodyCues:['Elbows glued to your ribs.','Control the movement up, squeeze it down.'],
+ swapOptions:['Overhead Tricep Extension for the long head.','Band pushdowns at home.'],demoImage:'',demoVideo:''},
+{id:'overhead-tricep-extension',name:'Overhead Tricep Extension',aliases:['overhead extension','overhead tricep'],categories:['Arms','Dumbbells Only','Home/Bands'],primaryMuscles:['Triceps'],secondaryMuscles:['Core'],equipment:['Dumbbell'],level:'All levels',
+ bestFor:'The full length of the tricep, stretch plus squeeze.',
+ instructions:['Hold one dumbbell overhead with both hands.','Bend the elbows to lower the weight behind your head.','Feel the stretch, keep the elbows pointing forward.','Press back to straight and squeeze.'],
+ setupTips:['Seated with a tall back keeps the ribs honest.','Start light, the stretch position is stronger than it feels.'],
+ commonMistakes:['Flaring the elbows out wide.','Arching the back as the weight goes behind the head.'],
+ modelBodyCues:['Ribs down, elbows close.','Slow and intentional into the stretch.','Stop the set if your lower back takes over.'],
+ swapOptions:['Tricep Pushdown on the cable.','Band overhead extension at home.'],demoImage:'',demoVideo:''},
+{id:'bicep-curl',name:'Bicep Curl',aliases:['bicep 21s','bicep curls'],categories:['Arms','Dumbbells Only','Home/Bands'],primaryMuscles:['Biceps'],secondaryMuscles:['Forearms'],equipment:['Dumbbells or band'],level:'Beginner',
+ bestFor:'Gentle arm definition that balances all your pressing and pulling.',
+ instructions:['Stand tall, weights by your sides, palms forward.','Curl the weights to shoulder height, elbows pinned.','Squeeze at the top.','Lower slowly, fully straightening the arms.'],
+ setupTips:['Alternate arms if your form breaks with both together.','21s: seven bottom-half reps, seven top-half, seven full.'],
+ commonMistakes:['Swinging the hips to lift the weight.','Half-lowering so the biceps never work the full range.'],
+ modelBodyCues:['Elbows still, wrists neutral.','Control the movement down, that half counts double.'],
+ swapOptions:['Band curls anywhere.','Hammer-grip curls if wrists complain.'],demoImage:'',demoVideo:''},
+/* ---- ABS / CORE ---- */
+{id:'dead-bug',name:'Dead Bug',aliases:['dumbbell dead bug','dead bug + reach'],categories:['Abs/Core','Home/Bands'],primaryMuscles:['Deep core'],secondaryMuscles:['Hip flexors'],equipment:['None'],level:'Beginner',
+ bestFor:'A strong, quiet core that protects your back in every other lift.',
+ instructions:['Lie on your back, arms to the ceiling, knees over hips at ninety degrees.','Press your lower back gently into the floor.','Lower one arm and the opposite leg away slowly.','Return and switch sides without losing the back position.'],
+ setupTips:['Exhale as the limbs travel away.','Smaller range with a still back beats big sloppy reps.'],
+ commonMistakes:['The lower back peeling off the floor.','Rushing, this is a slow exercise by design.'],
+ modelBodyCues:['Ribs down the entire time.','Slow and intentional, move only what should move.','Stop the set the moment your lower back takes over.'],
+ swapOptions:['Toe Taps for a simpler version.','Plank for a static challenge.'],demoImage:'',demoVideo:''},
+{id:'plank',name:'Plank',aliases:['forearm plank'],categories:['Abs/Core','Home/Bands'],primaryMuscles:['Core'],secondaryMuscles:['Shoulders','Glutes'],equipment:['None'],level:'All levels',
+ bestFor:'Total-body tension and a waist that holds itself tall.',
+ instructions:['Forearms down, elbows under shoulders, legs long.','Tuck your tailbone slightly and squeeze your glutes.','Hold a straight line from head to heels.','Breathe steadily, do not hold your breath.'],
+ setupTips:['Look at the floor just ahead of your hands.','Quality time beats long time, stop when the line breaks.'],
+ commonMistakes:['Hips sagging into the lower back.','Hips hiked high like a tent.'],
+ modelBodyCues:['Ribs down, glutes on.','A shaking straight line beats a still saggy one.','Stop when your lower back takes over, not when the timer says so.'],
+ swapOptions:['Knee plank while building up.','Dead Bug for a moving alternative.'],demoImage:'',demoVideo:''},
+{id:'toe-taps',name:'Toe Taps',aliases:['toe taps'],categories:['Abs/Core','Home/Bands'],primaryMuscles:['Lower abs'],secondaryMuscles:['Hip flexors'],equipment:['None'],level:'Beginner',
+ bestFor:'Lower-ab control without any neck or back strain.',
+ instructions:['Lie on your back, knees over hips at ninety degrees.','Press your lower back into the floor.','Lower one foot to tap the floor lightly.','Return and alternate sides, slow and steady.'],
+ setupTips:['Hands can rest under the small of your back to feel it stay down.','Exhale on every tap.'],
+ commonMistakes:['Letting both feet drop together too soon.','Speeding up until the back arches.'],
+ modelBodyCues:['Ribs down, tap like the floor is hot.','Do not rush the reps.'],
+ swapOptions:['Dead Bug to progress.','Reverse Crunch for the same area with lift.'],demoImage:'',demoVideo:''},
+{id:'reverse-crunch',name:'Reverse Crunch',aliases:['reverse crunches','weighted reverse crunch'],categories:['Abs/Core','Home/Bands'],primaryMuscles:['Lower abs'],secondaryMuscles:[],equipment:['None'],level:'All levels',
+ bestFor:'The lower tummy line, worked from the bottom up.',
+ instructions:['Lie on your back, knees bent, hands by your sides.','Lift your knees over your chest.','Curl your hips off the floor towards your ribs.','Lower slowly until your tailbone rests again.'],
+ setupTips:['Think of your knees travelling towards your face, not straight up.','Press your hands into the floor for balance, not momentum.'],
+ commonMistakes:['Swinging the legs to throw the hips up.','Dropping fast and resting between every rep.'],
+ modelBodyCues:['Curl, do not swing.','Slow and intentional on the way down.','Keep tension where you want it, low and deep.'],
+ swapOptions:['Toe Taps for a gentler start.','Dead Bug for anti-extension work.'],demoImage:'',demoVideo:''},
+/* ---- HOME / BANDS ---- */
+{id:'banded-glute-bridge',name:'Banded Glute Bridge',aliases:['banded glute bridges','banded frog pumps','frog pumps'],categories:['Glutes','Home/Bands'],primaryMuscles:['Glutes'],secondaryMuscles:['Hamstrings'],equipment:['Resistance band'],level:'Beginner',
+ bestFor:'Double glute work at home, bridge plus band push-out.',
+ instructions:['Loop a band just above your knees and lie back, feet flat.','Press your knees gently out into the band.','Drive through your heels to lift the hips and squeeze.','Lower with control, keeping the band tight throughout.'],
+ setupTips:['For frog pumps, put the soles of your feet together and let the knees fall wide.','Band stays under light tension even at the bottom.'],
+ commonMistakes:['Letting the knees collapse in as you tire.','Arching the back at the top.'],
+ modelBodyCues:['Push out and squeeze up at the same time.','Ribs down, squeeze through the glute.','Do not rush the reps, the band rewards patience.'],
+ swapOptions:['Glute Bridge without the band.','Hip Thrust to load the same pattern.'],demoImage:'',demoVideo:''},
+{id:'banded-abduction',name:'Banded Abduction',aliases:['banded abductions','banded abduction pulses','banded lateral walks','banded lateral walk'],categories:['Glutes','Home/Bands'],primaryMuscles:['Glute medius'],secondaryMuscles:['Glutes'],equipment:['Resistance band'],level:'Beginner',
+ bestFor:'The upper glute burn, no machine required.',
+ instructions:['Band above the knees, sit on the edge of a chair or stand in a quarter squat.','Press your knees apart against the band.','Pause at the widest point.','Return slowly without letting the band go slack.'],
+ setupTips:['Lean slightly forward when seated to bias the upper glute.','For lateral walks, take small controlled steps sideways, staying low.'],
+ commonMistakes:['Fast pulses with no range.','Standing fully upright so the band does the resting.'],
+ modelBodyCues:['Keep tension where you want it, the band never sleeps.','Slow and intentional, feel the sides of the glutes.'],
+ swapOptions:['Hip Abduction machine in the gym.','Banded Kickback for the back of the glute.'],demoImage:'',demoVideo:''},
+{id:'door-anchor-row',name:'Door Anchor Row',aliases:['banded row','band row'],categories:['Back','Home/Bands'],primaryMuscles:['Mid-back'],secondaryMuscles:['Lats','Biceps'],equipment:['Band with door anchor'],level:'Beginner',
+ bestFor:'A proper back workout from any doorway in the house.',
+ instructions:['Anchor the band in a closed door at chest height.','Step back until the band is taut, arms long.','Row your hands to your lower ribs, elbows brushing your sides.','Return slowly, keeping the band under tension.'],
+ setupTips:['Check the anchor is secure before your first pull.','Stagger your stance if you feel pulled forward.'],
+ commonMistakes:['Shrugging the shoulders towards the ears.','Letting the band snap back between reps.'],
+ modelBodyCues:['Squeeze the shoulder blades together every rep.','Control the movement home, do not let the band win.'],
+ swapOptions:['Seated Row in the gym.','Chest-Supported Row with dumbbells.'],demoImage:'',demoVideo:''},
+{id:'band-face-pull',name:'Band Face Pull',aliases:['banded face pulls','band pull-aparts','band pull aparts'],categories:['Shoulders','Back','Home/Bands'],primaryMuscles:['Rear delts'],secondaryMuscles:['Upper back'],equipment:['Resistance band'],level:'Beginner',
+ bestFor:'Posture insurance, undoing desk and phone shoulders.',
+ instructions:['Anchor a band at face height, or hold it out in front for pull-aparts.','Pull the band towards your face, elbows high and wide.','Finish in a goalpost shape, squeeze the back of the shoulders.','Return with total control.'],
+ setupTips:['Lighter band, longer sets, this is about quality.','Keep your wrists in line with your forearms.'],
+ commonMistakes:['Dropping the elbows into a row.','Craning the head forward to meet the band.'],
+ modelBodyCues:['Pull apart, not just back.','Ribs down, stand tall.','Slow and intentional, feel the shoulders open.'],
+ swapOptions:['Face Pull on the cable.','Rear Delt Fly with light dumbbells.'],demoImage:'',demoVideo:''}
+];
+/* FUTURE mapper: how a raw Free Exercise DB record would fold into the Model Body shape.
+   Not called anywhere yet — kept as the documented bridge for a later import. */
+function mapFreeExerciseDbToModelBodyExercise(rawExercise){
+  return {
+    id:(rawExercise.id||rawExercise.name||'').toLowerCase().replace(/[^a-z0-9]+/g,'-'),
+    name:rawExercise.name,                                   /* raw.name        */
+    aliases:[],
+    categories:[rawExercise.category||'Other'],              /* raw.category    → map to Model Body categories */
+    primaryMuscles:rawExercise.primaryMuscles||[],           /* raw.primaryMuscles */
+    secondaryMuscles:rawExercise.secondaryMuscles||[],
+    equipment:[rawExercise.equipment].filter(Boolean),       /* raw.equipment   */
+    level:rawExercise.level||'All levels',
+    bestFor:'',                                              /* write in the Model Body voice before shipping */
+    instructions:rawExercise.instructions||[],               /* raw.instructions */
+    setupTips:[],commonMistakes:[],
+    modelBodyCues:[],                                        /* always hand-written, never imported */
+    swapOptions:[],
+    demoImage:rawExercise.images&&rawExercise.images[0]?'/app-img/exercises/'+rawExercise.images[0]:'', /* raw.images[0] */
+    demoVideo:''
+  };
+}
+/* normalise a workout-row exercise name so it can be matched against the library */
+function normExName(s){
+  return String(s).toLowerCase()
+    .replace(/\(.*?\)/g,' ')
+    .replace(/[×x]\s*\d+.*$/,' ')
+    .replace(/\d+(\s*[–-]\s*\d+)?/g,' ')
+    .replace(/\b(superset|giant set|pyramid|challenge|burnout|drop weight|drop set|ladder|finisher|rounds?|sets?|reps?|tempo|each|per|leg|side|arm|way|min|steady|activation)\b/g,' ')
+    .replace(/[^a-z ]+/g,' ').replace(/\s+/g,' ').trim();
+}
+function findExercise(name){
+  let n=normExName(name);if(!n)return null;
+  let best=null,bl=0;
+  MODEL_BODY_EXERCISES.forEach(ex=>{
+    [ex.name,...(ex.aliases||[])].forEach(a=>{
+      let an=normExName(a);
+      if(an&&an.length>bl&&(n===an||n.includes(an)))
+        {best=ex;bl=an.length}
+    });
+  });
+  return best;
+}
+function exerciseById(id){return MODEL_BODY_EXERCISES.find(e=>e.id===id)}
+function toggleExFav(id){if(S.exFavs[id])delete S.exFavs[id];else S.exFavs[id]=true;save()}
+function renderExLib(){
+  let el=$('exList');if(!el)return;
+  let cat=$('exCat')?.value||'all',q=($('exSearch')?.value||'').trim().toLowerCase();
+  let list=MODEL_BODY_EXERCISES.filter(ex=>{
+    if(cat==='favs'&&!S.exFavs[ex.id])return false;
+    if(cat!=='all'&&cat!=='favs'&&!ex.categories.includes(cat))return false;
+    if(q){
+      let hay=(ex.name+' '+ex.categories.join(' ')+' '+ex.primaryMuscles.join(' ')+' '+ex.equipment.join(' ')+' '+ex.bestFor+' '+(ex.aliases||[]).join(' ')).toLowerCase();
+      if(!hay.includes(q))return false;
+    }
+    return true;
+  });
+  el.innerHTML=list.length?list.map(ex=>{
+    let fav=!!S.exFavs[ex.id];
+    return `<div class="item"><div><div class="it">${esc(ex.name)}</div><div class="meta small" style="margin-top:2px">${esc(ex.bestFor)}</div><div class="row" style="margin-top:7px"><span class="tag gold">${esc(ex.categories[0])}</span>${ex.equipment.slice(0,2).map(e=>`<span class="tag">${esc(e)}</span>`).join('')}<span class="tag blush">${esc(ex.level)}</span></div></div><span class="row" style="gap:6px;flex-wrap:nowrap"><button class="heart ${fav?'on':''}" onclick="toggleExFav('${ex.id}');renderExLib()" aria-label="Favourite">♥</button><button class="btn ghost mini" onclick="openExercise('${ex.id}')">View cues</button></span></div>`;
+  }).join(''):'<div class="card" style="margin-top:12px"><p class="muted" style="margin:0">'+(cat==='favs'?'No favourite exercises yet. Tap the heart on any exercise to keep it here.':'Nothing matches that search yet, more exercises are on the way.')+'</p></div>';
+}
+function openExercise(id,backWk){
+  let ex=exerciseById(id);if(!ex)return;
+  let fav=!!S.exFavs[ex.id];
+  let li=a=>a.map(x=>`<li>${esc(x)}</li>`).join('');
+  modalBody.innerHTML=`
+  <div class="photo" style="position:relative"><button class="heart ${fav?'on':''}" style="position:absolute;top:14px;right:14px" onclick="toggleExFav('${ex.id}');openExercise('${ex.id}'${backWk?`,'${backWk}'`:''})" aria-label="Favourite">♥</button><div class="mealType">Exercise Library</div><h2 class="h2" style="font-size:34px;margin:6px 0 0">${esc(ex.name)}</h2><div class="tagline">${esc(ex.bestFor)}</div></div>
+  <div class="row">${ex.categories.map(c=>`<span class="tag gold">${esc(c)}</span>`).join('')}${ex.equipment.map(e=>`<span class="tag">${esc(e)}</span>`).join('')}<span class="tag blush">${esc(ex.level)}</span></div>
+  ${backWk?`<div style="margin-top:10px"><button class="btn ghost mini" onclick="openWorkout('${backWk}')">‹ Back to workout</button></div>`:''}
+  <div class="metaRow"><div class="mm"><div class="k">Works</div><div class="v">${esc(ex.primaryMuscles.join(', '))}</div></div>${ex.secondaryMuscles.length?`<div class="mm"><div class="k">Also works</div><div class="v">${esc(ex.secondaryMuscles.join(', '))}</div></div>`:''}</div>
+  ${ex.demoImage?`<div class="mealPhotoWrap"><img class="mealPhoto" src="${ex.demoImage}" alt="" loading="lazy" onerror="this.parentNode.remove()"></div>`:ex.demoVideo?`<video class="mealPhoto" src="${ex.demoVideo}" controls playsinline style="width:100%"></video>`:`<div class="card" style="text-align:center;padding:26px 18px;margin-bottom:10px"><div class="label" style="color:var(--gold)">Demo coming soon</div><p class="muted small" style="margin:0">A Model Body demonstration for this movement is on its way.</p></div>`}
+  <div class="card"><div class="label">How to do it</div><ol class="method">${li(ex.instructions)}</ol></div>
+  <div class="card" style="margin-top:10px"><div class="label">Setup tips</div><ul class="ing">${li(ex.setupTips)}</ul></div>
+  <div class="steps-note" style="margin-top:10px"><b>Model Body cues.</b> ${ex.modelBodyCues.map(esc).join(' · ')}</div>
+  <div class="card" style="margin-top:10px"><div class="label">Watch out for</div><ul class="ing">${li(ex.commonMistakes)}</ul></div>
+  <div class="card" style="margin-top:10px"><div class="label">Swap options</div><ul class="ing">${li(ex.swapOptions)}</ul><p class="muted small" style="margin:8px 0 0">Choose the swap that feels best for your body, they all count.</p></div>`;
+  modal.classList.add('active');
+  let sh=modal.querySelector('.sheet');if(sh)sh.scrollTop=0;
 }
 
 /* ============ SHOPPING LIST ============ */
@@ -1746,7 +2122,7 @@ function openData(){
 }
 
 /* ============ RENDER ALL ============ */
-function render(){renderHome();renderAvail();renderDrop();renderChosen();renderPlan();renderMeals();renderTrain();renderShop();renderLogs();renderGuide()}
+function render(){renderHome();renderAvail();renderDrop();renderChosen();renderPlan();renderMeals();renderTrain();renderExLib();renderShop();renderLogs();renderGuide()}
 /* magic-link unlock: .../july-v7-test-672185.html?unlock=CODE */
 (function(){try{
   let u=new URL(location.href),c=u.searchParams.get('unlock');
