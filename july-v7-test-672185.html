@@ -135,6 +135,47 @@ ol.method li{margin-bottom:6px}
 .wkRep{font-size:12px;font-weight:800;color:var(--red);white-space:nowrap}
 .wkLog{display:flex;gap:6px;margin-top:6px}
 .wkLog input{width:72px;padding:7px 9px;border-radius:10px;font-size:13px}
+.setHead{display:grid;grid-template-columns:34px 1fr 60px 60px 28px;gap:6px;align-items:center;margin-top:8px;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.setRow{display:grid;grid-template-columns:34px 1fr 60px 60px 28px;gap:6px;align-items:center;margin-top:5px}
+.setNo{font-weight:700;font-size:12px;color:var(--muted);text-align:center}
+.setPrev{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.setIn{width:100%;padding:7px 8px;border-radius:10px;font-size:13px;border:1px solid var(--line);background:var(--card,#fff)}
+.setDel{border:none;background:none;color:var(--muted);font-size:13px;cursor:pointer;padding:4px}
+/* premium engagement (v26) */
+.rankHero{position:relative;overflow:hidden;border-radius:24px;padding:22px 20px;margin-top:14px;color:#fff;background:radial-gradient(120% 120% at 20% 0%,#2A2018 0%,#1A1410 55%,#0E0A07 100%);border:1px solid #3A2E22;box-shadow:0 18px 44px #1a141033}
+.rankHero:before{content:"";position:absolute;inset:-40% -10% auto -10%;height:70%;background:radial-gradient(60% 100% at 50% 0%,rgba(212,168,83,.28),transparent 70%);pointer-events:none}
+.rankHero .rkTop{display:flex;align-items:center;gap:14px;position:relative}
+.rankBadge{width:60px;height:60px;border-radius:18px;display:grid;place-items:center;font-size:30px;flex:none;background:linear-gradient(150deg,#D4A853,#A9762B);box-shadow:0 8px 20px #00000040,inset 0 1px 0 #ffffff55}
+.rankName{font-family:var(--serif);font-size:26px;line-height:1;letter-spacing:.01em}
+.rankSub{font-size:11px;opacity:.72;margin-top:5px;text-transform:uppercase;letter-spacing:.08em}
+.rankPts{margin-left:auto;text-align:right;position:relative}
+.rankPts b{font-size:30px;font-family:var(--serif);display:block;line-height:1}
+.rankPts span{font-size:9px;opacity:.7;text-transform:uppercase;letter-spacing:.1em}
+.rkBar{position:relative;height:8px;border-radius:999px;background:#ffffff1f;margin-top:16px;overflow:hidden}
+.rkBar i{position:absolute;inset:0 auto 0 0;border-radius:999px;background:linear-gradient(90deg,#D4A853,#F2D79A)}
+.rkLadder{display:flex;gap:5px;margin-top:12px;position:relative;flex-wrap:wrap}
+.rkStep{flex:1;min-width:52px;text-align:center;font-size:8px;text-transform:uppercase;letter-spacing:.05em;opacity:.5;padding:6px 2px;border-radius:10px;border:1px solid #ffffff14}
+.rkStep.on{opacity:1;background:#ffffff14;border-color:#D4A85366}
+.rkStep b{display:block;font-size:15px;margin-bottom:2px}
+.rkNext{font-size:11px;opacity:.82;margin-top:12px;position:relative}
+.streakStrip{display:flex;gap:9px;margin-top:12px;overflow-x:auto;padding-bottom:2px;-webkit-overflow-scrolling:touch}
+.streakCard{flex:1;min-width:82px;border-radius:18px;padding:13px 10px;text-align:center;background:linear-gradient(160deg,var(--blush),#fff);border:1px solid var(--blushline)}
+.streakCard.live{background:linear-gradient(160deg,#FFF3D6,#FFFDF8);border-color:#EAD199}
+.streakCard .sFlame{font-size:22px;line-height:1}
+.streakCard .sNum{font-family:var(--serif);font-size:24px;line-height:1;margin-top:4px}
+.streakCard .sLbl{font-size:9px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-top:3px}
+.badgeGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:11px;margin-top:12px}
+.badgeCell{position:relative;border-radius:20px;padding:15px 9px 12px;text-align:center;background:var(--paper);border:1px solid var(--line);overflow:hidden}
+.badgeCell.earned{background:linear-gradient(165deg,#FFF7E4,#FFFDF8);border-color:#EAD199;box-shadow:0 10px 24px #8a672714}
+.badgeCell.locked{opacity:.55}
+.badgeCell .bIco{font-size:34px;line-height:1;filter:grayscale(1) opacity(.5)}
+.badgeCell.earned .bIco{filter:none}
+.badgeTierPip{position:absolute;top:8px;right:9px;font-size:13px}
+.badgeCell .bName{font-size:11px;font-weight:800;margin-top:7px;line-height:1.15}
+.badgeCell .bTier{font-size:8px;text-transform:uppercase;letter-spacing:.06em;color:var(--gold);font-weight:900;margin-top:3px}
+.badgeCell .bProg{font-size:9px;color:var(--muted);margin-top:4px}
+.miniBar{height:5px;border-radius:999px;background:#EFE6D4;margin-top:6px;overflow:hidden}
+.miniBar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#D4A853,#A9762B)}
 .tierStop{display:flex;justify-content:space-between;align-items:center;gap:10px;border-radius:14px;padding:12px 15px;margin:10px 0;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;border:1px dashed var(--line);color:var(--muted);background:#fff}
 .tierStop.mine{background:var(--blush);border:1px solid var(--blushline);color:var(--red)}
 .tierStop .ts{font-size:10px;font-weight:700;text-transform:none;letter-spacing:0;color:inherit;opacity:.85}
@@ -319,7 +360,7 @@ ol.method li{margin-bottom:6px}
 
 <main class="page" id="train">
   <section class="card figAccent"><div class="label">Train</div><h2 class="h2">Your training</h2><p class="muted small">This season's workouts, and the exercise library behind every movement in them.</p></section>
-  <div class="row" style="margin:14px 2px 2px;gap:8px"><button class="btn guideTab mini" id="ttabWk" onclick="setTrainTab('wk')">Workouts</button><button class="btn ghost guideTab mini" id="ttabEx" onclick="setTrainTab('ex')">Exercise Library</button><button class="btn ghost guideTab mini" id="ttabCu" onclick="setTrainTab('cu')">My workouts</button></div>
+  <div class="row" style="margin:14px 2px 2px;gap:8px"><button class="btn guideTab mini" id="ttabWk" onclick="setTrainTab('wk')">Workouts</button><button class="btn ghost guideTab mini" id="ttabEx" onclick="setTrainTab('ex')">Exercises</button><button class="btn ghost guideTab mini" id="ttabCu" onclick="setTrainTab('cu')">My workouts</button><button class="btn ghost guideTab mini" id="ttabPb" onclick="setTrainTab('pb')">Records</button></div>
   <div id="wkPane">
     <section class="card" style="margin-top:12px"><div class="label">Workout bank</div><h2 class="h2">Golden Hour workouts</h2><p class="muted small">Four signature sessions, each with a gym and a home version. Every workout has three finish points, your session time in the planner sets which is highlighted for you.</p>
     <div class="two" style="margin-top:12px">
@@ -341,6 +382,10 @@ ol.method li{margin-bottom:6px}
     <button class="btn" style="margin-top:12px" onclick="openWkBuilder()">+ Create a workout</button></section>
     <div id="cuList"></div>
   </div>
+  <div id="pbPane" class="hidden">
+    <section class="card figAccent" style="margin-top:12px"><div class="label">Personal bests</div><h2 class="h2">Your records</h2><p class="muted small">Your heaviest logged set for every exercise, weight first then reps. Tap any record for its full progress graphs.</p></section>
+    <div id="pbList"></div>
+  </div>
 </main>
 
 <main class="page" id="shop">
@@ -357,10 +402,8 @@ ol.method li{margin-bottom:6px}
 </main>
 
 <main class="page" id="logs">
-  <section class="card figAccent"><div class="label">Logs</div><h2 class="h2">Your month so far</h2><p class="muted small">A short record of what you achieved each day, and your personal bests. Ticks come from your Today page.</p></section>
-  <div class="row" style="margin:14px 2px 2px;gap:8px"><button class="btn guideTab mini" id="ltabLog" onclick="setLogTab('log')">Daily log</button><button class="btn ghost guideTab mini" id="ltabPB" onclick="setLogTab('pb')">Personal Bests</button></div>
+  <section class="card figAccent"><div class="label">Logs</div><h2 class="h2">Your month so far</h2><p class="muted small">A short record of what you achieved each day, and the badges you have earned. Ticks come from your Today page.</p></section>
   <div id="logList"></div>
-  <div id="pbList" class="hidden"></div>
 </main>
 
 <main class="page" id="guide">
@@ -568,7 +611,7 @@ function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
    One permanent storage key for every version: localStorage.mbGoldenV9 (never rename; bump SCHEMA + migrate).
    Runs on every load: ensures each saved section exists, never wipes existing member data. */
 const SCHEMA=2;
-const APP_VERSION='2026.07-v24'; /* bump each release; used by the Check for updates button */
+const APP_VERSION='2026.07-v26'; /* bump each release; used by the Check for updates button */
 (function healthCheck(){
   try{
     S.mealEdits=S.mealEdits||{};     /* per-plan-meal overrides: serves + custom macro swaps */
@@ -583,12 +626,23 @@ const APP_VERSION='2026.07-v24'; /* bump each release; used by the Check for upd
     S.snackLib=S.snackLib||[];       /* snack shelf: scanned/added snacks + extras */
     S.bonus=S.bonus||{};             /* daily bonus glow task per day: {off,done,refreshed} */
     S.badges=S.badges||{};           /* earned badges: id -> date */
+    S.setLogs=S.setLogs||{};         /* detailed logging (v25): lk -> [{d,sets:[{kg,reps}]}] */
+    S.sessions=S.sessions||[];       /* finished sessions (v25): {id,d,wk,title,dur,sets,vol,exs} */
+    if(!S.setLogsMigrated){          /* fold old one-set-per-day logHist into setLogs so history carries over */
+      Object.keys(S.logHist||{}).forEach(lk=>{(S.logHist[lk]||[]).forEach(h=>{
+        if(!h.kg&&!h.reps)return;
+        let a=S.setLogs[lk]=S.setLogs[lk]||[],day=a.find(x=>x.d===h.d);
+        if(!day){day={d:h.d,sets:[]};a.push(day)}
+        day.sets.push({kg:h.kg||'',reps:h.reps||''});
+      })});
+      S.setLogsMigrated=true;
+    }
     if(S.setup.water===undefined)S.setup.water=2000;   /* ml, recommended default */
     if(S.setup.sleep===undefined)S.setup.sleep=8;      /* hours, recommended default */
     S.backupMeta=S.backupMeta||{lastSaved:null,lastBackup:null};
     const req={setup:{},goals:{cal:1800,pro:120},variety:{b:4,l:4,d:4},avail:{},include:{},exclude:{},
       habits:{},ticks:{},logs:{},logHist:{},shop:{mode:'plan',sig:'',ex:{},bought:{}},shopExtra:[],
-      favs:{},unlocked:{},mealEdits:{},customMeals:{},food:{},foodFavs:[],exFavs:{},recipeScans:{},recipeUse:{},wkTiers:{},customWk:[],myMeals:[],snackLib:[],bonus:{},badges:{}};
+      favs:{},unlocked:{},mealEdits:{},customMeals:{},food:{},foodFavs:[],exFavs:{},recipeScans:{},recipeUse:{},wkTiers:{},customWk:[],myMeals:[],snackLib:[],bonus:{},badges:{},setLogs:{},sessions:[]};
     S.exFavs=S.exFavs||{};           /* favourite exercises from the Exercise Library */
     Object.keys(req).forEach(k=>{if(S[k]===undefined||S[k]===null)S[k]=clone(req[k])});
     S.schema=SCHEMA; /* migrations for older schemas go above this line, never delete data */
@@ -765,36 +819,95 @@ function typeStreak(t){
   return{n,grace};
 }
 /* Badges: earned once, kept forever. */
+/* Tiered badges: each has Bronze/Silver/Gold/Platinum thresholds against a progress number.
+   S.badges[id] = highest tier reached (0-4). */
+const BADGE_TIERS=['','Bronze','Silver','Gold','Platinum'],BADGE_TIER_ICONS=['','🥉','🥈','🥇','💎'];
 const BADGES=[
- ['first-workout','First Workout','🏋️‍♀️','Tick off your very first workout.'],
- ['three-week','3 Workouts This Week','💪','Three workouts ticked Mon–Sun.'],
- ['protein-princess','Protein Princess','👑','Hit protein 7 days in a row.'],
- ['glute-day','Glute Day Complete','🍑','Complete a glute-focused session.'],
- ['seven-glow','7-Day Glow','✨','A 7-day check-in streak.'],
- ['meal-prep-queen','Meal Prep Queen','🧺','Every meal ticked in a day, three days total.'],
- ['strong-girl','Strong Girl Era','💫','Earn your first Gold medal.'],
- ['consistency-club','Consistency Club','🍒','A 14-day check-in streak.']
+ ['first-workout','Workout Warrior','🏋️‍♀️','Workouts ticked off',[1,5,15,30]],
+ ['three-week','Weekly Warrior','💪','Most workouts in one week',[2,3,4,6]],
+ ['protein-princess','Protein Princess','👑','Best protein streak (days)',[3,7,14,21]],
+ ['glute-day','Glute Queen','🍑','Glute sessions completed',[1,5,12,25]],
+ ['seven-glow','Glow Streak','✨','Best check-in streak (days)',[3,7,14,30]],
+ ['meal-prep-queen','Meal Prep Queen','🧺','Days with every meal ticked',[1,3,7,14]],
+ ['strong-girl','Strong Girl Era','💫','Gold workout medals earned',[1,2,4,6]],
+ ['consistency-club','Consistency Club','🍒','Days completed',[3,7,14,28]]
 ];
-function badgeEarned(id){
-  let total=planLen(),cur=Math.max(0,Math.min(total-1,dateIndex())),mon=curMonIdx();
+function badgeDef(id){return BADGES.find(b=>b[0]===id)}
+function badgeProgress(id){
+  let total=planLen(),mon=curMonIdx();
   const daysWhere=f=>{let n=0;for(let i=0;i<total;i++)if(f('d'+i,i))n++;return n};
   switch(id){
-    case 'first-workout':return daysWhere(k=>S.ticks[k+'workout'])>=1;
-    case 'three-week':{let n=0;for(let i=mon;i<mon+7;i++)if(i>=0&&i<total&&S.ticks['d'+i+'workout'])n++;return n>=3}
-    case 'protein-princess':return typeStreak('protein').n>=7;
-    case 'glute-day':return daysWhere((k,i)=>{if(!S.ticks[k+'workout'])return false;let dd=dayByIndex(i),w=dd&&dd.workout&&workoutById(dd.workout);return !!(w&&(w.muscles||[]).includes('Glutes'))})>=1;
-    case 'seven-glow':return typeStreak('checkin').n>=7;
-    case 'meal-prep-queen':return daysWhere(k=>TYPES.every(s=>S.ticks[k+s]))>=3;
-    case 'strong-girl':return Object.values(S.wkTiers||{}).some(v=>v>=3);
-    case 'consistency-club':return typeStreak('checkin').n>=14;
+    case 'first-workout':return daysWhere(k=>S.ticks[k+'workout']);
+    case 'three-week':{let best=0;for(let m=0;m<total;m+=7){let n=0;for(let i=m;i<m+7&&i<total;i++)if(S.ticks['d'+i+'workout'])n++;best=Math.max(best,n)}return best}
+    case 'protein-princess':return typeStreak('protein').n;
+    case 'glute-day':return daysWhere((k,i)=>{if(!S.ticks[k+'workout'])return false;let dd=dayByIndex(i),w=dd&&dd.workout&&workoutById(dd.workout);return !!(w&&(w.muscles||[]).includes('Glutes'))});
+    case 'seven-glow':return typeStreak('checkin').n;
+    case 'meal-prep-queen':return daysWhere(k=>TYPES.every(s=>S.ticks[k+s]));
+    case 'strong-girl':return Object.values(S.wkTiers||{}).filter(v=>v>=3).length;
+    case 'consistency-club':return daysWhere(k=>S.ticks[k+'done']);
   }
-  return false;
+  return 0;
 }
+function badgeTier(id){let d=badgeDef(id),p=badgeProgress(id),t=0;(d[4]||[]).forEach((th,i)=>{if(p>=th)t=i+1});return t}
 function checkBadges(){
   if(!S.plan)return;
   let won=false;
-  BADGES.forEach(b=>{if(!S.badges[b[0]]&&badgeEarned(b[0])){S.badges[b[0]]=new Date().toISOString().slice(0,10);won=true}});
+  BADGES.forEach(b=>{
+    let t=badgeTier(b[0]),prev=S.badges[b[0]];
+    prev=(typeof prev==='number')?prev:(prev?1:0); /* migrate old date-string badges to at least tier 1 */
+    if(t>prev){S.badges[b[0]]=t;won=true}
+    else if(S.badges[b[0]]!==prev&&prev)S.badges[b[0]]=prev;
+  });
   if(won){save();celebrate()}
+}
+/* ---- premium engagement components (Home + Logs) ---- */
+function rankHeroHTML(){
+  let rk=rankState(),show=rk.show,pts=rk.thisPts;
+  let cur=rankFor(pts),ci=RANKS.indexOf(cur),next=rk.next;
+  let base=cur[1],top=next?next[1]:cur[1]+40,pct=next?Math.max(6,Math.min(100,Math.round((pts-base)/(top-base||1)*100))):100;
+  let nextTxt=next?`${next[1]-pts} points to ${next[2]} ${next[0]}`:'Top of the ladder — keep it lit';
+  let holdTxt=rk.held?(pts>=rk.held[1]?`Locked in to keep ${rk.held[0]} next week ✓`:`${rk.held[1]-pts} more to keep ${rk.held[0]} next week`):'This week sets your first rank';
+  return `<div class="rankHero">
+    <div class="rkTop"><div class="rankBadge">${show[2]}</div><div><div class="rankName">${show[0]}</div><div class="rankSub">${rk.held?'Rank held from last week':'Building your rank'}</div></div><div class="rankPts"><b>${pts}</b><span>glow pts</span></div></div>
+    <div class="rkBar"><i style="width:${pct}%"></i></div>
+    <div class="rkNext">${esc(nextTxt)} · ${esc(holdTxt)}</div>
+    <div class="rkLadder">${RANKS.map((r,i)=>`<div class="rkStep${i<=ci?' on':''}"><b>${r[2]}</b>${r[0]}<br>${r[1]}+</div>`).join('')}</div>
+  </div>`;
+}
+function streaksHTML(){
+  let scope=S.planScope||'both';
+  let items=[['workout','Workout','🔥',scope!=='meals'],['protein','Protein','🥑',true],['steps','Steps','👟',!S.setup.stepsOff],['checkin','Check-in','🍒',true]];
+  let anyGrace=false;
+  let cards=items.filter(x=>x[3]).map(([t,name,ico])=>{let st=typeStreak(t);if(st.grace)anyGrace=true;return `<div class="streakCard${st.n>0?' live':''}"><div class="sFlame">${st.n>0?ico:'🤍'}</div><div class="sNum">${st.n}</div><div class="sLbl">${name}${st.grace?' *':''}</div></div>`}).join('');
+  return `<div style="margin-top:16px"><div class="label" style="margin:0 2px">Streaks</div>
+    <div class="streakStrip">${cards}</div>
+    <p class="muted small" style="margin:8px 2px 0">${anyGrace?'* Your one soft-reset day this week covered a miss — streak safe.':'Miss a day? You get one soft-reset day each week, so a single off-day never breaks your streak.'}</p></div>`;
+}
+function badgeGridHTML(){
+  return `<div class="badgeGrid">${BADGES.map(b=>{
+    let tier=(typeof S.badges[b[0]]==='number')?S.badges[b[0]]:(S.badges[b[0]]?1:0);
+    let prog=badgeProgress(b[0]),ths=b[4],nextTh=ths.find(t=>prog<t),target=nextTh||ths[3],pct=Math.min(100,Math.round(prog/target*100));
+    let earned=tier>0;
+    return `<div class="badgeCell ${earned?'earned':'locked'}" onclick="openBadge('${b[0]}')">
+      ${earned?`<span class="badgeTierPip">${BADGE_TIER_ICONS[tier]}</span>`:''}
+      <div class="bIco">${b[2]}</div><div class="bName">${b[1]}</div>
+      <div class="bTier">${earned?BADGE_TIERS[tier]:'Locked'}</div>
+      <div class="miniBar"><i style="width:${pct}%"></i></div>
+      <div class="bProg">${prog} / ${target}</div>
+    </div>`;
+  }).join('')}</div>`;
+}
+function openBadge(id){
+  let b=badgeDef(id);if(!b)return;
+  let tier=(typeof S.badges[id]==='number')?S.badges[id]:(S.badges[id]?1:0),prog=badgeProgress(id);
+  modalBody.innerHTML=`<div class="label">Badge</div><h2 class="h2">${b[2]} ${esc(b[1])}</h2>
+  <p class="muted" style="margin:2px 2px 12px">${esc(b[3])} · you're at <b>${prog}</b>.</p>
+  <div class="detail"><div class="box"><b>${tier?BADGE_TIER_ICONS[tier]:'—'}</b><span>${tier?BADGE_TIERS[tier]:'Locked'}</span></div></div>
+  <div class="card" style="margin-top:12px"><div class="label">Tiers</div>
+    ${b[4].map((th,i)=>`<div class="pbRow"><div><div class="pbEx">${BADGE_TIER_ICONS[i+1]} ${BADGE_TIERS[i+1]}</div></div><div class="pbVal">${tier>=i+1?'Earned ✓':th+'+'}</div></div>`).join('')}
+  </div>
+  <button class="btn" style="margin-top:14px" onclick="closeModal()">Nice</button>`;
+  modal.classList.add('active');
 }
 
 /* dropdown fills */
@@ -1099,9 +1212,29 @@ function slotData(d,s){
   if(S.recipeUse&&S.recipeUse[m.id]){let st=recipeScanTotals(m.id);if(st.n>0){base={cal:st.cal,pro:st.pro};useScan=true}} /* opted-in scanned macros drive the day totals + rings */
   return{name:m.name,cal:Math.round(base.cal*p)+(adj?.cal||0),pro:Math.round(base.pro*p)+(adj?.pro||0),id:m.id,p,adj,useScan};
 }
+/* planner extras: snack/extra items added to a day, count into totals + shopping list */
+function extrasList(d){return (d.extras||[]).map(x=>typeof x==='string'?(libItem(x)||{name:'Extra',cal:0,pro:0,lib:x}):x)}
+function extrasTotals(d){let e=extrasList(d);return{cal:e.reduce((a,x)=>a+(+x.cal||0),0),pro:e.reduce((a,x)=>a+(+x.pro||0),0)}}
 function dayTotals(d){
-  let ms=TYPES.map(s=>slotData(d,s));
-  return{cal:ms.reduce((a,m)=>a+m.cal,0),pro:ms.reduce((a,m)=>a+m.pro,0)};
+  let ms=TYPES.map(s=>slotData(d,s)),ex=extrasTotals(d);
+  return{cal:ms.reduce((a,m)=>a+m.cal,0)+ex.cal,pro:ms.reduce((a,m)=>a+m.pro,0)+ex.pro};
+}
+function addPlanExtra(w,k,libId){
+  let d=S.plan.weeks[w][k];d.extras=d.extras||[];
+  let it=libItem(libId);if(!it)return;
+  d.extras.push({name:it.name,cal:it.cal,pro:it.pro,ing:(it.ing&&it.ing.length?it.ing.slice():null),lib:it.id});
+  save();render();
+}
+function delPlanExtra(w,k,i){let d=S.plan.weeks[w][k];if(d.extras)d.extras.splice(i,1);save();render()}
+function openAddExtra(w,k){
+  let lib=S.snackLib||[],meals=S.myMeals||[];
+  if(!lib.length&&!meals.length){alert('Add snacks or meals in Meals → Snacks + extras first, then you can drop them onto any day here.');return}
+  modalBody.innerHTML=`<div class="label">Add an extra</div><h2 class="h2">Extras for this day</h2>
+  <p class="muted small" style="margin:2px 2px 12px">Anything from your Snacks + extras shelf (and your own meals) can be added on top of the plan. It counts towards your day and joins your shopping list.</p>
+  ${lib.length?`<div class="card"><div class="label">Snacks + extras</div>${lib.map(it=>`<div class="pbRow"><div><div class="pbEx">${esc(it.name)}</div><div class="pbMeta">${it.cal} kcal · ${it.pro}g protein</div></div><button class="btn ghost mini" onclick="addPlanExtra(${w},'${k}','${it.id}');closeModal()">+ Add</button></div>`).join('')}</div>`:''}
+  ${meals.length?`<div class="card" style="margin-top:10px"><div class="label">My meals</div>${meals.map(it=>`<div class="pbRow"><div><div class="pbEx">${esc(it.name)}</div><div class="pbMeta">${it.cal} kcal · ${it.pro}g protein</div></div><button class="btn ghost mini" onclick="addPlanExtra(${w},'${k}','${it.id}');closeModal()">+ Add</button></div>`).join('')}</div>`:''}
+  <button class="btn ghost" style="margin-top:12px" onclick="closeModal()">Done</button>`;
+  modal.classList.add('active');
 }
 function balanceDay(w,k){
   let d=S.plan.weeks[w][k],t=dayTotals(d);if(!t.cal)return;
@@ -1228,7 +1361,8 @@ function renderToday(d,idx){
   ${workoutBox}${stepsBox}${waterBox}${sleepBox}${isToday?bonusBox:''}
   ${wantMeals?TYPES.map(s=>{let m=slotData(d,s),tick=S.ticks[k+s];return `<div class="item" style="margin:8px 0"><div style="display:flex;gap:11px;align-items:center"><input type="checkbox" class="tick" ${tick?'checked':''} onchange="S.ticks['${k+s}']=this.checked;buzz();save();render()"><div><div class="label" style="margin:0 0 3px">${TYPENAME[s]}</div><div class="it" style="${tick?'text-decoration:line-through;color:var(--muted)':''}">${esc(m.name)}</div><p class="meta small" style="margin:2px 0 0">${m.cal} kcal · ${m.pro}g protein</p></div></div><span class="row" style="gap:6px;justify-content:flex-end">${m.id?`<button class="btn ghost mini" onclick="openMeal('${m.id}',${m.p||1})">Open</button>`:''}<button class="btn soft mini" onclick="openMealOptions(${idx},'${s}')">Edit</button></span></div>`}).join(''):''}
   ${extrasBox}
-  <button class="btn ${done?'soft':''}" style="width:100%;margin-top:12px" onclick="toggleDone(${idx})">${done?'Completed · tap to undo':'Mark today as completed'}</button>`;
+  <button class="btn ${done?'soft':''}" style="width:100%;margin-top:12px" onclick="toggleDone(${idx})">${done?'Completed · tap to undo':'Mark today as completed'}</button>
+  ${isToday?rankHeroHTML()+streaksHTML():''}`;
 }
 /* Edit a meal straight from the Home screen, for eating out, leftovers or a different recipe */
 function openMealOptions(idx,s){
@@ -1248,28 +1382,13 @@ function openMealOptions(idx,s){
 
 /* ============ RENDER: LOGS ============ */
 function renderLogs(){
-  renderPB();setLogTab(S.logTab||'log');
   if(!S.plan){logList.innerHTML='<div class="card" style="margin-top:12px"><p class="muted" style="margin:0">Build your plan and start ticking days off, your log grows here.</p></div>';return}
   let total=Object.keys(S.plan.weeks).length*7,cur=todayIndex();
   let rows='';
   let scope=S.planScope||'both';
-  /* rank + streaks + badges live above the daily log */
-  let rk=rankState();
-  let keepTxt=rk.held?(rk.thisPts>=rk.held[1]?`You have already scored enough to keep ${rk.held[0]} next week.`:`Score ${rk.held[1]-rk.thisPts} more this week to keep ${rk.held[0]}.`):'Your first week sets your starting rank for next week.';
-  let nextTxt=rk.next?` Reach ${rk.next[1]} for ${rk.next[2]} ${rk.next[0]}.`:' Top of the ladder, keep glowing.';
-  let rankCard=`<div class="card" style="margin-top:12px"><div class="label">Glow rank · resets weekly</div>
-    <div class="row" style="align-items:center;gap:10px;margin-top:6px"><span style="font-size:30px">${rk.show[2]}</span><div><div class="it" style="font-size:18px">${rk.show[0]}</div><p class="meta small" style="margin:2px 0 0">${rk.held?'Carried from last week':'Building this week'} · <b>${rk.thisPts}</b> points so far this week</p></div></div>
-    <p class="muted small" style="margin:8px 2px 0">${keepTxt}${nextTxt} Every tick earns glow points: workout +10, steps and protein +5, meals +2, water and sleep +3, bonus +5, completed day +5. Your week's score sets your rank for the week after, so a quiet week drops you back down the ladder.</p>
-    <div class="row" style="margin-top:8px">${RANKS.map(r=>`<span class="tag ${rk.show[0]===r[0]?'gold':''}">${r[2]} ${r[0]} · ${r[1]}+</span>`).join('')}</div></div>`;
-  let sw=typeStreak('workout'),sp=typeStreak('protein'),ss=typeStreak('steps'),sc2=typeStreak('checkin');
-  let anyGrace=sw.grace||sp.grace||ss.grace||sc2.grace;
-  let stChip=(st,name)=>`<span class="tag ${st.n>1?'green':''}">🔥 ${name} · ${st.n} day${st.n===1?'':'s'}${st.grace?' *':''}</span>`;
-  let streakCard=`<div class="card" style="margin-top:10px"><div class="label">Streaks</div>
-    <div class="row" style="margin-top:8px">${scope!=='meals'?stChip(sw,'Workout'):''}${stChip(sp,'Protein')}${S.setup.stepsOff?'':stChip(ss,'Steps')}${stChip(sc2,'Check-in')}</div>
-    <p class="muted small" style="margin:8px 2px 0">${anyGrace?'* Your soft reset day covered a miss this week, streak safe.':'Missed yesterday? You get 1 soft reset day each week, so one off-day never breaks a streak.'}</p></div>`;
-  let badgeCard=`<div class="card" style="margin-top:10px"><div class="label">Badges</div>
-    <div class="row" style="margin-top:8px">${BADGES.map(b=>{let got=S.badges[b[0]];return `<span class="tag ${got?'gold':''}" style="${got?'':'opacity:.45'}" title="${esc(b[3])}">${b[2]} ${b[1]}${got?' ✓':''}</span>`}).join('')}</div>
-    <p class="muted small" style="margin:8px 2px 0">Earned badges stay yours forever. Tap and hold any badge to see how to earn it.</p></div>`;
+  /* badges live above the daily log; rank + streaks now sit on Home */
+  let earnedN=BADGES.filter(b=>S.badges[b[0]]).length;
+  let badgeCard=`<section class="card figAccent" style="margin-top:12px"><div class="label">Badges · ${earnedN} of ${BADGES.length} started</div><h2 class="h2">Your collection</h2><p class="muted small">Bronze, Silver, Gold and Platinum on every badge. Keep going and each one levels up. Tap to see the tiers.</p>${badgeGridHTML()}</section>`;
   for(let i=0;i<total;i++){
     let k='d'+i,d=dayByIndex(i);if(!d)continue;
     let any=S.ticks[k+'done']||S.ticks[k+'workout']||S.ticks[k+'steps']||S.ticks[k+'protein']||TYPES.some(s=>S.ticks[k+s]);
@@ -1279,7 +1398,7 @@ function renderLogs(){
     let pts=dayGlow(i);
     rows+=`<div class="logRow"><div><div class="it">${dayLabel(i)}${i===cur?' · today':''}</div><div class="logTicks">${scope!=='meals'?chip(S.ticks[k+'workout'],'Workout'):''}${S.setup.stepsOff?'':chip(S.ticks[k+'steps'],'Steps')}${chip(S.ticks[k+'protein'],'Protein')}${S.setup.waterOff?'':chip(S.ticks[k+'water'],'Water')}${S.setup.sleepOff?'':chip(S.ticks[k+'sleep'],'Sleep')}${pts?`<span class="tag gold">✨ ${pts}</span>`:''}</div></div>${S.ticks[k+'done']?'<span class="tag red">Completed</span>':''}</div>`;
   }
-  logList.innerHTML=rankCard+streakCard+badgeCard+(rows||'<div class="card" style="margin-top:12px"><p class="muted" style="margin:0">Nothing logged yet. Tick things off on your Home page as you go.</p></div>');
+  logList.innerHTML=badgeCard+(rows||'<div class="card" style="margin-top:12px"><p class="muted" style="margin:0">Nothing logged yet. Tick things off on your Home page as you go.</p></div>');
 }
 
 /* ============ RENDER: PLANNER ============ */
@@ -1338,6 +1457,7 @@ function renderPlan(){
       <button class="btn ${skipped?'soft':'ghost'} mini" onclick="markMissed(${w},'${k}','${s}')">${skipped?'Unskip':'Skip'}</button>
       <span class="mac" style="${skipped?'text-decoration:line-through':''}"><b>${md.cal}</b> kcal · <b>${md.pro}g</b>${p!==1?` <span class="tag blush">${Math.round(p*100)}%</span>`:''}${m&&m.prepAhead&&!skipped?' <span title="Prep ahead">🌙</span>':''}</span></div>`;
     }).join('')}
+    ${!wantMeals?'':(()=>{let ex=extrasList(d);return `<div class="slot" style="align-items:flex-start"><label class="sl">Extras</label><div style="flex:1">${ex.length?ex.map((x,xi)=>`<div class="row" style="justify-content:space-between;gap:8px;margin-bottom:5px"><span class="small">${esc(x.name)} · ${x.cal} kcal · ${x.pro}g</span><button class="btn ghost mini" onclick="delPlanExtra(${w},'${k}',${xi})">✕</button></div>`).join(''):'<span class="muted small">Snacks, treats or anything on top of the plan.</span>'}<button class="btn ghost mini" style="margin-top:4px" onclick="openAddExtra(${w},'${k}')">+ Add extra</button></div></div>`})()}
     ${(()=>{let pa=wantMeals?prepAheadTomorrow(dayIdx):[];return pa.length?`<div class="steps-note" style="margin-top:8px">🌙 <b>Prep tonight for tomorrow.</b> ${pa.map(esc).join(', ')} ${pa.length>1?'need':'needs'} making ahead.</div>`:''})()}</div>`;
   }).join('');
 }
@@ -1451,19 +1571,54 @@ function secNote(sec){
   if(meta&&/rest|no rest/i.test(meta))return meta;
   return [meta,rest].filter(Boolean).join(' · ');
 }
-function logSet(lk,f,v){
-  S.logs[lk]=S.logs[lk]||{};S.logs[lk][f]=v;
-  let h=S.logHist[lk]=S.logHist[lk]||[];
-  let today=new Date().toISOString().slice(0,10),last=h[h.length-1];
-  if(!last||last.d!==today)h.push({d:today,kg:S.logs[lk].kg||'',reps:S.logs[lk].reps||''});
-  else{last.kg=S.logs[lk].kg||'';last.reps=S.logs[lk].reps||''}
-  if(h.length>30)h.shift();
-  save();
+/* ============ DETAILED SET LOGGING (v25) ============
+   Hevy/MyFitnessPal-style: any number of sets per exercise per day, per-day history,
+   session records and progress charts. S.setLogs[lk]=[{d,sets:[{kg,reps}]}], lk=workoutId|sec|ex. */
+function todayStr(){return new Date().toISOString().slice(0,10)}
+function dayLog(lk,create){
+  let a=S.setLogs[lk]=S.setLogs[lk]||[],t=todayStr(),day=a.find(x=>x.d===t);
+  if(!day&&create){day={d:t,sets:[]};a.push(day);if(a.length>120)a.shift()}
+  return day;
 }
-function lastLog(lk){
-  let h=S.logHist[lk]||[],today=new Date().toISOString().slice(0,10);
-  for(let i=h.length-1;i>=0;i--)if(h[i].d!==today&&(h[i].kg||h[i].reps))return h[i];
-  return null;
+function todaySets(lk){let d=dayLog(lk,true);return d.sets}
+function setField(lk,i,f,v){
+  let sets=todaySets(lk);while(sets.length<=i)sets.push({kg:'',reps:''});
+  sets[i][f]=v;save();
+}
+function addSet(lk){
+  let sets=todaySets(lk),prev=sets[sets.length-1];
+  sets.push({kg:prev?prev.kg:'',reps:prev?prev.reps:''}); /* prefill from the set before */
+  save();if(window.__reopenWk)window.__reopenWk();
+}
+function delSet(lk,i){let sets=todaySets(lk);if(sets.length)sets.splice(i,1);save();if(window.__reopenWk)window.__reopenWk()}
+/* legacy single-field logger kept for any old caller: writes into today's first set */
+function logSet(lk,f,v){let sets=todaySets(lk);if(!sets.length)sets.push({kg:'',reps:''});sets[0][f]=v;save()}
+/* the most recent PREVIOUS day's best set, for the "last time" prompt */
+function prevDay(lk){let a=S.setLogs[lk]||[],t=todayStr();for(let i=a.length-1;i>=0;i--)if(a[i].d!==t&&a[i].sets.some(s=>s.kg||s.reps))return a[i];return null}
+function lastLog(lk){let p=prevDay(lk);if(!p)return null;let b=crowns(p.sets).gold;return b?{kg:b.kg||'',reps:b.reps||''}:null}
+function e1rm(kg,reps){kg=parseFloat(kg)||0;reps=parseInt(reps)||0;if(!kg||!reps)return 0;return Math.round(kg*(1+reps/30))}
+function dayVolume(sets){return Math.round((sets||[]).reduce((a,s)=>a+(parseFloat(s.kg)||0)*(parseInt(s.reps)||0),0))}
+function loggedSets(sets){return (sets||[]).filter(s=>s.kg||s.reps).length}
+/* tiny inline SVG line chart from [{d,v}] points; brand ink stroke, gold dots, no libs */
+function sparkChart(points,unit,color){
+  color=color||'var(--red)';
+  let pts=points.filter(p=>p.v>0);
+  if(pts.length<2)return '<p class="muted small" style="margin:8px 2px 0">Log this on two or more days to see your progress graph.</p>';
+  let W=300,H=120,pad=24,vs=pts.map(p=>p.v),mn=Math.min(...vs),mx=Math.max(...vs),rng=(mx-mn)||1;
+  let x=i=>pad+i*(W-pad*2)/(pts.length-1),y=v=>H-pad-(v-mn)/rng*(H-pad*2);
+  let d=pts.map((p,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(p.v).toFixed(1)).join(' ');
+  let dots=pts.map((p,i)=>`<circle cx="${x(i).toFixed(1)}" cy="${y(p.v).toFixed(1)}" r="3" fill="var(--gold)"/>`).join('');
+  let f0=new Date(pts[0].d+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+  let f1=new Date(pts[pts.length-1].d+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;margin-top:8px;overflow:visible" aria-label="progress chart">
+    <line x1="${pad}" y1="${H-pad}" x2="${W-pad}" y2="${H-pad}" stroke="var(--line)"/>
+    <path d="${d}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    ${dots}
+    <text x="${pad}" y="${H-6}" font-size="9" fill="var(--muted)">${f0}</text>
+    <text x="${W-pad}" y="${H-6}" font-size="9" fill="var(--muted)" text-anchor="end">${f1}</text>
+    <text x="${pad}" y="12" font-size="9" fill="var(--muted)">${mx}${unit||''}</text>
+    <text x="${pad}" y="${y(mn).toFixed(1)-4>14?y(mn)-4:22}" font-size="9" fill="var(--muted)">${mn}${unit||''}</text>
+  </svg>`;
 }
 /* crowns: gold = highest weight (then reps), silver = most reps (then weight) */
 function crowns(hist){
@@ -1476,25 +1631,87 @@ function crowns(hist){
   return{gold:g,silver:s};
 }
 function setTxt(o){if(!o)return'—';return (o.kg?o.kg+'kg':'')+(o.kg&&o.reps?' × ':'')+(o.reps?o.reps+' reps':'')||'—'}
-/* second page: full logged history for a workout, newest first, with crowns */
+function setTxtSets(sets){return (sets||[]).filter(s=>s.kg||s.reps).map(s=>(s.kg?s.kg+'kg':'')+(s.kg&&s.reps?'×':'')+(s.reps?s.reps:'')||'—').join(', ')}
+/* Save the current day as a session record: date, duration, total sets + volume, and per-exercise snapshot. */
+function finishWorkout(id){
+  let w=workoutById(id);if(!w)return;
+  let t=todayStr(),totalSets=0,vol=0,exs=[];
+  w.secs.forEach((sec,si)=>sec.ex.forEach((e,ei)=>{
+    let lk=id+'|'+si+'|'+ei,day=(S.setLogs[lk]||[]).find(x=>x.d===t);
+    if(!day)return;let done=day.sets.filter(s=>s.kg||s.reps);
+    if(!done.length)return;
+    totalSets+=done.length;vol+=dayVolume(done);
+    exs.push({name:e[0],sets:done.map(s=>({kg:s.kg,reps:s.reps}))});
+  }));
+  if(!totalSets){alert('Log at least one set before finishing, then your session saves to history.');return}
+  let dur=sessStart?Math.round((Date.now()-sessStart)/60000):0;
+  let existing=S.sessions.findIndex(s=>s.d===t&&s.wk===id);
+  let rec={id:'sess-'+Date.now(),d:t,wk:id,title:w.title,mode:w.mode||'',dur,sets:totalSets,vol,exs};
+  if(existing>-1)S.sessions[existing]=rec;else S.sessions.push(rec);
+  stopSession();save();celebrate();buzz(20);checkBadges();
+  modalBody.innerHTML=`<div class="label">Session saved</div><h2 class="h2">Nice work</h2>
+  <p class="muted" style="margin:2px 2px 12px">${esc(w.title)} logged for today.</p>
+  <div class="detail"><div class="box"><b>${totalSets}</b><span>sets</span></div><div class="box"><b>${vol.toLocaleString()}</b><span>kg volume</span></div>${dur?`<div class="box"><b>${dur}</b><span>min</span></div>`:''}</div>
+  <div class="row" style="margin-top:14px"><button class="btn" onclick="openWorkoutHistory('${id}')">See history + graphs</button><button class="btn ghost" onclick="closeModal()">Done</button></div>`;
+  modal.classList.add('active');
+}
+/* Full detailed history for a workout: session records, a volume-over-time chart, per-exercise breakdowns + charts. */
 function openWorkoutHistory(id){
   let w=workoutById(id);if(!w)return;
+  let sessions=S.sessions.filter(s=>s.wk===id).slice().sort((a,b)=>a.d<b.d?1:-1);
+  /* volume-per-session chart (oldest → newest) */
+  let volPts=sessions.slice().reverse().map(s=>({d:s.d,v:s.vol}));
+  let totalVol=sessions.reduce((a,s)=>a+s.vol,0),totalSets=sessions.reduce((a,s)=>a+s.sets,0);
+  let statCard=sessions.length?`<div class="detail" style="margin-top:10px"><div class="box"><b>${sessions.length}</b><span>sessions</span></div><div class="box"><b>${totalSets}</b><span>sets</span></div><div class="box"><b>${(totalVol/1000).toFixed(1)}k</b><span>kg lifted</span></div></div>
+    <div class="card" style="margin-top:10px"><div class="label">Volume per session (kg)</div>${sparkChart(volPts,'','var(--red)')}</div>`:'';
+  let sessRows=sessions.map(s=>{
+    let dt=new Date(s.d+'T00:00:00').toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
+    return `<div class="logRow"><div><div class="it">${esc(dt)}</div><div class="logTicks"><span class="tag green">${s.sets} sets</span><span class="tag">${s.vol.toLocaleString()}kg</span>${s.dur?`<span class="tag">${s.dur} min</span>`:''}</div></div></div>`;
+  }).join('');
+  /* per-exercise: all logged days, newest first, crowns + a best-set progress chart */
   let blocks=[];
   w.secs.forEach((sec,si)=>sec.ex.forEach((e,ei)=>{
-    let lk=id+'|'+si+'|'+ei,hist=(S.logHist[lk]||[]).filter(h=>h.kg||h.reps);
-    if(!hist.length)return;
-    let cr=crowns(hist),rows=hist.slice().reverse().map(h=>{
-      let isG=cr.gold&&h.d===cr.gold.d&&(parseFloat(h.kg)||0)===cr.gold.kg&&(parseInt(h.reps)||0)===cr.gold.reps;
-      let isS=cr.silver&&h.d===cr.silver.d&&(parseFloat(h.kg)||0)===cr.silver.kg&&(parseInt(h.reps)||0)===cr.silver.reps;
-      let dt=new Date(h.d+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short'});
-      return `<div class="pbRow"><div><div class="pbEx">${esc(dt)}</div></div><div class="pbVal">${isG?'🥇 ':''}${isS&&!isG?'🥈 ':''}${esc(setTxt({kg:h.kg,reps:h.reps}))}</div></div>`;
+    let lk=id+'|'+si+'|'+ei,days=(S.setLogs[lk]||[]).filter(dd=>dd.sets.some(s=>s.kg||s.reps));
+    if(!days.length)return;
+    let flat=[];days.forEach(dd=>dd.sets.forEach(s=>{if(s.kg||s.reps)flat.push({kg:s.kg,reps:s.reps,d:dd.d})}));
+    let cr=crowns(flat);
+    let pts=days.slice().sort((a,b)=>a.d<b.d?-1:1).map(dd=>{let best=crowns(dd.sets).gold;return{d:dd.d,v:best?best.kg||e1rm(0,best.reps)||best.reps:0}});
+    let rows=days.slice().reverse().map(dd=>{
+      let dt=new Date(dd.d+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+      let g=crowns(dd.sets).gold,isG=cr.gold&&g&&g.kg===cr.gold.kg&&g.reps===cr.gold.reps&&dd.d===cr.gold.d;
+      return `<div class="pbRow"><div><div class="pbEx">${esc(dt)}</div><div class="pbMeta">${esc(setTxtSets(dd.sets))}</div></div><div class="pbVal">${isG?'🥇 ':''}${dayVolume(dd.sets).toLocaleString()}kg</div></div>`;
     }).join('');
-    blocks.push(`<div class="card" style="margin-top:10px"><div class="label">${esc(e[0])}</div>${rows}</div>`);
+    blocks.push(`<div class="card" style="margin-top:10px"><div class="label">${esc(e[0])}</div><div class="pbMeta" style="margin:0 2px 4px">Best: 🥇 ${esc(setTxt(cr.gold))} · most reps ${esc(setTxt(cr.silver))}</div>${sparkChart(pts,'kg','var(--ink)')}${rows}</div>`);
   }));
   modalBody.innerHTML=`<div class="label">Workout history</div><h2 class="h2">${esc(w.title)}</h2>
-  <p class="muted small" style="margin:2px 2px 6px">Every set you have logged for this session. 🥇 gold = your heaviest set, weight first. 🥈 silver = your highest reps.</p>
   <button class="btn ghost mini" onclick="openWorkout('${id}')">Back to workout</button>
-  ${blocks.length?blocks.join(''):'<div class="card" style="margin-top:10px"><p class="muted" style="margin:0">Nothing logged for this workout yet. Enter your weights and reps as you train and your history builds here.</p></div>'}`;
+  ${statCard}
+  ${sessions.length?`<div class="card" style="margin-top:10px"><div class="label">Sessions</div>${sessRows}</div>`:''}
+  ${blocks.length?`<p class="muted small" style="margin:14px 2px 2px">Per exercise · 🥇 marks your best set (heaviest, then reps). Chart tracks your top set each day.</p>`+blocks.join(''):(sessions.length?'':'<div class="card" style="margin-top:10px"><p class="muted" style="margin:0">Nothing logged for this workout yet. Log your sets as you train, tap Finish + save, and your history and graphs build here.</p></div>')}`;
+  modal.classList.add('active');
+}
+/* single-exercise progress page, opened from a workout row or Personal Bests */
+function openExProgress(lk){
+  let parts=lk.split('|'),w=workoutById(parts[0]);
+  let name=w?.secs?.[+parts[1]]?.ex?.[+parts[2]]?.[0]||'Exercise';
+  let days=(S.setLogs[lk]||[]).filter(dd=>dd.sets.some(s=>s.kg||s.reps));
+  let flat=[];days.forEach(dd=>dd.sets.forEach(s=>{if(s.kg||s.reps)flat.push({kg:s.kg,reps:s.reps,d:dd.d})}));
+  let cr=crowns(flat);
+  let sorted=days.slice().sort((a,b)=>a.d<b.d?-1:1);
+  let wPts=sorted.map(dd=>{let g=crowns(dd.sets).gold;return{d:dd.d,v:g?parseFloat(g.kg)||0:0}});
+  let vPts=sorted.map(dd=>({d:dd.d,v:dayVolume(dd.sets)}));
+  let ePts=sorted.map(dd=>{let g=crowns(dd.sets).gold;return{d:dd.d,v:g?e1rm(g.kg,g.reps):0}});
+  let rows=days.slice().reverse().map(dd=>{
+    let dt=new Date(dd.d+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+    return `<div class="pbRow"><div><div class="pbEx">${esc(dt)}</div><div class="pbMeta">${esc(setTxtSets(dd.sets))}</div></div><div class="pbVal">${dayVolume(dd.sets).toLocaleString()}kg</div></div>`;
+  }).join('');
+  modalBody.innerHTML=`<div class="label">Exercise progress</div><h2 class="h2">${esc(name)}</h2>
+  ${w?`<button class="btn ghost mini" onclick="openWorkout('${parts[0]}')">Back to workout</button>`:''}
+  ${flat.length?`<div class="detail" style="margin-top:10px"><div class="box"><b>${esc(cr.gold?cr.gold.kg||'—':'—')}</b><span>best kg</span></div><div class="box"><b>${esc(cr.silver?cr.silver.reps:'—')}</b><span>most reps</span></div><div class="box"><b>${cr.gold?e1rm(cr.gold.kg,cr.gold.reps)||'—':'—'}</b><span>est 1RM</span></div></div>
+  <div class="card" style="margin-top:10px"><div class="label">Top set weight (kg)</div>${sparkChart(wPts,'kg','var(--ink)')}</div>
+  <div class="card" style="margin-top:10px"><div class="label">Volume per day (kg)</div>${sparkChart(vPts,'','var(--red)')}</div>
+  <div class="card" style="margin-top:10px"><div class="label">Estimated 1RM</div>${sparkChart(ePts,'','var(--gold-deep, var(--gold))')}</div>
+  <div class="card" style="margin-top:10px"><div class="label">Every session</div>${rows}</div>`:'<div class="card" style="margin-top:10px"><p class="muted" style="margin:0">No sets logged for this exercise yet.</p></div>'}`;
   modal.classList.add('active');
 }
 /* session stopwatch shown while a workout is in progress */
@@ -1518,6 +1735,7 @@ function claimTier(id,n){
 }
 function openWorkout(id){
   let w=workoutById(id);if(!w)return;
+  window.__reopenWk=function(){openWorkout(id)}; /* add/remove set re-renders this exact view */
   let stops=w.stops||[];
   let myKind=S.setup[(w.mode||'').toLowerCase()==='gym'?'gymTime':'homeTime']||'full';
   let myIdx=w.custom?2:{essential:0,full:1,build:2}[myKind];
@@ -1537,10 +1755,20 @@ function openWorkout(id){
     let beyond=(si>mainIdx&&myIdx<1)||(si>coreIdx&&myIdx<2);
     let rs=restSecs(sec);
     return `<div class="wkSec${beyond?' beyond':''}"><div class="wkSecHead"><div class="wkSecName">${esc(sec.name)}</div><button class="timerBtn" onclick="startRest(${rs})">⏱ Rest ${rs}s</button></div><div class="wkNote">${esc(secNote(sec))}</div>
-    ${sec.ex.map((e,ei)=>{let lk=id+'|'+si+'|'+ei,lg=S.logs[lk]||{},prev=lastLog(lk);
-      let trend=prev&&lg.kg&&parseFloat(lg.kg)>parseFloat(prev.kg||0)?' <span style="color:var(--green)">▲</span>':'';
+    ${sec.ex.map((e,ei)=>{let lk=id+'|'+si+'|'+ei,sets=todaySets(lk),prev=prevDay(lk);
       let lib=findExercise(e[0]); /* link the row to the Exercise Library where a match exists */
-      return `<div class="wkRow"><div><div style="font-weight:700">${esc(e[0])}${lib?` <button class="btn ghost mini" style="padding:4px 9px;font-size:9px;vertical-align:2px;margin-left:4px" onclick="openExercise('${lib.id}','${id}')">View cues</button>`:''}</div><div class="wkLog"><input placeholder="kg" value="${lg.kg||''}" onchange="logSet('${lk}','kg',this.value)"><input placeholder="reps" value="${lg.reps||''}" onchange="logSet('${lk}','reps',this.value)"></div>${prev?`<div class="meta" style="font-size:11px;margin-top:4px">Last time: ${esc(prev.kg||'—')}${prev.kg?'kg':''}${prev.reps?' × '+esc(prev.reps):''}${trend}</div>`:''}</div><span class="wkRep">${esc(normRep(e[1]))}</span></div>`}).join('')}</div>`};
+      if(!sets.length)sets.push({kg:'',reps:''});
+      let prevSets=prev?prev.sets.filter(s=>s.kg||s.reps):[];
+      let setRows=sets.map((s,i)=>{
+        let ps=prevSets[i],pStr=ps?((ps.kg?ps.kg+'kg':'')+(ps.kg&&ps.reps?'×':'')+(ps.reps?ps.reps:'')||'—'):'—';
+        let up=ps&&s.kg&&parseFloat(s.kg)>parseFloat(ps.kg||0)?' <span style="color:var(--green)">▲</span>':'';
+        return `<div class="setRow"><span class="setNo">${i+1}</span><span class="setPrev">${esc(pStr)}${up}</span><input class="setIn" inputmode="decimal" placeholder="kg" value="${s.kg||''}" onchange="setField('${lk}',${i},'kg',this.value)"><input class="setIn" inputmode="numeric" placeholder="reps" value="${s.reps||''}" onchange="setField('${lk}',${i},'reps',this.value)"><button class="setDel" onclick="delSet('${lk}',${i})" aria-label="remove set">✕</button></div>`;
+      }).join('');
+      return `<div class="wkRow"><div style="width:100%"><div style="font-weight:700">${esc(e[0])}${lib?` <button class="btn ghost mini" style="padding:4px 9px;font-size:9px;vertical-align:2px;margin-left:4px" onclick="openExercise('${lib.id}','${id}')">View</button>`:''}</div>
+      <div class="setHead"><span class="setNo">Set</span><span class="setPrev">Last time</span><span>kg</span><span>reps</span><span></span></div>
+      ${setRows}
+      <div class="row" style="gap:8px;margin-top:6px"><button class="btn ghost mini" onclick="addSet('${lk}')">+ Add set</button><button class="btn ghost mini" onclick="openExProgress('${lk}')">📈 Progress</button><span class="wkRep" style="align-self:center;margin-left:auto">${esc(normRep(e[1]))}</span></div>
+      </div></div>`}).join('')}</div>`};
   let body=w.secs.map((sec,si)=>{
     let h=secHTML(sec,si);
     if(si===mainIdx)h+=stopHTML(stops[0],1);
@@ -1553,7 +1781,7 @@ function openWorkout(id){
   <div class="photo"><div class="mealType">${w.custom?'My workout':esc(w.mode)+' workout · '+(SEASONNAME[w.season||'golden']||'')}</div><h2 class="h2" style="font-size:34px;margin:6px 0 0">${esc(w.title)}</h2><div class="tagline">${esc(w.focus||'')}</div></div>
   ${w.line?`<p class="muted" style="margin:0 2px 12px">${esc(w.line)}</p>`:''}
   <div class="row" style="margin-bottom:8px">${(w.equip||[]).map(t=>`<span class="tag blush">${esc(t)}</span>`).join('')}${(w.muscles||[]).map(t=>`<span class="tag blush">${esc(t)}</span>`).join('')}${myTime&&!w.custom?`<span class="tag gold">Your session · about ${esc(myTime)}</span>`:''}${w.custom?'':`<span class="tag green">Your finish point · ${POINT[myKind][0]}</span>`}${medalRow}</div>
-  <div class="row" style="margin-bottom:10px"><button class="btn mini" onclick="startSession()">Start workout</button><button class="btn ghost mini" onclick="openWorkoutHistory('${id}')">History</button>${w.custom?`<button class="btn ghost mini" onclick="openWkBuilder('${id}')">Edit</button>`:''}<span class="tag green" id="sessTimer" style="align-self:center"></span></div>
+  <div class="row" style="margin-bottom:10px"><button class="btn mini" onclick="startSession()">Start workout</button><button class="btn soft mini" onclick="finishWorkout('${id}')">Finish + save</button><button class="btn ghost mini" onclick="openWorkoutHistory('${id}')">History</button>${w.custom?`<button class="btn ghost mini" onclick="openWkBuilder('${id}')">Edit</button>`:''}<span class="tag green" id="sessTimer" style="align-self:center"></span></div>
   <p class="muted small" style="margin:-4px 2px 8px">Enter weight and reps as you go. Not every move needs a weight, leave it blank for bodyweight or banded work and just log your reps.</p>
   <div class="row" style="margin-bottom:10px"><span class="label" style="margin:0">Rest timer</span><button class="timerBtn" onclick="startRest(60)">60s</button><button class="timerBtn" onclick="startRest(90)">90s</button><button class="timerBtn" onclick="startRest(120)">120s</button><span class="muted small">tap ⏱ on any section · drag to move</span></div>
   ${w.custom?'':`<div class="steps-note" style="margin-bottom:10px"><b>Real-world timing.</b> About ${esc(myTime)} of working time to your finish point. Allow an extra 5–10 minutes for setting up, warming up and moving between stations, and a little more the first time while you learn the moves. Anything greyed out below is beyond your finish point, a bonus for days with more time.</div>`}
@@ -1725,9 +1953,12 @@ function setTrainTab(t){S.trainTab=t;save();
   $('ttabWk').className='btn guideTab mini'+(t==='wk'?'':' ghost');
   $('ttabEx').className='btn guideTab mini'+(t==='ex'?'':' ghost');
   $('ttabCu').className='btn guideTab mini'+(t==='cu'?'':' ghost');
+  $('ttabPb').className='btn guideTab mini'+(t==='pb'?'':' ghost');
   $('wkPane').classList.toggle('hidden',t!=='wk');
   $('exPane').classList.toggle('hidden',t!=='ex');
   $('cuPane').classList.toggle('hidden',t!=='cu');
+  $('pbPane').classList.toggle('hidden',t!=='pb');
+  if(t==='pb')renderPB();
 }
 function renderTrain(){
   setTrainTab(S.trainTab||'wk');
@@ -2331,24 +2562,60 @@ function renderExLib(){
   });
   el.innerHTML=list.length?list.map(ex=>{
     let fav=!!S.exFavs[ex.id];
-    return `<div class="item"><div><div class="it">${esc(ex.name)}</div><div class="meta small" style="margin-top:2px">${esc(ex.bestFor)}</div><div class="row" style="margin-top:7px"><span class="tag gold">${esc(ex.categories[0])}</span>${ex.equipment.slice(0,2).map(e=>`<span class="tag">${esc(e)}</span>`).join('')}<span class="tag blush">${esc(ex.level)}</span></div></div><span class="row" style="gap:6px;flex-wrap:nowrap"><button class="heart ${fav?'on':''}" onclick="toggleExFav('${ex.id}');renderExLib()" aria-label="Favourite">♥</button><button class="btn ghost mini" onclick="openExercise('${ex.id}')">View cues</button></span></div>`;
+    return `<div class="item"><div><div class="it">${esc(ex.name)}</div><div class="meta small" style="margin-top:2px">${esc(ex.bestFor)}</div><div class="row" style="margin-top:7px"><span class="tag gold">${esc(ex.categories[0])}</span>${ex.equipment.slice(0,2).map(e=>`<span class="tag">${esc(e)}</span>`).join('')}<span class="tag blush">${esc(ex.level)}</span></div></div><span class="row" style="gap:6px;flex-wrap:nowrap"><button class="heart ${fav?'on':''}" onclick="toggleExFav('${ex.id}');renderExLib()" aria-label="Favourite">♥</button><button class="btn ghost mini" onclick="openExercise('${ex.id}')">View</button></span></div>`;
   }).join(''):'<div class="card" style="margin-top:12px"><p class="muted" style="margin:0">'+(cat==='favs'?'No favourite exercises yet. Tap the heart on any exercise to keep it here.':'Nothing matches that search yet, more exercises are on the way.')+'</p></div>';
 }
-function openExercise(id,backWk){
+/* every logged day for a library exercise, across all workouts (rows link to the library via findExercise) */
+function exDaysById(exId){
+  let out=[];
+  Object.keys(S.setLogs||{}).forEach(lk=>{
+    let parts=lk.split('|'),wkt=workoutById(parts[0]);if(!wkt)return;
+    let rowName=wkt.secs?.[+parts[1]]?.ex?.[+parts[2]]?.[0];if(!rowName)return;
+    let match=findExercise(rowName);
+    if(!match||match.id!==exId)return;
+    (S.setLogs[lk]||[]).forEach(dd=>{if(dd.sets.some(s=>s.kg||s.reps))out.push(dd)});
+  });
+  return out.sort((a,b)=>a.d<b.d?-1:1);
+}
+function openExercise(id,backWk,tab){
   let ex=exerciseById(id);if(!ex)return;
+  tab=tab||'cues';
   let fav=!!S.exFavs[ex.id];
   let li=a=>a.map(x=>`<li>${esc(x)}</li>`).join('');
-  modalBody.innerHTML=`
-  <div class="photo" style="position:relative"><button class="heart ${fav?'on':''}" style="position:absolute;top:14px;right:14px" onclick="toggleExFav('${ex.id}');openExercise('${ex.id}'${backWk?`,'${backWk}'`:''})" aria-label="Favourite">♥</button><div class="mealType">Exercise Library</div><h2 class="h2" style="font-size:34px;margin:6px 0 0">${esc(ex.name)}</h2><div class="tagline">${esc(ex.bestFor)}</div></div>
-  <div class="row">${ex.categories.map(c=>`<span class="tag gold">${esc(c)}</span>`).join('')}${ex.equipment.map(e=>`<span class="tag">${esc(e)}</span>`).join('')}<span class="tag blush">${esc(ex.level)}</span></div>
-  ${backWk?`<div style="margin-top:10px"><button class="btn ghost mini" onclick="openWorkout('${backWk}')">‹ Back to workout</button></div>`:''}
-  <div class="metaRow"><div class="mm"><div class="k">Works</div><div class="v">${esc(ex.primaryMuscles.join(', '))}</div></div>${ex.secondaryMuscles.length?`<div class="mm"><div class="k">Also works</div><div class="v">${esc(ex.secondaryMuscles.join(', '))}</div></div>`:''}</div>
+  let tabBtns=`<div class="row" style="margin:12px 0 2px;gap:8px"><button class="btn guideTab mini${tab==='cues'?'':' ghost'}" onclick="openExercise('${ex.id}'${backWk?`,'${backWk}'`:',null'},'cues')">Cues</button><button class="btn guideTab mini${tab==='hist'?'':' ghost'}" onclick="openExercise('${ex.id}'${backWk?`,'${backWk}'`:',null'},'hist')">History</button></div>`;
+  let cues=`
   ${ex.demoImage?`<div class="mealPhotoWrap"><img class="mealPhoto" src="${ex.demoImage}" alt="" loading="lazy" onerror="this.parentNode.remove()"></div>`:ex.demoVideo?`<video class="mealPhoto" src="${ex.demoVideo}" controls playsinline style="width:100%"></video>`:`<div class="card" style="text-align:center;padding:26px 18px;margin-bottom:10px"><div class="label" style="color:var(--gold)">Demo coming soon</div><p class="muted small" style="margin:0">A Model Body demonstration for this movement is on its way.</p></div>`}
   <div class="card"><div class="label">How to do it</div><ol class="method">${li(ex.instructions)}</ol></div>
   <div class="card" style="margin-top:10px"><div class="label">Setup tips</div><ul class="ing">${li(ex.setupTips)}</ul></div>
   <div class="steps-note" style="margin-top:10px"><b>Model Body cues.</b> ${ex.modelBodyCues.map(esc).join(' · ')}</div>
   <div class="card" style="margin-top:10px"><div class="label">Watch out for</div><ul class="ing">${li(ex.commonMistakes)}</ul></div>
   <div class="card" style="margin-top:10px"><div class="label">Swap options</div><ul class="ing">${li(ex.swapOptions)}</ul><p class="muted small" style="margin:8px 0 0">Choose the swap that feels best for your body, they all count.</p></div>`;
+  let hist='';
+  if(tab==='hist'){
+    let days=exDaysById(ex.id);
+    let flat=[];days.forEach(dd=>dd.sets.forEach(s=>{if(s.kg||s.reps)flat.push({kg:s.kg,reps:s.reps,d:dd.d})}));
+    let cr=crowns(flat);
+    let wPts=days.map(dd=>{let g=crowns(dd.sets).gold;return{d:dd.d,v:g?parseFloat(g.kg)||0:0}});
+    let vPts=days.map(dd=>({d:dd.d,v:dayVolume(dd.sets)}));
+    let ePts=days.map(dd=>{let g=crowns(dd.sets).gold;return{d:dd.d,v:g?e1rm(g.kg,g.reps):0}});
+    let rows=days.slice().reverse().map(dd=>{
+      let dt=new Date(dd.d+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+      return `<div class="pbRow"><div><div class="pbEx">${esc(dt)}</div><div class="pbMeta">${esc(setTxtSets(dd.sets))}</div></div><div class="pbVal">${dayVolume(dd.sets).toLocaleString()}kg</div></div>`;
+    }).join('');
+    hist=flat.length?`<div class="detail" style="margin-top:10px"><div class="box"><b>${esc(cr.gold?cr.gold.kg||'—':'—')}</b><span>best kg</span></div><div class="box"><b>${esc(cr.silver?cr.silver.reps:'—')}</b><span>most reps</span></div><div class="box"><b>${cr.gold?e1rm(cr.gold.kg,cr.gold.reps)||'—':'—'}</b><span>est 1RM</span></div></div>
+    <div class="card" style="margin-top:10px"><div class="label">Top set weight (kg)</div>${sparkChart(wPts,'kg','var(--ink)')}</div>
+    <div class="card" style="margin-top:10px"><div class="label">Volume per day (kg)</div>${sparkChart(vPts,'','var(--red)')}</div>
+    <div class="card" style="margin-top:10px"><div class="label">Estimated 1RM</div>${sparkChart(ePts,'','var(--gold)')}</div>
+    <div class="card" style="margin-top:10px"><div class="label">Every session</div>${rows}</div>`
+    :'<div class="card" style="margin-top:10px"><p class="muted" style="margin:0">No sets logged for this exercise yet. Log it inside any workout and your history and graphs build here.</p></div>';
+  }
+  modalBody.innerHTML=`
+  <div class="photo" style="position:relative"><button class="heart ${fav?'on':''}" style="position:absolute;top:14px;right:14px" onclick="toggleExFav('${ex.id}');openExercise('${ex.id}'${backWk?`,'${backWk}'`:',null'},'${tab}')" aria-label="Favourite">♥</button><div class="mealType">Exercise Library</div><h2 class="h2" style="font-size:34px;margin:6px 0 0">${esc(ex.name)}</h2><div class="tagline">${esc(ex.bestFor)}</div></div>
+  <div class="row">${ex.categories.map(c=>`<span class="tag gold">${esc(c)}</span>`).join('')}${ex.equipment.map(e=>`<span class="tag">${esc(e)}</span>`).join('')}<span class="tag blush">${esc(ex.level)}</span></div>
+  ${backWk?`<div style="margin-top:10px"><button class="btn ghost mini" onclick="openWorkout('${backWk}')">‹ Back to workout</button></div>`:''}
+  <div class="metaRow"><div class="mm"><div class="k">Works</div><div class="v">${esc(ex.primaryMuscles.join(', '))}</div></div>${ex.secondaryMuscles.length?`<div class="mm"><div class="k">Also works</div><div class="v">${esc(ex.secondaryMuscles.join(', '))}</div></div>`:''}</div>
+  ${tabBtns}
+  ${tab==='cues'?cues:hist}`;
   modal.classList.add('active');
   let sh=modal.querySelector('.sheet');if(sh)sh.scrollTop=0;
 }
@@ -2382,7 +2649,7 @@ function parseIngLine(str){
 }
 function addShopExtra(){if(extraShop.value.trim()){S.shopExtra.push(extraShop.value.trim());extraShop.value='';S.shop.mode='plan';save();renderShop()}}
 /* a fingerprint of the current plan, used to resync the list on reopen */
-function planSig(){if(!S.plan)return'';let a=[];Object.keys(S.plan.weeks).forEach(w=>keys.forEach(k=>{let d=S.plan.weeks[w][k];if(!d)return;TYPES.forEach(s=>a.push((d[s]||'')+(d[s]==='custom'&&d.custom?.[s]?(d.custom[s].name||'')+(d.custom[s].lib||''):'')+(d.sw?.[s]?JSON.stringify(d.sw[s]):'')+(d.p?.[s]||1)+'x'+(d.ppl?.[s]||'')))}));return a.join(',')+'|p'+S.people}
+function planSig(){if(!S.plan)return'';let a=[];Object.keys(S.plan.weeks).forEach(w=>keys.forEach(k=>{let d=S.plan.weeks[w][k];if(!d)return;TYPES.forEach(s=>a.push((d[s]||'')+(d[s]==='custom'&&d.custom?.[s]?(d.custom[s].name||'')+(d.custom[s].lib||''):'')+(d.sw?.[s]?JSON.stringify(d.sw[s]):'')+(d.p?.[s]||1)+'x'+(d.ppl?.[s]||'')));a.push('ex:'+(d.extras||[]).map(x=>(x.lib||x.name||'')).join('~'))}));return a.join(',')+'|p'+S.people}
 function shopGenerate(){S.shop.mode='shop';save();renderShop()}
 function shopEdit(){S.shop.mode='plan';save();renderShop()}
 function shopClearTicks(){S.shop.bought={};save();renderShop()}
@@ -2421,6 +2688,15 @@ function renderShop(){
       if(it.qty&&(agg[key].unit===it.unit||!agg[key].unit)){agg[key].qty+=it.qty*f;agg[key].unit=agg[key].unit||it.unit}
       else if(it.qty)agg[key].qty+=it.qty*f;
       else agg[key].any=true;
+    }));
+  }));
+  /* planner extras (snacks/own meals added on top of a day) feed the list too */
+  Object.values(S.plan.weeks[w]||{}).forEach(d=>extrasList(d).forEach(x=>{
+    let lines=x.ing&&x.ing.length?x.ing:(x.name?[x.name]:[]);
+    lines.forEach(line=>parseIngLine(line).forEach(it=>{
+      if(!it.name)return;let key=it.name.toLowerCase();
+      if(!agg[key])agg[key]={name:it.name,unit:it.unit,qty:0,any:false};
+      if(it.qty){agg[key].qty+=it.qty;agg[key].unit=agg[key].unit||it.unit}else agg[key].any=true;
     }));
   }));
   S.shopExtra.forEach((x,xi)=>{agg['extra:'+x.toLowerCase()]={name:x,unit:'',qty:0,any:true,extra:xi}});
@@ -2523,30 +2799,27 @@ const GUIDE={
   '<b>Count your scans in the plan.</b> Once you have scanned enough of a recipe, tap <em>Use these macros in my plan</em> and that recipe\'s scanned total feeds your day totals and Home rings instead of the printed estimate. Leave it off and your rings keep using the printed macros, so a half-finished scan never makes your day read low. Turn it off any time to switch back.',
   '<b>Scan to meal.</b> Anything you add can be logged as an extra, or set as today\'s breakfast, lunch, dinner or snack. Set it as a meal and it replaces that slot in your plan, already ticked and counted.',
   'Estimates are fine. Close is perfect, and consistency wins.']},
- 'A Gentle Note':{sub:'Disclaimer',body:[
-  '<em>This is general fitness and nutrition guidance, not medical advice.</em>',
-  'Calorie and protein figures are estimates to help you plan. Results vary from person to person and are never guaranteed, they depend on consistency, effort, sleep and everyday life.',
-  '<b>Move within your limits.</b> Any exercise carries some risk. Start with lighter loads, build up gradually, keep your form honest and stop if anything hurts. If you feel pain, dizziness or shortness of breath, stop and seek medical advice.',
-  '<b>Check in first if.</b> You are pregnant or breastfeeding, recovering from injury, or managing a health condition. Speak to your GP, physio or a registered dietitian before you start, nothing here replaces professional advice.',
-  'Be kind to yourself, you are building habits for life, not chasing a deadline.']}
+ 'A Gentle Note':{sub:'Health, nutrition & fitness disclaimer',body:[
+  '<b>Health, nutrition & fitness disclaimer.</b> These meal plans and workout programmes are provided for general informational and educational purposes only and are not intended as medical, nutritional, or fitness advice. They are not a substitute for professional guidance from a qualified healthcare provider, registered dietitian, or certified fitness professional, and do not constitute personalised medical advice.',
+  '<b>Medical & safety notice.</b> Always consult your GP or a qualified healthcare professional before making changes to your diet or beginning any new exercise programme, particularly if you have any pre-existing health conditions. If you experience pain, dizziness, shortness of breath, or discomfort at any time, discontinue use immediately and seek medical advice.',
+  '<b>Allergy & dietary responsibility.</b> While care has been taken to highlight common allergens where possible, these plans may include ingredients that could cause allergic reactions. You are responsible for checking all ingredients and adapting meals to suit your individual dietary requirements.',
+  '<b>Results disclaimer.</b> Individual results may vary and are not guaranteed. Outcomes depend on consistency, effort, lifestyle, metabolism, and adherence to the programme.',
+  '<b>Suitability.</b> These plans are intended for generally healthy individuals and may not be suitable for those who are pregnant, breastfeeding, postpartum, recovering from injury, or managing medical conditions without professional approval.',
+  '<b>Limitation of liability.</b> To the fullest extent permitted by law, the creator disclaims any liability for any direct, indirect, incidental, or consequential loss, injury, or damage arising from the use or misuse of this information, products, or services.',
+  '<b>User agreement.</b> By accessing or using these plans, you acknowledge that you have read, understood, and agree to this disclaimer and accept full responsibility for your use of the information provided.',
+  '<b>Refund policy.</b> Due to the digital nature of these products and services, all sales are final and no refunds will be issued once access has been granted.',
+  '<b>Subscription terms.</b> If you are enrolled in a subscription, billing occurs on a recurring basis unless cancelled. You may cancel at any time; however, no partial refunds will be issued for unused time.']}
 };
 /* 'Add to app' purchase links per season. Leave '' to hide the button until the Gumroad product is live. */
 const SEASON_BUY={shred:'',april:''};
 function seasonBuyBtn(season){let u=SEASON_BUY[season];return u?`<br><a class="btn mini" style="text-decoration:none;display:inline-block;margin-top:8px" href="${u}" target="_blank" rel="noopener">Add ${SEASONNAME[season]||season} to my app</a>`:''}
 function openGuide(k){let g=GUIDE[k];modalBody.innerHTML=`<div class="guideDoc"><div class="gcap">The Model Body · Guide</div><h2 class="gtitle">${k}</h2><div class="gsub">${g.sub||''}</div><div class="grule"></div>${g.body.map((x,i)=>`<p class="gpara${i===0?' lead':''}">${x.replace('%BUY_SHRED%',seasonBuyBtn('shred')).replace('%BUY_APRIL%',seasonBuyBtn('april'))}</p>`).join('')}</div>`;modal.classList.add('active')}
-function setLogTab(t){S.logTab=t;
-  if(!$('ltabLog'))return;
-  $('ltabLog').className='btn guideTab mini'+(t==='log'?'':' ghost');
-  $('ltabPB').className='btn guideTab mini'+(t==='pb'?'':' ghost');
-  $('logList').classList.toggle('hidden',t!=='log');
-  $('pbList').classList.toggle('hidden',t!=='pb');
-}
 function renderGuide(){
   guideList.innerHTML=Object.keys(GUIDE).map((k,i)=>{let g=GUIDE[k];let body=g.body.map((x,j)=>`<p class="gpara${j===0?' lead':''}">${x.replace('%BUY_SHRED%',seasonBuyBtn('shred')).replace('%BUY_APRIL%',seasonBuyBtn('april'))}</p>`).join('');return `<section class="card" style="margin-top:12px"><div class="label">${k}</div><details style="margin-top:6px"><summary style="cursor:pointer;font-weight:700">${g.sub||'Read more'}</summary><div class="guideDoc" style="margin-top:12px">${body}</div></details></section>`}).join('');
   /* collapsible copy of the guide at the top of the planner, only the sections about building and using the plan */
   if($('planGuideList')){
     const PLAN_GUIDE_KEYS=['Build Your Plan','Choosing Your Goal','Session Time & Finish Points','Using The Weekly Planner','Swaps & Dietary Needs'];
-    $('planGuideList').innerHTML=PLAN_GUIDE_KEYS.filter(k=>GUIDE[k]).map((k,i)=>`<div class="guideItem"><div style="display:flex;gap:13px;align-items:center"><span class="gnum">${i+1}</span><div><div class="gk">${k}</div><div class="gs">${GUIDE[k].sub||''}</div></div></div><button class="btn ghost mini" onclick="openGuide('${k.replace(/'/g,"\\'")}')">Open</button></div>`).join('');
+    $('planGuideList').innerHTML=PLAN_GUIDE_KEYS.filter(k=>GUIDE[k]).map(k=>{let g=GUIDE[k];let body=g.body.map((x,j)=>`<p class="gpara${j===0?' lead':''}">${x.replace('%BUY_SHRED%',seasonBuyBtn('shred')).replace('%BUY_APRIL%',seasonBuyBtn('april'))}</p>`).join('');return `<section class="card" style="margin-top:12px"><div class="label">${k}</div><details style="margin-top:6px"><summary style="cursor:pointer;font-weight:700">${g.sub||'Read more'}</summary><div class="guideDoc" style="margin-top:12px">${body}</div></details></section>`}).join('');
     $('planGuideList').classList.toggle('hidden',!S.planHelpOpen);
     if($('planHelpBtn'))$('planHelpBtn').textContent=S.planHelpOpen?'Close':'Open';
   }
@@ -2555,26 +2828,26 @@ function renderGuide(){
 /* best set per exercise: highest weight first, then most reps at that weight */
 function bestSets(){
   let map={};
-  Object.keys(S.logHist||{}).forEach(lk=>{
+  Object.keys(S.setLogs||{}).forEach(lk=>{
     let parts=lk.split('|'),wkt=workoutById(parts[0]);if(!wkt)return;
     let ex=wkt.secs?.[+parts[1]]?.ex?.[+parts[2]];if(!ex)return;
     let name=ex[0];
-    (S.logHist[lk]||[]).forEach(h=>{
-      let kg=parseFloat(h.kg)||0,reps=parseInt(h.reps)||0;
+    (S.setLogs[lk]||[]).forEach(dd=>dd.sets.forEach(s=>{
+      let kg=parseFloat(s.kg)||0,reps=parseInt(s.reps)||0;
       if(!kg&&!reps)return;
       let c=map[name];
-      if(!c||kg>c.kg||(kg===c.kg&&reps>c.reps))map[name]={kg,reps,date:h.d,workout:wkt.title};
-    });
+      if(!c||kg>c.kg||(kg===c.kg&&reps>c.reps))map[name]={kg,reps,date:dd.d,workout:wkt.title,lk};
+    }));
   });
   return map;
 }
 function renderPB(){
   let map=bestSets(),names=Object.keys(map).sort((a,b)=>a.localeCompare(b));
   if(!names.length){pbList.innerHTML='<div class="card" style="margin-top:12px"><p class="muted" style="margin:0">No personal bests yet. Log your weights and reps inside any workout and your best set for each exercise appears here, ranked by weight first, then reps.</p></div>';return}
-  pbList.innerHTML=`<p class="muted small" style="margin:12px 4px 2px">Your best logged set for each exercise, weight first then reps.</p>`+names.map(n=>{
+  pbList.innerHTML=`<p class="muted small" style="margin:12px 4px 2px">Your best logged set for each exercise, weight first then reps. Tap any exercise for its full progress graphs.</p>`+names.map(n=>{
     let b=map[n],val=b.kg?`${b.kg}kg${b.reps?' × '+b.reps:''}`:`${b.reps} reps`;
     let dt=b.date?new Date(b.date+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short'}):'';
-    return `<div class="pbRow"><div><div class="pbEx">${esc(n)}</div><div class="pbMeta">${esc(b.workout||'')}${dt?' · '+dt:''}</div></div><div class="pbVal">🥇 ${esc(val)}</div></div>`;
+    return `<div class="pbRow" style="cursor:pointer" onclick="openExProgress('${b.lk}')"><div><div class="pbEx">${esc(n)}</div><div class="pbMeta">${esc(b.workout||'')}${dt?' · '+dt:''} · tap for graphs</div></div><div class="pbVal">🥇 ${esc(val)} ›</div></div>`;
   }).join('');
 }
 
