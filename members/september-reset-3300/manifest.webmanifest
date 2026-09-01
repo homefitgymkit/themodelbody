@@ -1,0 +1,13 @@
+{
+  "name": "The Reset Meal Plan",
+  "short_name": "Reset Meals",
+  "start_url": "/members/september-reset-3300/",
+  "scope": "/members/september-reset-3300/",
+  "display": "standalone",
+  "background_color": "#F8F3EB",
+  "theme_color": "#F8F3EB",
+  "icons": [
+    { "src": "./meals-icon.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "./meals-icon.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
