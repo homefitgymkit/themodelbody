@@ -1,0 +1,16 @@
+{
+  "name": "The Comfort Collection | November 2026 Meals",
+  "short_name": "Nov Meals",
+  "start_url": "/members/november-comfort-collection-3700/",
+  "scope": "/members/november-comfort-collection-3700/",
+  "display": "standalone",
+  "background_color": "#F8F3EB",
+  "theme_color": "#F8F3EB",
+  "icons": [
+    {
+      "src": "./apple-touch-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
